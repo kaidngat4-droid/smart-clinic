@@ -1,0 +1,124 @@
+{
+  "name": "عيادتي الذكية | Smart Clinic",
+  "short_name": "عيادتي الذكية",
+  "description": "منصة طبية شاملة لتفسير الفحوصات، البحث عن الأمراض والأدوية، مقالات موثوقة، تقييمات ومشاركة مجتمعية.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#0066cc",
+  "background_color": "#f0f4f8",
+  "orientation": "portrait-primary",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshots/mobile-home.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "الصفحة الرئيسية للعيادة الذكية"
+    },
+    {
+      "src": "screenshots/mobile-article.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "عرض المقال الطبي"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "تفسير الفحوصات",
+      "short_name": "تفسير",
+      "description": "اذهب إلى أداة تفسير التحاليل والأشعة",
+      "url": "/#lab-interpret",
+      "icons": [
+        {
+          "src": "icons/shortcut-lab.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "المقالات المفضلة",
+      "short_name": "المفضلة",
+      "description": "قائمة مقالاتك المحفوظة",
+      "url": "/#favorites",
+      "icons": [
+        {
+          "src": "icons/shortcut-fav.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "بحث عن دواء",
+      "short_name": "أدوية",
+      "description": "البحث في قاعدة بيانات الأدوية",
+      "url": "/#drug-search",
+      "icons": [
+        {
+          "src": "icons/shortcut-drug.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "categories": ["medical", "health", "education", "reference"],
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "iarc_rating_id": "0",
+  "scope": "/"
+}

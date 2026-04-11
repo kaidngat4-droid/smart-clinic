@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>من نحن - عيادتي الذكية</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: #f4f9fe;
+    color: #1a2c3e;
+    line-height: 1.6;
+  }
+  header {
+    background: linear-gradient(135deg, #0b2b3b, #1b4f6e);
+    color: white;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  .header-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+  }
+  .logo-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: white;
+    padding: 3px;
+  }
+  .logo h1 {
+    font-size: 1.6rem;
+    background: linear-gradient(135deg, #fff, #ffe0b5);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  nav ul {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+  }
+  nav ul li a:hover {
+    color: #ffb347;
+  }
+  #back-home {
+    background: rgba(255,255,240,0.2);
+    border: none;
+    padding: 6px 15px;
+    border-radius: 40px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  #back-home:hover {
+    background: #ffb347;
+    color: #1e2a2f;
+  }
+  main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+  }
+  .about-card {
+    background: white;
+    border-radius: 32px;
+    padding: 2rem;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .about-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #1e88e5;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+  }
+  .about-card h2 {
+    color: #1e88e5;
+    border-right: 5px solid #1e88e5;
+    padding-right: 1rem;
+    display: inline-block;
+    margin: 1rem 0;
+  }
+  .about-card p {
+    margin: 1rem 0;
+    text-align: justify;
+  }
+  .social-icons {
+    margin-top: 1rem;
+  }
+  .social-icons a {
+    color: #1e88e5;
+    font-size: 2rem;
+    margin: 0 0.5rem;
+    transition: 0.2s;
+  }
+  .social-icons a:hover {
+    color: #0b5e7e;
+    transform: scale(1.1);
+  }
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    background: #0f2c38;
+    color: #cbd5e1;
+    margin-top: 3rem;
+  }
+  @media (max-width: 700px) {
+    .header-container { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-container">
+    <div class="logo" onclick="location.href='../index.html'">
+      <img src="../images/logo.png" class="logo-img" onerror="this.src='https://placehold.co/50x50'">
+      <h1>عيادتي الذكية</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="../index.html">الرئيسية</a></li>
+        <li><a href="catheter.html">القسطرة</a></li>
+        <li><a href="stents.html">الدعامات</a></li>
+        <li><a href="diabetes.html">السكري</a></li>
+        <li><a href="hypertension.html">الضغط</a></li>
+        <li><a href="heart-dua.html">دعاءات</a></li>
+        <li><a href="about.html">من نحن</a></li>
+      </ul>
+    </nav>
+    <button id="back-home" onclick="location.href='../index.html'">🏠 الرئيسية</button>
+  </div>
+</header>
+<main>
+  <div class="about-card">
+    <!-- الصورة المطلوبة تظهر هنا بدلاً من الأيقونة -->
+    <img src="../images/about.jpg" alt="من نحن" class="about-img" onerror="this.onerror=null; this.src='https://placehold.co/180x180?text=❤️';">
+    <h2>من نحن</h2>
+    <p>موقع <strong>عيادتي الذكية</strong> هو منصة طبية توعوية تهدف إلى نشر المعرفة حول أمراض القلب، السكري، ضغط الدم، والعناية بالمرضى. نقدم محتوى موثوقاً ومبسطاً بالتعاون مع استشاريين وأطباء.</p>
+    <h2>رؤيتنا</h2>
+    <p>مجتمع واعٍ بصحته القلبية، يمتلك الأدوات اللازمة للوقاية والعلاج.</p>
+    <h2>رسالتنا</h2>
+    <p>تقديم معلومات دقيقة ومحدثة بطريقة سهلة، مع توفير أدوات تفاعلية مثل المقالات، التقييمات، والتعليقات.</p>
+    <h2>فريق العمل</h2>
+    <p>فريق من المطورين والأطباء المتطوعين يسعى لنشر الوعي الصحي.</p>
+    <h2>تواصل معنا</h2>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+      <a href="#"><i class="fab fa-telegram"></i></a>
+    </div>
+    <p style="margin-top: 1rem;">البريد الإلكتروني: <strong>info@smartclinic.com</strong></p>
+  </div>
+</main>
+<footer class="footer">
+  <p>© 2026 عيادتي الذكية — محتوى توعوي ليس بديلاً عن الاستشارة الطبية</p>
+</footer>
+</body>
+</html>

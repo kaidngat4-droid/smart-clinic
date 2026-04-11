@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دعاءات القلب - عيادتي الذكية</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: #f4f9fe;
+    color: #1a2c3e;
+    line-height: 1.6;
+  }
+  header {
+    background: linear-gradient(135deg, #0b2b3b, #1b4f6e);
+    color: white;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  .header-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+  .logo-icon { font-size: 2.5rem; color: #ffd966; }
+  .logo h1 { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, #fff, #ffe0b5); background-clip: text; -webkit-background-clip: text; color: transparent; }
+  nav ul { display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; }
+  nav ul li a { color: #f1f9ff; font-weight: 600; text-decoration: none; padding: 0.4rem 0.2rem; border-bottom: 2px solid transparent; transition: 0.3s; }
+  nav ul li a:hover { border-bottom-color: #ffb347; color: #ffdfa5; }
+  #back-home { background: rgba(255,255,240,0.2); border: none; font-size: 1.2rem; cursor: pointer; padding: 8px 15px; border-radius: 40px; color: white; transition: 0.3s; }
+  #back-home:hover { background: #ffb347; color: #1e2a2f; }
+  main { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+  .dua-card {
+    background: white;
+    border-radius: 32px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+  .dua-card:hover { transform: translateY(-5px); }
+  .dua-card h2 {
+    color: #1e88e5;
+    border-right: 5px solid #1e88e5;
+    padding-right: 1rem;
+    margin-bottom: 1.2rem;
+    font-size: 1.8rem;
+  }
+  .dua-text {
+    font-size: 1.4rem;
+    line-height: 2;
+    background: #f0f7fc;
+    padding: 1.5rem;
+    border-radius: 28px;
+    margin: 1rem 0;
+    text-align: center;
+    font-weight: 500;
+  }
+  .dua-meaning {
+    color: #2c3e50;
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+    margin-top: 1rem;
+  }
+  .dua-meaning p { margin: 0.5rem 0; }
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    background: #0f2c38;
+    color: #cbd5e1;
+    margin-top: 3rem;
+  }
+  @media (max-width: 700px) {
+    .header-container { flex-direction: column; }
+    .dua-text { font-size: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-container">
+    <div class="logo" onclick="location.href='../index.html'">
+      <i class="fas fa-heartbeat logo-icon"></i>
+      <h1>عيادتي الذكية</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="../index.html">الرئيسية</a></li>
+        <li><a href="catheter.html">القسطرة القلبية</a></li>
+        <li><a href="stents.html">دعامات القلب</a></li>
+        <li><a href="blocked-artery.html">أعراض انسداد الشرايين</a></li>
+        <li><a href="patient-care.html">العناية بالمريض</a></li>
+        <li><a href="tips.html">نصائح وإرشادات</a></li>
+        <li><a href="post-stent-meds.html">الأدوية بعد الدعامات</a></li>
+        <li><a href="post-avoid-meds.html">الأدوية التي يجب تجنبها</a></li>
+        <li><a href="heart-dua.html" style="border-bottom-color:#ffb347;">دعاءات القلب</a></li>
+      </ul>
+    </nav>
+    <button id="back-home" onclick="location.href='../index.html'"><i class="fas fa-home"></i> الرئيسية</button>
+  </div>
+</header>
+
+<main>
+  <div style="text-align: center; margin-bottom: 2rem;">
+    <img src="../images/dua.jpg" alt="دعاء القلب" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid #1e88e5; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+    <h1 style="margin-top: 1rem; color: #0b2b3b;">🕌 أدعية وأذكار لطمأنينة القلب والشفاء</h1>
+    <p style="color: #2c3e50;">"ألا بذكر الله تطمئن القلوب" - استشعر السكينة والرحمة بهذه الأدعية المباركة.</p>
+  </div>
+
+  <!-- بطاقة الدعاء 1 -->
+  <div class="dua-card">
+    <h2><i class="fas fa-hand-peace"></i> دعاء الشفاء من الأمراض</h2>
+    <div class="dua-text">
+      «أَذْهِبِ الْبَاسَ، رَبَّ النَّاسِ، اشْفِ أَنْتَ الشَّافِي، لاَ شِفَاءَ إِلَّا شِفَاؤُكَ، شِفَاءً لاَ يُغَادِرُ سَقَمًا»
+    </div>
+    <div class="dua-meaning">
+      <p><strong>المعنى:</strong> اللهم أزل الضر والأذى يا رب الناس، أنت وحدك الشافي، لا شفاء حقيقياً إلا شفاؤك، شفاءً تاماً لا يترك أي مرض.</p>
+      <p><i class="fas fa-hadith"></i> عن عائشة رضي الله عنها: كان النبي ﷺ يقرأ بها على المريض.</p>
+    </div>
+  </div>
+
+  <!-- بطاقة الدعاء 2 -->
+  <div class="dua-card">
+    <h2><i class="fas fa-heartbeat"></i> دعاء طمأنينة القلب ورفع الهم</h2>
+    <div class="dua-text">
+      «اللَّهُمَّ إِنِّي عَبْدُكَ، ابْنُ عَبْدِكَ، ابْنُ أَمَتِكَ، نَاصِيَتِي بِيَدِكَ، مَاضٍ فِيَّ حُكْمُكَ، عَدْلٌ فِيَّ قَضَاؤُكَ، أَسْأَلُكَ بِكُلِّ اسْمٍ هُوَ لَكَ، سَمَّيْتَ بِهِ نَفْسَكَ، أَوْ أَنْزَلْتَهُ فِي كِتَابِكَ، أَوْ عَلَّمْتَهُ أَحَدًا مِنْ خَلْقِكَ، أَوِ اسْتَأْثَرْتَ بِهِ فِي عِلْمِ الْغَيْبِ عِنْدَكَ، أَنْ تَجْعَلَ الْقُرْآنَ رَبِيعَ قَلْبِي، وَنُورَ صَدْرِي، وَجَلَاءَ حُزْنِي، وَذَهَابَ هَمِّي»
+    </div>
+    <div class="dua-meaning">
+      <p><strong>المعنى:</strong> اللهم اجعل القرآن الكريم ربيعاً لقلبي، ونوراً لصدري، ومُذهباً لحزني وهمي.</p>
+      <p><i class="fas fa-star-of-life"></i> هذا الدواء النبوي العظيم لزوال الهموم والاكتئاب.</p>
+    </div>
+  </div>
+
+  <!-- بطاقة الدعاء 3 -->
+  <div class="dua-card">
+    <h2><i class="fas fa-mosque"></i> دعاء الاستعاذة من شر الأمراض</h2>
+    <div class="dua-text">
+      «اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْبَرَصِ، وَالْجُنُونِ، وَالْجُذَامِ، وَمِنْ سَيِّئِ الْأَسْقَامِ»
+    </div>
+    <div class="dua-meaning">
+      <p><strong>المعنى:</strong> اللهم احفظني من الأمراض الجلدية الخطيرة، والاضطرابات العقلية، والأمراض المزمنة، ومن كل داء سيء.</p>
+      <p>رواه أبو داود والنسائي.</p>
+    </div>
+  </div>
+
+  <!-- بطاقة الدعاء 4 -->
+  <div class="dua-card">
+    <h2><i class="fas fa-bed"></i> دعاء الكرب والضيق</h2>
+    <div class="dua-text">
+      «لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ»
+    </div>
+    <div class="dua-meaning">
+      <p><strong>المعنى:</strong> لا معبود بحق إلا أنت، تنزهت عن كل نقص، إني كنت من المسيئين.</p>
+      <p><i class="fas fa-quote-right"></i> دعاء سيدنا يونس عليه السلام، من قاله فرج الله همه.</p>
+    </div>
+  </div>
+
+  <!-- بطاقة الدعاء 5 -->
+  <div class="dua-card">
+    <h2><i class="fas fa-shield-alt"></i> دعاء تحصين القلب والبدن</h2>
+    <div class="dua-text">
+      «بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ» (ثلاث مرات)
+    </div>
+    <div class="dua-meaning">
+      <p><strong>المعنى:</strong> باسم الله الذي إذا ذكر اسمه لا يضر معه شيء في الأرض ولا في السماء، وهو السميع العليم.</p>
+      <p>من قالها ثلاث مرات لم تضره فجاءة بلاء حتى يصبح.</p>
+    </div>
+  </div>
+
+  <!-- بطاقة الدعاء 6 -->
+  <div class="dua-card">
+    <h2><i class="fas fa-hand-holding-heart"></i> دعاء للمريض (زيارة المريض)</h2>
+    <div class="dua-text">
+      «لَا بَأْسَ، طَهُورٌ إِنْ شَاءَ اللَّهُ»
+    </div>
+    <div class="dua-meaning">
+      <p><strong>المعنى:</strong> لا بأس عليك، هذا المرض يكفر ذنوبك ويطهرك إن شاء الله.</p>
+      <p>كان النبي ﷺ إذا دخل على مريض قالها.</p>
+    </div>
+  </div>
+
+  <div style="background: #e3f2fd; border-radius: 30px; padding: 1.5rem; text-align: center; margin-top: 2rem;">
+    <i class="fas fa-dua" style="font-size: 2rem; color: #1e88e5;"></i>
+    <p style="margin-top: 0.5rem;"><strong>وصية النبي ﷺ:</strong> "عليكم بالدعاء، فإنه شفاء من كل داء" (رواه الحاكم).</p>
+    <p>احرص على قراءة الأذكار الصباحية والمسائية، ورقية النفس، وتفويض الأمر لله مع الأخذ بالأسباب الطبية.</p>
+  </div>
+</main>
+
+<footer class="footer">
+  <p><i class="far fa-copyright"></i> 2026 عيادتي الذكية — دعاء وشفاء، لا يغني عن العلاج الطبي بل هو سكينة للقلب.</p>
+</footer>
+
+<script>
+  // إضافة زر العودة للرئيسية بشكل احتياطي
+  document.getElementById('back-home')?.addEventListener('click', () => { window.location.href = '../index.html'; });
+</script>
+</body>
+</html>

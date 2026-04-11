@@ -1,0 +1,46 @@
+# robots.txt للمنصة الطبية "عيادتي الذكية"
+# يوجه محركات البحث لفهرسة المحتوى الطبي الهام مع حماية الصفحات الإدارية
+
+User-agent: *
+Allow: /
+
+# منع الزحف إلى الصفحات الإدارية ولوحات التحكم (حماية الخصوصية)
+Disallow: /admin-panel
+Disallow: /admin
+Disallow: /api/
+Disallow: /private/
+Disallow: /export-data
+Disallow: /import-data
+
+# منع الزحف إلى الملفات المؤقتة أو غير المرغوب فيها
+Disallow: /*.json$
+Disallow: /*.log$
+Disallow: /backup/
+Disallow: /temp/
+
+# السماح بزحف جميع المقالات والخدمات الطبية (لأن Allow: / يغطيها لكن يمكن توضيح)
+Allow: /article/
+Allow: /lab-interpretation
+Allow: /doctor-join
+
+# تحديد موقع خريطة الموقع (استبدل YOUR_DOMAIN بالرابط الفعلي)
+Sitemap: https://YOUR_DOMAIN/sitemap.xml
+
+# إعدادات الزحف: مدة إعادة الزيارة
+Crawl-delay: 2
+
+# تحديد روبوتات محددة (اختياري)
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+# منع بعض البوتات الضارة (اختياري)
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /

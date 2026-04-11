@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0066cc">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://code.jquery.com https://www.google.com https://www.gstatic.com https://api.fda.gov https://api.allorigins.win; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://api.fda.gov https://api.allorigins.win https://eutils.ncbi.nlm.nih.gov https://api.emailjs.com;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>عيادتي الذكية | تفسير الفحوصات الطبية والأمراض وحجز المواعيد</title>
+    <meta name="description" content="منصة طبية شاملة: تفسير تحاليل الدم، الإيكو، الرنين المغناطيسي، الأشعة، بحث عن الأمراض والأدوية، مقالات طبية موثوقة، حجز المواعيد.">
+    <meta name="keywords" content="تحاليل طبية, تفسير إيكو, رنين مغناطيسي, أشعة, أمراض القلب, السكري, ضغط الدم, دواء, علم الأمراض, حجز موعد">
+    <meta name="author" content="د. صلاح الأهدل">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.6/jquery.rateyo.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/localforage@1.10.0/dist/localforage.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.6/jquery.rateyo.min.js"></script>
+    <style>
+        :root {
+            --primary: #0066cc;
+            --secondary: #1a237e;
+            --accent: #00c853;
+            --bg-body: #f0f4f8;
+            --surface: #ffffff;
+            --text-main: #263238;
+            --text-muted: #546e7a;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --radius: 16px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: background 0.2s;
+        }
+        body.dark {
+            --bg-body: #0f172a;
+            --surface: #1e293b;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        header {
+            background: var(--surface);
+            box-shadow: var(--shadow);
+            padding: 0.8rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+        .logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+        }
+        .logo h1 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            font-weight: 800;
+        }
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 3rem 0;
+            text-align: center;
+            color: white;
+            border-bottom-right-radius: 50px;
+            border-bottom-left-radius: 50px;
+        }
+        .search-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .search-tab {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .search-tab.active {
+            background: #ff9800;
+            color: #1e2a2f;
+        }
+        .search-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+        }
+        .search-container input {
+            flex: 1;
+            padding: 1rem 3rem 1rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            font-size: 1rem;
+            font-family: 'Cairo';
+        }
+        .search-container i.fa-search {
+            position: absolute;
+            right: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            pointer-events: none;
+        }
+        .search-container button {
+            background: #ff9800;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 50px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .global-search-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 10px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+        }
+        .global-results {
+            background: white;
+            border-radius: 20px;
+            margin-top: 1rem;
+            padding: 1rem;
+            text-align: right;
+            color: #1e2a3a;
+            max-height: 500px;
+            overflow-y: auto;
+            display: none;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        .global-results.show { display: block; }
+        .result-card {
+            background: #f9f9f9;
+            border-radius: 16px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-right: 4px solid var(--primary);
+        }
+        .depts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+            gap: 1rem;
+            margin-top: -30px;
+        }
+        .dept-card {
+            background: var(--surface);
+            padding: 1rem;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: 0.2s;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        .dept-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+        .dept-card i {
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .article-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        .article-card:hover { transform: translateY(-3px); }
+        .article-thumb {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background: #ccc;
+        }
+        .article-content {
+            padding: 1rem;
+            flex-grow: 1;
+        }
+        .badge-verified {
+            background: rgba(0,200,83,0.1);
+            color: var(--accent);
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 0.5rem;
+        }
+        .article-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+        .article-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .card-footer {
+            padding: 0.7rem 1rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .read-btn {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .sidebar-box {
+            background: var(--surface);
+            padding: 1.2rem;
+            border-radius: var(--radius);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+        .sidebar-box h4 {
+            border-right: 4px solid var(--primary);
+            padding-right: 10px;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .admin-official-banner {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.2rem;
+            border-radius: var(--radius);
+            text-align: center;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(6px);
+            z-index: 2000;
+            padding: 1rem;
+        }
+        .modal-content {
+            background: var(--surface);
+            max-width: 900px;
+            margin: 2rem auto;
+            border-radius: 28px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 1.8rem;
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            font-size: 1.8rem;
+            cursor: pointer;
+            background: rgba(0,0,0,0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .admin-panel {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--surface);
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1001;
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            padding: 15px;
+            width: 300px;
+            max-width: 90vw;
+        }
+        .admin-panel.show { display: flex; }
+        .admin-panel input, .admin-panel textarea, .admin-panel select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            font-family: 'Cairo';
+        }
+        .admin-panel button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            background: #2e7d32;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            z-index: 2000;
+            animation: fadeOut 3s forwards;
+        }
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+        .spinner { text-align: center; padding: 2rem; }
+        .rating-stars { direction: ltr; display: inline-block; margin: 10px 0; }
+        .comment-item { background: rgba(0,0,0,0.05); padding: 10px; border-radius: 12px; margin-bottom: 10px; }
+        .share-buttons a {
+            display: inline-block;
+            margin: 5px;
+            padding: 6px 12px;
+            border-radius: 30px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+        .share-whatsapp { background: #25D366; }
+        .share-twitter { background: #1DA1F2; }
+        .share-facebook { background: #4267B2; }
+        .share-telegram { background: #0088cc; }
+        .lab-section { background: var(--surface); border-radius: var(--radius); padding: 1rem; margin-bottom: 1.5rem; box-shadow: var(--shadow); }
+        .lab-form select, .lab-form input, .lab-form button { width: 100%; margin: 5px 0; padding: 8px; border-radius: 30px; border: 1px solid #ccc; font-family: 'Cairo'; }
+        .lab-result { background: #e8f0fe; padding: 10px; border-radius: 16px; margin-top: 10px; }
+        .image-preview { max-width: 100%; max-height: 120px; border-radius: 12px; margin-top: 8px; }
+        
+        /* قسم حجز المواعيد الجديد */
+        .appointment-section {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+        .appointment-form select, .appointment-form input, .appointment-form button {
+            width: 100%;
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 30px;
+            border: 1px solid #ccc;
+            font-family: 'Cairo';
+        }
+        .appointment-list {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 10px;
+            font-size: 0.85rem;
+        }
+        .appointment-item {
+            background: rgba(0,0,0,0.05);
+            padding: 8px;
+            border-radius: 12px;
+            margin-bottom: 6px;
+        }
+        
+        /* لوحة تسجيل الطبيب المحسنة مع ميزة الإخفاء/الإظهار */
+        .doctor-reg-panel {
+            background: linear-gradient(145deg, var(--surface), var(--bg-body));
+            border-radius: var(--radius);
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: all 0.2s;
+        }
+        .doctor-reg-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-right: 4px solid var(--primary);
+            padding-right: 10px;
+            margin-bottom: 1rem;
+        }
+        .doctor-reg-header h4 {
+            margin: 0;
+            color: var(--primary);
+        }
+        .toggle-doctor-panel {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            transition: 0.2s;
+            padding: 4px 8px;
+            border-radius: 30px;
+        }
+        .toggle-doctor-panel:hover { background: rgba(0,0,0,0.05); color: var(--primary); }
+        .doctor-form-container {
+            transition: all 0.3s ease-in-out;
+            overflow: hidden;
+        }
+        .doctor-form-container.hidden {
+            display: none;
+        }
+        .doctor-form input, .doctor-form select {
+            width: 100%;
+            padding: 10px;
+            margin: 6px 0;
+            border-radius: 40px;
+            border: 1px solid #ccc;
+            background: var(--bg-body);
+            font-family: 'Cairo';
+        }
+        .doctor-form button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 40px;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .doctor-form button:hover { background: var(--secondary); }
+        .reg-message { margin-top: 8px; font-size: 0.8rem; text-align: center; }
+        @media (max-width: 768px) {
+            .main-layout { grid-template-columns: 1fr; }
+            .search-container { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-flex">
+        <div class="logo" id="home-link">
+            <img src="images/logo.png" alt="Logo" onerror="this.src='https://placehold.co/50x50?text=SM'">
+            <h1>عيادتي الذكية</h1>
+        </div>
+        <div style="display: flex; gap: 15px; align-items: center;">
+            <button id="toggle-dark" style="background:none; border:none; cursor:pointer; font-size: 1.3rem; color: var(--primary);">
+                <i class="fas fa-moon"></i>
+            </button>
+            <a href="mailto:Kaidngat4@gmail.com" class="read-btn" style="background: var(--primary); color: white; padding: 6px 18px; border-radius: 30px; text-decoration: none;">تواصل</a>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h2>المرجع الطبي الرقمي المتكامل</h2>
+        <p>بإشراف د. صلاح الأهدل - بحث متقدم، تعليقات، تقييمات، مفضلات، وضع دون اتصال، تفسير الفحوصات الطبية، حجز المواعيد</p>
+        <div class="search-tabs">
+            <button class="search-tab active" data-search-type="drugs">💊 دواء</button>
+            <button class="search-tab" data-search-type="diseases">🩺 مرض</button>
+            <button class="search-tab" data-search-type="articles">📄 مقالات</button>
+        </div>
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" id="mainSearch" placeholder="ابحث عن دواء أو مرض...">
+            <button id="advancedSearchBtn">بحث متقدم</button>
+            <label class="global-search-toggle">
+                <input type="checkbox" id="enableGlobalSearch" checked> مصادر عالمية (PubMed)
+            </label>
+        </div>
+        <div id="globalResults" class="global-results"></div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="depts-grid">
+        <div class="dept-card" data-tag="قلب"><i class="fas fa-heartbeat"></i><span>القلب</span></div>
+        <div class="dept-card" data-tag="سكري"><i class="fas fa-pills"></i><span>السكري</span></div>
+        <div class="dept-card" data-tag="ضغط"><i class="fas fa-tachometer-alt"></i><span>الضغط</span></div>
+        <div class="dept-card" data-tag="دعامات"><i class="fas fa-stethoscope"></i><span>الدعامات</span></div>
+        <div class="dept-card" data-tag="أنف وأذن"><i class="fas fa-ear-deaf"></i><span>أنف وأذن</span></div>
+        <div class="dept-card" data-tag="جهاز هضمي"><i class="fas fa-stomach"></i><span>هضمي</span></div>
+        <div class="dept-card" data-tag="جهاز بولي"><i class="fas fa-kidneys"></i><span>بولي</span></div>
+        <div class="dept-card" data-tag="أدوية"><i class="fas fa-capsules"></i><span>أدوية</span></div>
+        <div class="dept-card" data-tag="علم أدوية"><i class="fas fa-flask"></i><span>علم الأدوية</span></div>
+        <div class="dept-card" data-tag="علم أمراض"><i class="fas fa-microscope"></i><span>علم الأمراض</span></div>
+    </div>
+
+    <div class="main-layout">
+        <main>
+            <div id="posts-grid" class="posts-grid"></div>
+        </main>
+        <aside>
+            <div class="admin-official-banner">
+                <i class="fas fa-shield-halved" style="font-size: 2rem;"></i>
+                <h4>الإدارة العامة</h4>
+                <p>د. صلاح الأهدل</p>
+                <small>مدير مكتب الصحة - العدين</small>
+            </div>
+            
+            <!-- ===== قسم حجز المواعيد الجديد ===== -->
+            <div class="appointment-section">
+                <h4><i class="fas fa-calendar-check"></i> حجز موعد</h4>
+                <div class="appointment-form">
+                    <input type="text" id="aptName" placeholder="الاسم الكامل" required>
+                    <input type="tel" id="aptPhone" placeholder="رقم الجوال" required>
+                    <input type="date" id="aptDate" required>
+                    <select id="aptTime">
+                        <option value="10:00">10:00 ص</option>
+                        <option value="11:00">11:00 ص</option>
+                        <option value="12:00">12:00 م</option>
+                        <option value="16:00">04:00 م</option>
+                        <option value="17:00">05:00 م</option>
+                        <option value="18:00">06:00 م</option>
+                    </select>
+                    <select id="aptDept">
+                        <option value="قلب">أمراض القلب</option>
+                        <option value="سكري">السكري</option>
+                        <option value="ضغط">ارتفاع الضغط</option>
+                        <option value="أطفال">طب أطفال</option>
+                        <option value="نساء">نساء وتوليد</option>
+                        <option value="أنف وأذن">أنف وأذن وحنجرة</option>
+                        <option value="جهاز هضمي">جهاز هضمي</option>
+                        <option value="جهاز بولي">جهاز بولي</option>
+                    </select>
+                    <button id="bookAppointmentBtn">حجز الموعد</button>
+                </div>
+                <div id="appointmentMessage" style="margin-top:8px; font-size:0.8rem;"></div>
+                <div class="appointment-list" id="appointmentList">
+                    <div class="appointment-item">لا توجد مواعيد حالية</div>
+                </div>
+            </div>
+            
+            <!-- قسم تفسير الفحوصات الطبية -->
+            <div class="lab-section">
+                <h4><i class="fas fa-microscope"></i> تفسير الفحوصات الطبية</h4>
+                <p style="font-size:0.8rem;">اختر نوع الفحص وأدخل القيمة أو ارفع صورة للحصول على تفسير مبدئي (استشر طبيبك دائمًا).</p>
+                <div class="lab-form">
+                    <select id="labTestType">
+                        <option value="cbc">تحليل الدم (CBC)</option>
+                        <option value="echo">إيكو القلب (Echo)</option>
+                        <option value="mri">الرنين المغناطيسي (MRI)</option>
+                        <option value="xray">الأشعة السينية (X-ray)</option>
+                        <option value="lipid">دهون الدم (Lipid profile)</option>
+                        <option value="liver">وظائف الكبد</option>
+                        <option value="kidney">وظائف الكلى</option>
+                    </select>
+                    <input type="text" id="labValue" placeholder="أدخل القيمة (مثال: 120/80 أو 5.6)">
+                    <label for="labImage" style="display:block; margin:5px 0;">رفع صورة الفحص (اختياري):</label>
+                    <input type="file" id="labImage" accept="image/*">
+                    <div id="imagePreview" class="image-preview"></div>
+                    <button id="interpretLabBtn">تفسير النتيجة</button>
+                </div>
+                <div id="labResult" class="lab-result" style="display:none;"></div>
+            </div>
+
+            <!-- لوحة تسجيل الطبيب المحسنة مع إخفاء/إظهار -->
+            <div id="doctorRegPanel" class="doctor-reg-panel">
+                <div class="doctor-reg-header">
+                    <h4><i class="fas fa-user-md"></i> انضم كطبيب</h4>
+                    <button id="toggleDoctorRegPanel" class="toggle-doctor-panel" title="إخفاء/إظهار النموذج">
+                        <i class="fas fa-eye-slash"></i>
+                    </button>
+                </div>
+                <div id="doctorFormContainer" class="doctor-form-container">
+                    <form id="doctorRegistrationForm" class="doctor-form">
+                        <input type="text" id="doctorName" placeholder="الاسم الكامل" required>
+                        <input type="text" id="doctorSpecialty" placeholder="التخصص" required>
+                        <input type="email" id="doctorEmail" placeholder="البريد الإلكتروني" required>
+                        <input type="tel" id="doctorPhone" placeholder="رقم الجوال" required>
+                        <input type="text" id="doctorLicense" placeholder="رقم الترخيص" required>
+                        <div id="captchaQuestion"></div>
+                        <input type="text" id="captchaAnswer" placeholder="أدخل الإجابة" required>
+                        <button type="submit">إرسال طلب الانضمام</button>
+                    </form>
+                    <div id="regMessage" class="reg-message"></div>
+                </div>
+            </div>
+
+            <div class="sidebar-box">
+                <h4>📜 سياسات</h4>
+                <ul style="list-style:none; padding:0;">
+                    <li><a href="#" onclick="openLegalModal('privacy')">سياسة الخصوصية</a></li>
+                    <li><a href="#" onclick="openLegalModal('terms')">شروط الاستخدام</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-box">
+                <h4>📌 أحدث المقالات</h4>
+                <ul id="recent-sidebar" style="list-style:none; padding:0;"></ul>
+            </div>
+        </aside>
+    </div>
+</div>
+
+<div id="articleModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <div id="modalBody"></div>
+    </div>
+</div>
+<div id="legalModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" id="closeLegalModal">&times;</span>
+        <div id="legalModalBody"></div>
+    </div>
+</div>
+<div id="adminPanel" class="admin-panel">
+    <h4>لوحة المدير</h4>
+    <input type="password" id="adminPass" placeholder="كلمة المرور">
+    <button id="adminLoginBtn">دخول</button>
+    <div id="adminControls" style="display:none;">
+        <button id="addNewArticleBtn">➕ إضافة مقال</button>
+        <button id="logoutAdminBtn" style="background:#e74c3c;">🔒 خروج</button>
+        <hr>
+        <div id="articlesListAdmin" style="max-height:200px; overflow-y:auto;"></div>
+        <div id="adminCommentsList" style="max-height:150px; overflow-y:auto; margin-top:10px;"></div>
+        <button id="exportDataBtn">📥 تصدير</button>
+        <button id="importDataBtn">📤 استيراد</button>
+        <input type="file" id="importFile" accept=".json" style="display:none;">
+        <hr>
+        <h5>طلبات الأطباء</h5>
+        <div id="adminDoctorsList"></div>
+        <button id="clearDoctorsBtn">🗑️ مسح الكل</button>
+        <hr>
+        <h5>المواعيد المحجوزة</h5>
+        <div id="adminAppointmentsList" style="max-height:150px; overflow-y:auto;"></div>
+        <button id="clearAppointmentsBtn">🗑️ مسح كل المواعيد</button>
+    </div>
+</div>
+
+<script>
+    // ======================== الأمان والتشفير ========================
+    function sanitize(str) { return DOMPurify ? DOMPurify.sanitize(str) : str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
+    const SECRET_KEY = "ClinicSuperSecret2026!";
+    function encryptData(data) { return CryptoJS.AES.encrypt(JSON.stringify(data), SECRET_KEY).toString(); }
+    function decryptData(encrypted) { try { const bytes = CryptoJS.AES.decrypt(encrypted, SECRET_KEY); return JSON.parse(bytes.toString(CryptoJS.enc.Utf8)); } catch(e) { return null; } }
+    let csrfToken = localStorage.getItem('csrfToken') || Math.random().toString(36).substring(2);
+    localStorage.setItem('csrfToken', csrfToken);
+    
+    // ======================== IndexedDB ========================
+    localforage.config({ driver: localforage.INDEXEDDB, name: 'SmartClinic', storeName: 'clinicData' });
+    
+    // ======================== Service Worker ========================
+    if ('serviceWorker' in navigator) {
+        const swCode = `self.addEventListener('fetch', event => { event.respondWith(caches.match(event.request).then(response => response || fetch(event.request))); });`;
+        const blob = new Blob([swCode], {type: 'application/javascript'});
+        navigator.serviceWorker.register(URL.createObjectURL(blob));
+    }
+    
+    // ======================== قاعدة بيانات الأمراض ========================
+    const diseasesDB = {
+        "السكري": { name: "داء السكري", symptoms: "العطش، كثرة التبول، الجوع، فقدان الوزن", signs: "ارتفاع السكر في الدم", diagnosis: "قياس السكر التراكمي", treatment: "حمية، ميتفورمين، أنسولين" },
+        "ارتفاع الضغط": { name: "ارتفاع ضغط الدم", symptoms: "عادة لا توجد أعراض", signs: "ضغط ≥140/90", diagnosis: "قياسات متكررة", treatment: "تقليل الملح، أدوية خافضة" },
+        "الربو": { name: "الربو الشعبي", symptoms: "ضيق تنفس، صفير", signs: "صفير بالسماعة", diagnosis: "اختبار وظائف الرئة", treatment: "موسعات الشعب، كورتيكوستيرويدات" },
+        "فشل القلب": { name: "قصور القلب", symptoms: "ضيق تنفس، تورم القدمين", signs: "احتقان الرئتين", diagnosis: "إيكو القلب", treatment: "مدرات، مثبطات ACE" },
+        "التهاب الكبد": { name: "التهاب الكبد الفيروسي", symptoms: "يرقان، تعب", signs: "تضخم الكبد", diagnosis: "اختبارات مصلية", treatment: "مضادات فيروسات، راحة" },
+        "السل": { name: "السل الرئوي", symptoms: "سعال مزمن، حمى، تعرق ليلي", signs: "تسلل رئوي", diagnosis: "فحص البلغم", treatment: "علاج رباعي لمدة 6 أشهر" },
+        "الملاريا": { name: "الملاريا", symptoms: "حمى دورية، قشعريرة", signs: "تضخم الطحال", diagnosis: "مسحة دموية", treatment: "أدوية مضادة للملاريا" },
+        "القرحة": { name: "قرحة المعدة", symptoms: "ألم بطني حارق", signs: "ألم عند الجس", diagnosis: "منظار علوي", treatment: "مثبطات مضخة البروتون" },
+        "التهاب المفاصل": { name: "التهاب المفاصل الروماتويدي", symptoms: "ألم وتورم المفاصل", signs: "تيبس صباحي", diagnosis: "عامل روماتويدي", treatment: "مضادات التهاب، ميثوتركسيت" },
+        "الصرع": { name: "الصرع", symptoms: "نوبات تشنجية", signs: "فقدان الوعي", diagnosis: "تخطيط دماغ", treatment: "أدوية مضادة للصرع" },
+        "الفشل الكلوي": { name: "الفشل الكلوي", symptoms: "قلة البول، وذمة", signs: "ارتفاع كرياتينين", diagnosis: "وظائف كلى", treatment: "غسيل كلى، زراعة" },
+        "الزهايمر": { name: "مرض الزهايمر", symptoms: "فقدان الذاكرة", signs: "تراجع إدراكي", diagnosis: "فحص عصبي", treatment: "دونيبيزيل، ميمانتين" },
+        "سرطان الثدي": { name: "سرطان الثدي", symptoms: "كتلة في الثدي", signs: "تغيرات جلدية", diagnosis: "ماموغرام، خزعة", treatment: "جراحة، علاج كيماوي" },
+        "قصور الدرقية": { name: "قصور الغدة الدرقية", symptoms: "خمول، زيادة وزن", signs: "بطء القلب", diagnosis: "TSH مرتفع", treatment: "ليفوثيروكسين" },
+        "فرط الدرقية": { name: "فرط الغدة الدرقية", symptoms: "خفقان، فقدان وزن", signs: "تسارع القلب", diagnosis: "TSH منخفض", treatment: "ميثيمازول، يود مشع" }
+    };
+    
+    // ======================== نظام التعليقات والتقييمات ========================
+    let comments = [], ratings = [], favorites = [];
+    async function loadRatingsCommentsFavs() {
+        comments = await localforage.getItem('comments') || [];
+        ratings = await localforage.getItem('ratings') || [];
+        favorites = await localforage.getItem('favorites') || [];
+    }
+    async function saveComments() { await localforage.setItem('comments', comments); if(adminLogged) renderAdminCommentsList(); }
+    async function saveRatings() { await localforage.setItem('ratings', ratings); await updateArticleRatings(); }
+    async function saveFavorites() { await localforage.setItem('favorites', favorites); renderPosts(); }
+    async function updateArticleRatings() {
+        const avg = {};
+        ratings.forEach(r => { if(!avg[r.articleId]) avg[r.articleId] = {sum:0, count:0}; avg[r.articleId].sum += r.value; avg[r.articleId].count++; });
+        for(let id in avg) { const a = avg[id]; const article = postsData.find(p => p.id === id); if(article) { article.avgRating = a.sum / a.count; article.ratingCount = a.count; } }
+        saveToLocal();
+        renderPosts();
+    }
+    function getDeviceId() { let id = localStorage.getItem('deviceId'); if(!id) { id = Math.random().toString(36); localStorage.setItem('deviceId', id); } return id; }
+    async function rateArticle(articleId, value) {
+        const existing = ratings.find(r => r.articleId === articleId && r.deviceId === getDeviceId());
+        if(existing) existing.value = value;
+        else ratings.push({ articleId, value, deviceId: getDeviceId() });
+        await saveRatings();
+    }
+    async function toggleFavorite(articleId) {
+        if(favorites.includes(articleId)) favorites = favorites.filter(id => id !== articleId);
+        else favorites.push(articleId);
+        await saveFavorites();
+    }
+    async function addComment(articleId, name, text) {
+        if(!name.trim() || !text.trim()) return;
+        comments.push({ id: Date.now(), articleId, name: sanitize(name), text: sanitize(text), date: new Date().toISOString() });
+        await saveComments();
+        if(document.getElementById('modalBody')) openArticle(articleId);
+    }
+    async function deleteComment(commentId) { comments = comments.filter(c => c.id != commentId); await saveComments(); if(adminLogged) renderAdminCommentsList(); }
+    
+    // ======================== تسجيل الأطباء ========================
+    let doctorsList = [];
+    async function loadDoctors() { const enc = await localforage.getItem('encDoctors'); if(enc) doctorsList = decryptData(enc) || []; else doctorsList = []; }
+    async function saveDoctors() { await localforage.setItem('encDoctors', encryptData(doctorsList)); if(adminLogged) renderAdminDoctorsList(); }
+    
+    let currentCaptcha = 0;
+    function generateCaptcha() {
+        const num1 = Math.floor(Math.random() * 10);
+        const num2 = Math.floor(Math.random() * 10);
+        currentCaptcha = num1 + num2;
+        const qDiv = document.getElementById('captchaQuestion');
+        if(qDiv) qDiv.innerHTML = `كم حاصل ${num1} + ${num2}؟`;
+    }
+    document.getElementById('doctorRegistrationForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('doctorName').value.trim();
+        const specialty = document.getElementById('doctorSpecialty').value.trim();
+        const email = document.getElementById('doctorEmail').value.trim();
+        const phone = document.getElementById('doctorPhone').value.trim();
+        const license = document.getElementById('doctorLicense').value.trim();
+        const captchaAnswer = parseInt(document.getElementById('captchaAnswer').value);
+        if (!name || !specialty || !email || !phone || !license) {
+            document.getElementById('regMessage').innerHTML = '<span style="color:red;">الرجاء ملء جميع الحقول</span>';
+            return;
+        }
+        if (captchaAnswer !== currentCaptcha) {
+            document.getElementById('regMessage').innerHTML = '<span style="color:red;">رمز التحقق غير صحيح</span>';
+            generateCaptcha();
+            document.getElementById('captchaAnswer').value = '';
+            return;
+        }
+        const newDoctor = { id: Date.now(), name, specialty, email, phone, license, status: 'pending' };
+        doctorsList.push(newDoctor);
+        await saveDoctors();
+        document.getElementById('regMessage').innerHTML = '<span style="color:green;">✓ تم إرسال طلبك، سيتم مراجعته من قبل الإدارة</span>';
+        document.getElementById('doctorRegistrationForm').reset();
+        generateCaptcha();
+        showToast("تم إرسال طلب التسجيل");
+    });
+    
+    // إخفاء/إظهار لوحة تسجيل الطبيب مع حفظ الحالة
+    let doctorPanelVisible = true;
+    const doctorContainer = document.getElementById('doctorFormContainer');
+    const toggleBtn = document.getElementById('toggleDoctorRegPanel');
+    const savedState = localStorage.getItem('doctorPanelHidden');
+    if (savedState === 'true') {
+        doctorContainer.classList.add('hidden');
+        toggleBtn.innerHTML = '<i class="fas fa-eye"></i>';
+        doctorPanelVisible = false;
+    } else {
+        doctorContainer.classList.remove('hidden');
+        toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
+        doctorPanelVisible = true;
+    }
+    toggleBtn.addEventListener('click', () => {
+        if (doctorPanelVisible) {
+            doctorContainer.classList.add('hidden');
+            toggleBtn.innerHTML = '<i class="fas fa-eye"></i>';
+            localStorage.setItem('doctorPanelHidden', 'true');
+            doctorPanelVisible = false;
+        } else {
+            doctorContainer.classList.remove('hidden');
+            toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            localStorage.setItem('doctorPanelHidden', 'false');
+            doctorPanelVisible = true;
+        }
+    });
+    
+    // ======================== بيانات المقالات ========================
+    const articlesMeta = [
+        { id: "catheter", title: "دليلك الشامل للقسطرة القلبية", desc: "كل ما تحتاج معرفته عن القسطرة", img: "images/catheter.jpg", tags: ["قلب","قسطرة"], file: "catheter.html", author: "د. صلاح الأهدل" },
+        { id: "stents", title: "دعامات القلب", desc: "أنواع الدعامات", img: "images/stents.jpg", tags: ["قلب","دعامات"], file: "stents.html", author: "د. صلاح الأهدل" },
+        { id: "blocked", title: "أعراض انسداد الشرايين", desc: "العلامات التحذيرية", img: "images/blocked-artery.jpg", tags: ["قلب","أعراض"], file: "blocked-arter.html", author: "د. صلاح الأهدل" },
+        { id: "care", title: "العناية بعد القسطرة", desc: "نصائح للتعافي", img: "images/care.jpg", tags: ["عناية","نصائح"], file: "patient-care.html", author: "د. صلاح الأهدل" },
+        { id: "tips", title: "نصائح للوقاية من أمراض القلب", desc: "خطوات بسيطة", img: "images/tips.jpg", tags: ["نصائح","وقاية"], file: "tips.html", author: "د. صلاح الأهدل" },
+        { id: "meds", title: "الأدوية بعد الدعامات", desc: "مميعات الدم", img: "images/stent-meds.jpg", tags: ["أدوية","دعامات"], file: "post-stent-meds.html", author: "د. صلاح الأهدل" },
+        { id: "avoid", title: "أدوية يجب تجنبها بعد الدعامات", desc: "تحذيرات", img: "images/stents.jpg", tags: ["أدوية","تحذيرات"], file: "post-avoid-meds.html", author: "د. صلاح الأهدل" },
+        { id: "dua", title: "دعاءات لطمأنينة القلب", desc: "أدعية", img: "images/dua.jpg", tags: ["روحانيات","دعاء"], file: "heart-dua.html", author: "د. صلاح الأهدل" },
+        { id: "diabetes", title: "إدارة السكري وحماية القلب", desc: "نصائح", img: "images/diabetes.jpg", tags: ["سكري","نصائح"], file: "diabetes.html", author: "د. صلاح الأهدل" },
+        { id: "hypertension", title: "ارتفاع ضغط الدم", desc: "الأسباب والمضاعفات", img: "images/hypertension.jpg", tags: ["ضغط","نصائح"], file: "hypertension.html", author: "د. صلاح الأهدل" },
+        { id: "ent", title: "أمراض الأنف والأذن والحنجرة", desc: "دليل شامل", img: "images/ent.jpg", tags: ["أنف وأذن"], file: "ent.html", author: "د. صلاح الأهدل" },
+        { id: "digestive", title: "اضطرابات الجهاز الهضمي", desc: "ارتجاع المريء، القرحة", img: "images/digestive.jpg", tags: ["جهاز هضمي"], file: "digestive.html", author: "د. صلاح الأهدل" },
+        { id: "cardiology", title: "أمراض القلب والأوعية الدموية", desc: "الذبحة الصدرية، قصور القلب", img: "images/heart-vascular.jpg", tags: ["قلب","أوعية دموية"], file: "cardiology.html", author: "د. صلاح الأهدل" },
+        { id: "urology", title: "أمراض الجهاز البولي", desc: "حصوات الكلى، التهابات", img: "images/urinary.jpg", tags: ["جهاز بولي"], file: "urology.html", author: "د. صلاح الأهدل" },
+        { id: "about", title: "من نحن", desc: "تعرف على فريق العمل", img: "images/about.jpg", tags: ["عام"], file: "about.html", author: "إدارة الموقع" },
+        { id: "privacy", title: "سياسة الخصوصية", desc: "كيف نحمي بياناتك", img: "images/privacy.jpg", tags: ["قانوني"], file: "privacy.html", author: "الإدارة" },
+        { id: "terms", title: "شروط الاستخدام", desc: "القواعد والأحكام", img: "images/terms.jpg", tags: ["قانوني"], file: "terms.html", author: "الإدارة" },
+        { id: "pharmacology", title: "علم الأدوية", desc: "دراسة الأدوية وتأثيراتها", img: "images/pharmacology.jpg", tags: ["علم أدوية"], file: null, author: "د. صلاح الأهدل", fallback: "<p>علم الأدوية: يدرس حركية الدواء وديناميكيته وتفاعلاته وآثاره الجانبية.</p>" },
+        { id: "pathology", title: "علم الأمراض", desc: "دراسة التغيرات الناتجة عن الأمراض", img: "images/pathology.jpg", tags: ["علم أمراض"], file: null, author: "د. صلاح الأهدل", fallback: "<p>علم الأمراض: يدرس آليات المرض، الالتهاب، المناعة، والأورام.</p>" }
+    ];
+    const extraArticles = [
+        { id: "kidney_health", title: "أمراض الكلى المزمنة والقلب", desc: "العلاقة بين الفشل الكلوي وأمراض القلب", img: "images/kidney.jpg", tags: ["كلى","قلب"], file: null, author: "د. صلاح الأهدل", fallback: "<p>مرض الكلى المزمن يزيد خطر أمراض القلب.</p>" },
+        { id: "liver_fat", title: "الكبد الدهني وصحة القلب", desc: "تأثير الكبد الدهني", img: "images/liver.jpg", tags: ["كبد"], file: null, author: "د. صلاح الأهدل", fallback: "<p>الكبد الدهني يزيد مقاومة الأنسولين وخطر تصلب الشرايين.</p>" },
+        { id: "thyroid_heart", title: "الغدة الدرقية وتأثيرها على القلب", desc: "فرط وقصور الدرقية", img: "images/thyroid.jpg", tags: ["غدة درقية"], file: null, author: "د. صلاح الأهدل", fallback: "<p>فرط الدرقية يسبب تسارع القلب، وقصورها يسبب بطء القلب.</p>" }
+    ];
+    let allArticles = [...articlesMeta];
+    for (let ex of extraArticles) if (!allArticles.some(a => a.id === ex.id)) allArticles.push(ex);
+    
+    let postsData = [];
+    const contentCache = new Map();
+    
+    async function fetchCleanContent(article) {
+        if (contentCache.has(article.id)) return contentCache.get(article.id);
+        if (!article.file) return article.fallback || "<p>لا يوجد محتوى مفصل.</p>";
+        try {
+            const res = await fetch(article.file, { cache: "force-cache" });
+            if (!res.ok) throw new Error();
+            const html = await res.text();
+            const doc = new DOMParser().parseFromString(html, "text/html");
+            let contentElem = doc.querySelector("main article, main .content, article, .post-body, .about-card, .article-content, main") || doc.body;
+            const clone = contentElem.cloneNode(true);
+            clone.querySelectorAll("header, footer, nav, .header, .footer, .sidebar, script, style").forEach(el => el.remove());
+            let inner = clone.innerHTML;
+            inner = inner.replace(/\.\.\/images\//g, "images/").replace(/src="\.\//g, 'src="');
+            contentCache.set(article.id, inner);
+            return inner;
+        } catch(e) {
+            const fallback = article.fallback || `<p>تعذر تحميل ${article.file}.</p>`;
+            contentCache.set(article.id, fallback);
+            return fallback;
+        }
+    }
+    
+    async function openArticle(id) {
+        const article = postsData.find(p => p.id === id);
+        if(!article) return;
+        let recent = await localforage.getItem('recentArticles') || [];
+        recent = recent.filter(i => i !== id);
+        recent.unshift(id);
+        if(recent.length > 10) recent.pop();
+        await localforage.setItem('recentArticles', recent);
+        
+        const modalBody = document.getElementById('modalBody');
+        modalBody.innerHTML = `<div class="spinner"><i class="fas fa-spinner fa-pulse"></i> جاري التحميل...</div>`;
+        document.getElementById('articleModal').style.display = 'block';
+        const content = await fetchCleanContent(article);
+        const articleComments = comments.filter(c => c.articleId === id);
+        modalBody.innerHTML = `
+            <div class="badge-verified"><i class="fas fa-check-circle"></i> مراجعة طبية - ${article.author}</div>
+            <h2>${sanitize(article.title)}</h2>
+            <img src="${article.img}" style="max-width:100%; border-radius:12px; margin:1rem 0;" onerror="this.src='https://placehold.co/800x300'">
+            <div>${sanitize(content)}</div>
+            <hr>
+            <div class="rating-stars" data-id="${article.id}" style="margin:10px 0;"></div>
+            <button onclick="toggleFavorite('${article.id}')" class="read-btn"><i class="fa ${favorites.includes(article.id)?'s':'r'} fa-heart"></i> ${favorites.includes(article.id)?'إزالة من المفضلة':'أضف للمفضلة'}</button>
+            <div class="share-buttons">
+                <a class="share-whatsapp" href="https://wa.me/?text=${encodeURIComponent(article.title+' - '+window.location.href)}" target="_blank">واتساب</a>
+                <a class="share-twitter" href="https://twitter.com/intent/tweet?text=${encodeURIComponent(article.title)}" target="_blank">تويتر</a>
+                <a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}" target="_blank">فيسبوك</a>
+                <a class="share-telegram" href="https://t.me/share/url?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(article.title)}" target="_blank">تلغرام</a>
+            </div>
+            <div class="comments-section">
+                <h4>التعليقات</h4>
+                <div id="commentsList">${articleComments.map(c => `<div class="comment-item"><strong>${c.name}</strong> (${new Date(c.date).toLocaleString()}): ${c.text}</div>`).join('')}</div>
+                <input type="text" id="commentName" placeholder="اسمك" style="width:100%; margin:5px 0; padding:8px; border-radius:30px; border:1px solid #ccc;">
+                <textarea id="commentText" placeholder="تعليقك" style="width:100%; margin:5px 0; padding:8px; border-radius:16px;"></textarea>
+                <button onclick="addComment('${id}', document.getElementById('commentName').value, document.getElementById('commentText').value)" class="read-btn">أضف تعليق</button>
+            </div>
+        `;
+        const userRating = ratings.find(r => r.articleId === id && r.deviceId === getDeviceId())?.value || 0;
+        $(`.rating-stars[data-id="${id}"]`).rateYo({ rating: userRating, fullStar: true, onSet: (v) => rateArticle(id, v) });
+    }
+    
+    function renderPosts(filter = '') {
+        const grid = document.getElementById('posts-grid');
+        if(!grid) return;
+        let search = document.getElementById('mainSearch')?.value || filter;
+        let filtered = postsData.filter(p => p.title.includes(search) || p.desc.includes(search) || p.tags.some(t => t.includes(search)));
+        filtered.sort((a,b) => (b.avgRating||0) - (a.avgRating||0));
+        if(filtered.length === 0) { grid.innerHTML = '<div style="grid-column:1/-1; text-align:center;">لا توجد نتائج</div>'; return; }
+        grid.innerHTML = filtered.map(p => `
+            <div class="article-card">
+                <img src="${p.img}" class="article-thumb" loading="lazy" onerror="this.src='https://placehold.co/400x180'">
+                <div class="article-content">
+                    <div class="badge-verified">موثوق</div>
+                    <h3>${sanitize(p.title)}</h3>
+                    <p>${sanitize(p.desc)}</p>
+                    <div style="font-size:0.8rem;">⭐ ${p.avgRating ? p.avgRating.toFixed(1) : '0'} (${p.ratingCount||0} تقييم)</div>
+                </div>
+                <div class="card-footer">
+                    <span>${p.author}</span>
+                    <button class="read-btn" onclick="openArticle('${p.id}')">اقرأ المقال <i class="fas fa-arrow-left"></i></button>
+                </div>
+            </div>
+        `).join('');
+        updateSidebar();
+    }
+    
+    function updateSidebar() {
+        const recentBox = document.getElementById('recent-sidebar');
+        if(recentBox) {
+            localforage.getItem('recentArticles').then(recent => {
+                if(recent && recent.length) {
+                    const recentArticles = recent.map(id => postsData.find(p => p.id === id)).filter(p => p);
+                    recentBox.innerHTML = recentArticles.map(p => `<li style="margin-bottom:8px;"><button class="read-btn" onclick="openArticle('${p.id}')">📖 ${sanitize(p.title)}</button></li>`).join('');
+                } else recentBox.innerHTML = '<li>لا توجد مقالات مقروءة مؤخراً</li>';
+            });
+        }
+    }
+    
+    // ======================== البحث عن دواء وعن أمراض ========================
+    async function searchDrugOpenFDA(query) {
+        try {
+            const res = await fetch(`https://api.fda.gov/drug/label.json?search=${encodeURIComponent(query)}&limit=1`);
+            if(!res.ok) return null;
+            const data = await res.json();
+            if(!data.results?.length) return null;
+            const drug = data.results[0];
+            return {
+                brandName: drug.openfda?.brand_name?.[0] || "غير معروف",
+                genericName: drug.openfda?.generic_name?.[0] || "غير معروف",
+                indications: drug.indications_and_usage?.[0] || "غير متوفر",
+                dosage: drug.dosage_and_administration?.[0] || "غير متوفر",
+                interactions: drug.drug_interactions?.[0] || drug.warnings?.[0] || "لا توجد معلومات"
+            };
+        } catch(e) { return null; }
+    }
+    
+    async function searchPubMed(query) {
+        try {
+            const proxy = "https://api.allorigins.win/raw?url=";
+            const url = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(query)}&retmode=json&retmax=3`;
+            const res = await fetch(proxy + encodeURIComponent(url));
+            const data = await res.json();
+            const ids = data.esearchresult?.idlist || [];
+            if(!ids.length) return [];
+            const summaryUrl = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=${ids.join(',')}&retmode=json`;
+            const sumRes = await fetch(proxy + encodeURIComponent(summaryUrl));
+            const sumData = await sumRes.json();
+            return ids.map(id => ({ title: sumData.result?.[id]?.title || "بدون عنوان", url: `https://pubmed.ncbi.nlm.nih.gov/${id}/` }));
+        } catch(e) { return []; }
+    }
+    
+    let currentSearchType = "drugs";
+    document.querySelectorAll('.search-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            currentSearchType = tab.getAttribute('data-search-type');
+            document.getElementById('mainSearch').placeholder = currentSearchType === 'drugs' ? 'اكتب اسم الدواء...' : (currentSearchType === 'diseases' ? 'اكتب اسم المرض...' : 'ابحث في مقالات المنصة...');
+        });
+    });
+    
+    async function performAdvancedSearch() {
+        const query = document.getElementById('mainSearch').value.trim();
+        if(!query) return;
+        const container = document.getElementById('globalResults');
+        container.innerHTML = `<div class="spinner">جاري البحث...</div>`;
+        container.classList.add('show');
+        if(currentSearchType === 'drugs') {
+            const drug = await searchDrugOpenFDA(query);
+            if(drug) {
+                container.innerHTML = `<div class="result-card"><h4>💊 ${drug.brandName}</h4><p><strong>الاسم العلمي:</strong> ${drug.genericName}</p><p><strong>الاستخدامات:</strong> ${drug.indications}</p><p><strong>الجرعات:</strong> ${drug.dosage}</p><p><strong>التفاعلات:</strong> ${drug.interactions}</p></div>`;
+            } else container.innerHTML = `<div class="result-card">❌ لم يتم العثور على دواء مطابق.</div>`;
+        } else if(currentSearchType === 'diseases') {
+            const disease = diseasesDB[query] || Object.values(diseasesDB).find(d => d.name.includes(query));
+            if(disease) {
+                container.innerHTML = `<div class="result-card"><h4>🩺 ${disease.name}</h4><p><strong>الأعراض:</strong> ${disease.symptoms}</p><p><strong>العلامات:</strong> ${disease.signs}</p><p><strong>التشخيص:</strong> ${disease.diagnosis}</p><p><strong>العلاج:</strong> ${disease.treatment}</p></div>`;
+            } else container.innerHTML = `<div class="result-card">❌ لم يتم العثور على مرض مطابق.</div>`;
+        } else {
+            const filtered = postsData.filter(p => p.title.includes(query) || p.desc.includes(query));
+            if(filtered.length) container.innerHTML = filtered.map(p => `<div class="result-card"><strong>${p.title}</strong><br>${p.desc}<br><button class="read-btn" onclick="openArticle('${p.id}')">اقرأ المقال</button></div>`).join('');
+            else container.innerHTML = `<div class="result-card">لا توجد مقالات مطابقة.</div>`;
+        }
+        if(document.getElementById('enableGlobalSearch').checked && currentSearchType !== 'articles') {
+            const pubmed = await searchPubMed(query);
+            if(pubmed.length) container.innerHTML += `<h4>📚 مقالات من PubMed:</h4>` + pubmed.map(a => `<div class="global-result-item"><a href="${a.url}" target="_blank">${a.title}</a></div>`).join('');
+        }
+    }
+    
+    document.getElementById('advancedSearchBtn').addEventListener('click', performAdvancedSearch);
+    document.getElementById('mainSearch').addEventListener('keypress', (e) => { if(e.key === 'Enter') performAdvancedSearch(); });
+    
+    // ======================== تفسير الفحوصات الطبية ========================
+    let uploadedImageUrl = null;
+    document.getElementById('labImage').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if(file) {
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                uploadedImageUrl = ev.target.result;
+                const preview = document.getElementById('imagePreview');
+                preview.innerHTML = `<img src="${uploadedImageUrl}" class="image-preview" style="max-width:100%; max-height:120px;">`;
+            };
+            reader.readAsDataURL(file);
+        } else {
+            uploadedImageUrl = null;
+            document.getElementById('imagePreview').innerHTML = '';
+        }
+    });
+    
+    function interpretLab() {
+        const type = document.getElementById('labTestType').value;
+        let value = document.getElementById('labValue').value.trim();
+        const resultDiv = document.getElementById('labResult');
+        let interpretation = '';
+        if (!value && !uploadedImageUrl) {
+            resultDiv.innerHTML = '<span style="color:red;">الرجاء إدخال قيمة أو رفع صورة الفحص</span>';
+            resultDiv.style.display = 'block';
+            return;
+        }
+        switch(type) {
+            case 'cbc':
+                let num = parseFloat(value);
+                if (isNaN(num)) interpretation = 'يرجى إدخال رقم (مثل 12.5)';
+                else if (num < 11) interpretation = '⚠️ انخفاض في الهيموجلوبين (فقر دم محتمل). استشر طبيبك.';
+                else if (num > 16) interpretation = '⚠️ ارتفاع في الهيموجلوبين (قد يشير إلى جفاف أو أمراض رئوية).';
+                else interpretation = '✅ نسبة الهيموجلوبين طبيعية.';
+                break;
+            case 'echo':
+                if (value.includes('كسر قذفي') || value.includes('EF')) interpretation = 'تفسير الإيكو يعتمد على الكسر القذفي: أقل من 40% ضعف، 40-50% متوسط، أكثر من 50% طبيعي. يفضل استشارة طبيب القلب.';
+                else interpretation = 'نتيجة الإيكو تحتاج لتقييم سريري شامل. القيم الطبيعية: البطين الأيسر < 5.5 سم، الكسر القذفي > 55%.';
+                if (uploadedImageUrl) interpretation += '<br><small>✓ تم استلام صورة الإيكو. يمكن لأخصائي القلب تحليلها بدقة.</small>';
+                break;
+            case 'mri':
+                interpretation = 'تفسير الرنين المغناطيسي يعتمد على المنطقة المصورة (دماغ، مفاصل، عمود فقري). أي شذوذ يجب مراجعته مع أخصائي الأشعة.';
+                if (uploadedImageUrl) interpretation += '<br><small>✓ تم استلام صورة الرنين. يجب عرضها على أخصائي الأشعة لتفسير دقيق.</small>';
+                break;
+            case 'xray':
+                interpretation = 'تفسير الأشعة السينية يعتمد على وجود كسور، سواد رئوي، أو احتقان. استشر طبيب الأشعة.';
+                if (uploadedImageUrl) interpretation += '<br><small>✓ تم استلام صورة الأشعة. يُفضل مراجعة أخصائي الأشعة.</small>';
+                break;
+            case 'lipid':
+                let lip = parseFloat(value);
+                if (isNaN(lip)) interpretation = 'أدخل القيمة العددية (مثال: 180)';
+                else if (lip < 150) interpretation = '✅ مستوى الكوليسترول الكلي جيد (أقل من 150).';
+                else if (lip < 200) interpretation = '⚠️ مستوى مقبول (150-199).';
+                else interpretation = '⚠️ ارتفاع الكوليسترول (>200). راجع طبيبك.';
+                break;
+            case 'liver':
+                let alt = parseFloat(value);
+                if (isNaN(alt)) interpretation = 'أدخل قيمة ALT (مثال: 30)';
+                else if (alt < 40) interpretation = '✅ إنزيمات الكبد طبيعية.';
+                else interpretation = '⚠️ ارتفاع إنزيمات الكبد (قد يشير إلى التهاب كبدي).';
+                break;
+            case 'kidney':
+                let cr = parseFloat(value);
+                if (isNaN(cr)) interpretation = 'أدخل قيمة الكرياتينين (مثال: 0.9)';
+                else if (cr < 1.2) interpretation = '✅ وظائف الكلى طبيعية.';
+                else interpretation = '⚠️ ارتفاع الكرياتينين (ضعف كلوي محتمل).';
+                break;
+            default: interpretation = 'نوع الفحص غير معروف.';
+        }
+        resultDiv.innerHTML = `<strong>تفسير أولي:</strong><br>${interpretation}<br><small>هذا التفسير غير تشخيصي، استشر طبيبك.</small>`;
+        resultDiv.style.display = 'block';
+    }
+    document.getElementById('interpretLabBtn').addEventListener('click', interpretLab);
+    
+    // ======================== نظام حجز المواعيد ========================
+    let appointments = [];
+    async function loadAppointments() {
+        const enc = await localforage.getItem('encAppointments');
+        if(enc) appointments = decryptData(enc) || [];
+        else appointments = [];
+        renderAppointments();
+        if(adminLogged) renderAdminAppointments();
+    }
+    async function saveAppointments() {
+        await localforage.setItem('encAppointments', encryptData(appointments));
+        renderAppointments();
+        if(adminLogged) renderAdminAppointments();
+    }
+    function renderAppointments() {
+        const container = document.getElementById('appointmentList');
+        if(!container) return;
+        if(appointments.length === 0) {
+            container.innerHTML = '<div class="appointment-item">لا توجد مواعيد حالية</div>';
+            return;
+        }
+        container.innerHTML = appointments.map(apt => `
+            <div class="appointment-item">
+                <strong>${sanitize(apt.name)}</strong><br>
+                📅 ${apt.date} | 🕒 ${apt.time} | 🩺 ${apt.dept}<br>
+                📞 ${apt.phone}
+            </div>
+        `).join('');
+    }
+    function renderAdminAppointments() {
+        const container = document.getElementById('adminAppointmentsList');
+        if(!container) return;
+        if(appointments.length === 0) {
+            container.innerHTML = '<div>لا توجد مواعيد</div>';
+            return;
+        }
+        container.innerHTML = appointments.map((apt, idx) => `
+            <div style="border-bottom:1px solid #ccc; margin-bottom:6px; padding-bottom:4px;">
+                <strong>${sanitize(apt.name)}</strong> (${apt.phone})<br>
+                ${apt.date} ${apt.time} - ${apt.dept}
+                <button onclick="deleteAppointment(${idx})" style="background:#e74c3c; color:white; border:none; border-radius:20px; padding:2px 8px; margin-top:4px; cursor:pointer;">حذف</button>
+            </div>
+        `).join('');
+    }
+    window.deleteAppointment = function(idx) {
+        if(confirm('هل تريد حذف هذا الموعد؟')) {
+            appointments.splice(idx, 1);
+            saveAppointments();
+            showToast('تم حذف الموعد');
+        }
+    };
+    document.getElementById('bookAppointmentBtn').addEventListener('click', () => {
+        const name = document.getElementById('aptName').value.trim();
+        const phone = document.getElementById('aptPhone').value.trim();
+        const date = document.getElementById('aptDate').value;
+        const time = document.getElementById('aptTime').value;
+        const dept = document.getElementById('aptDept').value;
+        if(!name || !phone || !date) {
+            document.getElementById('appointmentMessage').innerHTML = '<span style="color:red;">الرجاء ملء جميع الحقول</span>';
+            return;
+        }
+        appointments.push({ name, phone, date, time, dept, createdAt: Date.now() });
+        saveAppointments();
+        document.getElementById('appointmentMessage').innerHTML = '<span style="color:green;">✓ تم حجز الموعد بنجاح</span>';
+        document.getElementById('aptName').value = '';
+        document.getElementById('aptPhone').value = '';
+        document.getElementById('aptDate').value = '';
+        setTimeout(() => document.getElementById('appointmentMessage').innerHTML = '', 3000);
+        showToast('تم إضافة الموعد');
+    });
+    document.getElementById('clearAppointmentsBtn')?.addEventListener('click', () => {
+        if(confirm('مسح جميع المواعيد نهائياً؟')) {
+            appointments = [];
+            saveAppointments();
+            showToast('تم مسح جميع المواعيد');
+        }
+    });
+    
+    // ======================== لوحة التحكم وإدارة البيانات ========================
+    let adminLogged = false;
+    function renderAdminList() {
+        const container = document.getElementById('articlesListAdmin');
+        if(!container) return;
+        container.innerHTML = `<h5>المقالات (${postsData.length})</h5>`;
+        postsData.forEach(art => {
+            const div = document.createElement('div');
+            div.innerHTML = `<strong>${art.title}</strong> <button class="editAdminBtn" data-id="${art.id}">✏️</button> <button class="delAdminBtn" data-id="${art.id}">🗑️</button>`;
+            container.appendChild(div);
+        });
+        document.querySelectorAll('.editAdminBtn').forEach(btn => btn.onclick = () => editArticle(btn.dataset.id));
+        document.querySelectorAll('.delAdminBtn').forEach(btn => btn.onclick = () => { if(confirm("حذف؟")) { postsData = postsData.filter(p => p.id !== btn.dataset.id); saveToLocal(); renderAdminList(); renderPosts(); } });
+    }
+    function editArticle(id) {
+        const art = postsData.find(p => p.id === id);
+        if(!art) return;
+        const form = document.createElement('div');
+        form.innerHTML = `<input id="edit_title" value="${art.title}"><input id="edit_desc" value="${art.desc}"><input id="edit_img" value="${art.img}"><input id="edit_tags" value="${art.tags.join(',')}"><textarea id="edit_fallback">${art.fallback||''}</textarea><button id="saveEdit">حفظ</button><button id="cancelEdit">إلغاء</button>`;
+        const container = document.getElementById('articlesListAdmin');
+        const old = container.querySelector('.edit-form');
+        if(old) old.remove();
+        form.className = 'edit-form';
+        container.appendChild(form);
+        document.getElementById('saveEdit').onclick = () => {
+            art.title = document.getElementById('edit_title').value;
+            art.desc = document.getElementById('edit_desc').value;
+            art.img = document.getElementById('edit_img').value;
+            art.tags = document.getElementById('edit_tags').value.split(',').map(t=>t.trim());
+            art.fallback = document.getElementById('edit_fallback').value;
+            if(!art.file && !art.fallback) art.fallback = "محتوى محدث";
+            saveToLocal();
+            renderAdminList();
+            renderPosts();
+        };
+        document.getElementById('cancelEdit').onclick = () => form.remove();
+    }
+    function renderAdminDoctorsList() {
+        const container = document.getElementById('adminDoctorsList');
+        if(!container) return;
+        container.innerHTML = doctorsList.map(d => `<div><strong>${d.name}</strong> (${d.specialty})<br>${d.email}<br><button class="delDocBtn" data-id="${d.id}">حذف</button></div>`).join('');
+        document.querySelectorAll('.delDocBtn').forEach(btn => btn.onclick = () => { doctorsList = doctorsList.filter(d => d.id != btn.dataset.id); saveDoctors(); renderAdminDoctorsList(); });
+    }
+    function renderAdminCommentsList() {
+        const container = document.getElementById('adminCommentsList');
+        if(container) container.innerHTML = comments.map(c => `<div><strong>${c.name}</strong> على ${postsData.find(p=>p.id===c.articleId)?.title}: ${c.text} <button onclick="deleteComment(${c.id})">حذف</button></div>`).join('');
+    }
+    
+    document.getElementById('addNewArticleBtn').onclick = () => {
+        const newId = 'art_' + Date.now();
+        postsData.push({ id: newId, title: "عنوان جديد", desc: "وصف", img: "images/default.jpg", tags: ["عام"], author: "د. صلاح الأهدل", file: null, fallback: "<p>محتوى المقال الجديد</p>" });
+        saveToLocal();
+        renderAdminList();
+        renderPosts();
+    };
+    document.getElementById('exportDataBtn').onclick = () => {
+        const exportData = { postsData, doctorsList, comments, ratings, appointments };
+        const blob = new Blob([JSON.stringify(exportData)], {type: 'application/json'});
+        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'clinic_full_backup.json'; a.click();
+    };
+    document.getElementById('importDataBtn').onclick = () => document.getElementById('importFile').click();
+    document.getElementById('importFile').onchange = async (e) => {
+        const file = e.target.files[0];
+        if(!file) return;
+        const text = await file.text();
+        try {
+            const imported = JSON.parse(text);
+            if(imported.postsData) postsData = imported.postsData;
+            if(imported.doctorsList) doctorsList = imported.doctorsList;
+            if(imported.comments) comments = imported.comments;
+            if(imported.ratings) ratings = imported.ratings;
+            if(imported.appointments) appointments = imported.appointments;
+            await saveToLocal();
+            await saveDoctors();
+            await saveComments();
+            await saveRatings();
+            await saveAppointments();
+            renderAdminList();
+            renderPosts();
+            if(adminLogged) renderAdminDoctorsList();
+            showToast("استيراد ناجح");
+        } catch(err) { alert("ملف غير صالح"); }
+    };
+    document.getElementById('clearDoctorsBtn').onclick = () => { if(confirm("مسح جميع طلبات الأطباء؟")) { doctorsList = []; saveDoctors(); renderAdminDoctorsList(); } };
+    
+    // ======================== حفظ واسترجاع البيانات ========================
+    async function saveToLocal() { await localforage.setItem('postsData', postsData); renderPosts(); }
+    async function loadFromLocal() {
+        const stored = await localforage.getItem('postsData');
+        if(stored && stored.length) postsData = stored;
+        else postsData = [...allArticles];
+        await loadRatingsCommentsFavs();
+        renderPosts();
+        updateSidebar();
+    }
+    
+    // ======================== أحداث الوضع الليلي والإخفاء ========================
+    document.getElementById('toggle-dark').onclick = () => { document.body.classList.toggle('dark'); const i = document.querySelector('#toggle-dark i'); i.classList.toggle('fa-moon'); i.classList.toggle('fa-sun'); };
+    document.getElementById('mainSearch').addEventListener('input', () => renderPosts());
+    document.getElementById('home-link').onclick = () => { document.getElementById('mainSearch').value = ''; renderPosts(); document.getElementById('globalResults').classList.remove('show'); window.scrollTo({top:0}); };
+    document.getElementById('closeModal').onclick = () => document.getElementById('articleModal').style.display = 'none';
+    document.getElementById('closeLegalModal').onclick = () => document.getElementById('legalModal').style.display = 'none';
+    window.onclick = (e) => { if(e.target === document.getElementById('articleModal')) document.getElementById('articleModal').style.display = 'none'; if(e.target === document.getElementById('legalModal')) document.getElementById('legalModal').style.display = 'none'; };
+    window.openLegalModal = (type) => { const body = document.getElementById('legalModalBody'); body.innerHTML = type === 'privacy' ? '<h2>سياسة الخصوصية</h2><p>نحمي بياناتك بالتشفير والتخزين المحلي.</p>' : '<h2>شروط الاستخدام</h2><p>المعلومات توعوية، استشر طبيبك.</p>'; document.getElementById('legalModal').style.display = 'block'; };
+    
+    // ======================== فتح لوحة التحكم المخفية ========================
+    let clickCount = 0, timer;
+    document.querySelector(".logo").addEventListener("click", () => { clickCount++; clearTimeout(timer); timer = setTimeout(() => clickCount = 0, 800); if(clickCount >= 5) { document.getElementById("adminPanel").classList.toggle("show"); clickCount = 0; } });
+    document.getElementById('mainSearch').addEventListener('keypress', (e) => { if(e.key === 'Enter' && e.target.value === 'admin123') { document.getElementById('adminPanel').classList.toggle('show'); e.target.value = ''; showToast("فتح لوحة المدير"); e.preventDefault(); } });
+    document.getElementById('adminLoginBtn').onclick = () => { if(document.getElementById('adminPass').value === 'admin123') { adminLogged = true; document.getElementById('adminControls').style.display = 'block'; document.getElementById('adminPass').style.display = 'none'; document.getElementById('adminLoginBtn').style.display = 'none'; renderAdminList(); renderAdminDoctorsList(); renderAdminCommentsList(); renderAdminAppointments(); } else alert('كلمة مرور خاطئة'); };
+    document.getElementById('logoutAdminBtn').onclick = () => { adminLogged = false; document.getElementById('adminControls').style.display = 'none'; document.getElementById('adminPass').style.display = 'block'; document.getElementById('adminLoginBtn').style.display = 'block'; document.getElementById('adminPanel').classList.remove('show'); showToast("خروج"); };
+    function showToast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 3000); }
+    
+    // بدء التشغيل
+    generateCaptcha();
+    loadFromLocal();
+    loadDoctors();
+    loadAppointments();
+</script>
+</body>
+</html>
