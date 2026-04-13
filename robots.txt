@@ -1,46 +1,136 @@
-# robots.txt للمنصة الطبية "عيادتي الذكية"
-# يوجه محركات البحث لفهرسة المحتوى الطبي الهام مع حماية الصفحات الإدارية
+# روبوتات محركات البحث - منصة استشاريون الطبية
+# تاريخ التحديث: 15 أبريل 2026
+# بإشراف: د. صلاح الأهدل
 
 User-agent: *
 Allow: /
 
-# منع الزحف إلى الصفحات الإدارية ولوحات التحكم (حماية الخصوصية)
-Disallow: /admin-panel
-Disallow: /admin
-Disallow: /api/
-Disallow: /private/
-Disallow: /export-data
-Disallow: /import-data
+# السماح بفهرسة جميع الصفحات الرئيسية
+Allow: /index.html
+Allow: /about.html
+Allow: /privacy.html
+Allow: /terms.html
+Allow: /contact.html
 
-# منع الزحف إلى الملفات المؤقتة أو غير المرغوب فيها
-Disallow: /*.json$
-Disallow: /*.log$
+# السماح بفهرسة المقالات الطبية
+Allow: /catheter.html
+Allow: /stents.html
+Allow: /blocked-arter.html
+Allow: /patient-care.html
+Allow: /tips.html
+Allow: /post-stent-meds.html
+Allow: /post-avoid-meds.html
+Allow: /heart-dua.html
+Allow: /diabetes.html
+Allow: /hypertension.html
+Allow: /ent.html
+Allow: /digestive.html
+Allow: /cardiology.html
+Allow: /urology.html
+Allow: /pharmacology.html
+Allow: /pathology.html
+Allow: /kidney.html
+Allow: /liver.html
+Allow: /thyroid.html
+
+# السماح بفهرسة مجلد الصور
+Allow: /images/
+
+# السماح بفهرسة ملف البيان
+Allow: /manifest.json
+
+# السماح بفهرسة Service Worker
+Allow: /sw.js
+
+# منع فهرسة صفحات الإدارة والخصوصية
+Disallow: /admin/
+Disallow: /admin-panel
+Disallow: /dashboard/
+Disallow: /login/
+Disallow: /register/
+Disallow: /reset-password/
+
+# منع فهرسة المعاملات والبيانات الحساسة
+Disallow: /api/
+Disallow: /payment/
+Disallow: /checkout/
+Disallow: /prescription/
+Disallow: /medical-records/
+
+# منع فهرسة الملفات المؤقتة والنسخ الاحتياطية
 Disallow: /backup/
 Disallow: /temp/
+Disallow: /cache/
+Disallow: /logs/
+Disallow: /*.json$
+Disallow: /*.log$
+Disallow: /*.tmp$
 
-# السماح بزحف جميع المقالات والخدمات الطبية (لأن Allow: / يغطيها لكن يمكن توضيح)
-Allow: /article/
-Allow: /lab-interpretation
-Allow: /doctor-join
+# منع فهرسة مسارات الإشعارات
+Disallow: /notification/
+Disallow: /push/
 
-# تحديد موقع خريطة الموقع (استبدل YOUR_DOMAIN بالرابط الفعلي)
-Sitemap: https://YOUR_DOMAIN/sitemap.xml
+# منع فهرسة مسارات الدردشة
+Disallow: /chat/
+Disallow: /video-call/
 
-# إعدادات الزحف: مدة إعادة الزيارة
-Crawl-delay: 2
+# منع فهرسة ملفات التكوين
+Disallow: /config/
+Disallow: /.env
+Disallow: /config.php
+Disallow: /settings.js
 
-# تحديد روبوتات محددة (اختياري)
+# منع فهرسة البرامج النصية الخادمة
+Disallow: /cgi-bin/
+Disallow: /scripts/
+Disallow: /includes/
+
+# ضبط وقت إعادة الزيارة لمحركات البحث
+Crawl-delay: 5
+
+# تحديد خريطة الموقع (اختياري - عند وجودها)
+Sitemap: https://estsharion.com/sitemap.xml
+
+# إرشادات خاصة لمحركات البحث المختلفة
+# Google
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 1
+Crawl-delay: 3
 
+# Bing
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 2
+Crawl-delay: 5
 
-# منع بعض البوتات الضارة (اختياري)
+# Yahoo
+User-agent: Slurp
+Allow: /
+Crawl-delay: 5
+
+# Yandex
+User-agent: Yandex
+Allow: /
+Crawl-delay: 3
+
+# Baidu (محرك البحث الصيني)
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 10
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 5
+
+# منع بعض الروبوتات السيئة (اختياري)
+User-agent: MJ12bot
+Disallow: /
+
 User-agent: AhrefsBot
 Disallow: /
 
 User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
 Disallow: /
