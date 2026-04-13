@@ -1,49 +1,358 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>داء السكري وصحة القلب - عيادتي الذكية</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Cairo', sans-serif; background: #f4f9fe; color: #1a2c3e; line-height: 1.6; }
-  header { background: linear-gradient(135deg, #0b2b3b, #1b4f6e); color: white; padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; }
-  .header-container { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-  .logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }
-  .logo-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; background: white; padding: 3px; }
-  .logo h1 { font-size: 1.6rem; background: linear-gradient(135deg, #fff, #ffe0b5); background-clip: text; -webkit-background-clip: text; color: transparent; }
-  nav ul { display: flex; gap: 1rem; list-style: none; flex-wrap: wrap; }
-  nav ul li a { color: white; text-decoration: none; font-weight: 600; }
-  #back-home { background: rgba(255,255,240,0.2); border: none; padding: 6px 15px; border-radius: 40px; color: white; cursor: pointer; }
-  main { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
-  .card { background: white; border-radius: 32px; padding: 2rem; box-shadow: 0 15px 30px rgba(0,0,0,0.1); margin-bottom: 2rem; }
-  .card h2 { color: #00acc1; border-right: 5px solid #00acc1; padding-right: 1rem; margin-bottom: 1rem; }
-  .footer { text-align: center; padding: 2rem; background: #0f2c38; color: #cbd5e1; margin-top: 3rem; }
-  @media (max-width: 700px) { .header-container { flex-direction: column; } }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>إدارة السكري وحماية القلب | استشاريون</title>
+    <meta name="description" content="دليل شامل لإدارة مرض السكري وحماية القلب: نصائح ذهبية لمرضى السكري للوقاية من مضاعفات القلب والأوعية الدموية">
+    <meta name="author" content="د. صلاح الأهدل">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #f0f4f8; color: #1a2c3e; line-height: 1.7; }
+        .article-container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+        .article-card { background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .article-header { background: linear-gradient(135deg, #0066cc, #1a237e); color: white; padding: 2.5rem; text-align: center; }
+        .article-header h1 { font-size: 2rem; margin-bottom: 1rem; }
+        .article-meta { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.9; margin-top: 1rem; }
+        .article-meta i { margin-left: 5px; }
+        .featured-image { width: 100%; height: 350px; object-fit: cover; background: linear-gradient(135deg, #0066cc, #1a237e); display: flex; align-items: center; justify-content: center; }
+        .featured-image i { font-size: 5rem; color: rgba(255,255,255,0.3); }
+        .article-content { padding: 2.5rem; }
+        .article-content h2 { color: #0066cc; border-right: 4px solid #0066cc; padding-right: 1rem; margin: 2rem 0 1rem 0; font-size: 1.6rem; }
+        .article-content h3 { color: #1a237e; margin: 1.5rem 0 0.8rem 0; font-size: 1.3rem; }
+        .article-content p { margin-bottom: 1rem; text-align: justify; }
+        .article-content ul, .article-content ol { margin: 1rem 2rem 1rem 0; }
+        .article-content li { margin-bottom: 0.5rem; }
+        .warning-box { background: #fff3e0; border-right: 4px solid #ff9800; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .info-box { background: #e3f2fd; border-right: 4px solid #0066cc; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .success-box { background: #e8f5e9; border-right: 4px solid #00c853; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .danger-box { background: #ffebee; border-right: 4px solid #e74c3c; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .stat-card { background: #f8f9fa; padding: 1.2rem; border-radius: 16px; text-align: center; transition: transform 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-number { font-size: 2rem; font-weight: 800; color: #0066cc; }
+        .blood-sugar-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        .blood-sugar-table th, .blood-sugar-table td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        .blood-sugar-table th { background: #0066cc; color: white; }
+        .blood-sugar-table tr:nth-child(even) { background: #f8f9fa; }
+        .food-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .food-card { background: #f8f9fa; border-radius: 16px; padding: 1rem; }
+        .food-card.good { border-right: 4px solid #00c853; }
+        .food-card.bad { border-right: 4px solid #e74c3c; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #0066cc, #1a237e); color: white; text-decoration: none; padding: 12px 28px; border-radius: 40px; font-weight: 600; margin-top: 2rem; transition: all 0.3s; border: none; cursor: pointer; }
+        .btn-back:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,102,204,0.4); }
+        .toc { background: #f8f9fa; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; }
+        .toc h3 { color: #1a237e; margin-bottom: 1rem; }
+        .toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .toc li a { color: #0066cc; text-decoration: none; transition: color 0.3s; }
+        .toc li a:hover { color: #1a237e; text-decoration: underline; }
+        .footer { text-align: center; padding: 2rem; background: #1a237e; color: white; margin-top: 2rem; border-radius: 28px 28px 0 0; }
+        hr { margin: 1.5rem 0; border: none; height: 1px; background: linear-gradient(to left, #0066cc, transparent); }
+        @media (max-width: 768px) { .article-header h1 { font-size: 1.5rem; } .article-content { padding: 1.5rem; } .featured-image { height: 200px; } }
+    </style>
 </head>
 <body>
-<header>
-  <div class="header-container">
-    <div class="logo" onclick="location.href='../index.html'">
-      <img src="../images/logo.png" class="logo-img" onerror="this.src='https://placehold.co/50x50'">
-      <h1>عيادتي الذكية</h1>
+
+<div class="article-container">
+    <div class="article-card">
+        <div class="article-header">
+            <h1><i class="fas fa-tint"></i> إدارة السكري وحماية القلب</h1>
+            <p>نصائح ذهبية لمرضى السكري لحماية القلب والأوعية الدموية</p>
+            <div class="article-meta">
+                <span><i class="fas fa-user-md"></i> د. صلاح الأهدل</span>
+                <span><i class="fas fa-calendar-alt"></i> 15 أبريل 2025</span>
+                <span><i class="fas fa-clock"></i> وقت القراءة: 11 دقيقة</span>
+                <span><i class="fas fa-heart"></i> 3,800 قراءة</span>
+            </div>
+        </div>
+        
+        <div class="featured-image">
+            <i class="fas fa-tint"></i>
+        </div>
+        
+        <div class="article-content">
+            <!-- فهرس المحتويات -->
+            <div class="toc">
+                <h3><i class="fas fa-list-ul"></i> فهرس المحتويات</h3>
+                <ul>
+                    <li><a href="#intro">مقدمة عن السكري والقلب</a></li>
+                    <li><a href="#relation">العلاقة بين السكري والقلب</a></li>
+                    <li><a href="#risk-factors">عوامل الخطر لدى مرضى السكري</a></li>
+                    <li><a href="#targets">أهداف التحكم في السكري</a></li>
+                    <li><a href="#diet">التغذية السليمة لمرضى السكري</a></li>
+                    <li><a href="#exercise">النشاط البدني وأهميته</a></li>
+                    <li><a href="#medications">الأدوية والعلاج</a></li>
+                    <li><a href="#monitoring">مراقبة السكري في المنزل</a></li>
+                    <li><a href="#complications">مضاعفات السكري على القلب</a></li>
+                    <li><a href="#prevention">الوقاية من مضاعفات القلب</a></li>
+                    <li><a href="#faq">أسئلة شائعة</a></li>
+                </ul>
+            </div>
+            
+            <!-- المقدمة -->
+            <h2 id="intro"><i class="fas fa-info-circle"></i> مقدمة عن السكري والقلب</h2>
+            <p>مرض السكري هو أحد أكثر الأمراض المزمنة شيوعاً في العالم، ويؤثر بشكل كبير على صحة القلب والأوعية الدموية. يعاني مرضى السكري من خطر الإصابة بأمراض القلب بمقدار 2-4 مرات أكثر من غيرهم، ويعتبر مرض القلب السبب الرئيسي للوفاة بين مرضى السكري.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">2-4x</div>
+                    <div>خطر أمراض القلب</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">80%</div>
+                    <div>من وفيات السكري بسبب القلب</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">422M</div>
+                    <div>مريض سكري عالمياً</div>
+                </div>
+            </div>
+            
+            <!-- العلاقة بين السكري والقلب -->
+            <h2 id="relation"><i class="fas fa-heartbeat"></i> العلاقة بين السكري والقلب</h2>
+            <p>ارتفاع مستوى السكر في الدم بشكل مزمن يؤدي إلى تلف الأوعية الدموية والأعصاب التي تتحكم في القلب. كما أن السكري يسرع من عملية تصلب الشرايين، مما يزيد من خطر النوبات القلبية والسكتات الدماغية.</p>
+            
+            <div class="info-box">
+                <i class="fas fa-microscope"></i>
+                <strong>كيف يؤثر السكري على القلب؟</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>تسريع تصلب الشرايين:</strong> ارتفاع السكر يسبب تراكم الدهون على جدران الشرايين</li>
+                    <li><strong>اعتلال الأعصاب القلبية:</strong> تلف الأعصاب التي تتحكم في نبضات القلب وضغط الدم</li>
+                    <li><strong>ضعف عضلة القلب:</strong> قد يؤدي السكري إلى اعتلال عضلة القلب مباشرة</li>
+                    <li><strong>ارتفاع ضغط الدم:</strong> السكري وارتفاع الضغط مرتبطان بشكل وثيق</li>
+                </ul>
+            </div>
+            
+            <!-- عوامل الخطر -->
+            <h2 id="risk-factors"><i class="fas fa-exclamation-triangle"></i> عوامل الخطر لدى مرضى السكري</h2>
+            
+            <div class="warning-box">
+                <i class="fas fa-chart-line"></i>
+                <strong>عوامل تزيد من خطر أمراض القلب لدى مرضى السكري:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>ارتفاع ضغط الدم غير المسيطر عليه (&gt;130/80)</li>
+                    <li>ارتفاع الكوليسترول الضار (LDL &gt; 100 mg/dL)</li>
+                    <li>انخفاض الكوليسترول النافع (HDL &lt; 40 للرجال، &lt; 50 للنساء)</li>
+                    <li>التدخين (يزيد الخطر 3 أضعاف)</li>
+                    <li>السمنة وخاصة حول الخصر</li>
+                    <li>قلة النشاط البدني</li>
+                    <li>ارتفاع السكر التراكمي (HbA1c &gt; 7%)</li>
+                    <li>مدة الإصابة بالسكري (كلما طالت المدة، زاد الخطر)</li>
+                </ul>
+            </div>
+            
+            <!-- أهداف التحكم -->
+            <h2 id="targets"><i class="fas fa-bullseye"></i> أهداف التحكم في السكري</h2>
+            
+            <table class="blood-sugar-table">
+                <thead>
+                    <tr><th>الفحص</th><th>القيمة المستهدفة</th><th>التكرار</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>السكر التراكمي (HbA1c)</td><td>&lt; 7%</td><td>كل 3-6 أشهر</td></tr>
+                    <tr><td>سكر الصائم</td><td>80-130 mg/dL</td><td>يومياً</td></tr>
+                    <tr><td>سكر بعد الأكل بساعتين</td><td>&lt; 180 mg/dL</td><td>يومياً</td></tr>
+                    <tr><td>ضغط الدم</td><td>&lt; 130/80 mmHg</td><td>كل زيارة</td></tr>
+                    <tr><td>LDL (الكوليسترول الضار)</td><td>&lt; 100 mg/dL (&lt; 70 لمرضى القلب)</td><td>سنوياً</td></tr>
+                    <tr><td>HDL (الكوليسترول النافع)</td><td>&gt; 40 (رجال)، &gt; 50 (نساء)</td><td>سنوياً</td></tr>
+                </tbody>
+            </table>
+            
+            <div class="success-box">
+                <i class="fas fa-check-circle"></i>
+                <strong>التحكم الجيد في السكري يقلل من خطر مضاعفات القلب بنسبة تصل إلى 50%!</strong>
+            </div>
+            
+            <!-- التغذية السليمة -->
+            <h2 id="diet"><i class="fas fa-apple-alt"></i> التغذية السليمة لمرضى السكري</h2>
+            
+            <div class="food-list">
+                <div class="food-card good">
+                    <h4><i class="fas fa-check-circle" style="color:#00c853;"></i> أطعمة مفيدة</h4>
+                    <ul>
+                        <li>الخضروات الورقية (سبانخ، خس، كرنب)</li>
+                        <li>الحبوب الكاملة (شوفان، قمح، شعير)</li>
+                        <li>البقوليات (عدس، حمص، فول)</li>
+                        <li>الأسماك الدهنية (سلمون، سردين، تونة)</li>
+                        <li>المكسرات غير المملحة</li>
+                        <li>الفواكه (تفاح، إجاص، توت، برتقال)</li>
+                        <li>زيت الزيتون</li>
+                    </ul>
+                </div>
+                <div class="food-card bad">
+                    <h4><i class="fas fa-times-circle" style="color:#e74c3c;"></i> أطعمة يجب تجنبها</h4>
+                    <ul>
+                        <li>السكريات والحلويات</li>
+                        <li>المشروبات الغازية والعصائر المحلاة</li>
+                        <li>الدهون المشبعة والمتحولة</li>
+                        <li>الأطعمة المصنعة والوجبات السريعة</li>
+                        <li>الخبز الأبيض والأرز الأبيض</li>
+                        <li>الملح الزائد والأطعمة المالحة</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>نصائح غذائية ذهبية:</h3>
+            <ul>
+                <li><strong>تناول وجبات صغيرة ومتعددة:</strong> 3 وجبات رئيسية و2-3 وجبات خفيفة يومياً</li>
+                <li><strong>شرب كمية كافية من الماء:</strong> 8-10 أكواب يومياً</li>
+                <li><strong>استخدام مؤشر نسبة السكر في الدم (GI):</strong> اختيار الأطعمة منخفضة المؤشر الجلايسيمي</li>
+                <li><strong>قراءة الملصقات الغذائية:</strong> لمعرفة محتوى السكر والدهون</li>
+                <li><strong>الطهي الصحي:</strong> الشوي أو السلق بدلاً من القلي</li>
+            </ul>
+            
+            <!-- النشاط البدني -->
+            <h2 id="exercise"><i class="fas fa-running"></i> النشاط البدني وأهميته</h2>
+            <p>ممارسة الرياضة بانتظام تساعد في تحسين حساسية الأنسولين، خفض سكر الدم، تقليل الوزن، وتحسين صحة القلب.</p>
+            
+            <h3>توصيات النشاط البدني لمرضى السكري:</h3>
+            <ul>
+                <li><strong>المشي السريع:</strong> 30 دقيقة يومياً، 5 أيام أسبوعياً</li>
+                <li><strong>تمارين القوة:</strong> مرتين أسبوعياً (رفع أثقال خفيفة، تمارين المقاومة)</li>
+                <li><strong>تمارين المرونة:</strong> يومياً (تمارين الإطالة)</li>
+                <li><strong>تجنب الجلوس الطويل:</strong> تحرك كل 30 دقيقة</li>
+            </ul>
+            
+            <div class="warning-box">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>تنبيه هام لمرضى السكري:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>تحقق من مستوى السكر قبل وبعد الرياضة</li>
+                    <li>احمل معك مصدر سريع للسكر (عصير، حلوى) تحسباً لهبوط السكر</li>
+                    <li>لا تمارس الرياضة إذا كان السكر أعلى من 250 mg/dL مع وجود كيتونات</li>
+                    <li>اشرب الماء قبل وأثناء وبعد الرياضة</li>
+                    <li>افحص قدميك قبل وبعد الرياضة</li>
+                </ul>
+            </div>
+            
+            <!-- الأدوية -->
+            <h2 id="medications"><i class="fas fa-prescription-bottle"></i> الأدوية والعلاج</h2>
+            
+            <h3>أدوية السكري:</h3>
+            <ul>
+                <li><strong>الميتفورمين (Metformin):</strong> الخط الأول في علاج السكري من النوع الثاني، يحسن حساسية الأنسولين</li>
+                <li><strong>الأنسولين:</strong> ضروري لمرضى السكري من النوع الأول، وقد يحتاجه البعض من النوع الثاني</li>
+                <li><strong>مثبطات SGLT2 (Empagliflozin, Dapagliflozin):</strong> تخفض السكر وتحمي القلب والكلى</li>
+                <li><strong>مقلدات GLP-1 (Liraglutide, Semaglutide):</strong> تخفض السكر والوزن وتحمي القلب</li>
+                <li><strong>السلفونيل يوريا (Glibenclamide, Gliclazide):</strong> تحفز البنكرياس لإفراز الأنسولين</li>
+            </ul>
+            
+            <h3>أدوية حماية القلب لمرضى السكري:</h3>
+            <ul>
+                <li><strong>الأسبرين بجرعة منخفضة:</strong> للوقاية من الجلطات (بعد استشارة الطبيب)</li>
+                <li><strong>الستاتينات (Statins):</strong> لخفض الكوليسترول وحماية القلب</li>
+                <li><strong>مثبطات ACE أو ARBs:</strong> لخفض ضغط الدم وحماية الكلى</li>
+            </ul>
+            
+            <div class="info-box">
+                <i class="fas fa-lightbulb"></i>
+                <strong>نصيحة مهمة:</strong> بعض أدوية السكري الحديثة (SGLT2 inhibitors و GLP-1 agonists) أثبتت فعالية في حماية القلب والكلى بالإضافة إلى خفض السكر. تحدث مع طبيبك عنها إذا كنت مناسباً لها.
+            </div>
+            
+            <!-- مراقبة السكري في المنزل -->
+            <h2 id="monitoring"><i class="fas fa-chart-simple"></i> مراقبة السكري في المنزل</h2>
+            
+            <h3>أجهزة قياس السكر:</h3>
+            <ul>
+                <li><strong>جهاز قياس السكر التقليدي:</strong> بوخز الإصبع، دقيق ومناسب للجميع</li>
+                <li><strong>جهاز المراقبة المستمرة للجلوكوز (CGM):</strong> يقيس السكر باستمرار، مفيد لمن لديهم تقلبات حادة</li>
+                <li><strong>جهاز المراقبة الفورية (FGM):</strong> مسح المستشعر لقراءة السكر</li>
+            </ul>
+            
+            <h3>متى يجب قياس السكر؟</h3>
+            <ul>
+                <li>صباحاً على الريق (الصائم)</li>
+                <li>قبل الوجبات</li>
+                <li>بعد ساعتين من الوجبات</li>
+                <li>قبل النوم</li>
+                <li>عند الشعور بأعراض انخفاض أو ارتفاع السكر</li>
+                <li>قبل وبعد ممارسة الرياضة</li>
+                <li>عند المرض أو التوتر</li>
+            </ul>
+            
+            <!-- مضاعفات السكري على القلب -->
+            <h2 id="complications"><i class="fas fa-heart-broken"></i> مضاعفات السكري على القلب</h2>
+            
+            <div class="danger-box">
+                <i class="fas fa-ambulance"></i>
+                <strong>مضاعفات قلبية خطيرة لمرضى السكري:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>مرض الشريان التاجي:</strong> انسداد الشرايين المغذية للقلب</li>
+                    <li><strong>النوبة القلبية الصامتة:</strong> نوبة قلبية بدون أعراض بسبب تلف الأعصاب</li>
+                    <li><strong>الفشل القلبي:</strong> ضعف قدرة القلب على ضخ الدم</li>
+                    <li><strong>الذبحة الصدرية:</strong> ألم في الصدر بسبب نقص تدفق الدم</li>
+                    <li><strong>ارتفاع ضغط الدم:</strong> شائع جداً لدى مرضى السكري</li>
+                </ul>
+            </div>
+            
+            <!-- الوقاية -->
+            <h2 id="prevention"><i class="fas fa-shield-heart"></i> الوقاية من مضاعفات القلب</h2>
+            
+            <div class="success-box">
+                <i class="fas fa-check-double"></i>
+                <strong>خطوات عملية لحماية قلبك إذا كنت مريض سكري:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>التحكم المستمر في مستوى السكر:</strong> استهدف HbA1c أقل من 7%</li>
+                    <li><strong>مراقبة ضغط الدم:</strong> استهدف أقل من 130/80</li>
+                    <li><strong>التحكم في الكوليسترول:</strong> استهدف LDL أقل من 100 (أو 70 لمرضى القلب)</li>
+                    <li><strong>الإقلاع عن التدخين فوراً:</strong> استشر طبيبك للمساعدة</li>
+                    <li><strong>تناول الأسبرين:</strong> إذا أوصى به طبيبك للوقاية من الجلطات</li>
+                    <li><strong>الفحوصات الدورية:</strong> تخطيط القلب سنوياً، فحص وظائف الكلى، فحص القدمين، فحص شبكية العين</li>
+                    <li><strong>الحفاظ على وزن صحي:</strong> فقدان 5-10% من الوزن يحسن السكر بشكل كبير</li>
+                    <li><strong>إدارة التوتر:</strong> ممارسة التأمل، اليوغا، أو الصلاة</li>
+                </ul>
+            </div>
+            
+            <!-- أسئلة شائعة -->
+            <h2 id="faq"><i class="fas fa-question-circle"></i> أسئلة شائعة</h2>
+            
+            <h3>هل كل مرضى السكري معرضون للإصابة بأمراض القلب؟</h3>
+            <p>نعم، ولكن بدرجات متفاوتة. التحكم الجيد في السكري وعوامل الخطر الأخرى يقلل بشكل كبير من خطر الإصابة بأمراض القلب. يمكن لمرضى السكري الذين يتحكمون في حالتهم بشكل ممتاز أن يتمتعوا بصحة قلب جيدة.</p>
+            
+            <h3>ما الفرق بين السكري من النوع الأول والثاني من حيث خطر القلب؟</h3>
+            <p>كلا النوعين يزيدان من خطر أمراض القلب، ولكن النوع الثاني أكثر شيوعاً ويرتبط غالباً بعوامل خطر أخرى مثل السمنة وارتفاع الضغط. النوع الأول يزيد الخطر أيضاً، خاصة إذا لم يتم التحكم فيه بشكل جيد.</p>
+            
+            <h3>هل يمكن عكس تأثير السكري على القلب؟</h3>
+            <p>التحكم الجيد في السكري يمكن أن يبطئ أو يوقف تطور تلف الأوعية الدموية. في بعض الحالات، قد يتحسن تدفق الدم مع تحسين التحكم في السكري وعوامل الخطر الأخرى. ومع ذلك، فإن التلف الشديد قد يكون دائماً، لذا الوقاية والتحكم المبكر هما الأفضل.</p>
+            
+            <h3>كم مرة يجب زيارة الطبيب؟</h3>
+            <p>ينصح بزيارة طبيب السكري كل 3-6 أشهر. يجب أيضاً زيارة طبيب القلب سنوياً لإجراء الفحوصات اللازمة مثل تخطيط القلب والإيكو، خاصة إذا كنت تعاني من السكري لأكثر من 10 سنوات أو لديك عوامل خطر إضافية.</p>
+            
+            <h3>هل يمكنني الصيام في رمضان إذا كنت مريض سكري؟</h3>
+            <p>يعتمد ذلك على حالتك الصحية ونوع السكري والأدوية التي تتناولها. استشر طبيبك قبل رمضان لتقييم حالتك وتعديل جرعات الأدوية إذا لزم الأمر. بعض المرضى قد يكون الصيام آمناً، بينما قد يكون خطيراً على آخرين.</p>
+            
+            <hr>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <p><strong>⚠️ تنبيه هام:</strong> هذا المحتوى هو لأغراض توعوية وتعليمية فقط، ولا يغني عن استشارة الطبيب المختص. في حال وجود أي أعراض، يرجى مراجعة الطبيب فوراً.</p>
+                <button class="btn-back" onclick="window.location.href='../index.html'">
+                    <i class="fas fa-arrow-right"></i> العودة إلى المنصة
+                </button>
+            </div>
+        </div>
     </div>
-    <nav><ul><li><a href="../index.html">الرئيسية</a></li><li><a href="diabetes.html">السكري</a></li><li><a href="hypertension.html">الضغط</a></li></ul></nav>
-    <button id="back-home" onclick="location.href='../index.html'">🏠 الرئيسية</button>
-  </div>
-</header>
-<main>
-  <div style="text-align:center; margin-bottom:2rem;">
-    <img src="../images/diabetes.jpg" alt="السكري" style="width:150px; height:150px; border-radius:50%; object-fit:cover; border:4px solid #00acc1;">
-    <h1 style="margin-top:1rem;">داء السكري وصحة القلب</h1>
-  </div>
-  <div class="card"><h2>ما العلاقة بين السكري وأمراض القلب؟</h2><p>مرض السكري يرفع مستوى السكر في الدم بشكل مزمن، مما يؤدي إلى تلف الأوعية الدموية والأعصاب. مع مرور الوقت، يزيد السكري من خطر تصلب الشرايين (تضيق الشرايين) بنسبة تصل إلى 2-4 أضعاف، كما يزيد من خطر النوبات القلبية والفشل القلبي.</p></div>
-  <div class="card"><h2>نصائح للوقاية والتحكم</h2><ul><li>الحفاظ على مستوى السكر التراكمي (HbA1c) أقل من 7%</li><li>ممارسة الرياضة 30 دقيقة يومياً (مشي، سباحة)</li><li>اتباع نظام غذائي منخفض الكربوهيدرات والسكريات</li><li>الفحص الدوري للكوليسترول وضغط الدم</li><li>الإقلاع عن التدخين</li></ul></div>
-  <div class="card"><h2>أدوية مفيدة لمرضى السكري والقلب</h2><p>بعض أدوية السكري تحمي القلب مثل الميتفورمين، مثبطات SGLT2 (إمباغليفلوزين)، ومناهضات GLP-1 (ليراجلوتايد). استشر طبيبك قبل تغيير أي دواء.</p></div>
-</main>
-<footer class="footer"><p>© 2026 عيادتي الذكية — استشر طبيبك قبل تطبيق أي معلومات</p></footer>
+    
+    <div class="footer">
+        <p>© 2026 منصة استشاريون - جميع الحقوق محفوظة | اليمن</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">بإشراف د. صلاح الأهدل - مدير مكتب الصحة</p>
+    </div>
+</div>
+
+<script>
+    // تنشيط الروابط الداخلية والتمرير السلس
+    document.querySelectorAll('.toc a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    console.log('تم تحميل مقال إدارة السكري وحماية القلب - منصة استشاريون');
+</script>
 </body>
 </html>
