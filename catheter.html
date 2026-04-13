@@ -1,64 +1,375 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>القسطرة القلبية - عيادتي الذكية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>دليلك الشامل للقسطرة القلبية | استشاريون</title>
+    <meta name="description" content="دليل شامل للقسطرة القلبية: أنواعها، دواعي إجرائها، خطوات الإجراء، المخاطر، وما بعد القسطرة. معلومات موثقة من د. صلاح الأهدل">
+    <meta name="author" content="د. صلاح الأهدل">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #f0f4f8; color: #1a2c3e; line-height: 1.7; }
+        .article-container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+        .article-card { background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .article-header { background: linear-gradient(135deg, #0066cc, #1a237e); color: white; padding: 2.5rem; text-align: center; }
+        .article-header h1 { font-size: 2rem; margin-bottom: 1rem; }
+        .article-meta { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.9; margin-top: 1rem; }
+        .article-meta i { margin-left: 5px; }
+        .featured-image { width: 100%; height: 350px; object-fit: cover; background: linear-gradient(135deg, #0066cc, #1a237e); display: flex; align-items: center; justify-content: center; }
+        .featured-image i { font-size: 5rem; color: rgba(255,255,255,0.3); }
+        .article-content { padding: 2.5rem; }
+        .article-content h2 { color: #0066cc; border-right: 4px solid #0066cc; padding-right: 1rem; margin: 2rem 0 1rem 0; font-size: 1.6rem; }
+        .article-content h3 { color: #1a237e; margin: 1.5rem 0 0.8rem 0; font-size: 1.3rem; }
+        .article-content p { margin-bottom: 1rem; text-align: justify; }
+        .article-content ul, .article-content ol { margin: 1rem 2rem 1rem 0; }
+        .article-content li { margin-bottom: 0.5rem; }
+        .warning-box { background: #fff3e0; border-right: 4px solid #ff9800; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .info-box { background: #e3f2fd; border-right: 4px solid #0066cc; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .success-box { background: #e8f5e9; border-right: 4px solid #00c853; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .danger-box { background: #ffebee; border-right: 4px solid #e74c3c; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .steps-container { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0; }
+        .step-card { flex: 1; min-width: 200px; background: #f8f9fa; border-radius: 16px; padding: 1.2rem; text-align: center; transition: transform 0.3s; }
+        .step-card:hover { transform: translateY(-5px); }
+        .step-number { width: 40px; height: 40px; background: #0066cc; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-weight: bold; font-size: 1.2rem; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .stat-card { background: #f8f9fa; padding: 1.2rem; border-radius: 16px; text-align: center; transition: transform 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-number { font-size: 2rem; font-weight: 800; color: #0066cc; }
+        .compare-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .compare-card { background: #f8f9fa; border-radius: 16px; padding: 1.2rem; }
+        .compare-card h4 { color: #0066cc; margin-bottom: 0.8rem; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #0066cc, #1a237e); color: white; text-decoration: none; padding: 12px 28px; border-radius: 40px; font-weight: 600; margin-top: 2rem; transition: all 0.3s; border: none; cursor: pointer; }
+        .btn-back:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,102,204,0.4); }
+        .toc { background: #f8f9fa; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; }
+        .toc h3 { color: #1a237e; margin-bottom: 1rem; }
+        .toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .toc li a { color: #0066cc; text-decoration: none; transition: color 0.3s; }
+        .toc li a:hover { color: #1a237e; text-decoration: underline; }
+        .footer { text-align: center; padding: 2rem; background: #1a237e; color: white; margin-top: 2rem; border-radius: 28px 28px 0 0; }
+        hr { margin: 1.5rem 0; border: none; height: 1px; background: linear-gradient(to left, #0066cc, transparent); }
+        @media (max-width: 768px) { .article-header h1 { font-size: 1.5rem; } .article-content { padding: 1.5rem; } .featured-image { height: 200px; } }
+    </style>
 </head>
 <body>
-<header>
-    <div class="header-container">
-        <div class="logo">
-            <img src="../images/logo.png" alt="شعار عيادتي الذكية">
-            <h1>عيادتي الذكية</h1>
+
+<div class="article-container">
+    <div class="article-card">
+        <div class="article-header">
+            <h1><i class="fas fa-heartbeat"></i> دليلك الشامل للقسطرة القلبية</h1>
+            <p>كل ما تحتاج معرفته عن القسطرة القلبية التشخيصية والعلاجية</p>
+            <div class="article-meta">
+                <span><i class="fas fa-user-md"></i> د. صلاح الأهدل</span>
+                <span><i class="fas fa-calendar-alt"></i> 15 أبريل 2025</span>
+                <span><i class="fas fa-clock"></i> وقت القراءة: 10 دقائق</span>
+                <span><i class="fas fa-heart"></i> 4,200 قراءة</span>
+            </div>
         </div>
-        <nav>
+        
+        <div class="featured-image">
+            <i class="fas fa-heartbeat"></i>
+        </div>
+        
+        <div class="article-content">
+            <!-- فهرس المحتويات -->
+            <div class="toc">
+                <h3><i class="fas fa-list-ul"></i> فهرس المحتويات</h3>
+                <ul>
+                    <li><a href="#intro">ما هي القسطرة القلبية؟</a></li>
+                    <li><a href="#types">أنواع القسطرة القلبية</a></li>
+                    <li><a href="#indications">دواعي إجراء القسطرة</a></li>
+                    <li><a href="#preparation">التحضير للقسطرة</a></li>
+                    <li><a href="#procedure">خطوات الإجراء</a></li>
+                    <li><a href="#recovery">ما بعد القسطرة</a></li>
+                    <li><a href="#risks">المخاطر والمضاعفات</a></li>
+                    <li><a href="#stents">الدعامات القلبية</a></li>
+                    <li><a href="#faq">أسئلة شائعة</a></li>
+                </ul>
+            </div>
+            
+            <!-- المقدمة -->
+            <h2 id="intro"><i class="fas fa-question-circle"></i> ما هي القسطرة القلبية؟</h2>
+            <p>القسطرة القلبية (Cardiac Catheterization) هي إجراء طبي يستخدم لتشخيص وعلاج بعض أمراض القلب والأوعية الدموية. يتم خلالها إدخال أنبوب رفيع ومرن يسمى "القثطار" عبر الأوعية الدموية (عادة من الفخذ أو الرسغ أو الذراع) وتوجيهه إلى القلب أو الشرايين التاجية.</p>
+            <p>تعتبر القسطرة القلبية من أكثر الإجراءات الطبية أماناً وفعالية، وتُجرى مئات الآلاف منها سنوياً حول العالم. تتراوح مدة الإجراء بين 30 دقيقة إلى ساعتين حسب تعقيد الحالة.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">95%</div>
+                    <div>نسبة نجاح القسطرة</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1-2%</div>
+                    <div>نسبة المضاعفات الخطيرة</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24-48h</div>
+                    <div>مدة الإقامة بالمستشفى</div>
+                </div>
+            </div>
+            
+            <!-- أنواع القسطرة -->
+            <h2 id="types"><i class="fas fa-tags"></i> أنواع القسطرة القلبية</h2>
+            
+            <div class="compare-grid">
+                <div class="compare-card">
+                    <h4><i class="fas fa-microscope"></i> القسطرة التشخيصية</h4>
+                    <p>تُستخدم لتشخيص أمراض القلب والشرايين التاجية، وتشمل:</p>
+                    <ul>
+                        <li>تصوير الشرايين التاجية (Coronary Angiography)</li>
+                        <li>قياس الضغوط داخل حجرات القلب</li>
+                        <li>أخذ عينات من الدم لتحديد الأكسجين</li>
+                        <li>تصوير البطين الأيسر (Left Ventriculography)</li>
+                    </ul>
+                </div>
+                <div class="compare-card">
+                    <h4><i class="fas fa-tools"></i> القسطرة العلاجية</h4>
+                    <p>تُستخدم لعلاج المشاكل المكتشفة أثناء القسطرة التشخيصية، وتشمل:</p>
+                    <ul>
+                        <li>توسيع الشرايين بالبالون (PTCA)</li>
+                        <li>تركيب الدعامات (Stents)</li>
+                        <li>شفط الجلطات (Thrombectomy)</li>
+                        <li>توسيع الصمامات بالبالون (Valvuloplasty)</li>
+                        <li>إغلاق الثقوب (ASD/PFO closure)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- دواعي الإجراء -->
+            <h2 id="indications"><i class="fas fa-stethoscope"></i> دواعي إجراء القسطرة القلبية</h2>
+            
+            <h3>الأعراض التي تستدعي إجراء القسطرة:</h3>
             <ul>
-                <li><a href="../index.html">الرئيسية</a></li>
-                <li><a href="catheter.html">القسطرة القلبية</a></li>
-                <li><a href="stents.html">دعامات القلب</a></li>
-                <li><a href="blocked-artery.html">أعراض انسداد الشرايين</a></li>
-                <li><a href="patient-care.html">العناية بالمريض</a></li>
-                <li><a href="tips.html">نصائح وإرشادات</a></li>
+                <li><strong>ألم في الصدر (الذبحة الصدرية):</strong> خاصة إذا كان غير مستقر أو لا يستجيب للعلاج الدوائي</li>
+                <li><strong>نتائج غير طبيعية في اختبار الجهد:</strong> تشير إلى وجود نقص في تدفق الدم للقلب</li>
+                <li><strong>النوبة القلبية الحادة:</strong> لتحديد موقع الانسداد وعلاجه فوراً</li>
+                <li><strong>قبل جراحة القلب المفتوح:</strong> لتقييم الشرايين التاجية والتخطيط للجراحة</li>
+                <li><strong>فشل القلب:</strong> لتقييم وظائف القلب وضخ الدم</li>
+                <li><strong>أمراض صمامات القلب:</strong> لقياس الضغوط وتقييم شدة المرض</li>
+                <li><strong>عدم انتظام ضربات القلب:</strong> لتحديد مصدر الاضطراب وأخذ عينات</li>
             </ul>
-        </nav>
+            
+            <div class="info-box">
+                <i class="fas fa-lightbulb"></i>
+                <strong>نصيحة مهمة:</strong> القسطرة القلبية ليست الإجراء الأول دائماً. يبدأ الأطباء عادة بالفحوصات غير التداخلية مثل تخطيط القلب والإيكو واختبار الجهد، ثم يلجؤون للقسطرة إذا دعت الحاجة.
+            </div>
+            
+            <!-- التحضير للقسطرة -->
+            <h2 id="preparation"><i class="fas fa-clipboard-list"></i> التحضير للقسطرة القلبية</h2>
+            
+            <h3>قبل الإجراء بـ 24 ساعة:</h3>
+            <ul>
+                <li><strong>الفحوصات المخبرية:</strong> تحاليل الدم، وظائف الكلى، التخثر، فصيلة الدم</li>
+                <li><strong>تخطيط القلب:</strong> للحصول على صورة أساسية لوظيفة القلب</li>
+                <li><strong>الأشعة السينية للصدر:</strong> لتقييم حجم القلب والرئتين</li>
+                <li><strong>الإيكو:</strong> لتقييم وظائف صمامات القلب والبطينين</li>
+            </ul>
+            
+            <h3>قبل الإجراء بـ 6-8 ساعات:</h3>
+            <ul>
+                <li><strong>الصيام التام:</strong> عدم الأكل أو الشرب</li>
+                <li><strong>تعديل الأدوية:</strong> قد يطلب الطبيب إيقاف بعض الأدوية مثل مميعات الدم</li>
+                <li><strong>التأكد من عدم وجود حساسية:</strong> خاصة من الصبغة أو اليود أو اللاتكس</li>
+            </ul>
+            
+            <div class="warning-box">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>هام:</strong> أخبر طبيبك إذا كنت تعاني من:
+                <ul style="margin-top: 10px;">
+                    <li>حساسية من الصبغة أو اليود أو الأدوية</li>
+                    <li>مشاكل في الكلى (لأن الصبغة قد تؤثر عليها)</li>
+                    <li>الحمل (يجب تجنب الإشعاع)</li>
+                    <li>تناول أدوية مميعة للدم (الأسبرين، كلوبيدوجريل، الوارفارين)</li>
+                </ul>
+            </div>
+            
+            <!-- خطوات الإجراء -->
+            <h2 id="procedure"><i class="fas fa-chart-line"></i> خطوات إجراء القسطرة القلبية</h2>
+            
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h4>التخدير الموضعي</h4>
+                    <p>تخدير منطقة الإدخال (الفخذ أو الرسغ) بمخدر موضعي، وعادة ما يكون المريض مستيقظاً ولكن تحت تأثير مهدئ.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h4>إدخال القثطار</h4>
+                    <p>إدخال أنبوب رفيع عبر الشريان أو الوريد إلى القلب أو الشرايين التاجية.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h4>حقن الصبغة</h4>
+                    <p>حقن صبغة خاصة تظهر بالأشعة لتوضيح الشرايين وأي انسدادات.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h4>التصوير</h4>
+                    <p>تصوير الشرايين والأوعية الدموية لتحديد موقع وحدة الانسداد.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <h4>العلاج (إذا لزم الأمر)</h4>
+                    <p>توسيع الشرايين بالبالون أو تركيب الدعامات أو سحب الجلطات.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">6</div>
+                    <h4>إزالة القثطار</h4>
+                    <p>إزالة الأنابيب والضغط على مكان الإدخال لمنع النزيف.</p>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <i class="fas fa-clock"></i>
+                <strong>مدة الإجراء:</strong> تستغرق القسطرة التشخيصية البسيطة حوالي 20-30 دقيقة، أما القسطرة العلاجية فقد تستغرق 1-2 ساعة حسب عدد الشرايين المصابة وتعقيد الحالة.
+            </div>
+            
+            <!-- ما بعد القسطرة -->
+            <h2 id="recovery"><i class="fas fa-bed"></i> ما بعد القسطرة القلبية</h2>
+            
+            <h3>في المستشفى (بعد الإجراء مباشرة):</h3>
+            <ul>
+                <li><strong>الراحة التامة في السرير:</strong> لمدة 4-6 ساعات مع إبقاء الساق أو الذراع مستقيمة</li>
+                <li><strong>مراقبة العلامات الحيوية:</strong> قياس الضغط والنبض ومستوى الأكسجين بانتظام</li>
+                <li><strong>مراقبة مكان الإدخال:</strong> للتأكد من عدم وجود نزيف أو ورم دموي</li>
+                <li><strong>شرب السوائل:</strong> للتخلص من الصبغة وحماية الكلى</li>
+                <li><strong>المسكنات:</strong> قد تشعر ببعض الانزعاج في مكان الإدخال</li>
+            </ul>
+            
+            <h3>في المنزل (بعد الخروج):</h3>
+            <ul>
+                <li><strong>تجنب رفع الأثقال:</strong> لمدة أسبوع على الأقل (لا ترفع أكثر من 5 كجم)</li>
+                <li><strong>تجنب القيادة:</strong> لمدة 24-48 ساعة</li>
+                <li><strong>الاستحمام:</strong> تجنب الاستحمام بالماء الساخن لمدة 24 ساعة، وتجنب نقع مكان الإدخال</li>
+                <li><strong>مراقبة مكان الإدخال:</strong> التئام الجرح خلال 3-7 أيام</li>
+                <li><strong>الالتزام بالأدوية:</strong> خاصة مميعات الدم (الأسبرين، كلوبيدوجريل) بعد تركيب الدعامة</li>
+            </ul>
+            
+            <div class="success-box">
+                <i class="fas fa-check-circle"></i>
+                <strong>علامات الشفاء الطبيعية:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>كدمة صغيرة حول مكان الإدخال (طبيعية وتزول خلال أيام)</li>
+                    <li>ألم بسيط أو انزعاج في مكان الإدخال</li>
+                    <li>شعور بالخفقان أو نبض في الساق (طبيعي ومؤقت)</li>
+                </ul>
+            </div>
+            
+            <div class="danger-box">
+                <i class="fas fa-ambulance"></i>
+                <strong>⚠️ متى يجب الاتصال بالطبيب فوراً:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>نزيف أو تورم متزايد في مكان الإدخال</li>
+                    <li>ألم شديد في الصدر أو ضيق في التنفس</li>
+                    <li>حمى أو قشعريرة</li>
+                    <li>تغير في لون أو حرارة الساق أو الذراع</li>
+                    <li>خدر أو وخز أو ضعف في الساق أو الذراع</li>
+                </ul>
+            </div>
+            
+            <!-- المخاطر والمضاعفات -->
+            <h2 id="risks"><i class="fas fa-exclamation-triangle"></i> المخاطر والمضاعفات المحتملة</h2>
+            <p>القسطرة القلبية إجراء آمن نسبياً، ولكن مثل أي إجراء طبي، هناك بعض المخاطر:</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">&lt;1%</div>
+                    <div>خطر النوبة القلبية</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">&lt;0.5%</div>
+                    <div>خطر السكتة الدماغية</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">&lt;1%</div>
+                    <div>خطر النزيف الشديد</div>
+                </div>
+            </div>
+            
+            <h3>المضاعفات المحتملة:</h3>
+            <ul>
+                <li><strong>نزيف أو ورم دموي:</strong> في مكان إدخال القثطار (الأكثر شيوعاً)</li>
+                <li><strong>رد فعل تحسسي للصبغة:</strong> طفح جلدي، حكة، أو نادراً صدمة تحسسية</li>
+                <li><strong>تلف الشريان أو الوعاء الدموي:</strong> قد يحتاج إلى إصلاح جراحي</li>
+                <li><strong>جلطة دموية:</strong> قد تسبب نوبة قلبية أو سكتة دماغية</li>
+                <li><strong>عدم انتظام ضربات القلب:</strong> غالباً مؤقت ويختفي تلقائياً</li>
+                <li><strong>تلف الكلى:</strong> بسبب الصبغة، خاصة عند مرضى الكلى المزمنين</li>
+                <li><strong>عدوى:</strong> في مكان الإدخال (نادرة)</li>
+                <li><strong>انثقاب القلب أو الأوعية الدموية:</strong> نادر جداً</li>
+            </ul>
+            
+            <div class="info-box">
+                <i class="fas fa-chart-line"></i>
+                <strong>ملاحظة:</strong> خطر المضاعفات يزداد في الحالات التالية: كبار السن، مرضى الكلى، مرضى السكري غير المنتظم، قصور القلب الحاد، والقسطرة الطارئة.
+            </div>
+            
+            <!-- الدعامات القلبية -->
+            <h2 id="stents"><i class="fas fa-stethoscope"></i> الدعامات القلبية (Stents)</h2>
+            <p>الدعامة عبارة عن أنبوب معدني صغير شبكي الشكل يتم تركيبه داخل الشريان التاجي بعد توسيعه بالبالون، لإبقائه مفتوحاً وضمان تدفق الدم بشكل جيد إلى عضلة القلب.</p>
+            
+            <h3>أنواع الدعامات:</h3>
+            <ul>
+                <li><strong>الدعامات المعدنية العادية (BMS):</strong> الجيل الأول من الدعامات، تستخدم في الحالات البسيطة، تحتاج إلى أدوية مميعة لمدة شهر واحد</li>
+                <li><strong>الدعامات الدوائية (DES):</strong> تطلق دواء يمنع تكاثر الخلايا وإعادة التضيق، تعتبر المعيار الذهبي حالياً، تحتاج إلى أدوية مميعة لمدة 6-12 شهراً</li>
+                <li><strong>الدعامات القابلة للامتصاص (BVS):</strong> تذوب تدريجياً بعد فترة، لكنها ليست مناسبة لجميع المرضى</li>
+            </ul>
+            
+            <div class="warning-box">
+                <i class="fas fa-prescription-bottle"></i>
+                <strong>⚠️ تنبيه مهم:</strong> إذا تم تركيب دعامة، يجب الالتزام بالأدوية المميعة للدم (الأسبرين وكلوبيدوجريل/بريلينت) للمدة التي يحددها الطبيب. التوقف المبكر عن هذه الأدوية قد يسبب تجلط الدعامة، وهي حالة خطيرة قد تؤدي إلى نوبة قلبية أو الوفاة.
+            </div>
+            
+            <!-- أسئلة شائعة -->
+            <h2 id="faq"><i class="fas fa-question-circle"></i> أسئلة شائعة عن القسطرة القلبية</h2>
+            
+            <h3>هل القسطرة القلبية مؤلمة؟</h3>
+            <p>لا، يتم تخدير منطقة الإدخال موضعياً، لذلك لا تشعر بألم أثناء إدخال القثطار. قد تشعر ببعض الانزعاج أو الشعور بالحرارة عند حقن الصبغة، وهذا طبيعي ومؤقت.</p>
+            
+            <h3>كم تستغرق مدة التعافي بعد القسطرة؟</h3>
+            <p>عادة ما تبقى في المستشفى 24 ساعة بعد القسطرة (أقل في بعض الحالات). تعود إلى نشاطك الطبيعي تدريجياً خلال أسبوع، مع تجنب رفع الأثقال لمدة أسبوعين.</p>
+            
+            <h3>هل يمكن إجراء القسطرة عبر الرسغ بدلاً من الفخذ؟</h3>
+            <p>نعم، هذا ما يسمى بالقسطرة الشعاعية (Radial Access). لها مزايا عديدة: نزيف أقل، راحة أكبر للمريض، وإمكانية المشي فوراً بعد الإجراء. تستخدم هذه الطريقة بشكل متزايد في المراكز المتخصصة.</p>
+            
+            <h3>كم مرة يمكن إجراء القسطرة؟</h3>
+            <p>يمكن إجراء القسطرة عدة مرات إذا دعت الحاجة، ولكن يحاول الأطباء تقليل عدد المرات لتجنب المخاطر المتراكمة. إذا تكررت الأعراض، قد تكون هناك حاجة لإعادة القسطرة.</p>
+            
+            <h3>هل يمكن ممارسة الرياضة بعد القسطرة؟</h3>
+            <p>نعم، ينصح بممارسة الرياضة بعد استشارة الطبيب. تبدأ بالمشي الخفيف وتزيد الشدة تدريجياً. تجنب الرياضات العنيفة أو رفع الأثقال لمدة أسبوعين على الأقل.</p>
+            
+            <h3>هل القسطرة القلبية تغني عن جراحة القلب المفتوح؟</h3>
+            <p>في كثير من الحالات، نعم. ولكن هناك حالات معينة (مثل انسداد متعدد أو معقد أو انسداد الشريان الرئيسي الأيسر) قد تستفيد أكثر من الجراحة المفتوحة. القرار يعتمد على حالة كل مريض وتوصية فريق القلب.</p>
+            
+            <hr>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <p><strong>⚠️ تنبيه هام:</strong> هذا المحتوى هو لأغراض توعوية وتعليمية فقط، ولا يغني عن استشارة الطبيب المختص. في حال وجود أي أعراض، يرجى مراجعة الطبيب فوراً.</p>
+                <button class="btn-back" onclick="window.location.href='../index.html'">
+                    <i class="fas fa-arrow-right"></i> العودة إلى المنصة
+                </button>
+            </div>
+        </div>
     </div>
-</header>
-
-<main class="article-page">
-    <div class="article-header">
-        <h2>تعريف القسطرة القلبية</h2>
-        <img src="../images/catheter.jpg" alt="القسطرة القلبية">
+    
+    <div class="footer">
+        <p>© 2025 منصة استشاريون - جميع الحقوق محفوظة | اليمن</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">بإشراف د. صلاح الأهدل - مدير مكتب الصحة</p>
     </div>
+</div>
 
-    <div class="section">
-        <h3>ما هي القسطرة القلبية؟</h3>
-        <p>القسطرة القلبية هي إجراء طبي يستخدم لفحص وعلاج مشاكل القلب والشرايين التاجية من خلال إدخال أنبوب رفيع ومرن (القسطرة) عبر الشريان.</p>
-    </div>
-
-    <div class="section">
-        <h3>دواعي استخدام القسطرة</h3>
-        <ul>
-            <li>تشخيص أمراض الشرايين التاجية أو انسدادها.</li>
-            <li>تقييم وظيفة صمامات القلب والعضلة القلبية.</li>
-            <li>إجراء علاجات مثل تركيب الدعامات أو توسيع الشرايين.</li>
-            <li>تحديد مخاطر النوبة القلبية أو الذبحة الصدرية.</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h3>مميزات القسطرة</h3>
-        <p>إجراء القسطرة يعتبر دقيقًا وآمنًا نسبيًا، ويسمح للطبيب بتشخيص وعلاج مشاكل القلب بسرعة ودون الحاجة لعمليات جراحية كبيرة.</p>
-    </div>
-
-    <a class="back-link" href="../index.html">العودة للرئيسية</a>
-</main>
-
-<footer>
-    <p>&copy; 2026 عيادتي الذكية. جميع الحقوق محفوظة.</p>
-</footer>
-<script src="../script.js"></script>
+<script>
+    // تنشيط الروابط الداخلية والتمرير السلس
+    document.querySelectorAll('.toc a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    console.log('تم تحميل مقال القسطرة القلبية - منصة استشاريون');
+</script>
 </body>
 </html>
