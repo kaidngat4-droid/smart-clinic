@@ -1,68 +1,417 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>الأدوية التي يجب الابتعاد عنها بعد الدعامات - عيادتي الذكية</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>الأدوية الممنوعة بعد تركيب الدعامة القلبية | استشاريون</title>
+    <meta name="description" content="دليل شامل للأدوية الممنوعة بعد تركيب الدعامة القلبية: أدوية تتعارض مع مميعات الدم، أدوية يجب تجنبها، وبدائل آمنة. معلومات موثقة من د. صلاح الأهدل">
+    <meta name="author" content="د. صلاح الأهدل">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #f0f4f8; color: #1a2c3e; line-height: 1.7; }
+        .article-container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+        .article-card { background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .article-header { background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; padding: 2.5rem; text-align: center; }
+        .article-header h1 { font-size: 2rem; margin-bottom: 1rem; }
+        .article-meta { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.9; margin-top: 1rem; }
+        .article-meta i { margin-left: 5px; }
+        .featured-image { width: 100%; height: 350px; object-fit: cover; background: linear-gradient(135deg, #e74c3c, #c0392b); display: flex; align-items: center; justify-content: center; }
+        .featured-image i { font-size: 5rem; color: rgba(255,255,255,0.3); }
+        .article-content { padding: 2.5rem; }
+        .article-content h2 { color: #c0392b; border-right: 4px solid #c0392b; padding-right: 1rem; margin: 2rem 0 1rem 0; font-size: 1.6rem; }
+        .article-content h3 { color: #e74c3c; margin: 1.5rem 0 0.8rem 0; font-size: 1.3rem; }
+        .article-content h4 { color: #2c3e50; margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
+        .article-content p { margin-bottom: 1rem; text-align: justify; }
+        .article-content ul, .article-content ol { margin: 1rem 2rem 1rem 0; }
+        .article-content li { margin-bottom: 0.5rem; }
+        .danger-box { background: #ffebee; border-right: 4px solid #e74c3c; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .warning-box { background: #fff3e0; border-right: 4px solid #ff9800; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .info-box { background: #e3f2fd; border-right: 4px solid #0066cc; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .success-box { background: #e8f5e9; border-right: 4px solid #00c853; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .med-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        .med-table th, .med-table td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        .med-table th { background: #c0392b; color: white; }
+        .med-table tr:nth-child(even) { background: #f8f9fa; }
+        .forbidden { background: #ffebee; color: #c0392b; }
+        .allowed { background: #e8f5e9; color: #2e7d32; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; text-decoration: none; padding: 12px 28px; border-radius: 40px; font-weight: 600; margin-top: 2rem; transition: all 0.3s; border: none; cursor: pointer; }
+        .btn-back:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(231,76,60,0.4); }
+        .toc { background: #f8f9fa; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; }
+        .toc h3 { color: #c0392b; margin-bottom: 1rem; }
+        .toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .toc li a { color: #c0392b; text-decoration: none; transition: color 0.3s; }
+        .toc li a:hover { color: #e74c3c; text-decoration: underline; }
+        .footer { text-align: center; padding: 2rem; background: #c0392b; color: white; margin-top: 2rem; border-radius: 28px 28px 0 0; }
+        hr { margin: 1.5rem 0; border: none; height: 1px; background: linear-gradient(to left, #e74c3c, transparent); }
+        .interaction-card { background: #f8f9fa; border-radius: 16px; padding: 1.2rem; margin: 1rem 0; display: flex; gap: 1rem; align-items: flex-start; }
+        .interaction-icon { width: 50px; height: 50px; background: #e74c3c; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; flex-shrink: 0; }
+        @media (max-width: 768px) { .article-header h1 { font-size: 1.5rem; } .article-content { padding: 1.5rem; } .featured-image { height: 200px; } .interaction-card { flex-direction: column; align-items: center; text-align: center; } }
+    </style>
 </head>
 <body>
-<header>
-    <div class="header-container">
-        <div class="logo">
-            <img src="../images/logo.png" alt="شعار عيادتي الذكية">
-            <h1>عيادتي الذكية</h1>
+
+<div class="article-container">
+    <div class="article-card">
+        <div class="article-header">
+            <h1><i class="fas fa-ban"></i> الأدوية الممنوعة بعد تركيب الدعامة القلبية</h1>
+            <p>أدوية يجب تجنبها بعد تركيب الدعامة وبدائلها الآمنة</p>
+            <div class="article-meta">
+                <span><i class="fas fa-user-md"></i> د. صلاح الأهدل</span>
+                <span><i class="fas fa-calendar-alt"></i> 15 أبريل 2025</span>
+                <span><i class="fas fa-clock"></i> وقت القراءة: 9 دقائق</span>
+                <span><i class="fas fa-heart"></i> 3,200 قراءة</span>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="../index.html">الرئيسية</a></li>
-                <li><a href="catheter.html">القسطرة القلبية</a></li>
-                <li><a href="stents.html">دعامات القلب</a></li>
-                <li><a href="blocked-artery.html">أعراض انسداد الشرايين</a></li>
-                <li><a href="patient-care.html">العناية بالمريض</a></li>
-                <li><a href="tips.html">نصائح وإرشادات</a></li>
-            </ul>
-        </nav>
+        
+        <div class="featured-image">
+            <i class="fas fa-ban"></i>
+        </div>
+        
+        <div class="article-content">
+            <!-- فهرس المحتويات -->
+            <div class="toc">
+                <h3><i class="fas fa-list-ul"></i> فهرس المحتويات</h3>
+                <ul>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#ppi">مضادات الحموضة (PPIs)</a></li>
+                    <li><a href="#nsaids">مضادات الالتهاب اللاستيرويدية (NSAIDs)</a></li>
+                    <li><a href="#bloodthinners">مميعات الدم الأخرى</a></li>
+                    <li><a href="#herbs">الأعشاب والمكملات</a></li>
+                    <li><a href="#antibiotics">بعض المضادات الحيوية</a></li>
+                    <li><a href="#alternatives">البدائل الآمنة</a></li>
+                    <li><a href="#medication-list">قائمة الأدوية الممنوعة والمسموحة</a></li>
+                    <li><a href="#interactions">تفاعلات دوائية خطيرة</a></li>
+                    <li><a href="#tips">نصائح مهمة</a></li>
+                    <li><a href="#faq">أسئلة شائعة</a></li>
+                </ul>
+            </div>
+            
+            <!-- المقدمة -->
+            <h2 id="intro"><i class="fas fa-info-circle"></i> مقدمة</h2>
+            <p>بعد تركيب الدعامة القلبية، يصف الطبيب عادة دواءين مميعين للدم (Dual Antiplatelet Therapy - DAPT) مثل الأسبرين وكلوبيدوجريل (بلافيكس) أو تيكاجريلور (بريلينت) لمدة 6-12 شهراً على الأقل. هذه الأدوية ضرورية لمنع تكون الجلطات داخل الدعامة.</p>
+            <p>لكن هناك أدوية أخرى قد تتداخل مع فعالية هذه الأدوية أو تزيد من خطر النزيف. هذا الدليل يشرح الأدوية التي يجب تجنبها والبدائل الآمنة.</p>
+            
+            <div class="danger-box">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>⚠️ تحذير خطير:</strong> لا تتوقف عن تناول مميعات الدم (الأسبرين وكلوبيدوجريل) إلا باستشارة الطبيب! التوقف المبكر قد يسبب تجلط الدعامة، وهي حالة خطيرة قد تؤدي إلى نوبة قلبية أو الوفاة.
+            </div>
+            
+            <!-- مضادات الحموضة -->
+            <h2 id="ppi"><i class="fas fa-tablets"></i> مضادات الحموضة (PPIs) التي تتعارض مع كلوبيدوجريل</h2>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>أوميبرازول (Omeprazole) - بريلوسيك (Prilosec)</h3>
+                    <p>يتفاعل بقوة مع كلوبيدوجريل (بلافيكس) ويقلل من فعاليته بنسبة تصل إلى 40%. يثبط إنزيم CYP2C19 المسؤول عن تحويل كلوبيدوجريل إلى شكله النشط.</p>
+                </div>
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>إيزوميبرازول (Esomeprazole) - نيكسيوم (Nexium)</h3>
+                    <p>يتفاعل أيضاً مع كلوبيدوجريل ويقلل من فعاليته. يجب تجنبه أثناء تناول كلوبيدوجريل.</p>
+                </div>
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>لانسوبرازول (Lansoprazole) - بريفاسيد (Prevacid)</h3>
+                    <p>يتفاعل بدرجة أقل من أوميبرازول ولكن لا يزال يفضل تجنبه أو استخدام بديل أكثر أماناً.</p>
+                </div>
+            </div>
+            
+            <div class="success-box">
+                <i class="fas fa-check-circle"></i>
+                <strong>البدائل الآمنة لمضادات الحموضة:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>بانتوبرازول (Pantoprazole) - بروتونيكس (Protonix):</strong> الأكثر أماناً والأقل تفاعلاً مع كلوبيدوجريل</li>
+                    <li><strong>رابيبرازول (Rabeprazole) - أسيفكس (Aciphex):</strong> بديل آمن أيضاً</li>
+                    <li><strong>مضادات H2 (H2 Blockers):</strong> مثل فاموتيدين (Pepcid)، رانيتيدين (Zantac) - لكن استشر طبيبك أولاً</li>
+                    <li><strong>مضادات الحموضة البسيطة:</strong> مثل مالوكس، جافيسكون (للاستخدام القصير)</li>
+                </ul>
+            </div>
+            
+            <!-- مضادات الالتهاب -->
+            <h2 id="nsaids"><i class="fas fa-head-side-virus"></i> مضادات الالتهاب اللاستيرويدية (NSAIDs)</h2>
+            
+            <div class="danger-box">
+                <i class="fas fa-tint"></i>
+                <strong>لماذا يجب تجنب NSAIDs؟</strong>
+                <p>تزيد NSAIDs من خطر النزيف (خاصة النزيف المعدي المعوي) لأنها تثبط الصفائح الدموية وتضعف حماية المعدة. كما أنها قد تزيد من خطر تجلط الدعامة وتؤثر على وظائف الكلى.</p>
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>إيبوبروفين (Ibuprofen) - أدفيل، بروفين (Advil, Brufen)</h3>
+                    <p>يزيد خطر النزيف بشكل كبير. يجب تجنبه تماماً أثناء تناول مميعات الدم.</p>
+                </div>
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>ديكلوفيناك (Diclofenac) - فولتارين (Voltaren)</h3>
+                    <p>يزيد خطر النزيف والنوبات القلبية. ممنوع الاستخدام لمرضى القلب.</p>
+                </div>
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>نابروكسين (Naproxen) - أليف (Aleve)</h3>
+                    <p>يجب تجنبه بسبب زيادة خطر النزيف وتأثيره على القلب.</p>
+                </div>
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>سيليكوكسيب (Celecoxib) - سيليبريكس (Celebrex)</h3>
+                    <p>أقل تأثيراً على النزيف ولكن يزيد خطر النوبات القلبية. يجب تجنبه.</p>
+                </div>
+            </div>
+            
+            <div class="success-box">
+                <i class="fas fa-check-circle"></i>
+                <strong>البدائل الآمنة للمسكنات:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>باراسيتامول (Paracetamol) - بانادول (Panadol):</strong> الخيار الأول والأكثر أماناً للآلام البسيطة</li>
+                    <li><strong>الترامادول (Tramadol):</strong> لآلام أقوى (بوصفة طبية)</li>
+                    <li><strong>العلاجات الموضعية:</strong> كريمات مضادة للالتهاب موضعياً (تأثيرها محدود)</li>
+                    <li><strong>الراحة والثلج:</strong> للآلام العضلية والمفصلية البسيطة</li>
+                </ul>
+            </div>
+            
+            <!-- مميعات الدم الأخرى -->
+            <h2 id="bloodthinners"><i class="fas fa-tint"></i> مميعات الدم الأخرى</h2>
+            
+            <div class="warning-box">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>تحذير:</strong> تناول أكثر من دواء مميع للدم يزيد بشكل كبير من خطر النزيف. لا تتناول أي دواء مميع إضافي دون استشارة الطبيب.
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>وارفارين (Warfarin) - كومادين (Coumadin)</h3>
+                    <p>تناوله مع الأسبرين وكلوبيدوجريل يزيد خطر النزيف 3-4 مرات. يجب تجنب هذه التركيبة إلا في حالات خاصة وتحت إشراف طبي دقيق.</p>
+                </div>
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>ريفاروكسابان (Rivaroxaban) - زاريلتو (Xarelto)</h3>
+                    <p>يزيد خطر النزيف بشكل كبير عند تناوله مع الأسبرين وكلوبيدوجريل.</p>
+                </div>
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>أبيكسابان (Apixaban) - إليكويس (Eliquis)</h3>
+                    <p>يزيد خطر النزيف. يجب تجنبه مع مميعات الدم الأخرى.</p>
+                </div>
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>دابيجاتران (Dabigatran) - براداكسا (Pradaxa)</h3>
+                    <p>يزيد خطر النزيف. لا يستخدم مع الأسبرين وكلوبيدوجريل إلا في حالات خاصة.</p>
+                </div>
+            </div>
+            
+            <!-- الأعشاب والمكملات -->
+            <h2 id="herbs"><i class="fas fa-leaf"></i> الأعشاب والمكملات الغذائية الممنوعة</h2>
+            
+            <div class="warning-box">
+                <i class="fas fa-leaf"></i>
+                <strong>تنبيه مهم:</strong> العديد من الأعشاب والمكملات تؤثر على تخثر الدم. حتى الطبيعية منها قد تكون خطيرة عند تناولها مع مميعات الدم.
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>الثوم (Garlic) - بجرعات عالية</h3>
+                    <p>الثوم الطازج أو مكملات الثوم بجرعات عالية تزيد من سيولة الدم وتزيد خطر النزيف. كمية صغيرة في الطعام آمنة.</p>
+                </div>
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>الجنكة (Ginkgo Biloba)</h3>
+                    <p>تزيد من سيولة الدم وقد تسبب نزيفاً خطيراً. ممنوعة تماماً.</p>
+                </div>
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>الزنجبيل (Ginger) - بجرعات عالية</h3>
+                    <p>الزنجبيل الطازج بكميات كبيرة يزيد سيولة الدم. كمية صغيرة في الطعام آمنة.</p>
+                </div>
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>الكركم (Turmeric) - بجرعات عالية</h3>
+                    <p>الكركم بجرعات عالية (مكملات) قد يزيد سيولة الدم. كمية صغيرة في الطعام آمنة.</p>
+                </div>
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>زيت السمك (Fish Oil) - بجرعات عالية</h3>
+                    <p>جرعات عالية من زيت السمك (أكثر من 3 غرام يومياً) قد تزيد سيولة الدم. الجرعات العادية آمنة.</p>
+                </div>
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>فيتامين E - بجرعات عالية</h3>
+                    <p>جرعات عالية من فيتامين E (أكثر من 400 وحدة دولية يومياً) تزيد سيولة الدم.</p>
+                </div>
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>عشبة سانت جون (St. John's Wort)</h3>
+                    <p>تقلل من فعالية كلوبيدوجريل وتزيد من خطر تجلط الدعامة.</p>
+                </div>
+            </div>
+            
+            <!-- المضادات الحيوية -->
+            <h2 id="antibiotics"><i class="fas fa-capsules"></i> بعض المضادات الحيوية</h2>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>بعض الماكروليدات (Macrolides) مثل كلاريثروميسين (Clarithromycin)</h3>
+                    <p>تتداخل مع كلوبيدوجريل وتزيد من خطر النزيف. الأزيثرومايسين (Zithromax) أكثر أماناً.</p>
+                </div>
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>بعض مضادات الفطريات (Azoles) مثل فلوكونازول (Fluconazole)</h3>
+                    <p>تتداخل مع كلوبيدوجريل وتزيد من خطر النزيف.</p>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <i class="fas fa-lightbulb"></i>
+                <strong>نصيحة:</strong> أخبر طبيبك أنك تتناول مميعات الدم قبل وصف أي مضاد حيوي أو مضاد فطريات.
+            </div>
+            
+            <!-- البدائل الآمنة -->
+            <h2 id="alternatives"><i class="fas fa-check-circle"></i> البدائل الآمنة</h2>
+            
+            <table class="med-table">
+                <thead>
+                    <tr><th>الغرض العلاجي</th><th>الأدوية الممنوعة</th><th>البدائل الآمنة</th></tr>
+                </thead>
+                <tbody>
+                    <tr class="forbidden">.<td rowspan="2">مضادات الحموضة</td><td>أوميبرازول، إيزوميبرازول</td><td class="allowed">بانتوبرازول، رابيبرازول</td></tr>
+                    <tr class="forbidden">.<td>لانسوبرازول</td><td class="allowed">فاموتيدين، مضادات حموضة بسيطة</td></tr>
+                    <tr class="forbidden">.<td rowspan="3">مسكنات الألم</td><td>إيبوبروفين، ديكلوفيناك، نابروكسين</td><td class="allowed">باراسيتامول (بانادول)</td></tr>
+                    <tr class="forbidden">.<td>سيليكوكسيب</td><td class="allowed">ترامادول (بوصفة)</td></tr>
+                    <tr class="forbidden">.<td>الأسبرين بجرعات عالية</td><td class="allowed">الأسبرين بجرعة منخفضة (كما وصف الطبيب)</td></tr>
+                    <tr class="forbidden">.<td>مميعات دم إضافية</td><td>وارفارين، ريفاروكسابان، أبيكسابان، دابيجاتران</td><td class="allowed">فقط حسب تعليمات الطبيب المختص</td></tr>
+                    <tr class="forbidden">.<td>أعشاب ومكملات</td><td>ثوم (جرعات عالية)، جنكة، زنجبيل (جرعات عالية)</td><td class="allowed">كميات صغيرة في الطعام فقط</td></tr>
+                </tbody>
+             </table>
+            
+            <!-- تفاعلات دوائية خطيرة -->
+            <h2 id="interactions"><i class="fas fa-biohazard"></i> تفاعلات دوائية خطيرة يجب معرفتها</h2>
+            
+            <div class="danger-box">
+                <ul style="margin-top: 10px;">
+                    <li><strong>كلوبيدوجريل + أوميبرازول:</strong> يقلل فعالية كلوبيدوجريل بنسبة 40-50%</li>
+                    <li><strong>كلوبيدوجريل + NSAIDs:</strong> يزيد خطر النزيف المعدي المعوي 3-4 مرات</li>
+                    <li><strong>كلوبيدوجريل + مميعات دم أخرى:</strong> يزيد خطر النزيف الشديد 5-10 مرات</li>
+                    <li><strong>كلوبيدوجريل + بعض مضادات الفطريات/المضادات الحيوية:</strong> يزيد خطر النزيف</li>
+                </ul>
+            </div>
+            
+            <!-- نصائح مهمة -->
+            <h2 id="tips"><i class="fas fa-lightbulb"></i> نصائح مهمة لمرضى الدعامات</h2>
+            
+            <div class="success-box">
+                <ul style="margin-top: 10px;">
+                    <li><strong>احتفظ بقائمة أدويتك:</strong> اكتب جميع الأدوية التي تتناولها (بما في ذلك الأعشاب والمكملات) واعرضها على كل طبيب تزوره</li>
+                    <li><strong>استشر طبيبك قبل تناول أي دواء جديد:</strong> حتى لو كان بدون وصفة طبية</li>
+                    <li><strong>لا تتوقف عن أدوية مميعات الدم:</strong> حتى لو كنت بحاجة لعملية جراحية أو خلع سن، استشر طبيب القلب أولاً</li>
+                    <li><strong>ارتدِ بطاقة تنبيه طبي:</strong> تخبر المسعفين أنك تتناول مميعات الدم</li>
+                    <li><strong>راقب علامات النزيف:</strong> كدمات غير مبررة، نزيف لثة، دم في البول أو البراز</li>
+                    <li><strong>استخدم فرشاة أسنان ناعمة:</strong> لتجنب نزيف اللثة</li>
+                    <li><strong>كن حذراً مع الحلاقة والأدوات الحادة:</strong> استخدم ماكينة حلاقة كهربائية</li>
+                </ul>
+            </div>
+            
+            <!-- أسئلة شائعة -->
+            <h2 id="faq"><i class="fas fa-question-circle"></i> أسئلة شائعة</h2>
+            
+            <h3>هل يمكن تناول الباراسيتامول (بانادول) بعد الدعامة؟</h3>
+            <p>نعم، الباراسيتامول هو الخيار الأكثر أماناً لمسكنات الألم لمرضى الدعامات. لا يتفاعل مع مميعات الدم ولا يزيد خطر النزيف. لكن لا تتجاوز الجرعة الموصى بها (أقل من 3 جرام يومياً) لتجنب تأثيراته على الكبد.</p>
+            
+            <h3>ماذا أفعل إذا احتجت لعملية جراحية أو خلع سن؟</h3>
+            <p>لا تتوقف عن تناول مميعات الدم من تلقاء نفسك! اتصل بطبيب القلب الخاص بك. قد يطلب منك التوقف عن تناولها قبل الجراحة بعدة أيام، ولكن هذا القرار يجب أن يتخذه الطبيب المختص بناءً على حالتك ونوع الجراحة.</p>
+            
+            <h3>هل يمكن تناول مضادات الحموضة البسيطة (مثل مالوكس)؟</h3>
+            <p>نعم، مضادات الحموضة البسيطة (التي تحتوي على ألومنيوم/ماغنيسيوم/كالسيوم) آمنة للاستخدام القصير. لكن تجنب تناولها قبل أو بعد كلوبيدوجريل بساعتين لأنها قد تقلل امتصاصه.</p>
+            
+            <h3>هل الثوم في الطعام آمن؟</h3>
+            <p>نعم، كمية صغيرة من الثوم المستخدمة في الطهي آمنة. الخطر يكون مع مكملات الثوم أو تناول كميات كبيرة جداً من الثوم الطازج (أكثر من فصين يومياً).</p>
+            
+            <h3>كم مرة يجب فحص وظائف الكلى أثناء تناول مميعات الدم؟</h3>
+            <p>عادةً مرة سنوياً، أو أكثر إذا كنت تعاني من أمراض الكلى أو تتناول أدوية تؤثر على الكلى. استشر طبيبك حول جدول الفحوصات المناسب لحالتك.</p>
+            
+            <h3>هل يمكن تناول الفيتامينات المتعددة؟</h3>
+            <p>نعم، الفيتامينات المتعددة العادية آمنة. تجنب فقط الجرعات العالية من فيتامين E وفيتامين K (بدون استشارة الطبيب).</p>
+            
+            <hr>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <p><strong>⚠️ تنبيه هام:</strong> هذا المحتوى هو لأغراض توعوية وتعليمية فقط، ولا يغني عن استشارة الطبيب المختص. لا تتوقف عن تناول أي دواء دون استشارة طبيبك.</p>
+                <button class="btn-back" onclick="window.location.href='../index.html'">
+                    <i class="fas fa-arrow-right"></i> العودة إلى المنصة
+                </button>
+            </div>
+        </div>
     </div>
-</header>
-
-<main class="article-page">
-<div class="article-header">
-<h2>الأدوية التي يجب الابتعاد عنها بعد تركيب الدعامات</h2>
-<img src="../images/stents.jpg" alt="دعامات القلب">
+    
+    <div class="footer">
+        <p>© 2026 منصة استشاريون - جميع الحقوق محفوظة | اليمن</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">بإشراف د. صلاح الأهدل - مدير مكتب الصحة</p>
+    </div>
 </div>
 
-<div class="section">
-<h3>لماذا يجب الحذر؟</h3>
-<p>بعض الأدوية قد تزيد خطر النزيف أو تؤثر على فعالية مضادات الصفائح الدموية بعد تركيب الدعامة، لذا يجب الحذر واستشارة الطبيب دائمًا.</p>
-</div>
-
-<div class="section">
-<h3>أمثلة على أدوية يجب تجنبها أو استخدامها بحذر</h3>
-<ul>
-<li><strong>الأدوية المضادة للتخثر بدون إشراف الطبيب:</strong> قد تسبب نزيف حاد.</li>
-<li><strong>مضادات الالتهاب غير الستيرويدية (NSAIDs):</strong> مثل Ibuprofen و Naproxen، يمكن أن تزيد خطر النزيف.</li>
-<li><strong>المكملات العشبية:</strong> بعض الأعشاب مثل Ginkgo و Ginseng قد تؤثر على تخثر الدم.</li>
-<li><strong>أدوية تحتوي على الأسبرين إضافية:</strong> يجب التنسيق مع الطبيب لتجنب الجرعة المزدوجة.</li>
-</ul>
-</div>
-
-<div class="section">
-<h3>نصائح هامة</h3>
-<ul>
-<li>الالتزام بقائمة الأدوية الموصوفة فقط.</li>
-<li>إبلاغ الطبيب دائمًا قبل استخدام أي دواء جديد أو مكمل غذائي.</li>
-<li>القيام بفحوصات دورية لمراقبة الدم ووضع الدعامة.</li>
-</ul>
-</div>
-
-<a class="back-link" href="../index.html">العودة للرئيسية</a>
-</main>
-
-<footer>
-<p>&copy; 2026 عيادتي الذكية. جميع الحقوق محفوظة.</p>
-</footer>
-<script src="../script.js"></script>
+<script>
+    // تنشيط الروابط الداخلية والتمرير السلس
+    document.querySelectorAll('.toc a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    console.log('تم تحميل مقال الأدوية الممنوعة بعد الدعامة - منصة استشاريون');
+</script>
 </body>
 </html>
