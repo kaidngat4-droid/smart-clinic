@@ -1,49 +1,377 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ارتفاع ضغط الدم - عيادتي الذكية</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Cairo', sans-serif; background: #f4f9fe; color: #1a2c3e; line-height: 1.6; }
-  header { background: linear-gradient(135deg, #0b2b3b, #1b4f6e); color: white; padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; }
-  .header-container { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-  .logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }
-  .logo-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; background: white; padding: 3px; }
-  .logo h1 { font-size: 1.6rem; background: linear-gradient(135deg, #fff, #ffe0b5); background-clip: text; -webkit-background-clip: text; color: transparent; }
-  nav ul { display: flex; gap: 1rem; list-style: none; flex-wrap: wrap; }
-  nav ul li a { color: white; text-decoration: none; font-weight: 600; }
-  #back-home { background: rgba(255,255,240,0.2); border: none; padding: 6px 15px; border-radius: 40px; color: white; cursor: pointer; }
-  main { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
-  .card { background: white; border-radius: 32px; padding: 2rem; box-shadow: 0 15px 30px rgba(0,0,0,0.1); margin-bottom: 2rem; }
-  .card h2 { color: #d81b60; border-right: 5px solid #d81b60; padding-right: 1rem; margin-bottom: 1rem; }
-  .footer { text-align: center; padding: 2rem; background: #0f2c38; color: #cbd5e1; margin-top: 3rem; }
-  @media (max-width: 700px) { .header-container { flex-direction: column; } }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ارتفاع ضغط الدم - دليل شامل | استشاريون</title>
+    <meta name="description" content="دليل شامل لارتفاع ضغط الدم: الأسباب، الأعراض، المضاعفات، العلاج، والوقاية. معلومات موثقة من د. صلاح الأهدل">
+    <meta name="author" content="د. صلاح الأهدل">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #f0f4f8; color: #1a2c3e; line-height: 1.7; }
+        .article-container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+        .article-card { background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .article-header { background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; padding: 2.5rem; text-align: center; }
+        .article-header h1 { font-size: 2rem; margin-bottom: 1rem; }
+        .article-meta { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.9; margin-top: 1rem; }
+        .article-meta i { margin-left: 5px; }
+        .featured-image { width: 100%; height: 350px; object-fit: cover; background: linear-gradient(135deg, #e74c3c, #c0392b); display: flex; align-items: center; justify-content: center; }
+        .featured-image i { font-size: 5rem; color: rgba(255,255,255,0.3); }
+        .article-content { padding: 2.5rem; }
+        .article-content h2 { color: #c0392b; border-right: 4px solid #c0392b; padding-right: 1rem; margin: 2rem 0 1rem 0; font-size: 1.6rem; }
+        .article-content h3 { color: #e74c3c; margin: 1.5rem 0 0.8rem 0; font-size: 1.3rem; }
+        .article-content h4 { color: #2c3e50; margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
+        .article-content p { margin-bottom: 1rem; text-align: justify; }
+        .article-content ul, .article-content ol { margin: 1rem 2rem 1rem 0; }
+        .article-content li { margin-bottom: 0.5rem; }
+        .warning-box { background: #fff3e0; border-right: 4px solid #ff9800; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .info-box { background: #e3f2fd; border-right: 4px solid #0066cc; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .danger-box { background: #ffebee; border-right: 4px solid #e74c3c; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .success-box { background: #e8f5e9; border-right: 4px solid #00c853; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .stat-card { background: #f8f9fa; padding: 1.2rem; border-radius: 16px; text-align: center; transition: transform 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-number { font-size: 2rem; font-weight: 800; color: #c0392b; }
+        .bp-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        .bp-table th, .bp-table td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        .bp-table th { background: #c0392b; color: white; }
+        .bp-table tr:nth-child(even) { background: #f8f9fa; }
+        .normal { background: #e8f5e9; color: #2e7d32; }
+        .elevated { background: #fff3e0; color: #ff9800; }
+        .stage1 { background: #ffebee; color: #e74c3c; }
+        .stage2 { background: #ffcdd2; color: #c0392b; }
+        .crisis { background: #ff5252; color: white; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; text-decoration: none; padding: 12px 28px; border-radius: 40px; font-weight: 600; margin-top: 2rem; transition: all 0.3s; border: none; cursor: pointer; }
+        .btn-back:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(231,76,60,0.4); }
+        .toc { background: #f8f9fa; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; }
+        .toc h3 { color: #c0392b; margin-bottom: 1rem; }
+        .toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .toc li a { color: #c0392b; text-decoration: none; transition: color 0.3s; }
+        .toc li a:hover { color: #e74c3c; text-decoration: underline; }
+        .footer { text-align: center; padding: 2rem; background: #c0392b; color: white; margin-top: 2rem; border-radius: 28px 28px 0 0; }
+        hr { margin: 1.5rem 0; border: none; height: 1px; background: linear-gradient(to left, #e74c3c, transparent); }
+        @media (max-width: 768px) { .article-header h1 { font-size: 1.5rem; } .article-content { padding: 1.5rem; } .featured-image { height: 200px; } }
+    </style>
 </head>
 <body>
-<header>
-  <div class="header-container">
-    <div class="logo" onclick="location.href='../index.html'">
-      <img src="../images/logo.png" class="logo-img" onerror="this.src='https://placehold.co/50x50'">
-      <h1>عيادتي الذكية</h1>
+
+<div class="article-container">
+    <div class="article-card">
+        <div class="article-header">
+            <h1><i class="fas fa-tachometer-alt"></i> ارتفاع ضغط الدم: الصامت القاتل</h1>
+            <p>الأسباب، المضاعفات، وكيفية التحكم فيه</p>
+            <div class="article-meta">
+                <span><i class="fas fa-user-md"></i> د. صلاح الأهدل</span>
+                <span><i class="fas fa-calendar-alt"></i> 15 أبريل 2025</span>
+                <span><i class="fas fa-clock"></i> وقت القراءة: 11 دقيقة</span>
+                <span><i class="fas fa-heart"></i> 4,100 قراءة</span>
+            </div>
+        </div>
+        
+        <div class="featured-image">
+            <i class="fas fa-tachometer-alt"></i>
+        </div>
+        
+        <div class="article-content">
+            <!-- فهرس المحتويات -->
+            <div class="toc">
+                <h3><i class="fas fa-list-ul"></i> فهرس المحتويات</h3>
+                <ul>
+                    <li><a href="#intro">ما هو ارتفاع ضغط الدم؟</a></li>
+                    <li><a href="#types">أنواع ارتفاع ضغط الدم</a></li>
+                    <li><a href="#causes">الأسباب وعوامل الخطر</a></li>
+                    <li><a href="#symptoms">الأعراض والعلامات</a></li>
+                    <li><a href="#complications">المضاعفات الخطيرة</a></li>
+                    <li><a href="#diagnosis">التشخيص</a></li>
+                    <li><a href="#treatment">العلاج</a></li>
+                    <li><a href="#lifestyle">تغيير نمط الحياة</a></li>
+                    <li><a href="#diet">التغذية السليمة</a></li>
+                    <li><a href="#prevention">الوقاية</a></li>
+                    <li><a href="#faq">أسئلة شائعة</a></li>
+                </ul>
+            </div>
+            
+            <!-- المقدمة -->
+            <h2 id="intro"><i class="fas fa-info-circle"></i> ما هو ارتفاع ضغط الدم؟</h2>
+            <p>ارتفاع ضغط الدم (Hypertension) هو حالة طبية شائعة يزداد فيها ضغط الدم في الشرايين بشكل مزمن. يُعرف بـ "القاتل الصامت" لأنه غالباً لا يسبب أعراضاً واضحة، ولكنه قد يؤدي إلى مضاعفات خطيرة مثل النوبات القلبية والسكتات الدماغية.</p>
+            <p>ضغط الدم يُقاس برقمين: الضغط الانقباضي (الرقم العلوي) وهو الضغط في الشرايين عندما ينبض القلب، والضغط الانبساطي (الرقم السفلي) وهو الضغط في الشرايين عندما يرتاح القلب بين النبضات.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">1.28B</div>
+                    <div>مريض ضغط حول العالم</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">46%</div>
+                    <div>لا يعلمون بإصابتهم</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10M</div>
+                    <div>وفيات سنوياً بسبب المضاعفات</div>
+                </div>
+            </div>
+            
+            <!-- جدول تصنيف ضغط الدم -->
+            <table class="bp-table">
+                <thead>
+                    <tr><th>التصنيف</th><th>الضغط الانقباضي</th><th>الضغط الانبساطي</th></tr>
+                </thead>
+                <tbody>
+                    <tr class="normal"><td>طبيعي</td><td>&lt; 120</td><td>&lt; 80</td></tr>
+                    <tr class="elevated"><td>مرتفع (Elevated)</td><td>120-129</td><td>&lt; 80</td></tr>
+                    <tr class="stage1"><td>المرحلة الأولى</td><td>130-139</td><td>80-89</td></tr>
+                    <tr class="stage2"><td>المرحلة الثانية</td><td>≥ 140</td><td>≥ 90</td></tr>
+                    <tr class="crisis"><td>أزمة ارتفاع ضغط الدم</td><td>&gt; 180</td><td>&gt; 120</td></tr>
+                </tbody>
+            </table>
+            
+            <!-- أنواع ارتفاع ضغط الدم -->
+            <h2 id="types"><i class="fas fa-tags"></i> أنواع ارتفاع ضغط الدم</h2>
+            
+            <div class="info-box">
+                <i class="fas fa-microscope"></i>
+                <strong>نوعان رئيسيان:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>ارتفاع ضغط الدم الأساسي (الأولي):</strong> حوالي 90-95% من الحالات، يتطور تدريجياً مع تقدم العمر وليس له سبب محدد.</li>
+                    <li><strong>ارتفاع ضغط الدم الثانوي:</strong> ناتج عن حالة طبية كامنة مثل أمراض الكلى، اضطرابات الغدة الدرقية، أو استخدام بعض الأدوية.</li>
+                </ul>
+            </div>
+            
+            <!-- الأسباب وعوامل الخطر -->
+            <h2 id="causes"><i class="fas fa-exclamation-triangle"></i> الأسباب وعوامل الخطر</h2>
+            
+            <h3>عوامل لا يمكن تغييرها:</h3>
+            <ul>
+                <li><strong>التقدم في العمر:</strong> يزداد الخطر مع تقدم العمر</li>
+                <li><strong>التاريخ العائلي:</strong> وجود أقارب من الدرجة الأولى مصابين بارتفاع الضغط</li>
+                <li><strong>الجنس:</strong> أكثر شيوعاً عند الرجال قبل سن 65، وبعد ذلك تتساوى النسبة</li>
+                <li><strong>العرق:</strong> أكثر شيوعاً لدى بعض المجموعات العرقية</li>
+            </ul>
+            
+            <h3>عوامل يمكن تغييرها:</h3>
+            <div class="danger-box">
+                <ul style="margin-top: 10px;">
+                    <li><strong>السمنة والوزن الزائد:</strong> كلما زاد الوزن، زادت الحاجة للدم لتغذية الأنسجة</li>
+                    <li><strong>قلة النشاط البدني:</strong> يؤدي لزيادة معدل ضربات القلب وضغط الدم</li>
+                    <li><strong>التدخين وتعاطي التبغ:</strong> يضر بجدران الشرايين ويضيقها</li>
+                    <li><strong>النظام الغذائي عالي الملح:</strong> الصوديوم يسبب احتباس السوائل وارتفاع الضغط</li>
+                    <li><strong>انخفاض البوتاسيوم:</strong> البوتاسيوم يساعد في توازن الصوديوم في الخلايا</li>
+                    <li><strong>التوتر والإجهاد المزمن:</strong> يرفع ضغط الدم مؤقتاً</li>
+                    <li><strong>الإفراط في تناول الكحول</strong></li>
+                    <li><strong>بعض الأمراض المزمنة:</strong> السكري، أمراض الكلى، توقف التنفس أثناء النوم</li>
+                </ul>
+            </div>
+            
+            <!-- الأعراض -->
+            <h2 id="symptoms"><i class="fas fa-stethoscope"></i> الأعراض والعلامات</h2>
+            <p>ارتفاع ضغط الدم يُسمى "القاتل الصامت" لأنه عادة لا يسبب أعراضاً ملحوظة حتى يصل إلى مرحلة متقدمة أو خطيرة. ومع ذلك، قد يعاني بعض المرضى من:</p>
+            
+            <div class="warning-box">
+                <ul style="margin-top: 10px;">
+                    <li><i class="fas fa-head-side-virus"></i> صداع (خاصة في الصباح)</li>
+                    <li><i class="fas fa-dizzy"></i> دوخة</li>
+                    <li><i class="fas fa-lungs"></i> ضيق في التنفس</li>
+                    <li><i class="fas fa-nose"></i> نزيف الأنف</li>
+                    <li><i class="fas fa-eye"></i> تشوش الرؤية</li>
+                    <li><i class="fas fa-heartbeat"></i> خفقان القلب</li>
+                    <li><i class="fas fa-tint"></i> وجود دم في البول</li>
+                </ul>
+            </div>
+            
+            <div class="danger-box">
+                <i class="fas fa-ambulance"></i>
+                <strong>⚠️ أزمة ارتفاع ضغط الدم (Hypertensive Crisis):</strong>
+                <p>إذا وصل ضغط الدم إلى 180/120 أو أعلى، وتزامن مع أعراض مثل ألم شديد في الصدر، صداع شديد، ضيق تنفس حاد، أو تغير في الرؤية، فهذه حالة طارئة تستدعي الذهاب للمستشفى فوراً.</p>
+            </div>
+            
+            <!-- المضاعفات -->
+            <h2 id="complications"><i class="fas fa-heart-broken"></i> المضاعفات الخطيرة لارتفاع ضغط الدم غير المعالج</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">4x</div>
+                    <div>خطر السكتة الدماغية</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3x</div>
+                    <div>خطر النوبة القلبية</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2x</div>
+                    <div>خطر الفشل القلبي</div>
+                </div>
+            </div>
+            
+            <ul>
+                <li><strong>النوبة القلبية (Heart Attack):</strong> ارتفاع الضغط يضر الشرايين ويسرع تصلبها</li>
+                <li><strong>السكتة الدماغية (Stroke):</strong> ارتفاع الضغط يضعف أوعية الدماغ وقد يسبب تمزقها</li>
+                <li><strong>الفشل القلبي (Heart Failure):</strong> القلب يعمل بجهد أكبر، فتتضخم عضلته وتضعف</li>
+                <li><strong>تضخم البطين الأيسر (LVH):</strong> عضلة القلب السميكة تصبح أكثر صلابة</li>
+                <li><strong>الفشل الكلوي (Kidney Failure):</strong> يضر بالأوعية الدموية في الكلى</li>
+                <li><strong>تلف العين (Retinopathy):</strong> يضر بالأوعية الدموية في شبكية العين</li>
+                <li><strong>تصلب الشرايين (Atherosclerosis):</strong> يسرع من تراكم الدهون والكوليسترول</li>
+                <li><strong>تمدد الأوعية الدموية (Aneurysm):</strong> ضعف جدار الشريان وانتفاخه، وقد يتمزق</li>
+                <li><strong>الخرف الوعائي (Vascular Dementia):</strong> انخفاض تدفق الدم للدماغ</li>
+            </ul>
+            
+            <!-- التشخيص -->
+            <h2 id="diagnosis"><i class="fas fa-stethoscope"></i> تشخيص ارتفاع ضغط الدم</h2>
+            
+            <h3>كيف يتم التشخيص؟</h3>
+            <ul>
+                <li><strong>قياس ضغط الدم في العيادة:</strong> يتم القياس عدة مرات في زيارات مختلفة</li>
+                <li><strong>مراقبة ضغط الدم المنزلية (HBPM):</strong> قياس الضغط في المنزل لمدة 7 أيام</li>
+                <li><strong>مراقبة ضغط الدم المتنقلة (ABPM):</strong> جهاز يقيس الضغط كل 30 دقيقة لمدة 24 ساعة</li>
+            </ul>
+            
+            <h3>الفحوصات الإضافية:</h3>
+            <ul>
+                <li>تحليل البول</li>
+                <li>تحليل الدم (الكوليسترول، وظائف الكلى، السكر)</li>
+                <li>تخطيط القلب (ECG)</li>
+                <li>الإيكو (Echocardiogram)</li>
+                <li>فحص قاع العين</li>
+            </ul>
+            
+            <!-- العلاج -->
+            <h2 id="treatment"><i class="fas fa-tools"></i> علاج ارتفاع ضغط الدم</h2>
+            
+            <h3>الأدوية الخافضة للضغط:</h3>
+            <div class="info-box">
+                <strong>أنواع أدوية الضغط الشائعة:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>مثبطات ACE (ACE Inhibitors):</strong> مثل Enalapril, Lisinopril - تمنع تكوين مادة تسبب تضيق الأوعية</li>
+                    <li><strong>حاصرات مستقبلات الأنجيوتنسين (ARBs):</strong> مثل Losartan, Valsartan - تمنع تأثير الأنجيوتنسين</li>
+                    <li><strong>حاصرات قنوات الكالسيوم (CCBs):</strong> مثل Amlodipine - تريح عضلات الأوعية الدموية</li>
+                    <li><strong>مدرات البول (Diuretics):</strong> مثل Hydrochlorothiazide - تزيل الصوديوم والماء الزائد</li>
+                    <li><strong>حاصرات بيتا (Beta-blockers):</strong> مثل Metoprolol - تبطئ ضربات القلب</li>
+                </ul>
+            </div>
+            
+            <div class="success-box">
+                <i class="fas fa-check-circle"></i>
+                <strong>نصائح مهمة حول الأدوية:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>تناول الدواء في نفس الوقت يومياً</li>
+                    <li>لا تتوقف عن الدواء دون استشارة الطبيب</li>
+                    <li>قد تحتاج لتجربة عدة أدوية حتى تجد المناسب</li>
+                    <li>تناول الدواء حتى لو شعرت بتحسن (الضغط قد يعود للارتفاع)</li>
+                    <li>أخبر طبيبك عن أي آثار جانبية</li>
+                </ul>
+            </div>
+            
+            <!-- تغيير نمط الحياة -->
+            <h2 id="lifestyle"><i class="fas fa-heartbeat"></i> تغيير نمط الحياة لخفض ضغط الدم</h2>
+            
+            <div class="success-box">
+                <strong>تغييرات بسيطة تحدث فرقاً كبيراً:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>إنقاص الوزن الزائد:</strong> كل كيلوغرام تفقده يخفض ضغط الدم بمقدار 1 مم زئبق</li>
+                    <li><strong>ممارسة الرياضة بانتظام:</strong> 30 دقيقة يومياً من المشي السريع يخفض الضغط 4-9 مم زئبق</li>
+                    <li><strong>الإقلاع عن التدخين:</strong> يخفض الضغط ويحسن صحة القلب بشكل عام</li>
+                    <li><strong>تجنب الكحول:</strong> الإفراط يرفع الضغط ويقلل فعالية الأدوية</li>
+                    <li><strong>تقليل التوتر:</strong> التأمل، اليوغا، التنفس العميق</li>
+                    <li><strong>النوم الكافي:</strong> 7-8 ساعات يومياً</li>
+                </ul>
+            </div>
+            
+            <!-- التغذية السليمة -->
+            <h2 id="diet"><i class="fas fa-apple-alt"></i> التغذية السليمة لمرضى الضغط</h2>
+            
+            <h3>نظام DASH الغذائي (Dietary Approaches to Stop Hypertension)</h3>
+            <p>نظام DASH هو نظام غذائي مصمم خصيصاً لخفض ضغط الدم، وقد أثبتت الدراسات فعاليته.</p>
+            
+            <div class="info-box">
+                <strong>مبادئ نظام DASH:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>تقليل الصوديوم (الملح):</strong> أقل من 2300 مجم يومياً (يفضل 1500 مجم)</li>
+                    <li><strong>زيادة البوتاسيوم:</strong> الموز، البطاطا، الطماطم، البرتقال، الفاصوليا</li>
+                    <li><strong>الخضروات والفواكه:</strong> 4-5 حصص من كل يومياً</li>
+                    <li><strong>الحبوب الكاملة:</strong> 6-8 حصص يومياً</li>
+                    <li><strong>منتجات الألبان قليلة الدسم:</strong> 2-3 حصص يومياً</li>
+                    <li><strong>البروتينات الخالية من الدهون:</strong> الدجاج، السمك، البقوليات</li>
+                    <li><strong>تقليل الدهون المشبعة والحلويات</strong></li>
+                </ul>
+            </div>
+            
+            <h3>بدائل الملح:</h3>
+            <ul>
+                <li>استخدام الأعشاب والتوابل (الثوم، الزعتر، الكمون، الكزبرة)</li>
+                <li>عصير الليمون</li>
+                <li>الخل</li>
+                <li>تجنب الأطعمة المصنعة والمعلبة (غنية بالصوديوم)</li>
+                <li>قراءة الملصقات الغذائية لمعرفة محتوى الصوديوم</li>
+            </ul>
+            
+            <!-- الوقاية -->
+            <h2 id="prevention"><i class="fas fa-shield-heart"></i> الوقاية من ارتفاع ضغط الدم</h2>
+            
+            <div class="success-box">
+                <strong>خطوات وقائية بسيطة:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>قياس ضغط الدم بانتظام:</strong> مرة سنوياً بعد سن 18</li>
+                    <li><strong>الحفاظ على وزن صحي:</strong> مؤشر كتلة الجسم بين 18.5 و 24.9</li>
+                    <li><strong>ممارسة الرياضة بانتظام:</strong> 150 دقيقة أسبوعياً من النشاط المعتدل</li>
+                    <li><strong>اتباع نظام غذائي صحي:</strong> قليل الملح، غني بالخضروات والفواكه</li>
+                    <li><strong>تجنب التدخين والكحول</strong></li>
+                    <li><strong>إدارة التوتر والضغط النفسي</strong></li>
+                    <li><strong>الفحوصات الدورية:</strong> الكوليسترول، السكري، وظائف الكلى</li>
+                </ul>
+            </div>
+            
+            <!-- أسئلة شائعة -->
+            <h2 id="faq"><i class="fas fa-question-circle"></i> أسئلة شائعة عن ارتفاع ضغط الدم</h2>
+            
+            <h3>هل يمكن الشفاء من ارتفاع ضغط الدم؟</h3>
+            <p>ارتفاع ضغط الدم مرض مزمن يمكن السيطرة عليه ولكن لا يمكن الشفاء منه تماماً (إلا في حالات ارتفاع الضغط الثانوي الذي يُشفى بعلاج السبب). مع الالتزام بالعلاج وتغيير نمط الحياة، يمكن الوصول إلى مستويات طبيعية.</p>
+            
+            <h3>كم مرة يجب قياس ضغط الدم في المنزل؟</h3>
+            <p>ينصح بقياس الضغط مرتين يومياً: صباحاً (قبل تناول الأدوية) ومساءً. يجب القياس في نفس الأوقات وتحت نفس الظروف (قبل الأكل، بعد الاسترخاء لمدة 5 دقائق، مع وضعية جلوس صحيحة).</p>
+            
+            <h3>هل ارتفاع ضغط الدم وراثي؟</h3>
+            <p>نعم، هناك عامل وراثي قوي. إذا كان أحد الوالدين أو كليهما يعاني من ارتفاع الضغط، فإن خطر الإصابة يزيد. لكن نمط الحياة الصحي يمكن أن يقلل من هذا الخطر بشكل كبير.</p>
+            
+            <h3>هل يمكن ممارسة الرياضة إذا كان ضغط الدم مرتفعاً؟</h3>
+            <p>نعم، الرياضة مفيدة جداً لخفض الضغط. يجب البدء بتمارين خفيفة مثل المشي، وزيادة الشدة تدريجياً. تجنب رفع الأثقال الثقيلة أو تمارين الضغط العالي إذا كان الضغط غير مسيطر عليه. استشر طبيبك قبل البدء بأي برنامج رياضي.</p>
+            
+            <h3>هل التوتر يسبب ارتفاع ضغط الدم المزمن؟</h3>
+            <p>التوتر يرفع ضغط الدم مؤقتاً، ولكن لا يوجد دليل قوي على أنه يسبب ارتفاعاً مزمناً. ومع ذلك، قد يؤدي التوتر إلى سلوكيات غير صحية (الأكل غير الصحي، قلة الرياضة، التدخين) التي ترفع الضغط. لذلك، إدارة التوتر مهمة للصحة العامة.</p>
+            
+            <h3>هل القهوة ترفع ضغط الدم؟</h3>
+            <p>الكافيين قد يرفع ضغط الدم مؤقتاً (لمدة ساعة تقريباً) لدى الأشخاص الذين لا يستهلكونه بانتظام. أما لدى من يشربون القهوة يومياً، فقد لا يكون هناك تأثير ملحوظ. إذا كنت تعاني من ارتفاع الضغط غير المسيطر عليه، قد ينصحك طبيبك بتقليل الكافيين.</p>
+            
+            <hr>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <p><strong>⚠️ تنبيه هام:</strong> هذا المحتوى هو لأغراض توعوية وتعليمية فقط، ولا يغني عن استشارة الطبيب المختص. في حال وجود أي أعراض، يرجى مراجعة الطبيب فوراً.</p>
+                <button class="btn-back" onclick="window.location.href='../index.html'">
+                    <i class="fas fa-arrow-right"></i> العودة إلى المنصة
+                </button>
+            </div>
+        </div>
     </div>
-    <nav><ul><li><a href="../index.html">الرئيسية</a></li><li><a href="diabetes.html">السكري</a></li><li><a href="hypertension.html">الضغط</a></li></ul></nav>
-    <button id="back-home" onclick="location.href='../index.html'">🏠 الرئيسية</button>
-  </div>
-</header>
-<main>
-  <div style="text-align:center; margin-bottom:2rem;">
-    <img src="../images/hypertension.jpg" alt="ضغط الدم" style="width:150px; height:150px; border-radius:50%; object-fit:cover; border:4px solid #d81b60;">
-    <h1 style="margin-top:1rem;">ارتفاع ضغط الدم</h1>
-  </div>
-  <div class="card"><h2>ما هو ضغط الدم المرتفع؟</h2><p>ضغط الدم هو قوة دفع الدم على جدران الشرايين. يُعتبر مرتفعاً إذا تجاوز 140/90 مم زئبق في عدة قياسات. يسمى "القاتل الصامت" لأنه لا تظهر له أعراض واضحة، لكنه يدمر الأوعية الدموية والقلب والكلى.</p></div>
-  <div class="card"><h2>المضاعفات القلبية للضغط المرتفع</h2><ul><li>تضخم عضلة القلب (اليسار)</li><li>فشل القلب (ضعف ضخ الدم)</li><li>احتشاء عضلة القلب (الذبحة والنوبة القلبية)</li><li>تمدد الأوعية الدموية الأبهرية</li></ul></div>
-  <div class="card"><h2>نصائح للتحكم بضغط الدم</h2><ul><li>تقليل الملح (أقل من 5 جرام يومياً)</li><li>الإكثار من الخضروات والفواكه</li><li>ممارسة الرياضة بانتظام</li><li>الحفاظ على وزن صحي</li><li>الالتزام بأدوية الضغط (مثل مثبطات ACE، مدرات البول)</li></ul></div>
-</main>
-<footer class="footer"><p>© 2026 عيادتي الذكية — استشر طبيبك قبل تطبيق أي معلومات</p></footer>
+    
+    <div class="footer">
+        <p>© 2026 منصة استشاريون - جميع الحقوق محفوظة | اليمن</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">بإشراف د. صلاح الأهدل - مدير مكتب الصحة</p>
+    </div>
+</div>
+
+<script>
+    // تنشيط الروابط الداخلية والتمرير السلس
+    document.querySelectorAll('.toc a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    console.log('تم تحميل مقال ارتفاع ضغط الدم - منصة استشاريون');
+</script>
 </body>
 </html>
