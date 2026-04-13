@@ -1,139 +1,225 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أعراض انسداد الشرايين التاجية - عيادتي الذكية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>انسداد الشرايين: الأسباب والعلاج | استشاريون</title>
+    <meta name="description" content="دليل شامل لانسداد الشرايين التاجية: الأسباب، الأعراض، طرق التشخيص، والعلاجات المتاحة. معلومات موثقة من د. صلاح الأهدل">
+    <meta name="author" content="د. صلاح الأهدل">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* تصميم فريد للمقال */
-        main.article-page {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        .article-header {
-            text-align: center;
-            background: linear-gradient(135deg, #e74c3c, #f39c12);
-            color: white;
-            padding: 30px 20px;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-            margin-bottom: 30px;
-        }
-
-        .article-header h2 {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-
-        .article-header img {
-            width: 100%;
-            max-width: 500px;
-            margin-top: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-
-        .section {
-            background: #fdf6f6;
-            padding: 25px 20px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .section h3 {
-            font-size: 24px;
-            color: #c0392b;
-            margin-bottom: 15px;
-        }
-
-        .section p, .section ul {
-            font-size: 16px;
-            line-height: 1.8;
-        }
-
-        .section ul li {
-            margin-bottom: 10px;
-            list-style: inside disc;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 8px 15px;
-            background: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-
-        .back-link:hover {
-            background: #2980b9;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #f0f4f8; color: #1a2c3e; line-height: 1.7; }
+        .article-container { max-width: 900px; margin: 2rem auto; padding: 0 1.5rem; }
+        .article-card { background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .article-header { background: linear-gradient(135deg, #0066cc, #1a237e); color: white; padding: 2.5rem; text-align: center; }
+        .article-header h1 { font-size: 2rem; margin-bottom: 1rem; }
+        .article-meta { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.9; margin-top: 1rem; }
+        .article-meta i { margin-left: 5px; }
+        .featured-image { width: 100%; height: 350px; object-fit: cover; }
+        .article-content { padding: 2.5rem; }
+        .article-content h2 { color: #0066cc; border-right: 4px solid #0066cc; padding-right: 1rem; margin: 1.8rem 0 1rem 0; font-size: 1.6rem; }
+        .article-content h3 { color: #1a237e; margin: 1.5rem 0 0.8rem 0; font-size: 1.3rem; }
+        .article-content p { margin-bottom: 1rem; text-align: justify; }
+        .article-content ul, .article-content ol { margin: 1rem 2rem 1rem 0; }
+        .article-content li { margin-bottom: 0.5rem; }
+        .warning-box { background: #fff3e0; border-right: 4px solid #ff9800; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .warning-box i { color: #ff9800; margin-left: 10px; }
+        .info-box { background: #e3f2fd; border-right: 4px solid #0066cc; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .stat-card { background: #f8f9fa; padding: 1.2rem; border-radius: 16px; text-align: center; transition: transform 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-number { font-size: 2rem; font-weight: 800; color: #0066cc; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #0066cc, #1a237e); color: white; text-decoration: none; padding: 12px 24px; border-radius: 40px; font-weight: 600; margin-top: 2rem; transition: all 0.3s; border: none; cursor: pointer; }
+        .btn-back:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,102,204,0.4); }
+        .symptoms-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1rem 0; }
+        .symptom-item { background: #f8f9fa; padding: 1rem; border-radius: 12px; display: flex; align-items: center; gap: 12px; }
+        .symptom-item i { font-size: 1.5rem; color: #e74c3c; }
+        .risk-factor { background: #fce4ec; border-right: 4px solid #e74c3c; padding: 1rem; border-radius: 12px; margin: 0.5rem 0; }
+        .footer { text-align: center; padding: 2rem; background: #1a237e; color: white; margin-top: 2rem; border-radius: 28px 28px 0 0; }
+        @media (max-width: 768px) { .article-header h1 { font-size: 1.5rem; } .article-content { padding: 1.5rem; } .featured-image { height: 200px; } }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="header-container">
-        <div class="logo">
-            <img src="../images/logo.png" alt="شعار عيادتي الذكية">
-            <h1>عيادتي الذكية</h1>
+<div class="article-container">
+    <div class="article-card">
+        <div class="article-header">
+            <h1>انسداد الشرايين التاجية: الأسباب والأعراض والعلاج</h1>
+            <div class="article-meta">
+                <span><i class="fas fa-user-md"></i> د. صلاح الأهدل</span>
+                <span><i class="fas fa-calendar-alt"></i> 15 أبريل 2025</span>
+                <span><i class="fas fa-clock"></i> وقت القراءة: 8 دقائق</span>
+                <span><i class="fas fa-heart"></i> 2,150 قراءة</span>
+            </div>
         </div>
-        <nav>
+        
+        <img src="../images/blocked-artery.jpg" alt="انسداد الشرايين" class="featured-image" onerror="this.src='https://placehold.co/800x350/0066cc/white?text=انسداد+الشرايين'">
+        
+        <div class="article-content">
+            <p><strong>انسداد الشرايين التاجية</strong> هو أحد أخطر أمراض القلب وأكثرها شيوعاً في العالم، حيث يحدث عندما تتراكم الدهون والكوليسترول على جدران الشرايين مسببة تضيقاً أو انسداداً كاملاً، مما يعيق تدفق الدم المحمل بالأكسجين إلى عضلة القلب.</p>
+            
+            <div class="info-box">
+                <i class="fas fa-info-circle"></i>
+                <strong>معلومة مهمة:</strong> يعتبر مرض الشريان التاجي السبب الرئيسي للوفاة في العالم، حيث يتسبب في وفاة أكثر من 9 ملايين شخص سنوياً وفقاً لمنظمة الصحة العالمية.
+            </div>
+            
+            <h2><i class="fas fa-question-circle"></i> ما هو انسداد الشرايين؟</h2>
+            <p>انسداد الشرايين (تصلب الشرايين) هو عملية تدريجية تبدأ بتلف الطبقة الداخلية للشريان، مما يؤدي إلى تراكم المواد الدهنية والكوليسترول والكالسيوم مكونة ما يعرف بـ "اللويحات" (Plaques). مع مرور الوقت، تتصلب هذه اللويحات وتضيق الشريان، وقد تنفجر فجأة مسببة جلطة دموية تؤدي إلى انسداد كامل.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">50%</div>
+                    <div>من النوبات القلبية تحدث بدون أعراض سابقة</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">80%</div>
+                    <div>من حالات انسداد الشرايين يمكن الوقاية منها</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2-4x</div>
+                    <div>مرضى السكري أكثر عرضة للإصابة</div>
+                </div>
+            </div>
+            
+            <h2><i class="fas fa-exclamation-triangle"></i> أسباب وعوامل خطر انسداد الشرايين</h2>
+            
+            <h3>عوامل لا يمكن تغييرها:</h3>
             <ul>
-                <li><a href="../index.html">الرئيسية</a></li>
-                <li><a href="catheter.html">القسطرة القلبية</a></li>
-                <li><a href="stents.html">دعامات القلب</a></li>
-                <li><a href="blocked-artery.html">أعراض انسداد الشرايين</a></li>
-                <li><a href="patient-care.html">العناية بالمريض</a></li>
-                <li><a href="tips.html">نصائح وإرشادات</a></li>
+                <li><strong>التقدم في العمر:</strong> يزداد الخطر بعد سن 45 للرجال و 55 للنساء</li>
+                <li><strong>التاريخ العائلي:</strong> وجود تاريخ عائلي لأمراض القلب المبكرة</li>
+                <li><strong>الجنس:</strong> الرجال أكثر عرضة من النساء قبل سن اليأس</li>
             </ul>
-        </nav>
+            
+            <h3>عوامل يمكن السيطرة عليها:</h3>
+            <div class="risk-factor">
+                <i class="fas fa-smoking"></i> <strong>التدخين:</strong> يضاعف خطر الإصابة بأمراض القلب 2-4 مرات
+            </div>
+            <div class="risk-factor">
+                <i class="fas fa-tachometer-alt"></i> <strong>ارتفاع ضغط الدم:</strong> يضعف جدران الشرايين ويسرع التصلب
+            </div>
+            <div class="risk-factor">
+                <i class="fas fa-tint"></i> <strong>ارتفاع الكوليسترول:</strong> خاصة الكوليسترول الضار LDL
+            </div>
+            <div class="risk-factor">
+                <i class="fas fa-cube"></i> <strong>مرض السكري:</strong> يزيد خطر التصلب بشكل كبير
+            </div>
+            <div class="risk-factor">
+                <i class="fas fa-weight-scale"></i> <strong>السمنة وقلة النشاط البدني</strong>
+            </div>
+            <div class="risk-factor">
+                <i class="fas fa-apple-alt"></i> <strong>النظام الغذائي غير الصحي</strong> الغني بالدهون المشبعة والسكريات
+            </div>
+            
+            <h2><i class="fas fa-stethoscope"></i> أعراض انسداد الشرايين</h2>
+            <p>تختلف الأعراض حسب درجة الانسداد وموقع الشريان المصاب:</p>
+            
+            <div class="symptoms-list">
+                <div class="symptom-item"><i class="fas fa-heartbeat"></i> <span>ألم أو ضغط في الصدر (الذبحة الصدرية)</span></div>
+                <div class="symptom-item"><i class="fas fa-lungs"></i> <span>ضيق في التنفس خاصة مع المجهود</span></div>
+                <div class="symptom-item"><i class="fas fa-head-side-virus"></i> <span>ألم يمتد للكتف الأيسر أو الذراع أو الفك</span></div>
+                <div class="symptom-item"><i class="fas fa-dizzy"></i> <span>دوخة أو إغماء</span></div>
+                <div class="symptom-item"><i class="fas fa-tint"></i> <span>تعرق بارد وغثيان</span></div>
+                <div class="symptom-item"><i class="fas fa-heart"></i> <span>خفقان أو عدم انتظام ضربات القلب</span></div>
+            </div>
+            
+            <div class="warning-box">
+                <i class="fas fa-ambulance"></i>
+                <strong>⚠️ علامات تحذيرية تستدعي طلب الإسعاف فوراً:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>ألم شديد في الصدر يستمر لأكثر من 5 دقائق</li>
+                    <li>ألم يمتد إلى الذراع الأيسر أو الفك أو الظهر</li>
+                    <li>ضيق شديد في التنفس مع تعرق بارد</li>
+                    <li>غثيان أو قيء مع ألم في الصدر</li>
+                </ul>
+            </div>
+            
+            <h2><i class="fas fa-microscope"></i> كيفية تشخيص انسداد الشرايين</h2>
+            <ul>
+                <li><strong>تخطيط القلب (ECG):</strong> لقياس النشاط الكهربائي للقلب</li>
+                <li><strong>الإيكو (Echocardiogram):</strong> لتصوير القلب وتقييم وظائفه</li>
+                <li><strong>اختبار الجهد (Stress test):</strong> لقياس استجابة القلب للإجهاد</li>
+                <li><strong>القثطرة القلبية (Cardiac Catheterization):</strong> الفحص الذهبي لتشخيص الانسداد</li>
+                <li><strong>الأشعة المقطعية (CT Angiography):</strong> لتصوير الشرايين بدقة عالية</li>
+            </ul>
+            
+            <h2><i class="fas fa-tools"></i> خيارات العلاج المتاحة</h2>
+            
+            <h3>1. العلاج الدوائي:</h3>
+            <ul>
+                <li><strong>مميعات الدم:</strong> الأسبرين، كلوبيدوجريل لمنع تكون الجلطات</li>
+                <li><strong>خافضات الكوليسترول:</strong> الستاتينات لتثبيت اللويحات وتقليل الكوليسترول</li>
+                <li><strong>حاصرات بيتا:</strong> لتقليل عبء العمل على القلب</li>
+                <li><strong>مثبطات ACE:</strong> لخفض ضغط الدم وحماية القلب</li>
+                <li><strong>النتروجليسرين:</strong> لتوسيع الشرايين وتخفيف الألم</li>
+            </ul>
+            
+            <h3>2. الإجراءات التداخلية:</h3>
+            <ul>
+                <li><strong>القسطرة العلاجية مع بالون ودعامة:</strong> لتوسيع الشريان المسدود وتركيب دعامة لإبقائه مفتوحاً</li>
+                <li><strong>الشفط بالقسطرة:</strong> لشفط الجلطة مباشرة من الشريان</li>
+            </ul>
+            
+            <h3>3. الجراحة:</h3>
+            <ul>
+                <li><strong>جراحة تحويل مسار الشريان التاجي (CABG):</strong> تستخدم في حالات الانسداد المتعدد أو المعقد، حيث يتم أخذ وريد من الساق أو شريان من الصدر لإنشاء مسار جديد للدم.</li>
+            </ul>
+            
+            <div class="info-box">
+                <i class="fas fa-lightbulb"></i>
+                <strong>نصيحة ذهبية:</strong> في حالات الانسداد الحاد (النوبة القلبية)، فإن "الوقت هو العضلة" - كلما أسرعت في طلب المساعدة الطبية، قلت نسبة الضرر على عضلة القلب.
+            </div>
+            
+            <h2><i class="fas fa-apple-alt"></i> نصائح للوقاية من انسداد الشرايين</h2>
+            <ul>
+                <li><strong>الإقلاع عن التدخين:</strong> الفوائد تبدأ بعد 20 دقيقة من آخر سيجارة</li>
+                <li><strong>اتباع نظام غذائي صحي:</strong> غني بالخضروات والفواكه والحبوب الكاملة، قليل الدهون المشبعة والسكريات</li>
+                <li><strong>ممارسة الرياضة بانتظام:</strong> 30 دقيقة على الأقل 5 أيام أسبوعياً</li>
+                <li><strong>الحفاظ على وزن صحي:</strong> مؤشر كتلة الجسم بين 18.5 و 24.9</li>
+                <li><strong>التحكم في ضغط الدم والسكري والكوليسترول:</strong> من خلال الفحوصات الدورية والأدوية عند الحاجة</li>
+                <li><strong>إدارة التوتر والضغط النفسي:</strong> من خلال التأمل أو ممارسة الهوايات</li>
+            </ul>
+            
+            <div class="info-box">
+                <i class="fas fa-calendar-check"></i>
+                <strong>فحوصات دورية موصى بها:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>قياس ضغط الدم: كل سنتين لمن هم فوق 18 عاماً</li>
+                    <li>تحليل الدهون: كل 4-6 سنوات، وبشكل أكثر تكراراً لمن لديهم عوامل خطر</li>
+                    <li>فحص السكري: كل 3 سنوات بعد سن 45</li>
+                </ul>
+            </div>
+            
+            <h2><i class="fas fa-question"></i> أسئلة شائعة</h2>
+            
+            <h3>هل يمكن الشفاء تماماً من انسداد الشرايين؟</h3>
+            <p>يمكن التحكم بالمرض بشكل ممتاز ومنع تطوره من خلال الالتزام بالعلاج وتغيير نمط الحياة، ولكن لا يمكن عكس الانسداد الحاصل بالكامل. الهدف هو منع المزيد من التضيق وتثبيت اللويحات الموجودة.</p>
+            
+            <h3>كم نسبة نجاح عملية القسطرة؟</h3>
+            <p>تصل نسبة نجاح القسطرة العلاجية إلى أكثر من 95% في المراكز المتخصصة، وتعتبر من أكثر الإجراءات أماناً وفعالية.</p>
+            
+            <h3>هل انسداد الشرايين وراثي؟</h3>
+            <p>نعم، هناك عامل وراثي يلعب دوراً، لكن نمط الحياة الصحي يمكن أن يقلل بشكل كبير من تأثير العامل الوراثي.</p>
+            
+            <div style="text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e0e0e0;">
+                <p><strong>⚠️ تنبيه هام:</strong> هذا المحتوى هو لأغراض توعوية وتعليمية فقط، ولا يغني عن استشارة الطبيب المختص. في حال وجود أي أعراض، يرجى مراجعة الطبيب فوراً.</p>
+                <button class="btn-back" onclick="window.location.href='../index.html'">
+                    <i class="fas fa-arrow-right"></i> العودة إلى المنصة
+                </button>
+            </div>
+        </div>
     </div>
-</header>
-
-<main class="article-page">
-
-    <div class="article-header">
-        <h2>أعراض انسداد الشرايين التاجية</h2>
-        <img src="../images/blocked-artery.jpg" alt="انسداد الشرايين التاجية">
+    
+    <div class="footer">
+        <p>© 2026 منصة استشاريون - جميع الحقوق محفوظة | اليمن</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">بإشراف د. صلاح الأهدل - مدير مكتب الصحة</p>
     </div>
+</div>
 
-    <div class="section">
-        <h3>ما هو انسداد الشرايين التاجية؟</h3>
-        <p>انسداد الشرايين التاجية يحدث عندما تتراكم الدهون والكوليسترول داخل الشرايين التي تغذي القلب، مما يعيق تدفق الدم ويزيد خطر الإصابة بالنوبات القلبية.</p>
-    </div>
-
-    <div class="section">
-        <h3>الأعراض الشائعة</h3>
-        <ul>
-            <li>ألم أو ضغط في الصدر (الذبحة الصدرية).</li>
-            <li>ضيق في التنفس عند القيام بمجهود.</li>
-            <li>خفقان القلب أو اضطراب نبضات القلب.</li>
-            <li>التعب الشديد والإرهاق المستمر.</li>
-            <li>الغثيان أو الدوخة أحيانًا.</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h3>متى يجب مراجعة الطبيب؟</h3>
-        <p>في حال ظهور أي من الأعراض السابقة بشكل متكرر أو شديد، يجب مراجعة طبيب القلب فورًا لإجراء الفحوصات اللازمة والتأكد من سلامة الشرايين.</p>
-    </div>
-
-    <a class="back-link" href="../index.html">العودة للرئيسية</a>
-
-</main>
-
-<footer>
-    <p>&copy; 2026 عيادتي الذكية. جميع الحقوق محفوظة.</p>
-</footer>
-
-<script src="../script.js"></script>
+<script>
+    // تحديث عدد القراءات (محاكاة)
+    console.log('تم تحميل مقال انسداد الشرايين - منصة استشاريون');
+</script>
 </body>
 </html>
