@@ -1,210 +1,357 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>دعاءات القلب - عيادتي الذكية</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Cairo', sans-serif;
-    background: #f4f9fe;
-    color: #1a2c3e;
-    line-height: 1.6;
-  }
-  header {
-    background: linear-gradient(135deg, #0b2b3b, #1b4f6e);
-    color: white;
-    padding: 1rem 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  }
-  .header-container {
-    max-width: 1300px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  .logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }
-  .logo-icon { font-size: 2.5rem; color: #ffd966; }
-  .logo h1 { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, #fff, #ffe0b5); background-clip: text; -webkit-background-clip: text; color: transparent; }
-  nav ul { display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; }
-  nav ul li a { color: #f1f9ff; font-weight: 600; text-decoration: none; padding: 0.4rem 0.2rem; border-bottom: 2px solid transparent; transition: 0.3s; }
-  nav ul li a:hover { border-bottom-color: #ffb347; color: #ffdfa5; }
-  #back-home { background: rgba(255,255,240,0.2); border: none; font-size: 1.2rem; cursor: pointer; padding: 8px 15px; border-radius: 40px; color: white; transition: 0.3s; }
-  #back-home:hover { background: #ffb347; color: #1e2a2f; }
-  main { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
-  .dua-card {
-    background: white;
-    border-radius: 32px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-  }
-  .dua-card:hover { transform: translateY(-5px); }
-  .dua-card h2 {
-    color: #1e88e5;
-    border-right: 5px solid #1e88e5;
-    padding-right: 1rem;
-    margin-bottom: 1.2rem;
-    font-size: 1.8rem;
-  }
-  .dua-text {
-    font-size: 1.4rem;
-    line-height: 2;
-    background: #f0f7fc;
-    padding: 1.5rem;
-    border-radius: 28px;
-    margin: 1rem 0;
-    text-align: center;
-    font-weight: 500;
-  }
-  .dua-meaning {
-    color: #2c3e50;
-    border-top: 1px solid #ddd;
-    padding-top: 1rem;
-    margin-top: 1rem;
-  }
-  .dua-meaning p { margin: 0.5rem 0; }
-  .footer {
-    text-align: center;
-    padding: 2rem;
-    background: #0f2c38;
-    color: #cbd5e1;
-    margin-top: 3rem;
-  }
-  @media (max-width: 700px) {
-    .header-container { flex-direction: column; }
-    .dua-text { font-size: 1.2rem; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>الأدعية والأذكار لصحة القلب | استشاريون</title>
+    <meta name="description" content="الجانب الروحاني في العلاج: أدعية وأذكار من القرآن والسنة لطمأنينة القلب وحماية القلب من الأمراض. إشراف د. صلاح الأهدل">
+    <meta name="author" content="د. صلاح الأهدل">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: linear-gradient(135deg, #e8f0fe 0%, #f5e6d3 100%); color: #1a2c3e; line-height: 1.8; }
+        .article-container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+        .article-card { background: rgba(255,255,255,0.95); border-radius: 28px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .article-header { background: linear-gradient(135deg, #1a472a, #0d5e2e); color: white; padding: 2.5rem; text-align: center; }
+        .article-header h1 { font-size: 2rem; margin-bottom: 1rem; }
+        .article-header h1 i { margin-left: 10px; }
+        .article-meta { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.9; margin-top: 1rem; }
+        .article-meta i { margin-left: 5px; }
+        .featured-image { width: 100%; height: 350px; object-fit: cover; background: linear-gradient(135deg, #1a472a, #0d5e2e); display: flex; align-items: center; justify-content: center; }
+        .featured-image i { font-size: 6rem; color: rgba(255,255,255,0.3); }
+        .article-content { padding: 2.5rem; }
+        .article-content h2 { color: #1a472a; border-right: 4px solid #1a472a; padding-right: 1rem; margin: 2rem 0 1rem 0; font-size: 1.6rem; }
+        .article-content h3 { color: #0d5e2e; margin: 1.5rem 0 0.8rem 0; font-size: 1.3rem; }
+        .article-content h4 { color: #2c3e50; margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
+        .article-content p { margin-bottom: 1rem; text-align: justify; }
+        .article-content ul, .article-content ol { margin: 1rem 2rem 1rem 0; }
+        .article-content li { margin-bottom: 0.5rem; }
+        .dua-box { background: #f0f7e8; border-right: 4px solid #0d5e2e; padding: 1.5rem; border-radius: 20px; margin: 1.5rem 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s; }
+        .dua-box:hover { transform: translateX(-5px); }
+        .dua-text { font-size: 1.3rem; font-weight: 600; color: #1a472a; margin-bottom: 0.8rem; text-align: center; }
+        .dua-meaning { color: #2c3e50; font-size: 1rem; border-top: 1px dashed #ccc; padding-top: 0.8rem; margin-top: 0.8rem; }
+        .info-box { background: #e3f2fd; border-right: 4px solid #0066cc; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .warning-box { background: #fff3e0; border-right: 4px solid #ff9800; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .success-box { background: #e8f5e9; border-right: 4px solid #00c853; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .stat-card { background: #f8f9fa; padding: 1.2rem; border-radius: 16px; text-align: center; transition: transform 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-number { font-size: 2rem; font-weight: 800; color: #1a472a; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #1a472a, #0d5e2e); color: white; text-decoration: none; padding: 12px 28px; border-radius: 40px; font-weight: 600; margin-top: 2rem; transition: all 0.3s; border: none; cursor: pointer; }
+        .btn-back:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,71,42,0.4); }
+        .toc { background: #f8f9fa; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; }
+        .toc h3 { color: #1a472a; margin-bottom: 1rem; }
+        .toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .toc li a { color: #1a472a; text-decoration: none; transition: color 0.3s; }
+        .toc li a:hover { color: #0d5e2e; text-decoration: underline; }
+        .footer { text-align: center; padding: 2rem; background: #1a472a; color: white; margin-top: 2rem; border-radius: 28px 28px 0 0; }
+        .quran-verse { font-size: 1.2rem; color: #1a472a; text-align: center; margin: 1rem 0; font-weight: 500; }
+        hr { margin: 1.5rem 0; border: none; height: 1px; background: linear-gradient(to left, #1a472a, transparent); }
+        .prayer-time { display: inline-block; background: #1a472a; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; margin-top: 5px; }
+        @media (max-width: 768px) { .article-header h1 { font-size: 1.5rem; } .article-content { padding: 1.5rem; } .featured-image { height: 200px; } .dua-text { font-size: 1.1rem; } }
+    </style>
 </head>
 <body>
 
-<header>
-  <div class="header-container">
-    <div class="logo" onclick="location.href='../index.html'">
-      <i class="fas fa-heartbeat logo-icon"></i>
-      <h1>عيادتي الذكية</h1>
+<div class="article-container">
+    <div class="article-card">
+        <div class="article-header">
+            <h1><i class="fas fa-hands-praying"></i> الأدعية والأذكار لصحة القلب</h1>
+            <p>الجانب الروحاني في العلاج - أدعية من القرآن والسنة لطمأنينة القلب</p>
+            <div class="article-meta">
+                <span><i class="fas fa-user-md"></i> د. صلاح الأهدل</span>
+                <span><i class="fas fa-calendar-alt"></i> 15 أبريل 2025</span>
+                <span><i class="fas fa-clock"></i> وقت القراءة: 8 دقائق</span>
+                <span><i class="fas fa-heart"></i> 5,200 قراءة</span>
+            </div>
+        </div>
+        
+        <div class="featured-image">
+            <i class="fas fa-hands-praying"></i>
+        </div>
+        
+        <div class="article-content">
+            <!-- فهرس المحتويات -->
+            <div class="toc">
+                <h3><i class="fas fa-list-ul"></i> فهرس المحتويات</h3>
+                <ul>
+                    <li><a href="#intro">مقدمة: القلب بين الطب والروحانيات</a></li>
+                    <li><a href="#quran">آيات الشفاء من القرآن الكريم</a></li>
+                    <li><a href="#morning">أذكار الصباح والمساء</a></li>
+                    <li><a href="#prophetic">الأدعية النبوية لصحة القلب</a></li>
+                    <li><a href="#anxiety">أدعية طمأنينة القلب وعلاج القلق</a></li>
+                    <li><a href="#sickness">أدعية عند المرض والشفاء</a></li>
+                    <li><a href="#ruqyah">الرقية الشرعية للقلب</a></li>
+                    <li><a href="#charity">الصدقة وأثرها على صحة القلب</a></li>
+                    <li><a href="#tips">نصائح روحانية لصحة القلب</a></li>
+                    <li><a href="#faq">أسئلة شائعة</a></li>
+                </ul>
+            </div>
+            
+            <!-- المقدمة -->
+            <h2 id="intro"><i class="fas fa-heart"></i> مقدمة: القلب بين الطب والروحانيات</h2>
+            <p>القلب ليس مجرد عضو عضلي يضخ الدم، بل هو في العقيدة الإسلامية محور الإيمان والعقل والمشاعر. القرآن الكريم يتحدث عن "القلب" أكثر من 130 مرة، مشيراً إلى أنه وعاء الإيمان والتقوى والخشية والحب والطمأنينة.</p>
+            <p>لقد أثبت العلم الحديث أن للروحانيات والأذكار تأثيراً إيجابياً على صحة القلب، حيث تساعد على تقليل التوتر، خفض ضغط الدم، وتحسين وظائف القلب. وهذا يتوافق مع قول الله تعالى: <strong>"الَّذِينَ آمَنُوا وَتَطْمَئِنُّ قُلُوبُهُمْ بِذِكْرِ اللَّهِ أَلا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ"</strong> (الرعد: 28).</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">130+</div>
+                    <div>مرة ذكر القلب في القرآن</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">40%</div>
+                    <div>انخفاض التوتر مع الأذكار</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">سكينة</div>
+                    <div>تنزل على الذاكرين</div>
+                </div>
+            </div>
+            
+            <!-- آيات الشفاء -->
+            <h2 id="quran"><i class="fas fa-quran"></i> آيات الشفاء من القرآن الكريم</h2>
+            
+            <div class="dua-box">
+                <div class="dua-text">﴿ وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِلْمُؤْمِنِينَ ﴾</div>
+                <div class="dua-meaning">الإسراء: 82 - قال الله تعالى إن القرآن شفاء ورحمة للمؤمنين</div>
+            </div>
+            
+            <div class="dua-box">
+                <div class="dua-text">﴿ قُلْ هُوَ لِلَّذِينَ آمَنُوا هُدًى وَشِفَاءٌ ﴾</div>
+                <div class="dua-meaning">فصلت: 44 - القرآن هدى وشفاء للمؤمنين</div>
+            </div>
+            
+            <h3>سورة الفاتحة (أم الكتاب)</h3>
+            <div class="dua-box">
+                <div class="dua-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<br>
+                الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ<br>
+                الرَّحْمَٰنِ الرَّحِيمِ<br>
+                مَالِكِ يَوْمِ الدِّينِ<br>
+                إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ<br>
+                اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ<br>
+                صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ</div>
+                <div class="dua-meaning">سورة الفاتحة - هي أعظم سورة في القرآن، وتُقرأ للرقية والشفاء. قال النبي ﷺ: "أم القرآن هي الشفاء التام"</div>
+            </div>
+            
+            <h3>آية الكرسي</h3>
+            <div class="dua-box">
+                <div class="dua-text">اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ</div>
+                <div class="dua-meaning">آية الكرسي (البقرة: 255) - أعظم آية في القرآن، تقرأ للتحصين والشفاء والحماية</div>
+            </div>
+            
+            <div class="info-box">
+                <i class="fas fa-star-of-life"></i>
+                <strong>فضل قراءة القرآن على القلب:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>يطمئن القلب ويزيل القلق والتوتر</li>
+                    <li>يخفض ضغط الدم ومعدل ضربات القلب</li>
+                    <li>يقوي الإيمان ويزيد الثقة بالله</li>
+                    <li>يحصن من الوساوس والأمراض النفسية</li>
+                    <li>يُشعر بالسكينة والراحة النفسية</li>
+                </ul>
+            </div>
+            
+            <!-- أذكار الصباح والمساء -->
+            <h2 id="morning"><i class="fas fa-sun"></i> أذكار الصباح والمساء لصحة القلب</h2>
+            
+            <div class="dua-box">
+                <div class="dua-text">أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ. رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هَذَا الْيَوْمِ وَخَيْرَ مَا بَعْدَهُ، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هَذَا الْيَوْمِ وَشَرِّ مَا بَعْدَهُ، رَبِّ أَعُوذُ بِكَ مِنَ الْكَسَلِ وَسُوءِ الْكِبَرِ، رَبِّ أَعُوذُ بِكَ مِنْ عَذَابٍ فِي النَّارِ وَعَذَابٍ فِي الْقَبْرِ</div>
+                <div class="dua-meaning">دعاء الصباح - يحفظك الله طوال اليوم ويبارك لك فيه</div>
+            </div>
+            
+            <div class="dua-box">
+                <div class="dua-text">اللَّهُمَّ إِنِّي أَصْبَحْتُ أُشْهِدُكَ وَأُشْهِدُ حَمَلَةَ عَرْشِكَ وَمَلَائِكَتَكَ وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللَّهُ لَا إِلَهَ إِلَّا أَنْتَ وَحْدَكَ لَا شَرِيكَ لَكَ، وَأَنَّ مُحَمَّداً عَبْدُكَ وَرَسُولُكَ</div>
+                <div class="dua-meaning">من قالها في الصباح أو المساء أعتقه الله من النار</div>
+            </div>
+            
+            <div class="dua-box">
+                <div class="dua-text">اللَّهُمَّ مَا أَصْبَحَ بِي مِنْ نِعْمَةٍ أَوْ بِأَحَدٍ مِنْ خَلْقِكَ فَمِنْكَ وَحْدَكَ لَا شَرِيكَ لَكَ، فَلَكَ الْحَمْدُ وَلَكَ الشُّكْرُ</div>
+                <div class="dua-meaning">شكر الله على نعمة الصحة والعافية، من قالها فقد أدى شكر يومه</div>
+            </div>
+            
+            <div class="success-box">
+                <i class="fas fa-check-circle"></i>
+                <strong>أذكار المساء المهمة:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>آية الكرسي</strong> - مرة واحدة</li>
+                    <li><strong>سورة الإخلاص والفلق والناس</strong> - ثلاث مرات</li>
+                    <li><strong>اللهم إني أسألك العفو والعافية في الدنيا والآخرة</strong></li>
+                    <li><strong>سبحان الله وبحمده</strong> - مائة مرة (تُحط الذنوب)</li>
+                </ul>
+            </div>
+            
+            <!-- الأدعية النبوية -->
+            <h2 id="prophetic"><i class="fas fa-mosque"></i> الأدعية النبوية لصحة القلب</h2>
+            
+            <div class="dua-box">
+                <div class="dua-text">يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ</div>
+                <div class="dua-meaning">عن أنس بن مالك رضي الله عنه، كان النبي ﷺ يكثر من هذا الدعاء. ثبت قلبك على طاعة الله.</div>
+            </div>
+            
+            <div class="dua-box">
+                <div class="dua-text">اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ، اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي دِينِي وَدُنْيَايَ وَأَهْلِي وَمَالِي</div>
+                <div class="dua-meaning">كان النبي ﷺ لا يدع هذا الدعاء، يسأل الله العافية في كل شيء</div>
+            </div>
+            
+            <div class="dua-box">
+                <div class="dua-text">اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى</div>
+                <div class="dua-meaning">دعاء جامع لخير الدنيا والآخرة</div>
+            </div>
+            
+            <div class="dua-box">
+                <div class="dua-text">اللَّهُمَّ أَصْلِحْ لِي دِينِي الَّذِي هُوَ عِصْمَةُ أَمْرِي، وَأَصْلِحْ لِي دُنْيَايَ الَّتِي فِيهَا مَعَاشِي، وَأَصْلِحْ لِي آخِرَتِي الَّتِي فِيهَا مَعَادِي، وَاجْعَلِ الْحَيَاةَ زِيَادَةً لِي فِي كُلِّ خَيْرٍ، وَالْمَوْتَ رَاحَةً لِي مِنْ كُلِّ شَرٍّ</div>
+                <div class="dua-meaning">دعاء النبي ﷺ لصلاح الدين والدنيا والآخرة</div>
+            </div>
+            
+            <!-- أدعية طمأنينة القلب -->
+            <h2 id="anxiety"><i class="fas fa-heart"></i> أدعية طمأنينة القلب وعلاج القلق</h2>
+            
+            <div class="dua-box">
+                <div class="dua-text">لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ</div>
+                <div class="dua-meaning">دعاء يونس عليه السلام في بطن الحوت، قال النبي ﷺ: "دعاء ذي النون إذ دعا به وهو في بطن الحوت: لا إله إلا أنت سبحانك إني كنت من الظالمين، فإنه لم يدع بها رجل مسلم في شيء قط إلا استجاب الله له"</div>
+            </div>
+            
+            <div class="dua-box">
+                <div class="dua-text">حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ، عَلَيْهِ تَوَكَّلْتُ، وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ</div>
+                <div class="dua-meaning">قالها إبراهيم عليه السلام عندما ألقي في النار، فجعلها الله برداً وسلاماً عليه</div>
+            </div>
+            
+            <div class="dua-box">
+                <div class="dua-text">اللَّهُمَّ إِنِّي عَبْدُكَ، ابْنُ عَبْدِكَ، ابْنُ أَمَتِكَ، نَاصِيَتِي بِيَدِكَ، مَاضٍ فِيَّ حُكْمُكَ، عَدْلٌ فِيَّ قَضَاؤُكَ، أَسْأَلُكَ بِكُلِّ اسْمٍ هُوَ لَكَ، سَمَّيْتَ بِهِ نَفْسَكَ، أَوْ أَنْزَلْتَهُ فِي كِتَابِكَ، أَوْ عَلَّمْتَهُ أَحَداً مِنْ خَلْقِكَ، أَوِ اسْتَأْثَرْتَ بِهِ فِي عِلْمِ الْغَيْبِ عِنْدَكَ، أَنْ تَجْعَلَ الْقُرْآنَ رَبِيعَ قَلْبِي، وَنُورَ صَدْرِي، وَجِلَاءَ حُزْنِي، وَذَهَابَ هَمِّي</div>
+                <div class="dua-meaning">دعاء تفريج الهموم وإزالة الأحزان، قال النبي ﷺ: "ما أصاب أحداً قط هم ولا حزن فقال هذا الدعاء إلا أذهب الله همه وحزنه"</div>
+            </div>
+            
+            <div class="warning-box">
+                <i class="fas fa-heartbeat"></i>
+                <strong>العلاقة بين الأذكار وصحة القلب:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>تخفض مستويات هرمون التوتر (الكورتيزول)</li>
+                    <li>تقلل من سرعة ضربات القلب وضغط الدم</li>
+                    <li>تحسن جودة النوم وتقلل الأرق</li>
+                    <li>تزيد من الشعور بالسكينة والطمأنينة</li>
+                    <li>تقوي جهاز المناعة</li>
+                </ul>
+            </div>
+            
+            <!-- أدعية عند المرض -->
+            <h2 id="sickness"><i class="fas fa-ambulance"></i> أدعية عند المرض والشفاء</h2>
+            
+            <div class="dua-box">
+                <div class="dua-text">أَذْهِبِ الْبَأْسَ رَبَّ النَّاسِ، اشْفِ وَأَنْتَ الشَّافِي، لَا شِفَاءَ إِلَّا شِفَاؤُكَ، شِفَاءً لَا يُغَادِرُ سَقَماً</div>
+                <div class="dua-meaning">دعاء النبي ﷺ للمريض، يمسح بيده على مكان الألم ويقول هذا الدعاء</div>
+            </div>
+            
+            <div class="dua-box">
+                <div class="dua-text">اللَّهُمَّ رَبَّ النَّاسِ، أَذْهِبِ الْبَأْسَ، اشْفِ أَنْتَ الشَّافِي، لَا شَافِيَ إِلَّا أَنْتَ، شِفَاءً لَا يُغَادِرُ سَقَماً</div>
+                <div class="dua-meaning">رواه البخاري ومسلم، من أذكار الرقية الشرعية</div>
+            </div>
+            
+            <div class="dua-box">
+                <div class="dua-text">اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ</div>
+                <div class="dua-meaning">من أفضل الأدعية التي كان يدعو بها النبي ﷺ</div>
+            </div>
+            
+            <!-- الرقية الشرعية -->
+            <h2 id="ruqyah"><i class="fas fa-hand-sparkles"></i> الرقية الشرعية للقلب</h2>
+            <p>الرقية الشرعية هي قراءة القرآن والأدعية المأثورة على المريض بنية الشفاء. وهي سنة نبوية وليست شركاً.</p>
+            
+            <div class="info-box">
+                <i class="fas fa-star-and-crescent"></i>
+                <strong>طريقة الرقية الشرعية للقلب:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>يقرأ الراقي أو المريض على نفسه: الفاتحة، آية الكرسي، الإخلاص، الفلق، الناس</li>
+                    <li>يمسح بيده على صدره أو مكان الألم</li>
+                    <li>ينفث بعد القراءة (نفث خفيف بدون ريق)</li>
+                    <li>يكرر القراءة 3 أو 7 أو 11 مرة حسب الحاجة</li>
+                    <li>يدعو للمريض بالشفاء بالأدعية النبوية</li>
+                </ul>
+            </div>
+            
+            <!-- الصدقة -->
+            <h2 id="charity"><i class="fas fa-hand-holding-heart"></i> الصدقة وأثرها على صحة القلب</h2>
+            <p>قال النبي ﷺ: <strong>"داووا مرضاكم بالصدقة"</strong>. وأيضاً: <strong>"صنائع المعروف تقي مصارع السوء"</strong>. وأيضاً: <strong>"الصدقة تطفئ غضب الرب"</strong>.</p>
+            
+            <div class="success-box">
+                <i class="fas fa-check-double"></i>
+                <strong>فوائد الصدقة على صحة القلب:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>تقي من الأمراض المفاجئة والموت السيء</li>
+                    <li>تطهر المال وتزيد البركة</li>
+                    <li>تشرح الصدر وتزيل الهم والغم</li>
+                    <li>تزيد في العمر والرزق</li>
+                    <li>تكون ظلاً لصاحبها يوم القيامة</li>
+                </ul>
+            </div>
+            
+            <!-- نصائح روحانية -->
+            <h2 id="tips"><i class="fas fa-lightbulb"></i> نصائح روحانية لصحة القلب</h2>
+            
+            <ul>
+                <li><strong>المحافظة على الصلوات الخمس في أوقاتها:</strong> الصلاة صلة بين العبد وربه، تطمئن القلب وتريح النفس</li>
+                <li><strong>كثرة الاستغفار:</strong> "فَقُلْتُ اسْتَغْفِرُوا رَبَّكُمْ إِنَّهُ كَانَ غَفَّارًا * يُرْسِلِ السَّمَاءَ عَلَيْكُم مِّدْرَارًا"</li>
+                <li><strong>قراءة القرآن بتدبر:</strong> ورد أن قراءة القرآن تخفض ضغط الدم وتقلل التوتر</li>
+                <li><strong>ذكر الله عند الصباح والمساء:</strong> تحصين للقلب والروح والجسد</li>
+                <li><strong>الصدقة ولو بالقليل:</strong> "مثل الذين ينفقون أموالهم في سبيل الله كمثل حبة أنبتت سبع سنابل"</li>
+                <li><strong>صلة الرحم:</strong> تزيد في العمر وتجلب البركة</li>
+                <li><strong>التوكل على الله:</strong> قال تعالى: "وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ"</li>
+                <li><strong>الصبر والاحتساب عند المرض:</strong> قال النبي ﷺ: "ما يصيب المسلم من نصب ولا وصب ولا هم ولا حزن ولا أذى ولا غم حتى الشوكة يشاكها إلا كفر الله بها من خطاياه"</li>
+            </ul>
+            
+            <!-- أسئلة شائعة -->
+            <h2 id="faq"><i class="fas fa-question-circle"></i> أسئلة شائعة</h2>
+            
+            <h3>هل الأذكار تغني عن العلاج الطبي؟</h3>
+            <p>لا، الأذكار والرقية الشرعية لا تغني عن العلاج الطبي، بل هي مكملة له. يجب على المسلم أن يأخذ بالأسباب الطبية مع التوكل على الله. قال النبي ﷺ: "تداووا عباد الله، فإن الله لم ينزل داء إلا أنزل له دواء".</p>
+            
+            <h3>ما أفضل وقت لقراءة أذكار الصباح والمساء؟</h3>
+            <p>أذكار الصباح تقرأ من بعد صلاة الفجر حتى طلوع الشمس. وأذكار المساء تقرأ من بعد صلاة العصر حتى غروب الشمس. وفي حالة النسيان، يمكن قراءتها في أي وقت.</p>
+            
+            <h3>هل قراءة القرآن تؤثر على ضغط الدم؟</h3>
+            <p>نعم، أثبتت الدراسات العلمية أن الاستماع إلى القرآن الكريم وقراءته يخفض ضغط الدم ومعدل ضربات القلب ويقلل التوتر، وهذا يتوافق مع قوله تعالى: "الَّذِينَ آمَنُوا وَتَطْمَئِنُّ قُلُوبُهُمْ بِذِكْرِ اللَّهِ".</p>
+            
+            <h3>كيف أحمي قلبي من الأمراض روحانياً؟</h3>
+            <p>يمكنك حماية قلبك روحانياً من خلال: المحافظة على الصلوات، قراءة آية الكرسي والأذكار الصباحية والمسائية، الإكثار من الاستغفار، التصدق، وصلة الرحم، والابتعاد عن المعاصي والذنوب التي تقسي القلب.</p>
+            
+            <h3>هل هناك أذكار خاصة لمرضى القلب؟</h3>
+            <p>يمكن لمرضى القلب قراءة جميع الأذكار السابقة، مع التركيز على: دعاء يونس "لا إله إلا أنت سبحانك إني كنت من الظالمين"، ودعاء "حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم"، وقراءة الفاتحة وآية الكرسي وسورة الإخلاص والمعوذتين.</p>
+            
+            <hr>
+            
+            <div class="quran-verse">
+                <i class="fas fa-quran"></i> 
+                "فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ"
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <p><strong>⚠️ تنبيه هام:</strong> هذا المحتوى هو لأغراض توعوية وتعليمية، ولا يغني عن استشارة الطبيب المختص. الأدعية والأذكار تكمل العلاج الطبي ولا تحل محله.</p>
+                <button class="btn-back" onclick="window.location.href='../index.html'">
+                    <i class="fas fa-arrow-right"></i> العودة إلى المنصة
+                </button>
+            </div>
+        </div>
     </div>
-    <nav>
-      <ul>
-        <li><a href="../index.html">الرئيسية</a></li>
-        <li><a href="catheter.html">القسطرة القلبية</a></li>
-        <li><a href="stents.html">دعامات القلب</a></li>
-        <li><a href="blocked-artery.html">أعراض انسداد الشرايين</a></li>
-        <li><a href="patient-care.html">العناية بالمريض</a></li>
-        <li><a href="tips.html">نصائح وإرشادات</a></li>
-        <li><a href="post-stent-meds.html">الأدوية بعد الدعامات</a></li>
-        <li><a href="post-avoid-meds.html">الأدوية التي يجب تجنبها</a></li>
-        <li><a href="heart-dua.html" style="border-bottom-color:#ffb347;">دعاءات القلب</a></li>
-      </ul>
-    </nav>
-    <button id="back-home" onclick="location.href='../index.html'"><i class="fas fa-home"></i> الرئيسية</button>
-  </div>
-</header>
-
-<main>
-  <div style="text-align: center; margin-bottom: 2rem;">
-    <img src="../images/dua.jpg" alt="دعاء القلب" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid #1e88e5; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
-    <h1 style="margin-top: 1rem; color: #0b2b3b;">🕌 أدعية وأذكار لطمأنينة القلب والشفاء</h1>
-    <p style="color: #2c3e50;">"ألا بذكر الله تطمئن القلوب" - استشعر السكينة والرحمة بهذه الأدعية المباركة.</p>
-  </div>
-
-  <!-- بطاقة الدعاء 1 -->
-  <div class="dua-card">
-    <h2><i class="fas fa-hand-peace"></i> دعاء الشفاء من الأمراض</h2>
-    <div class="dua-text">
-      «أَذْهِبِ الْبَاسَ، رَبَّ النَّاسِ، اشْفِ أَنْتَ الشَّافِي، لاَ شِفَاءَ إِلَّا شِفَاؤُكَ، شِفَاءً لاَ يُغَادِرُ سَقَمًا»
+    
+    <div class="footer">
+        <p>© 2026 منصة استشاريون - جميع الحقوق محفوظة | اليمن</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">بإشراف د. صلاح الأهدل - مدير مكتب الصحة</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;"><i class="fas fa-heart"></i> اللهم اشف مرضى المسلمين</p>
     </div>
-    <div class="dua-meaning">
-      <p><strong>المعنى:</strong> اللهم أزل الضر والأذى يا رب الناس، أنت وحدك الشافي، لا شفاء حقيقياً إلا شفاؤك، شفاءً تاماً لا يترك أي مرض.</p>
-      <p><i class="fas fa-hadith"></i> عن عائشة رضي الله عنها: كان النبي ﷺ يقرأ بها على المريض.</p>
-    </div>
-  </div>
-
-  <!-- بطاقة الدعاء 2 -->
-  <div class="dua-card">
-    <h2><i class="fas fa-heartbeat"></i> دعاء طمأنينة القلب ورفع الهم</h2>
-    <div class="dua-text">
-      «اللَّهُمَّ إِنِّي عَبْدُكَ، ابْنُ عَبْدِكَ، ابْنُ أَمَتِكَ، نَاصِيَتِي بِيَدِكَ، مَاضٍ فِيَّ حُكْمُكَ، عَدْلٌ فِيَّ قَضَاؤُكَ، أَسْأَلُكَ بِكُلِّ اسْمٍ هُوَ لَكَ، سَمَّيْتَ بِهِ نَفْسَكَ، أَوْ أَنْزَلْتَهُ فِي كِتَابِكَ، أَوْ عَلَّمْتَهُ أَحَدًا مِنْ خَلْقِكَ، أَوِ اسْتَأْثَرْتَ بِهِ فِي عِلْمِ الْغَيْبِ عِنْدَكَ، أَنْ تَجْعَلَ الْقُرْآنَ رَبِيعَ قَلْبِي، وَنُورَ صَدْرِي، وَجَلَاءَ حُزْنِي، وَذَهَابَ هَمِّي»
-    </div>
-    <div class="dua-meaning">
-      <p><strong>المعنى:</strong> اللهم اجعل القرآن الكريم ربيعاً لقلبي، ونوراً لصدري، ومُذهباً لحزني وهمي.</p>
-      <p><i class="fas fa-star-of-life"></i> هذا الدواء النبوي العظيم لزوال الهموم والاكتئاب.</p>
-    </div>
-  </div>
-
-  <!-- بطاقة الدعاء 3 -->
-  <div class="dua-card">
-    <h2><i class="fas fa-mosque"></i> دعاء الاستعاذة من شر الأمراض</h2>
-    <div class="dua-text">
-      «اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْبَرَصِ، وَالْجُنُونِ، وَالْجُذَامِ، وَمِنْ سَيِّئِ الْأَسْقَامِ»
-    </div>
-    <div class="dua-meaning">
-      <p><strong>المعنى:</strong> اللهم احفظني من الأمراض الجلدية الخطيرة، والاضطرابات العقلية، والأمراض المزمنة، ومن كل داء سيء.</p>
-      <p>رواه أبو داود والنسائي.</p>
-    </div>
-  </div>
-
-  <!-- بطاقة الدعاء 4 -->
-  <div class="dua-card">
-    <h2><i class="fas fa-bed"></i> دعاء الكرب والضيق</h2>
-    <div class="dua-text">
-      «لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ»
-    </div>
-    <div class="dua-meaning">
-      <p><strong>المعنى:</strong> لا معبود بحق إلا أنت، تنزهت عن كل نقص، إني كنت من المسيئين.</p>
-      <p><i class="fas fa-quote-right"></i> دعاء سيدنا يونس عليه السلام، من قاله فرج الله همه.</p>
-    </div>
-  </div>
-
-  <!-- بطاقة الدعاء 5 -->
-  <div class="dua-card">
-    <h2><i class="fas fa-shield-alt"></i> دعاء تحصين القلب والبدن</h2>
-    <div class="dua-text">
-      «بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ» (ثلاث مرات)
-    </div>
-    <div class="dua-meaning">
-      <p><strong>المعنى:</strong> باسم الله الذي إذا ذكر اسمه لا يضر معه شيء في الأرض ولا في السماء، وهو السميع العليم.</p>
-      <p>من قالها ثلاث مرات لم تضره فجاءة بلاء حتى يصبح.</p>
-    </div>
-  </div>
-
-  <!-- بطاقة الدعاء 6 -->
-  <div class="dua-card">
-    <h2><i class="fas fa-hand-holding-heart"></i> دعاء للمريض (زيارة المريض)</h2>
-    <div class="dua-text">
-      «لَا بَأْسَ، طَهُورٌ إِنْ شَاءَ اللَّهُ»
-    </div>
-    <div class="dua-meaning">
-      <p><strong>المعنى:</strong> لا بأس عليك، هذا المرض يكفر ذنوبك ويطهرك إن شاء الله.</p>
-      <p>كان النبي ﷺ إذا دخل على مريض قالها.</p>
-    </div>
-  </div>
-
-  <div style="background: #e3f2fd; border-radius: 30px; padding: 1.5rem; text-align: center; margin-top: 2rem;">
-    <i class="fas fa-dua" style="font-size: 2rem; color: #1e88e5;"></i>
-    <p style="margin-top: 0.5rem;"><strong>وصية النبي ﷺ:</strong> "عليكم بالدعاء، فإنه شفاء من كل داء" (رواه الحاكم).</p>
-    <p>احرص على قراءة الأذكار الصباحية والمسائية، ورقية النفس، وتفويض الأمر لله مع الأخذ بالأسباب الطبية.</p>
-  </div>
-</main>
-
-<footer class="footer">
-  <p><i class="far fa-copyright"></i> 2026 عيادتي الذكية — دعاء وشفاء، لا يغني عن العلاج الطبي بل هو سكينة للقلب.</p>
-</footer>
+</div>
 
 <script>
-  // إضافة زر العودة للرئيسية بشكل احتياطي
-  document.getElementById('back-home')?.addEventListener('click', () => { window.location.href = '../index.html'; });
+    // تنشيط الروابط الداخلية والتمرير السلس
+    document.querySelectorAll('.toc a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    console.log('تم تحميل مقال الأدعية والأذكار لصحة القلب - منصة استشاريون');
 </script>
 </body>
 </html>
