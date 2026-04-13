@@ -1,88 +1,276 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>شروط الاستخدام - عيادتي الذكية</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Cairo', sans-serif; background: #f4f9fe; color: #1a2c3e; line-height: 1.6; }
-  header { background: linear-gradient(135deg, #0a2b3e, #154c6e); color: white; padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-  .header-container { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-  .logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }
-  .logo-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; background: white; padding: 3px; }
-  .logo h1 { font-size: 1.6rem; background: linear-gradient(135deg, #fff, #ffe0b5); background-clip: text; -webkit-background-clip: text; color: transparent; }
-  nav ul { display: flex; gap: 1rem; list-style: none; flex-wrap: wrap; }
-  nav ul li a { color: white; text-decoration: none; font-weight: 600; transition: 0.3s; }
-  nav ul li a:hover { color: #ffb347; }
-  #back-home { background: rgba(255,255,240,0.2); border: none; padding: 6px 15px; border-radius: 40px; color: white; cursor: pointer; transition: 0.3s; }
-  #back-home:hover { background: #ffb347; color: #1e2a2f; }
-  .container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
-  .page-card { background: white; border-radius: 32px; padding: 2.5rem; box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-  .page-card h1 { color: #1e88e5; margin-bottom: 1rem; font-size: 2rem; border-right: 5px solid #1e88e5; padding-right: 1rem; }
-  .page-card h2 { color: #0b5e7e; margin: 1.5rem 0 0.5rem; font-size: 1.4rem; }
-  .page-card p { margin: 0.8rem 0; text-align: justify; }
-  .page-card ul { margin: 0.8rem 0 0.8rem 1.5rem; }
-  .page-card li { margin: 0.5rem 0; }
-  .last-updated { color: #7f8c8d; font-size: 0.85rem; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #eee; }
-  .footer { text-align: center; padding: 2rem; background: #0f2c38; color: #cbd5e1; margin-top: 3rem; }
-  @media (max-width: 700px) { .header-container { flex-direction: column; } .page-card { padding: 1.5rem; } }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>شروط الاستخدام | منصة استشاريون الطبية</title>
+    <meta name="description" content="شروط استخدام منصة استشاريون الطبية: المسؤولية القانونية، الخصوصية، وحقوق المستخدمين. إشراف د. صلاح الأهدل">
+    <meta name="author" content="د. صلاح الأهدل">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #f0f4f8; color: #1a2c3e; line-height: 1.7; }
+        .article-container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+        .article-card { background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .article-header { background: linear-gradient(135deg, #1a237e, #0066cc); color: white; padding: 2.5rem; text-align: center; }
+        .article-header h1 { font-size: 2rem; margin-bottom: 1rem; }
+        .article-meta { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.9; margin-top: 1rem; }
+        .article-meta i { margin-left: 5px; }
+        .featured-image { width: 100%; height: 250px; object-fit: cover; background: linear-gradient(135deg, #1a237e, #0066cc); display: flex; align-items: center; justify-content: center; }
+        .featured-image i { font-size: 5rem; color: rgba(255,255,255,0.3); }
+        .article-content { padding: 2.5rem; }
+        .article-content h2 { color: #1a237e; border-right: 4px solid #1a237e; padding-right: 1rem; margin: 2rem 0 1rem 0; font-size: 1.6rem; }
+        .article-content h3 { color: #0066cc; margin: 1.5rem 0 0.8rem 0; font-size: 1.3rem; }
+        .article-content p { margin-bottom: 1rem; text-align: justify; }
+        .article-content ul, .article-content ol { margin: 1rem 2rem 1rem 0; }
+        .article-content li { margin-bottom: 0.5rem; }
+        .warning-box { background: #fff3e0; border-right: 4px solid #ff9800; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .info-box { background: #e3f2fd; border-right: 4px solid #0066cc; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .success-box { background: #e8f5e9; border-right: 4px solid #00c853; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #1a237e, #0066cc); color: white; text-decoration: none; padding: 12px 28px; border-radius: 40px; font-weight: 600; margin-top: 2rem; transition: all 0.3s; border: none; cursor: pointer; }
+        .btn-back:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,35,126,0.4); }
+        .toc { background: #f8f9fa; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; }
+        .toc h3 { color: #1a237e; margin-bottom: 1rem; }
+        .toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .toc li a { color: #1a237e; text-decoration: none; transition: color 0.3s; }
+        .toc li a:hover { color: #0066cc; text-decoration: underline; }
+        .footer { text-align: center; padding: 2rem; background: #1a237e; color: white; margin-top: 2rem; border-radius: 28px 28px 0 0; }
+        hr { margin: 1.5rem 0; border: none; height: 1px; background: linear-gradient(to left, #1a237e, transparent); }
+        .last-updated { text-align: center; color: #666; font-size: 0.85rem; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #eee; }
+        @media (max-width: 768px) { .article-header h1 { font-size: 1.5rem; } .article-content { padding: 1.5rem; } .featured-image { height: 180px; } }
+    </style>
 </head>
 <body>
-<header>
-  <div class="header-container">
-    <div class="logo" onclick="location.href='../index.html'">
-      <img src="../images/logo.png" class="logo-img" onerror="this.src='https://placehold.co/50x50'">
-      <h1>عيادتي الذكية</h1>
+
+<div class="article-container">
+    <div class="article-card">
+        <div class="article-header">
+            <h1><i class="fas fa-file-contract"></i> شروط الاستخدام</h1>
+            <p>منصة استشاريون الطبية المتكاملة - اليمن</p>
+            <div class="article-meta">
+                <span><i class="fas fa-user-md"></i> د. صلاح الأهدل</span>
+                <span><i class="fas fa-calendar-alt"></i> آخر تحديث: 15 أبريل 2025</span>
+                <span><i class="fas fa-gavel"></i> الإصدار 2.0</span>
+            </div>
+        </div>
+        
+        <div class="featured-image">
+            <i class="fas fa-file-contract"></i>
+        </div>
+        
+        <div class="article-content">
+            <!-- فهرس المحتويات -->
+            <div class="toc">
+                <h3><i class="fas fa-list-ul"></i> فهرس المحتويات</h3>
+                <ul>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#acceptance">قبول الشروط</a></li>
+                    <li><a href="#medical-disclaimer">إخلاء المسؤولية الطبية</a></li>
+                    <li><a href="#user-responsibility">مسؤوليات المستخدم</a></li>
+                    <li><a href="#account">الحساب والمصادقة</a></li>
+                    <li><a href="#content">المحتوى وحقوق الملكية</a></li>
+                    <li><a href="#telemedicine">استشارات الفيديو عن بعد</a></li>
+                    <li><a href="#prescriptions">الوصفات الطبية الرقمية</a></li>
+                    <li><a href="#privacy">الخصوصية والبيانات</a></li>
+                    <li><a href="#payments">المدفوعات والرسوم</a></li>
+                    <li><a href="#termination">إنهاء الخدمة</a></li>
+                    <li><a href="#changes">تعديل الشروط</a></li>
+                    <li><a href="#contact">التواصل معنا</a></li>
+                </ul>
+            </div>
+            
+            <!-- مقدمة -->
+            <h2 id="intro"><i class="fas fa-info-circle"></i> مقدمة</h2>
+            <p>مرحباً بك في منصة "استشاريون" (يشار إليها فيما بعد بـ "المنصة"، "نحن"، "لنا")، وهي منصة طبية يمنية متكاملة تهدف إلى تقديم خدمات صحية عن بُعد، ومحتوى طبي توعوي، واستشارات فيديو، ووصفات رقمية، وحجز مواعيد.</p>
+            <p>باستخدامك للمنصة، فإنك توافق على الالتزام بهذه الشروط والأحكام. إذا كنت لا توافق على أي جزء من هذه الشروط، يرجى عدم استخدام المنصة.</p>
+            
+            <div class="warning-box">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>تنبيه هام:</strong> هذه الشروط ملزمة قانونياً. يرجى قراءتها بعناية قبل استخدام المنصة.
+            </div>
+            
+            <!-- قبول الشروط -->
+            <h2 id="acceptance"><i class="fas fa-check-circle"></i> قبول الشروط</h2>
+            <p>باستخدامك لمنصة استشاريون، فإنك تقر بأنك قد قرأت وفهمت ووافقت على الالتزام بهذه الشروط والأحكام. إذا كنت تستخدم المنصة نيابة عن شخص آخر أو كيان قانوني، فإنك تقر بأن لديك السلطة القانونية لربط هذا الشخص أو الكيان بهذه الشروط.</p>
+            
+            <!-- إخلاء المسؤولية الطبية -->
+            <h2 id="medical-disclaimer"><i class="fas fa-stethoscope"></i> إخلاء المسؤولية الطبية</h2>
+            
+            <div class="danger-box">
+                <i class="fas fa-ambulance"></i>
+                <strong>⚠️ تنبيه طبي هام:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>المحتوى الطبي المقدم على المنصة هو لأغراض توعوية وتعليمية فقط.</strong></li>
+                    <li><strong>لا يغني المحتوى عن استشارة الطبيب المختص.</strong></li>
+                    <li><strong>في الحالات الطارئة، يرجى الاتصال بالإسعاف فوراً أو التوجه لأقرب مستشفى.</strong></li>
+                    <li><strong>الاستشارات عن بُعد (فيديو) لا تغني عن الفحص السريري المباشر.</strong></li>
+                    <li><strong>نحن لا نتحمل أي مسؤولية عن أي ضرر قد ينتج عن الاعتماد على المعلومات المقدمة دون استشارة طبيب.</strong></li>
+                </ul>
+            </div>
+            
+            <p>المعلومات الطبية المنشورة على المنصة (مقالات، فيديوهات، تحليلات الذكاء الاصطناعي) هي نتاج بحث علمي ومراجعة طبية، ولكنها قد لا تناسب جميع الحالات الفردية. التشخيص النهائي والعلاج يقعان على عاتق الطبيب المعالج المختص.</p>
+            
+            <!-- مسؤوليات المستخدم -->
+            <h2 id="user-responsibility"><i class="fas fa-user-check"></i> مسؤوليات المستخدم</h2>
+            <p>باستخدامك للمنصة، فإنك توافق على:</p>
+            <ul>
+                <li>تزويدنا بمعلومات دقيقة وكاملة عند إنشاء حسابك.</li>
+                <li>تحديث معلوماتك بانتظام للحفاظ على دقتها.</li>
+                <li>عدم مشاركة حسابك مع أي شخص آخر.</li>
+                <li>تحمل المسؤولية الكاملة عن جميع الأنشطة التي تتم من خلال حسابك.</li>
+                <li>إخطارنا فوراً إذا اكتشفت أي اختراق أو استخدام غير مصرح به لحسابك.</li>
+                <li>الالتزام بجميع القوانين واللوائح المحلية والدولية عند استخدام المنصة.</li>
+                <li>عدم استخدام المنصة لأي غرض غير قانوني أو ضار.</li>
+                <li>عدم محاولة اختراق أو تعطيل أمن المنصة أو خوادمها.</li>
+                <li>عدم نشر أي محتوى مسيء، غير لائق، أو ينتهك حقوق الآخرين.</li>
+            </ul>
+            
+            <!-- الحساب والمصادقة -->
+            <h2 id="account"><i class="fas fa-user-circle"></i> الحساب والمصادقة</h2>
+            <p>للاستفادة من بعض خدمات المنصة (مثل استشارات الفيديو، حجز المواعيد، الوصفات الرقمية)، تحتاج إلى إنشاء حساب. عند إنشاء حسابك، فإنك توافق على:</p>
+            <ul>
+                <li>تزويدنا بمعلومات دقيقة وكاملة.</li>
+                <li>الحفاظ على سرية بيانات تسجيل الدخول الخاصة بك.</li>
+                <li>إخطارنا فوراً بأي استخدام غير مصرح به لحسابك.</li>
+                <li>نحن نحتفظ بالحق في تعليق أو إنهاء أي حساب يخالف هذه الشروط.</li>
+            </ul>
+            
+            <div class="info-box">
+                <i class="fas fa-shield-alt"></i>
+                <strong>الأمان:</strong> نحن نستخدم أحدث تقنيات التشفير لحماية بياناتك. ومع ذلك، لا يمكننا ضمان أمان بنسبة 100% لأي نظام إلكتروني.
+            </div>
+            
+            <!-- المحتوى وحقوق الملكية -->
+            <h2 id="content"><i class="fas fa-copyright"></i> المحتوى وحقوق الملكية</h2>
+            <p>جميع المحتويات المنشورة على منصة استشاريون (بما في ذلك على سبيل المثال لا الحصر: المقالات، الصور، الفيديوهات، الرسوم البيانية، العلامات التجارية، والشعارات) هي ملك للمنصة أو مرخص لها، ومحمية بموجب قوانين حقوق الملكية الفكرية.</p>
+            <ul>
+                <li>لا يجوز نسخ أو إعادة نشر أو توزيع أو بيع أي محتوى من المنصة دون إذن كتابي مسبق منا.</li>
+                <li>يسمح لك بمشاركة روابط المقالات على وسائل التواصل الاجتماعي مع ذكر المصدر.</li>
+                <li>التعليقات والآراء المنشورة من قبل المستخدمين تعبر عن رأي أصحابها فقط.</li>
+                <li>نحن نحتفظ بالحق في إزالة أي محتوى ينتهك هذه الشروط.</li>
+            </ul>
+            
+            <!-- استشارات الفيديو عن بعد -->
+            <h2 id="telemedicine"><i class="fas fa-video"></i> استشارات الفيديو عن بعد</h2>
+            <p>خدمة استشارات الفيديو عن بعد تتيح لك التواصل مع أطباء مرخصين عن بُعد. باستخدام هذه الخدمة، فإنك توافق على:</p>
+            <ul>
+                <li>تقديم معلومات دقيقة وكاملة عن حالتك الصحية.</li>
+                <li>الاستشارة عن بُعد لا تغني عن الفحص السريري المباشر في بعض الحالات.</li>
+                <li>قد يوصي الطبيب بزيارة عيادة فعلية إذا رأى ضرورة لذلك.</li>
+                <li>الاستشارة لا تشمل حالات الطوارئ (اتصل بالإسعاف فوراً في الحالات الطارئة).</li>
+                <li>تسجيل المكالمات يتم فقط بموافقة الطرفين ولأغراض تدريبية أو قانونية.</li>
+                <li>نحن لا نتحمل مسؤولية انقطاع الاتصال بسبب مشاكل تقنية خارج إرادتنا.</li>
+            </ul>
+            
+            <!-- الوصفات الطبية الرقمية -->
+            <h2 id="prescriptions"><i class="fas fa-file-prescription"></i> الوصفات الطبية الرقمية</h2>
+            <p>الوصفات الطبية الرقمية الصادرة عبر المنصة:</p>
+            <ul>
+                <li>تصدر فقط من قبل أطباء مرخصين بعد استشارة فيديو.</li>
+                <li>تحمل توقيعاً إلكترونياً ورمز QR للتحقق من صحتها.</li>
+                <li>يمكن صرفها في الصيدليات المشاركة (حسب توفر الخدمة في منطقتك).</li>
+                <li>نحن لا نتحمل مسؤولية أي أخطاء في صرف الدواء من قبل الصيدلية.</li>
+                <li>الوصفات المزورة سيتم ملاحقة أصحابها قانونياً.</li>
+            </ul>
+            
+            <!-- الخصوصية والبيانات -->
+            <h2 id="privacy"><i class="fas fa-lock"></i> الخصوصية والبيانات</h2>
+            <p>نحن نولي خصوصية بياناتك أهمية قصوى. باستخدامك للمنصة، فإنك توافق على جمع واستخدام بياناتك وفقاً لسياسة الخصوصية الخاصة بنا، والتي تتضمن:</p>
+            <ul>
+                <li>جمع المعلومات الشخصية (الاسم، البريد الإلكتروني، رقم الهاتف) والبيانات الصحية (عند تقديمها طواعية).</li>
+                <li>استخدام بياناتك فقط لتحسين الخدمات المقدمة وتقديم الرعاية المناسبة.</li>
+                <li>عدم مشاركة بياناتك مع أطراف ثالثة دون موافقتك (باستثناء الحالات القانونية).</li>
+                <li>حقك في طلب حذف بياناتك في أي وقت.</li>
+                <li>تخزين البيانات بشكل آمن ومشفر.</li>
+                <li>استخدام ملفات تعريف الارتباط (Cookies) لتحسين تجربة المستخدم.</li>
+            </ul>
+            
+            <div class="info-box">
+                <i class="fas fa-database"></i>
+                <strong>تخزين البيانات:</strong> يتم تخزين بياناتك محلياً على جهازك وفي خوادم آمنة. يمكنك تصدير بياناتك أو طلب حذفها في أي وقت.
+            </div>
+            
+            <!-- المدفوعات والرسوم -->
+            <h2 id="payments"><i class="fas fa-credit-card"></i> المدفوعات والرسوم</h2>
+            <p>بعض خدمات المنصة قد تكون مدفوعة (مثل استشارات الفيديو، بعض الدورات التدريبية). باستخدام الخدمات المدفوعة، فإنك توافق على:</p>
+            <ul>
+                <li>دفع الرسوم المعلنة قبل تلقي الخدمة.</li>
+                <li>جميع المدفوعات غير قابلة للاسترداد إلا في حالات استثنائية (مثل إلغاء الطبيب للموعد).</li>
+                <li>نحن نحتفظ بالحق في تغيير الأسعار في أي وقت مع إشعار مسبق.</li>
+                <li>الدفع يتم عبر بوابات دفع آمنة، ونحن لا نخزن بيانات بطاقات الائتمان الخاصة بك.</li>
+                <li>أنت مسؤول عن أي رسوم إضافية تفرضها جهة الدفع الخاصة بك (مثل رسوم التحويل).</li>
+            </ul>
+            
+            <!-- إنهاء الخدمة -->
+            <h2 id="termination"><i class="fas fa-ban"></i> إنهاء الخدمة</h2>
+            <p>نحن نحتفظ بالحق في تعليق أو إنهاء حسابك أو الوصول إلى المنصة في أي وقت، دون إشعار مسبق، إذا:</p>
+            <ul>
+                <li>خرقت أي بند من بنود هذه الشروط.</li>
+                <li>استخدمت المنصة بطريقة غير قانونية أو ضارة.</li>
+                <li>قدمت معلومات غير صحيحة عن هويتك أو بياناتك الصحية.</li>
+                <li>لم تقم بدفع الرسوم المستحقة في الوقت المحدد.</li>
+            </ul>
+            <p>يمكنك أيضاً إنهاء حسابك في أي وقت عن طريق الاتصال بفريق الدعم. عند إنهاء الخدمة، سنحتفظ ببياناتك لفترة قانونية (عادة 5 سنوات) لأغراض قانونية وتنظيمية، ثم نحذفها.</p>
+            
+            <!-- تعديل الشروط -->
+            <h2 id="changes"><i class="fas fa-edit"></i> تعديل الشروط</h2>
+            <p>نحن نحتفظ بالحق في تعديل هذه الشروط في أي وقت. سنقوم بإخطارك بأي تغييرات جوهرية عن طريق:</p>
+            <ul>
+                <li>إشعار منبثق عند تسجيل الدخول.</li>
+                <li>إرسال بريد إلكتروني إلى عنوان البريد المسجل لديك.</li>
+                <li>نشر تاريخ آخر تحديث في أعلى الصفحة.</li>
+            </ul>
+            <p>استمرارك في استخدام المنصة بعد التعديلات يعني موافقتك على الشروط الجديدة. إذا كنت لا توافق على التعديلات، يرجى التوقف عن استخدام المنصة.</p>
+            
+            <!-- التواصل معنا -->
+            <h2 id="contact"><i class="fas fa-envelope"></i> التواصل معنا</h2>
+            <p>إذا كان لديك أي أسئلة أو استفسارات حول هذه الشروط، يمكنك التواصل معنا عبر:</p>
+            <div class="success-box">
+                <ul style="margin-top: 10px;">
+                    <li><strong><i class="fas fa-envelope"></i> البريد الإلكتروني:</strong> <a href="mailto:Kaidngat4@gmail.com" style="color: #0066cc;">Kaidngat4@gmail.com</a></li>
+                    <li><strong><i class="fas fa-phone"></i> الهاتف:</strong> +967 123 456 789</li>
+                    <li><strong><i class="fab fa-whatsapp"></i> واتساب:</strong> +967 123 456 789</li>
+                    <li><strong><i class="fas fa-map-marker-alt"></i> العنوان:</strong> اليمن - صنعاء</li>
+                </ul>
+            </div>
+            
+            <hr>
+            
+            <div class="last-updated">
+                <p><i class="fas fa-calendar-alt"></i> آخر تحديث: 15 أبريل 2025</p>
+                <p>© 2025 منصة استشاريون - جميع الحقوق محفوظة</p>
+                <p style="font-size: 0.8rem;">هذه الشروط تخضع لقوانين الجمهورية اليمنية</p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <p><strong>باستمرارك في استخدام المنصة، فإنك توافق على جميع الشروط المذكورة أعلاه.</strong></p>
+                <button class="btn-back" onclick="window.location.href='../index.html'">
+                    <i class="fas fa-arrow-right"></i> العودة إلى المنصة
+                </button>
+            </div>
+        </div>
     </div>
-    <nav>
-      <ul>
-        <li><a href="../index.html">الرئيسية</a></li>
-        <li><a href="about.html">من نحن</a></li>
-        <li><a href="privacy.html">سياسة الخصوصية</a></li>
-        <li><a href="terms.html">شروط الاستخدام</a></li>
-      </ul>
-    </nav>
-    <button id="back-home" onclick="location.href='../index.html'">🏠 الرئيسية</button>
-  </div>
-</header>
-<div class="container">
-  <div class="page-card">
-    <h1>📜 شروط الاستخدام</h1>
-    <p>مرحباً بك في <strong>عيادتي الذكية</strong>. باستخدامك لهذا الموقع، فإنك توافق على الالتزام بالشروط والأحكام التالية. يُرجى قراءتها بعناية.</p>
     
-    <h2>المحتوى الطبي</h2>
-    <p>جميع المعلومات المقدمة في هذا الموقع هي لأغراض توعوية وتعليمية فقط، ولا تُغني عن استشارة الطبيب المختص. لا نتحمل أي مسؤولية عن أي ضرر أو تشخيص خاطئ بناءً على محتوى الموقع. يُنصح دائماً باستشارة مقدم الرعاية الصحية الخاص بك.</p>
-    
-    <h2>الملكية الفكرية</h2>
-    <p>جميع المحتويات المنشورة (نصوص، صور، رسومات، شعارات) هي ملك لـ "عيادتي الذكية" أو مرخصة لنا. لا يُسمح بنسخ أو إعادة توزيع أو تعديل أي جزء من الموقع دون إذن خطي مسبق، باستثناء الاستخدام الشخصي غير التجاري.</p>
-    
-    <h2>سلوك المستخدم</h2>
-    <p>عند التعليق أو التفاعل مع الموقع، توافق على:</p>
-    <ul>
-      <li>عدم نشر أي محتوى مسيء، غير قانوني، أو مخالف للقيم.</li>
-      <li>عدم انتحال شخصية الآخرين أو تقديم معلومات مضللة.</li>
-      <li>احترام آراء الآخرين والالتزام بالحوار اللائق.</li>
-    </ul>
-    <p>نحتفظ بالحق في حذف أي تعليقات مخالفة دون إشعار مسبق.</p>
-    
-    <h2>الروابط الخارجية</h2>
-    <p>قد يحتوي الموقع على روابط لمواقع خارجية. نحن لسنا مسؤولين عن محتوى أو ممارسات تلك المواقع، كما أن وجود هذه الروابط لا يعني تأييدنا لها.</p>
-    
-    <h2>التعديلات على الشروط</h2>
-    <p>نحتفظ بالحق في تعديل هذه الشروط في أي وقت. سيتم نشر التعديلات على هذه الصفحة، ويعتبر استمرار استخدامك للموقع بعد التعديل موافقة ضمنية على الشروط الجديدة.</p>
-    
-    <h2>الإخلاء المسؤولية</h2>
-    <p>يُقدم الموقع "كما هو" دون أي ضمانات. نحن لا نضمن أن الموقع سيكون خالياً من الأخطاء أو الانقطاعات. في حدود القانون، نرفض أي مسؤولية عن الأضرار المباشرة أو غير المباشرة الناتجة عن استخدام الموقع.</p>
-    
-    <div class="last-updated">📅 آخر تحديث: 10 أبريل 2026</div>
-  </div>
+    <div class="footer">
+        <p>© 2026 منصة استشاريون - جميع الحقوق محفوظة | اليمن</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">بإشراف د. صلاح الأهدل - مدير مكتب الصحة</p>
+    </div>
 </div>
-<footer class="footer">
-  <p>© 2026 عيادتي الذكية — جميع الحقوق محفوظة | محتوى توعوي ليس بديلاً عن الاستشارة الطبية</p>
-</footer>
+
+<script>
+    // تنشيط الروابط الداخلية والتمرير السلس
+    document.querySelectorAll('.toc a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    console.log('تم تحميل صفحة شروط الاستخدام - منصة استشاريون');
+</script>
 </body>
 </html>
