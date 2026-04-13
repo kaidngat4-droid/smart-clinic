@@ -1,68 +1,357 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>الأدوية بعد تركيب الدعامات - عيادتي الذكية</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>الأدوية بعد تركيب الدعامة القلبية | استشاريون</title>
+    <meta name="description" content="دليل شامل للأدوية بعد تركيب الدعامة القلبية: الأدوية الضرورية، مدة كل دواء، الآثار الجانبية، ونصائح هامة لمرضى الدعامات">
+    <meta name="author" content="د. صلاح الأهدل">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #f0f4f8; color: #1a2c3e; line-height: 1.7; }
+        .article-container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+        .article-card { background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .article-header { background: linear-gradient(135deg, #0066cc, #1a237e); color: white; padding: 2.5rem; text-align: center; }
+        .article-header h1 { font-size: 2rem; margin-bottom: 1rem; }
+        .article-meta { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.9; margin-top: 1rem; }
+        .article-meta i { margin-left: 5px; }
+        .featured-image { width: 100%; height: 350px; object-fit: cover; background: linear-gradient(135deg, #0066cc, #1a237e); display: flex; align-items: center; justify-content: center; }
+        .featured-image i { font-size: 5rem; color: rgba(255,255,255,0.3); }
+        .article-content { padding: 2.5rem; }
+        .article-content h2 { color: #0066cc; border-right: 4px solid #0066cc; padding-right: 1rem; margin: 2rem 0 1rem 0; font-size: 1.6rem; }
+        .article-content h3 { color: #1a237e; margin: 1.5rem 0 0.8rem 0; font-size: 1.3rem; }
+        .article-content h4 { color: #2c3e50; margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
+        .article-content p { margin-bottom: 1rem; text-align: justify; }
+        .article-content ul, .article-content ol { margin: 1rem 2rem 1rem 0; }
+        .article-content li { margin-bottom: 0.5rem; }
+        .warning-box { background: #fff3e0; border-right: 4px solid #ff9800; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .info-box { background: #e3f2fd; border-right: 4px solid #0066cc; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .danger-box { background: #ffebee; border-right: 4px solid #e74c3c; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .success-box { background: #e8f5e9; border-right: 4px solid #00c853; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .stat-card { background: #f8f9fa; padding: 1.2rem; border-radius: 16px; text-align: center; transition: transform 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-number { font-size: 2rem; font-weight: 800; color: #0066cc; }
+        .med-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        .med-table th, .med-table td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        .med-table th { background: #0066cc; color: white; }
+        .med-table tr:nth-child(even) { background: #f8f9fa; }
+        .side-effects { background: #f8f9fa; border-radius: 16px; padding: 1rem; margin: 1rem 0; display: flex; gap: 10px; align-items: center; }
+        .side-effects i { font-size: 1.5rem; color: #e74c3c; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #0066cc, #1a237e); color: white; text-decoration: none; padding: 12px 28px; border-radius: 40px; font-weight: 600; margin-top: 2rem; transition: all 0.3s; border: none; cursor: pointer; }
+        .btn-back:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,102,204,0.4); }
+        .toc { background: #f8f9fa; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; }
+        .toc h3 { color: #0066cc; margin-bottom: 1rem; }
+        .toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .toc li a { color: #0066cc; text-decoration: none; transition: color 0.3s; }
+        .toc li a:hover { color: #1a237e; text-decoration: underline; }
+        .footer { text-align: center; padding: 2rem; background: #1a237e; color: white; margin-top: 2rem; border-radius: 28px 28px 0 0; }
+        hr { margin: 1.5rem 0; border: none; height: 1px; background: linear-gradient(to left, #0066cc, transparent); }
+        @media (max-width: 768px) { .article-header h1 { font-size: 1.5rem; } .article-content { padding: 1.5rem; } .featured-image { height: 200px; } }
+    </style>
 </head>
 <body>
-<header>
-    <div class="header-container">
-        <div class="logo">
-            <img src="../images/logo.png" alt="شعار عيادتي الذكية">
-            <h1>عيادتي الذكية</h1>
+
+<div class="article-container">
+    <div class="article-card">
+        <div class="article-header">
+            <h1><i class="fas fa-prescription-bottle"></i> الأدوية بعد تركيب الدعامة القلبية</h1>
+            <p>دليل شامل للأدوية الضرورية، مدتها، والآثار الجانبية</p>
+            <div class="article-meta">
+                <span><i class="fas fa-user-md"></i> د. صلاح الأهدل</span>
+                <span><i class="fas fa-calendar-alt"></i> 15 أبريل 2025</span>
+                <span><i class="fas fa-clock"></i> وقت القراءة: 10 دقائق</span>
+                <span><i class="fas fa-heart"></i> 3,500 قراءة</span>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="../index.html">الرئيسية</a></li>
-                <li><a href="catheter.html">القسطرة القلبية</a></li>
-                <li><a href="stents.html">دعامات القلب</a></li>
-                <li><a href="blocked-artery.html">أعراض انسداد الشرايين</a></li>
-                <li><a href="patient-care.html">العناية بالمريض</a></li>
-                <li><a href="tips.html">نصائح وإرشادات</a></li>
-            </ul>
-        </nav>
+        
+        <div class="featured-image">
+            <i class="fas fa-prescription-bottle"></i>
+        </div>
+        
+        <div class="article-content">
+            <!-- فهرس المحتويات -->
+            <div class="toc">
+                <h3><i class="fas fa-list-ul"></i> فهرس المحتويات</h3>
+                <ul>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#antiplatelets">مضادات الصفائح (Dual Antiplatelet)</a></li>
+                    <li><a href="#statins">مثبطات الكوليسترول (Statins)</a></li>
+                    <li><a href="#beta-blockers">حاصرات بيتا (Beta-blockers)</a></li>
+                    <li><a href="#ace-inhibitors">مثبطات ACE</a></li>
+                    <li><a href="#duration">مدة العلاج</a></li>
+                    <li><a href="#side-effects">الآثار الجانبية</a></li>
+                    <li><a href="#interactions">التفاعلات الدوائية</a></li>
+                    <li><a href="#tips">نصائح مهمة</a></li>
+                    <li><a href="#faq">أسئلة شائعة</a></li>
+                </ul>
+            </div>
+            
+            <!-- المقدمة -->
+            <h2 id="intro"><i class="fas fa-info-circle"></i> مقدمة</h2>
+            <p>بعد تركيب الدعامة القلبية، يعتبر الالتزام بالأدوية أمراً حيوياً لمنع تجلط الدعامة والحفاظ على الشرايين مفتوحة. العلاج الدوائي بعد الدعامة يتكون عادة من عدة أدوية تعمل معاً لحماية القلب والأوعية الدموية.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">95%</div>
+                    <div>فعالية الأدوية في منع تجلط الدعامة</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1-2%</div>
+                    <div>نسبة تجلط الدعامة عند الالتزام بالأدوية</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">مدى الحياة</div>
+                    <div>الأسبرين والستاتينات عادة</div>
+                </div>
+            </div>
+            
+            <!-- مضادات الصفائح -->
+            <h2 id="antiplatelets"><i class="fas fa-tint"></i> مضادات الصفائح (Dual Antiplatelet Therapy - DAPT)</h2>
+            <p>العلاج المزدوج بمضادات الصفائح هو حجر الزاوية في الوقاية من تجلط الدعامة. يتكون من دواءين:</p>
+            
+            <table class="med-table">
+                <thead>
+                    <tr><th>الدواء</th><th>الجرعة</th><th>المدة</th><th>الغرض</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>الأسبرين (Aspirin)</strong><br><small>Acetylsalicylic acid</small></td>
+                        <td>81-100 مجم يومياً</td>
+                        <td>مدى الحياة</td>
+                        <td>يمنع تكوّن الجلطات</td>
+                    </tr>
+                    <tr><td><strong>كلوبيدوجريل (Clopidogrel)</strong><br><small>بلافيكس (Plavix)</small></td>
+                        <td>75 مجم يومياً</td>
+                        <td>6-12 شهراً (حسب نوع الدعامة)</td>
+                        <td>يمنع تكوّن الجلطات</td>
+                    </tr>
+                    <tr><td><strong>تيكاجريلور (Ticagrelor)</strong><br><small>بريلينت (Brilique)</small></td>
+                        <td>90 مجم مرتين يومياً</td>
+                        <td>6-12 شهراً</td>
+                        <td>بديل لكلوبيدوجريل (أقوى)</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="danger-box">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>⚠️ تحذير خطير:</strong> لا تتوقف عن تناول مضادات الصفائح إلا باستشارة الطبيب! التوقف المبكر قد يسبب تجلط الدعامة، وهي حالة خطيرة قد تؤدي إلى نوبة قلبية أو الوفاة. خطر تجلط الدعامة أعلى في الشهر الأول، ويستمر لمدة سنة على الأقل.
+            </div>
+            
+            <div class="info-box">
+                <i class="fas fa-lightbulb"></i>
+                <strong>نصيحة:</strong> إذا كنت بحاجة لإجراء عملية جراحية أو خلع سن، استشر طبيب القلب أولاً. قد يطلب منك التوقف عن كلوبيدوجريل قبل العملية بعدة أيام، لكن لا تتوقف من تلقاء نفسك!
+            </div>
+            
+            <!-- الستاتينات -->
+            <h2 id="statins"><i class="fas fa-chart-line"></i> مثبطات الكوليسترول (Statins)</h2>
+            <p>الستاتينات هي أدوية تخفض الكوليسترول الضار (LDL) وتثبت اللويحات الدهنية في الشرايين، مما يمنع انسدادها مرة أخرى.</p>
+            
+            <div class="side-effects">
+                <i class="fas fa-pills"></i>
+                <div>
+                    <strong>أدوية الستاتينات الشائعة:</strong><br>
+                    أتورفاستاتين (Atorvastatin) - ليبيتور (Lipitor) - 20-80 مجم يومياً (عادة ليلاً)<br>
+                    روزوفاستاتين (Rosuvastatin) - كريستور (Crestor) - 10-40 مجم يومياً<br>
+                    سيمفاستاتين (Simvastatin) - زوكور (Zocor) - 20-80 مجم يومياً (ليلاً)
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <i class="fas fa-bullseye"></i>
+                <strong>الهدف العلاجي:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>LDL أقل من 100 mg/dL (للمرضى العاديين)</li>
+                    <li>LDL أقل من 70 mg/dL (لمرضى القلب عالي الخطورة)</li>
+                    <li>انخفاض بنسبة 50% على الأقل من LDL الأساسي</li>
+                </ul>
+            </div>
+            
+            <!-- حاصرات بيتا -->
+            <h2 id="beta-blockers"><i class="fas fa-heartbeat"></i> حاصرات بيتا (Beta-blockers)</h2>
+            <p>تعمل حاصرات بيتا على تقليل معدل ضربات القلب وضغط الدم، مما يقلل العبء على القلب ويحسن النتائج طويلة المدى.</p>
+            
+            <div class="side-effects">
+                <i class="fas fa-heart"></i>
+                <div>
+                    <strong>أدوية حاصرات بيتا الشائعة:</strong><br>
+                    بيسوبرولول (Bisoprolol) - 2.5-10 مجم يومياً<br>
+                    ميتوبرولول (Metoprolol) - 25-200 مجم يومياً (مرتين أو مرة حسب النوع)<br>
+                    كارفيديلول (Carvedilol) - 6.25-25 مجم مرتين يومياً
+                </div>
+            </div>
+            
+            <!-- مثبطات ACE -->
+            <h2 id="ace-inhibitors"><i class="fas fa-kidneys"></i> مثبطات ACE / ARBs</h2>
+            <p>هذه الأدوية تخفض ضغط الدم وتحمي القلب والكلى، خاصة لمرضى السكري أو ارتفاع ضغط الدم أو ضعف القلب.</p>
+            
+            <div class="side-effects">
+                <i class="fas fa-lungs"></i>
+                <div>
+                    <strong>أدوية مثبطات ACE الشائعة:</strong><br>
+                    راميبريل (Ramipril) - 2.5-10 مجم يومياً<br>
+                    إنالابريل (Enalapril) - 5-20 مجم يومياً (مرتين)<br>
+                    ليسينوبريل (Lisinopril) - 10-40 مجم يومياً<br>
+                    <strong>بدائل ARBs (إذا كان السعال مزعجاً):</strong> لوسارتان (Losartan)، فالسارتان (Valsartan)
+                </div>
+            </div>
+            
+            <!-- مدة العلاج -->
+            <h2 id="duration"><i class="fas fa-clock"></i> مدة العلاج بعد الدعامة</h2>
+            
+            <table class="med-table">
+                <thead>
+                    <tr><th>الدواء</th><th>المدة الموصى بها</th><th>ملاحظات</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>الأسبرين</td><td>مدى الحياة</td><td>لا تتوقف أبداً دون استشارة</td></tr>
+                    <tr><td>كلوبيدوجريل / تيكاجريلور</td><td>6-12 شهراً (حسب نوع الدعامة)</td><td>للدعامات الدوائية: 6-12 شهراً<br>للدعامات المعدنية: شهر واحد</td></tr>
+                    <tr><td>الستاتينات</td><td>مدى الحياة</td><td>حتى لو كانت الدهون طبيعية</td></tr>
+                    <tr><td>حاصرات بيتا</td><td>مدى الحياة (لأغلب المرضى)</td><td>خاصة بعد النوبة القلبية</td></tr>
+                    <tr><td>مثبطات ACE / ARBs</td><td>مدى الحياة</td><td>خاصة لمرضى السكري أو الضغط أو ضعف القلب</td></tr>
+                </tbody>
+            </table>
+            
+            <!-- الآثار الجانبية -->
+            <h2 id="side-effects"><i class="fas fa-exclamation-triangle"></i> الآثار الجانبية الشائعة وكيفية التعامل معها</h2>
+            
+            <div class="side-effects">
+                <i class="fas fa-bruise"></i>
+                <div>
+                    <strong>الكدمات والنزيف:</strong> شائع مع مضادات الصفائح. استخدم فرشاة أسنان ناعمة، وتجنب الحلاقة بالشفرة الحادة. أخبر طبيبك إذا لاحظت نزيفاً غير طبيعي.
+                </div>
+            </div>
+            
+            <div class="side-effects">
+                <i class="fas fa-muscle"></i>
+                <div>
+                    <strong>آلام العضلات:</strong> شائعة مع الستاتينات. قد تختفي بتغيير نوع الستاتين أو تقليل الجرعة. لا تتوقف عن الدواء دون استشارة الطبيب.
+                </div>
+            </div>
+            
+            <div class="side-effects">
+                <i class="fas fa-dizzy"></i>
+                <div>
+                    <strong>الدوخة والإرهاق:</strong> شائعة مع حاصرات بيتا خاصة في بداية العلاج. تتحسن عادة مع الوقت. قم بتغيير وضعيتك ببطء عند النهوض.
+                </div>
+            </div>
+            
+            <div class="side-effects">
+                <i class="fas fa-cough"></i>
+                <div>
+                    <strong>السعال الجاف:</strong> شائع مع مثبطات ACE. أخبر طبيبك؛ قد يغير الدواء إلى ARBs إذا كان السعال مزعجاً.
+                </div>
+            </div>
+            
+            <div class="side-effects">
+                <i class="fas fa-tint"></i>
+                <div>
+                    <strong>احمرار وتورم القدمين:</strong> قد يحدث مع حاصرات قنوات الكالسيوم. أخبر طبيبك إذا كان شديداً.
+                </div>
+            </div>
+            
+            <!-- التفاعلات الدوائية -->
+            <h2 id="interactions"><i class="fas fa-biohazard"></i> تفاعلات دوائية خطيرة يجب معرفتها</h2>
+            
+            <div class="warning-box">
+                <strong>أدوية تتفاعل مع كلوبيدوجريل (بلافيكس):</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>أوميبرازول (Omeprazole) - بريلوسيك:</strong> يقلل فعالية كلوبيدوجريل بنسبة 40-50%</li>
+                    <li><strong>إيزوميبرازول (Esomeprazole) - نيكسيوم:</strong> يتفاعل أيضاً، يفضل تجنبه</li>
+                    <li><strong>بدائل آمنة:</strong> بانتوبرازول (Pantoprazole)، رابيبرازول (Rabeprazole)، فاموتيدين (Famotidine)</li>
+                </ul>
+            </div>
+            
+            <div class="warning-box">
+                <strong>أدوية تزيد خطر النزيف (تجنبها مع مميعات الدم):</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>مضادات الالتهاب غير الستيرويدية (NSAIDs):</strong> إيبوبروفين، ديكلوفيناك، نابروكسين</li>
+                    <li><strong>البديل الآمن:</strong> باراسيتامول (بانادول) للآلام البسيطة</li>
+                    <li><strong>مميعات الدم الأخرى:</strong> وارفارين، ريفاروكسابان، أبيكسابان (فقط بإشراف طبي)</li>
+                </ul>
+            </div>
+            
+            <div class="info-box">
+                <i class="fas fa-leaf"></i>
+                <strong>الأعشاب والمكملات التي تزيد سيولة الدم (تجنبها):</strong>
+                <ul style="margin-top: 10px;">
+                    <li>الثوم بجرعات عالية (الكمية في الطعام آمنة)</li>
+                    <li>الجنكة (Ginkgo Biloba)</li>
+                    <li>الزنجبيل بجرعات عالية</li>
+                    <li>زيت السمك بجرعات عالية (> 3 جرام يومياً)</li>
+                    <li>فيتامين E بجرعات عالية (> 400 وحدة دولية)</li>
+                </ul>
+            </div>
+            
+            <!-- نصائح مهمة -->
+            <h2 id="tips"><i class="fas fa-lightbulb"></i> نصائح مهمة لمرضى الدعامات</h2>
+            
+            <div class="success-box">
+                <ul style="margin-top: 10px;">
+                    <li><strong>الالتزام بالأدوية:</strong> تناول أدويتك في نفس الوقت يومياً. استخدم منبهات أو حبوب تنظيم الأدوية.</li>
+                    <li><strong>لا تتوقف عن الأدوية:</strong> حتى لو شعرت بتحسن، لا تتوقف دون استشارة الطبيب.</li>
+                    <li><strong>احتفظ بقائمة أدويتك:</strong> اكتب جميع الأدوية التي تتناولها (الجرعات والأوقات) واعرضها على كل طبيب تزوره.</li>
+                    <li><strong>استشر طبيبك قبل تناول أي دواء جديد:</strong> حتى لو كان بدون وصفة طبية أو عشباً.</li>
+                    <li><strong>ارتدِ بطاقة تنبيه طبي:</strong> تخبر المسعفين أنك تتناول مميعات الدم.</li>
+                    <li><strong>راقب علامات النزيف:</strong> كدمات غير مبررة، نزيف لثة، دم في البول أو البراز.</li>
+                    <li><strong>قم بالفحوصات الدورية:</strong> فحص وظائف الكبد (للستاتينات)، وظائف الكلى، وضغط الدم.</li>
+                    <li><strong>لا تنسَ نمط الحياة الصحي:</strong> الأدوية وحدها لا تكفي. اتبع نظاماً غذائياً صحياً، مارس الرياضة، أقلع عن التدخين.</li>
+                </ul>
+            </div>
+            
+            <!-- أسئلة شائعة -->
+            <h2 id="faq"><i class="fas fa-question-circle"></i> أسئلة شائعة عن أدوية الدعامات</h2>
+            
+            <h3>كم مرة يجب فحص وظائف الكبد أثناء تناول الستاتينات؟</h3>
+            <p>عادة يتم فحص إنزيمات الكبد قبل بدء الستاتينات، ثم بعد 3-6 أشهر، ثم سنوياً. إذا كانت الإنزيمات طبيعية، يمكن الاستمرار دون قلق.</p>
+            
+            <h3>ماذا أفعل إذا نسيت جرعة من كلوبيدوجريل؟</h3>
+            <p>إذا كان الوقت أقل من 12 ساعة من الموعد المحدد، تناول الجرعة فوراً. إذا كان أكثر من 12 ساعة، تخط الجرعة وتناول الجرعة التالية في موعدها. لا تضاعف الجرعة. إذا كنت تتذكر كثيراً، استخدم منبهات يومية.</p>
+            
+            <h3>هل يمكن تناول الباراسيتامول (بانادول) مع مميعات الدم؟</h3>
+            <p>نعم، الباراسيتامول هو الخيار الأكثر أماناً لمسكنات الألم لمرضى الدعامات. لا يتفاعل مع مميعات الدم ولا يزيد خطر النزيف. لا تتجاوز الجرعة القصوى (3-4 جرام يومياً).</p>
+            
+            <h3>كم من الوقت أحتاج لتناول كلوبيدوجريل بعد الدعامة؟</h3>
+            <p>يعتمد على نوع الدعامة: للدعامات الدوائية (DES): 6-12 شهراً على الأقل. للدعامات المعدنية العادية (BMS): شهر واحد. قد يوصي طبيبك بتمديد العلاج لأكثر من سنة في بعض الحالات (مثل مرضى السكري، أو وجود أكثر من دعامة).</p>
+            
+            <h3>هل يمكنني التوقف عن الستاتينات إذا أصبح الكوليسترول طبيعياً؟</h3>
+            <p>لا، الستاتينات لا تخفض الكوليسترول فقط، بل تثبت اللويحات الدهنية في الشرايين وتقلل الالتهاب. التوقف عن الستاتينات يزيد خطر عودة الانسداد. تستمر الستاتينات مدى الحياة بعد الدعامة.</p>
+            
+            <h3>ما هي علامات تجلط الدعامة؟</h3>
+            <p>تجلط الدعامة حالة خطيرة تحدث عندما تتكون جلطة داخل الدعامة. الأعراض تشمل: ألم في الصدر (قد ينتشر للذراع أو الفك)، ضيق في التنفس، تعرق بارد، غثيان. إذا شعرت بهذه الأعراض، اتصل بالإسعاف فوراً!</p>
+            
+            <hr>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <p><strong>⚠️ تنبيه هام:</strong> هذا المحتوى هو لأغراض توعوية وتعليمية فقط، ولا يغني عن استشارة الطبيب المختص. لا تتوقف عن تناول أي دواء دون استشارة طبيبك.</p>
+                <button class="btn-back" onclick="window.location.href='../index.html'">
+                    <i class="fas fa-arrow-right"></i> العودة إلى المنصة
+                </button>
+            </div>
+        </div>
     </div>
-</header>
-
-<main class="article-page">
-<div class="article-header">
-<h2>الأدوية المستخدمة بعد تركيب الدعامات وكيفية استخدامها</h2>
-<img src="../images/stents.jpg" alt="دعامات القلب">
+    
+    <div class="footer">
+        <p>© 2026 منصة استشاريون - جميع الحقوق محفوظة | اليمن</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">بإشراف د. صلاح الأهدل - مدير مكتب الصحة</p>
+    </div>
 </div>
 
-<div class="section">
-<h3>أهمية الأدوية بعد تركيب الدعامة</h3>
-<p>بعد تركيب الدعامة، تحتاج الشرايين إلى دعم لمنع التخثر والانسداد، لذا يتم وصف مجموعة من الأدوية المهمة للحفاظ على سلامة الدعامة.</p>
-</div>
-
-<div class="section">
-<h3>الأدوية الأساسية</h3>
-<ul>
-<li><strong>مضادات الصفائح الدموية (Aspirin و Clopidogrel):</strong> تمنع تكون جلطات الدم حول الدعامة.</li>
-<li><strong>الستاتينات (Statins):</strong> لتقليل الكوليسترول وتحسين صحة الشرايين.</li>
-<li><strong>حاصرات بيتا (Beta-blockers):</strong> لتقليل ضغط الدم وتقليل عبء العمل على القلب.</li>
-<li><strong>مثبطات ACE أو ARBs:</strong> تساعد على استقرار ضغط الدم وحماية القلب.</li>
-</ul>
-</div>
-
-<div class="section">
-<h3>كيفية الاستخدام</h3>
-<ul>
-<li>الالتزام بالجرعة اليومية المحددة من قبل الطبيب.</li>
-<li>عدم التوقف عن أي دواء إلا بعد استشارة الطبيب.</li>
-<li>إجراء فحوصات دورية للتأكد من فعالية الأدوية.</li>
-</ul>
-</div>
-
-<a class="back-link" href="../index.html">العودة للرئيسية</a>
-</main>
-
-<footer>
-<p>&copy; 2026 عيادتي الذكية. جميع الحقوق محفوظة.</p>
-</footer>
-<script src="../script.js"></script>
+<script>
+    // تنشيط الروابط الداخلية والتمرير السلس
+    document.querySelectorAll('.toc a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    console.log('تم تحميل مقال الأدوية بعد تركيب الدعامة - منصة استشاريون');
+</script>
 </body>
-</html>
+    </html>
