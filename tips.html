@@ -1,64 +1,341 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نصائح وإرشادات - عيادتي الذكية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>نصائح ذهبية لصحة القلب | استشاريون</title>
+    <meta name="description" content="نصائح ذهبية لصحة القلب: عادات يومية بسيطة تحمي قلبك من الأمراض وتطيل عمرك. إرشادات عملية من د. صلاح الأهدل">
+    <meta name="author" content="د. صلاح الأهدل">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: linear-gradient(135deg, #f0f4f8 0%, #e8f0fe 100%); color: #1a2c3e; line-height: 1.7; }
+        .article-container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+        .article-card { background: rgba(255,255,255,0.95); border-radius: 28px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .article-header { background: linear-gradient(135deg, #0066cc, #1a237e); color: white; padding: 2.5rem; text-align: center; }
+        .article-header h1 { font-size: 2rem; margin-bottom: 1rem; }
+        .article-meta { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.9; margin-top: 1rem; }
+        .article-meta i { margin-left: 5px; }
+        .featured-image { width: 100%; height: 350px; object-fit: cover; background: linear-gradient(135deg, #0066cc, #1a237e); display: flex; align-items: center; justify-content: center; }
+        .featured-image i { font-size: 5rem; color: rgba(255,255,255,0.3); }
+        .article-content { padding: 2.5rem; }
+        .article-content h2 { color: #0066cc; border-right: 4px solid #0066cc; padding-right: 1rem; margin: 2rem 0 1rem 0; font-size: 1.6rem; }
+        .article-content h3 { color: #1a237e; margin: 1.5rem 0 0.8rem 0; font-size: 1.3rem; }
+        .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+        .tip-card { background: #f8f9fa; border-radius: 20px; padding: 1.5rem; transition: all 0.3s; cursor: pointer; border-bottom: 4px solid #0066cc; }
+        .tip-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .tip-number { width: 45px; height: 45px; background: #0066cc; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; margin-bottom: 1rem; }
+        .tip-card h3 { color: #0066cc; margin-bottom: 0.8rem; }
+        .warning-box { background: #fff3e0; border-right: 4px solid #ff9800; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .info-box { background: #e3f2fd; border-right: 4px solid #0066cc; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .success-box { background: #e8f5e9; border-right: 4px solid #00c853; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .stat-card { background: #f8f9fa; padding: 1.2rem; border-radius: 16px; text-align: center; transition: transform 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-number { font-size: 2rem; font-weight: 800; color: #0066cc; }
+        .food-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1rem 0; }
+        .food-item { background: #f8f9fa; padding: 1rem; border-radius: 12px; display: flex; align-items: center; gap: 12px; }
+        .food-item i { font-size: 1.5rem; color: #00c853; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #0066cc, #1a237e); color: white; text-decoration: none; padding: 12px 28px; border-radius: 40px; font-weight: 600; margin-top: 2rem; transition: all 0.3s; border: none; cursor: pointer; }
+        .btn-back:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,102,204,0.4); }
+        .toc { background: #f8f9fa; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; }
+        .toc h3 { color: #0066cc; margin-bottom: 1rem; }
+        .toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .toc li a { color: #0066cc; text-decoration: none; transition: color 0.3s; }
+        .toc li a:hover { color: #1a237e; text-decoration: underline; }
+        .footer { text-align: center; padding: 2rem; background: #1a237e; color: white; margin-top: 2rem; border-radius: 28px 28px 0 0; }
+        hr { margin: 1.5rem 0; border: none; height: 1px; background: linear-gradient(to left, #0066cc, transparent); }
+        .checklist-item { display: flex; align-items: center; gap: 12px; padding: 0.8rem; background: #f8f9fa; border-radius: 12px; margin: 0.5rem 0; }
+        .checklist-item i { font-size: 1.3rem; color: #00c853; }
+        @media (max-width: 768px) { .article-header h1 { font-size: 1.5rem; } .article-content { padding: 1.5rem; } .featured-image { height: 200px; } }
+    </style>
 </head>
 <body>
-<header>
-    <div class="header-container">
-        <div class="logo">
-            <img src="../images/logo.png" alt="شعار عيادتي الذكية">
-            <h1>عيادتي الذكية</h1>
+
+<div class="article-container">
+    <div class="article-card">
+        <div class="article-header">
+            <h1><i class="fas fa-heart"></i> نصائح ذهبية لصحة القلب</h1>
+            <p>عادات يومية بسيطة تحمي قلبك من الأمراض وتطيل عمرك</p>
+            <div class="article-meta">
+                <span><i class="fas fa-user-md"></i> د. صلاح الأهدل</span>
+                <span><i class="fas fa-calendar-alt"></i> 15 أبريل 2025</span>
+                <span><i class="fas fa-clock"></i> وقت القراءة: 10 دقائق</span>
+                <span><i class="fas fa-heart"></i> 5,800 قراءة</span>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="../index.html">الرئيسية</a></li>
-                <li><a href="catheter.html">القسطرة القلبية</a></li>
-                <li><a href="stents.html">دعامات القلب</a></li>
-                <li><a href="blocked-artery.html">أعراض انسداد الشرايين</a></li>
-                <li><a href="patient-care.html">العناية بالمريض</a></li>
-                <li><a href="tips.html">نصائح وإرشادات</a></li>
-            </ul>
-        </nav>
+        
+        <div class="featured-image">
+            <i class="fas fa-heart"></i>
+        </div>
+        
+        <div class="article-content">
+            <!-- فهرس المحتويات -->
+            <div class="toc">
+                <h3><i class="fas fa-list-ul"></i> فهرس المحتويات</h3>
+                <ul>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#tips">7 نصائح ذهبية لصحة القلب</a></li>
+                    <li><a href="#diet">أطعمة تحمي قلبك</a></li>
+                    <li><a href="#exercise">تمارين رياضية مفيدة للقلب</a></li>
+                    <li><a href="#habits">عادات يومية خاطئة تضر القلب</a></li>
+                    <li><a href="#stress">إدارة التوتر والضغط النفسي</a></li>
+                    <li><a href="#checklist">قائمة مراجعة يومية لصحة القلب</a></li>
+                    <li><a href="#myths">خرافات شائعة عن صحة القلب</a></li>
+                    <li><a href="#faq">أسئلة شائعة</a></li>
+                </ul>
+            </div>
+            
+            <!-- المقدمة -->
+            <h2 id="intro"><i class="fas fa-info-circle"></i> مقدمة</h2>
+            <p>أمراض القلب هي السبب الأول للوفاة في العالم، ولكن الخبر الجيد هو أن 80% من أمراض القلب يمكن الوقاية منها بتغيير نمط الحياة واتباع عادات صحية بسيطة. هذا الدليل يقدم لك نصائح ذهبية لحماية قلبك وتحسين صحتك العامة.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">80%</div>
+                    <div>من أمراض القلب يمكن الوقاية منها</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">30min</div>
+                    <div>مشى يومياً يخفض خطر القلب 35%</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5-10%</div>
+                    <div>فقدان الوزن يحسن ضغط الدم والكوليسترول</div>
+                </div>
+            </div>
+            
+            <!-- 7 نصائح ذهبية -->
+            <h2 id="tips"><i class="fas fa-star-of-life"></i> 7 نصائح ذهبية لصحة القلب</h2>
+            
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-number">1</div>
+                    <h3><i class="fas fa-smoking-ban"></i> توقف عن التدخين</h3>
+                    <p>التدخين يضاعف خطر أمراض القلب 2-4 مرات. الفوائد تبدأ بعد 20 دقيقة من آخر سيجارة! بعد سنة من الإقلاع، يقل خطر الإصابة بأمراض القلب إلى النصف مقارنة بالمدخن.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-number">2</div>
+                    <h3><i class="fas fa-walking"></i> تحرك 30 دقيقة يومياً</h3>
+                    <p>المشي السريع أفضل دواء وقائي. يخفض الضغط والكوليسترول ويحسن المزاج. حتى 10 دقائق فقط تفيد. حاول المشي يومياً، وزد المسافة تدريجياً.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-number">3</div>
+                    <h3><i class="fas fa-fish"></i> تناول السمك مرتين أسبوعياً</h3>
+                    <p>الأوميغا 3 في السمك الدهني (السلمون، السردين، الماكريل، التونة) تحمي الشرايين من الالتهابات وتقلل خطر عدم انتظام ضربات القلب.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-number">4</div>
+                    <h3><i class="fas fa-hand-peace"></i> تحكم في التوتر</h3>
+                    <p>الإجهاد المزمن يرفع الكورتيزول ويضر القلب. مارس التأمل، التنفس العميق، أو الصلاة بخشوع. خصص 10 دقائق يومياً للاسترخاء.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-number">5</div>
+                    <h3><i class="fas fa-bed"></i> نم جيداً</h3>
+                    <p>7-8 ساعات نوم ليلي ضرورية لصحة القلب. قلة النوم ترفع ضغط الدم وتزيد خطر السمنة والسكري. حافظ على روتين نوم منتظم.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-number">6</div>
+                    <h3><i class="fas fa-weight-scale"></i> راقب أوزانك</h3>
+                    <p>السمنة تضغط على القلب وتزيد خطر السكري وارتفاع الضغط. حافظ على BMI أقل من 25. فقدان 5-10% من وزنك يحسن صحة قلبك بشكل كبير.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-number">7</div>
+                    <h3><i class="fas fa-stethoscope"></i> فحوصات دورية</h3>
+                    <p>قيس ضغطك وكوليسترولك سنوياً، خاصة بعد سن الأربعين. الكشف المبكر عن عوامل الخطر يسمح بالعلاج المبكر والوقاية من المضاعفات.</p>
+                </div>
+            </div>
+            
+            <!-- أطعمة تحمي القلب -->
+            <h2 id="diet"><i class="fas fa-apple-alt"></i> أطعمة تحمي قلبك</h2>
+            
+            <div class="food-list">
+                <div class="food-item"><i class="fas fa-check-circle"></i> <span><strong>الخضروات الورقية</strong> - سبانخ، خس، كرنب (غنية بفيتامين K)</span></div>
+                <div class="food-item"><i class="fas fa-check-circle"></i> <span><strong>الحبوب الكاملة</strong> - شوفان، قمح، شعير، أرز بني</span></div>
+                <div class="food-item"><i class="fas fa-check-circle"></i> <span><strong>المكسرات</strong> - جوز، لوز، فستق (باعتدال)</span></div>
+                <div class="food-item"><i class="fas fa-check-circle"></i> <span><strong>زيت الزيتون البكر</strong> - مصدر ممتاز للدهون الصحية</span></div>
+                <div class="food-item"><i class="fas fa-check-circle"></i> <span><strong>التوت</strong> - فراولة، توت أزرق، توت أحمر (غني بمضادات الأكسدة)</span></div>
+                <div class="food-item"><i class="fas fa-check-circle"></i> <span><strong>الأفوكادو</strong> - غني بالدهون الأحادية غير المشبعة</span></div>
+                <div class="food-item"><i class="fas fa-check-circle"></i> <span><strong>الثوم</strong> - يساعد في خفض ضغط الدم والكوليسترول</span></div>
+                <div class="food-item"><i class="fas fa-check-circle"></i> <span><strong>الشاي الأخضر</strong> - غني بمضادات الأكسدة</span></div>
+            </div>
+            
+            <div class="warning-box">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>أطعمة يجب تجنبها أو تقليلها:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>الدهون المشبعة والمتحولة (الزبدة، السمن، الأطعمة المقلية)</li>
+                    <li>السكريات والحلويات والمشروبات الغازية</li>
+                    <li>الملح الزائد (أقل من 5 غرام يومياً)</li>
+                    <li>اللحوم المصنعة (سجق، لانشون، بسطرمة)</li>
+                    <li>الخبز الأبيض والأرز الأبيض (يفضل الحبوب الكاملة)</li>
+                </ul>
+            </div>
+            
+            <!-- تمارين رياضية -->
+            <h2 id="exercise"><i class="fas fa-running"></i> تمارين رياضية مفيدة للقلب</h2>
+            
+            <div class="success-box">
+                <strong>التمارين الهوائية (Aerobic Exercise):</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>المشي السريع:</strong> 30 دقيقة يومياً، 5 أيام أسبوعياً</li>
+                    <li><strong>الركض الخفيف (Jogging):</strong> 20-30 دقيقة، 3-4 أيام أسبوعياً</li>
+                    <li><strong>السباحة:</strong> تمرين رائع لجميع العضلات</li>
+                    <li><strong>ركوب الدراجة:</strong> ثابتة أو متحركة</li>
+                    <li><strong>تمارين HIIT (فترات عالية الشدة):</strong> 15-20 دقيقة، مرتين أسبوعياً</li>
+                </ul>
+            </div>
+            
+            <div class="info-box">
+                <strong>تمارين القوة (Strength Training):</strong>
+                <ul style="margin-top: 10px;">
+                    <li>رفع الأثقال الخفيفة</li>
+                    <li>تمارين المقاومة (الأربطة المطاطية)</li>
+                    <li>تمارين وزن الجسم (ضغط، قرفصاء)</li>
+                    <li>مرتين أسبوعياً، 8-12 تكرار لكل تمرين</li>
+                </ul>
+            </div>
+            
+            <!-- عادات خاطئة -->
+            <h2 id="habits"><i class="fas fa-ban"></i> عادات يومية خاطئة تضر القلب</h2>
+            
+            <div class="danger-box">
+                <ul style="margin-top: 10px;">
+                    <li><strong>الجلوس الطويل:</strong> حتى لو كنت تمارس الرياضة، الجلوس لأكثر من 8 ساعات يومياً يزيد خطر أمراض القلب</li>
+                    <li><strong>قلة النوم المزمنة:</strong> أقل من 6 ساعات ليلاً يزيد خطر ارتفاع ضغط الدم والسمنة</li>
+                    <li><strong>تخطي وجبة الإفطار:</strong> يرتبط بزيادة خطر السمنة والسكري وأمراض القلب</li>
+                    <li><strong>الإفراط في تناول الملح:</strong> يرفع ضغط الدم ويضر الشرايين</li>
+                    <li><strong>الإفراط في تناول السكريات:</strong> يزيد الالتهابات والدهون الثلاثية</li>
+                    <li><strong>تناول الطعام المتأخر ليلاً:</strong> يزيد خطر السمنة وارتفاع الكوليسترول</li>
+                </ul>
+            </div>
+            
+            <!-- إدارة التوتر -->
+            <h2 id="stress"><i class="fas fa-hand-peace"></i> إدارة التوتر والضغط النفسي</h2>
+            <p>التوتر المزمن يرفع ضغط الدم، يزيد الكورتيزول، ويضر القلب. إليك تقنيات فعالة للاسترخاء:</p>
+            
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-number">1</div>
+                    <h3><i class="fas fa-lungs"></i> التنفس العميق</h3>
+                    <p>خذ 5 دقائق يومياً للتنفس العميق: شهيق لمدة 4 ثوانٍ، حبس 4 ثوانٍ، زفير 4 ثوانٍ. كرر 10 مرات.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-number">2</div>
+                    <h3><i class="fas fa-pray"></i> التأمل واليقظة</h3>
+                    <p>جلسات تأمل قصيرة (10-15 دقيقة) تخفض التوتر وتحسن التركيز والمزاج.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-number">3</div>
+                    <h3><i class="fas fa-heart"></i> الصلاة والذكر</h3>
+                    <p>الصلاة بخشوع وذكر الله يطمئن القلب ويزيل القلق، كما قال تعالى: "ألا بذكر الله تطمئن القلوب".</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-number">4</div>
+                    <h3><i class="fas fa-walking"></i> المشي في الطبيعة</h3>
+                    <p>المشي في الهواء الطلق يخفض هرمونات التوتر ويحسن المزاج بشكل فوري.</p>
+                </div>
+            </div>
+            
+            <!-- قائمة مراجعة يومية -->
+            <h2 id="checklist"><i class="fas fa-clipboard-list"></i> قائمة مراجعة يومية لصحة القلب</h2>
+            
+            <div class="checklist-item"><i class="fas fa-check-circle"></i> <span>☐ مشيت لمدة 30 دقيقة على الأقل اليوم</span></div>
+            <div class="checklist-item"><i class="fas fa-check-circle"></i> <span>☐ تناولت 5 حصص من الخضروات والفواكه</span></div>
+            <div class="checklist-item"><i class="fas fa-check-circle"></i> <span>☐ قللت الملح في طعامي</span></div>
+            <div class="checklist-item"><i class="fas fa-check-circle"></i> <span>☐ شربت 8 أكواب من الماء</span></div>
+            <div class="checklist-item"><i class="fas fa-check-circle"></i> <span>☐ نمت 7-8 ساعات</span></div>
+            <div class="checklist-item"><i class="fas fa-check-circle"></i> <span>☐ تجنبت المشروبات الغازية والحلويات</span></div>
+            <div class="checklist-item"><i class="fas fa-check-circle"></i> <span>☐ خصصت وقتاً للاسترخاء (تنفس عميق، تأمل)</span></div>
+            <div class="checklist-item"><i class="fas fa-check-circle"></i> <span>☐ تناولت أدويتي في موعدها (إذا كنت مريض قلب)</span></div>
+            <div class="checklist-item"><i class="fas fa-check-circle"></i> <span>☐ قست ضغط دمي (إذا كنت مريض ضغط)</span></div>
+            
+            <!-- خرافات شائعة -->
+            <h2 id="myths"><i class="fas fa-question-circle"></i> خرافات شائعة عن صحة القلب</h2>
+            
+            <div class="info-box">
+                <strong>❌ الخرافة 1: "أمراض القلب تصيب كبار السن فقط"</strong>
+                <p>✅ الحقيقة: تصلب الشرايين يبدأ في سن المراهقة، والنوبات القلبية تحدث في أي عمر. عوامل الخطر مثل التدخين والسمنة تبدأ مبكراً.</p>
+            </div>
+            
+            <div class="info-box">
+                <strong>❌ الخرافة 2: "إذا لم تكن لدي أعراض، فقلبي سليم"</strong>
+                <p>✅ الحقيقة: ارتفاع ضغط الدم وارتفاع الكوليسترول ليس لهما أعراض واضحة، ولكنها تضر القلب بصمت. الفحوصات الدورية ضرورية.</p>
+            </div>
+            
+            <div class="info-box">
+                <strong>❌ الخرافة 3: "الدهون كلها ضارة للقلب"</strong>
+                <p>✅ الحقيقة: الدهون غير المشبعة (مثل زيت الزيتون، الأفوكادو، المكسرات) مفيدة للقلب. الضارة هي الدهون المشبعة والمتحولة.</p>
+            </div>
+            
+            <div class="info-box">
+                <strong>❌ الخرافة 4: "ممارسة الرياضة القوية أفضل للقلب"</strong>
+                <p>✅ الحقيقة: أي نشاط بدني مفيد، حتى المشي الخفيف. المهم الاستمرارية، وليس الشدة.</p>
+            </div>
+            
+            <div class="info-box">
+                <strong>❌ الخرافة 5: "مكملات الفيتامينات تحمي القلب"</strong>
+                <p>✅ الحقيقة: لا توجد أدلة كافية على أن مكملات الفيتامينات تمنع أمراض القلب. المصدر الأفضل هو الطعام الصحي المتوازن.</p>
+            </div>
+            
+            <!-- أسئلة شائعة -->
+            <h2 id="faq"><i class="fas fa-question-circle"></i> أسئلة شائعة</h2>
+            
+            <h3>كم مرة في الأسبوع يجب ممارسة الرياضة لصحة القلب؟</h3>
+            <p>ينصح بممارسة 150 دقيقة من النشاط المعتدل (مثل المشي السريع) أو 75 دقيقة من النشاط القوي (مثل الركض) أسبوعياً. يمكن توزيعها على 5 أيام بمعدل 30 دقيقة يومياً.</p>
+            
+            <h3>هل القهوة ضارة للقلب؟</h3>
+            <p>القهوة باعتدال (2-3 أكواب يومياً) آمنة لمعظم الأشخاص بل وقد تكون مفيدة للقلب. لكن تجنب إضافة السكر والكريمة. إذا كنت تعاني من عدم انتظام ضربات القلب أو ارتفاع ضغط الدم غير المسيطر عليه، استشر طبيبك.</p>
+            
+            <h3>هل البيض يرفع الكوليسترول؟</h3>
+            <p>البيض (خاصة الصفار) يحتوي على كوليسترول، ولكن الدراسات الحديثة أظهرت أن تناوله باعتدال (7-12 بيضة أسبوعياً) لا يزيد خطر أمراض القلب لدى الأشخاص الأصحاء. الدهون المشبعة والمتحولة هي الأكثر ضرراً.</p>
+            
+            <h3>هل يمكنني ممارسة الرياضة إذا كنت مصاباً بمرض قلب؟</h3>
+            <p>نعم، بل ينصح بها. استشر طبيبك أولاً لوضع برنامج رياضي آمن يناسب حالتك. ابدأ ببطء وزد الشدة تدريجياً. تجنب التمارين القوية إذا كنت تعاني من أعراض.</p>
+            
+            <h3>كم مرة يجب فحص ضغط الدم في المنزل؟</h3>
+            <p>إذا كنت تعاني من ارتفاع ضغط الدم، ينصح بقياسه يومياً في الصباح والمساء. للأشخاص الأصحاء، يكفي قياسه مرة شهرياً أو عند زيارة الطبيب.</p>
+            
+            <hr>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <p><strong>⚠️ تنبيه هام:</strong> هذا المحتوى هو لأغراض توعوية وتعليمية فقط، ولا يغني عن استشارة الطبيب المختص. في حال وجود أي أعراض، يرجى مراجعة الطبيب فوراً.</p>
+                <button class="btn-back" onclick="window.location.href='../index.html'">
+                    <i class="fas fa-arrow-right"></i> العودة إلى المنصة
+                </button>
+            </div>
+        </div>
     </div>
-</header>
-
-<main class="article-page">
-    <div class="article-header">
-        <h2>نصائح وإرشادات للحفاظ على صحة القلب</h2>
-        <img src="../images/tips.jpg" alt="نصائح طبية">
+    
+    <div class="footer">
+        <p>© 2026 منصة استشاريون - جميع الحقوق محفوظة | اليمن</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">بإشراف د. صلاح الأهدل - مدير مكتب الصحة</p>
     </div>
+</div>
 
-    <div class="section">
-        <h3>نصائح عامة</h3>
-        <ul>
-            <li>اتباع نظام غذائي صحي غني بالخضروات والفواكه.</li>
-            <li>ممارسة الرياضة بانتظام، مثل المشي أو السباحة.</li>
-            <li>الحفاظ على وزن صحي وتجنب السمنة.</li>
-            <li>الابتعاد عن التدخين والكحول.</li>
-            <li>مراقبة مستويات الكوليسترول والضغط والسكر.</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h3>إرشادات مهمة</h3>
-        <ul>
-            <li>زيارة الطبيب دوريًا لإجراء الفحوصات اللازمة.</li>
-            <li>الالتزام بالأدوية الموصوفة وعدم التوقف عنها بدون استشارة الطبيب.</li>
-            <li>تعلم أعراض الذبحة الصدرية والنوبات القلبية والاستجابة السريعة لها.</li>
-        </ul>
-    </div>
-
-    <a class="back-link" href="../index.html">العودة للرئيسية</a>
-</main>
-
-<footer>
-    <p>&copy; 2026 عيادتي الذكية. جميع الحقوق محفوظة.</p>
-</footer>
-<script src="../script.js"></script>
+<script>
+    // تنشيط الروابط الداخلية والتمرير السلس
+    document.querySelectorAll('.toc a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    console.log('تم تحميل مقال النصائح الذهبية لصحة القلب - منصة استشاريون');
+</script>
 </body>
 </html>
