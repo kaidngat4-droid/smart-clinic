@@ -1,3 +1,430 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>أمراض الجهاز البولي - عيادتي الذكية</title><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><style>body{font-family:'Cairo',sans-serif;background:#f4f9fe;color:#1a2c3e;line-height:1.6;}header{background:linear-gradient(135deg,#0a2b3e,#154c6e);color:white;padding:1rem 2rem;position:sticky;top:0;z-index:100;}.header-container{max-width:1300px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}.logo{display:flex;align-items:center;gap:12px;cursor:pointer;}.logo-img{width:50px;height:50px;border-radius:50%;object-fit:cover;background:white;padding:3px;}.logo h1{font-size:1.6rem;background:linear-gradient(135deg,#fff,#ffe0b5);background-clip:text;-webkit-background-clip:text;color:transparent;}nav ul{display:flex;gap:1rem;list-style:none;flex-wrap:wrap;}nav ul li a{color:white;text-decoration:none;font-weight:600;}#back-home{background:rgba(255,255,240,0.2);border:none;padding:6px 15px;border-radius:40px;color:white;cursor:pointer;}.container{max-width:1000px;margin:2rem auto;padding:0 1.5rem;}.card{background:white;border-radius:32px;padding:2rem;box-shadow:0 15px 30px rgba(0,0,0,0.1);margin-bottom:2rem;}.card h2{color:#1e88e5;border-right:5px solid #1e88e5;padding-right:1rem;margin-bottom:1rem;}.footer{text-align:center;padding:2rem;background:#0f2c38;color:#cbd5e1;margin-top:3rem;}@media (max-width:700px){.header-container{flex-direction:column;}}</style></head><body><header><div class="header-container"><div class="logo" onclick="location.href='../index.html'"><img src="../images/logo.png" class="logo-img" onerror="this.src='https://placehold.co/50x50'"><h1>عيادتي الذكية</h1></div><nav><ul><li><a href="../index.html">الرئيسية</a></li><li><a href="about.html">من نحن</a></li><li><a href="urology.html">المسالك البولية</a></li></ul></nav><button id="back-home" onclick="location.href='../index.html'">🏠 الرئيسية</button></div></header><div class="container"><div style="text-align:center;margin-bottom:2rem;"><img src="../images/urinary.jpg" alt="الجهاز البولي" style="width:180px;height:180px;border-radius:50%;object-fit:cover;border:4px solid #1e88e5;"></div><div class="card"><h2>أمراض الجهاز البولي</h2><p>تشمل: التهابات المسالك البولية، حصوات الكلى والمثانة، الفشل الكلوي، تضخم البروستاتا، وسلس البول.</p><p>نقدم معلومات عن تنظير المثانة، تفتيت الحصوات، وعلاجات البروستاتا الحديثة.</p></div><div class="card"><h2>نصائح للحفاظ على صحة الجهاز البولي</h2><ul><li>شرب كمية كافية من الماء (2-3 لتر يومياً).</li><li>لا تحبس البول لفترات طويلة.</li><li>حافظ على النظافة الشخصية لتجنب التهابات المسالك.</li></ul></div></div><footer class="footer"><p>© 2026 عيادتي الذكية — محتوى توعوي</p></footer></body></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>أمراض الجهاز البولي - دليل شامل | استشاريون</title>
+    <meta name="description" content="دليل شامل لأمراض الجهاز البولي: أمراض الكلى، حصوات الكلى، الفشل الكلوي، تضخم البروستاتا، التهابات المسالك البولية. معلومات موثقة من د. صلاح الأهدل">
+    <meta name="author" content="د. صلاح الأهدل">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #f0f4f8; color: #1a2c3e; line-height: 1.7; }
+        .article-container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+        .article-card { background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .article-header { background: linear-gradient(135deg, #0066cc, #1a237e); color: white; padding: 2.5rem; text-align: center; }
+        .article-header h1 { font-size: 2rem; margin-bottom: 1rem; }
+        .article-meta { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.9; margin-top: 1rem; }
+        .article-meta i { margin-left: 5px; }
+        .featured-image { width: 100%; height: 350px; object-fit: cover; background: linear-gradient(135deg, #0066cc, #1a237e); display: flex; align-items: center; justify-content: center; }
+        .featured-image i { font-size: 5rem; color: rgba(255,255,255,0.3); }
+        .article-content { padding: 2.5rem; }
+        .article-content h2 { color: #0066cc; border-right: 4px solid #0066cc; padding-right: 1rem; margin: 2rem 0 1rem 0; font-size: 1.6rem; }
+        .article-content h3 { color: #1a237e; margin: 1.5rem 0 0.8rem 0; font-size: 1.3rem; }
+        .article-content h4 { color: #2c3e50; margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
+        .article-content p { margin-bottom: 1rem; text-align: justify; }
+        .article-content ul, .article-content ol { margin: 1rem 2rem 1rem 0; }
+        .article-content li { margin-bottom: 0.5rem; }
+        .warning-box { background: #fff3e0; border-right: 4px solid #ff9800; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .info-box { background: #e3f2fd; border-right: 4px solid #0066cc; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .danger-box { background: #ffebee; border-right: 4px solid #e74c3c; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .success-box { background: #e8f5e9; border-right: 4px solid #00c853; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .stat-card { background: #f8f9fa; padding: 1.2rem; border-radius: 16px; text-align: center; transition: transform 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-number { font-size: 2rem; font-weight: 800; color: #0066cc; }
+        .disease-card { background: #f8f9fa; border-radius: 20px; padding: 1.5rem; margin: 1.5rem 0; transition: all 0.3s; cursor: pointer; }
+        .disease-card:hover { transform: translateX(-8px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .disease-title { font-size: 1.3rem; font-weight: 700; color: #0066cc; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; }
+        .disease-title i { font-size: 1.5rem; }
+        .symptoms-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1rem 0; }
+        .symptom-item { background: #f8f9fa; padding: 1rem; border-radius: 12px; display: flex; align-items: center; gap: 12px; }
+        .symptom-item i { font-size: 1.3rem; color: #e74c3c; }
+        .kidney-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        .kidney-table th, .kidney-table td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        .kidney-table th { background: #0066cc; color: white; }
+        .kidney-table tr:nth-child(even) { background: #f8f9fa; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #0066cc, #1a237e); color: white; text-decoration: none; padding: 12px 28px; border-radius: 40px; font-weight: 600; margin-top: 2rem; transition: all 0.3s; border: none; cursor: pointer; }
+        .btn-back:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,102,204,0.4); }
+        .toc { background: #f8f9fa; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; }
+        .toc h3 { color: #0066cc; margin-bottom: 1rem; }
+        .toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .toc li a { color: #0066cc; text-decoration: none; transition: color 0.3s; }
+        .toc li a:hover { color: #1a237e; text-decoration: underline; }
+        .footer { text-align: center; padding: 2rem; background: #1a237e; color: white; margin-top: 2rem; border-radius: 28px 28px 0 0; }
+        hr { margin: 1.5rem 0; border: none; height: 1px; background: linear-gradient(to left, #0066cc, transparent); }
+        .tips-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1rem 0; }
+        .tip-item { background: #e8f5e9; padding: 1rem; border-radius: 12px; display: flex; align-items: center; gap: 10px; }
+        .tip-item i { font-size: 1.3rem; color: #00c853; }
+        @media (max-width: 768px) { .article-header h1 { font-size: 1.5rem; } .article-content { padding: 1.5rem; } .featured-image { height: 200px; } }
+    </style>
+</head>
+<body>
+
+<div class="article-container">
+    <div class="article-card">
+        <div class="article-header">
+            <h1><i class="fas fa-kidneys"></i> أمراض الجهاز البولي</h1>
+            <p>دليل شامل لأمراض الكلى، البروستاتا، والمشاكل البولية الشائعة</p>
+            <div class="article-meta">
+                <span><i class="fas fa-user-md"></i> د. صلاح الأهدل</span>
+                <span><i class="fas fa-calendar-alt"></i> 15 أبريل 2025</span>
+                <span><i class="fas fa-clock"></i> وقت القراءة: 12 دقيقة</span>
+                <span><i class="fas fa-heart"></i> 2,800 قراءة</span>
+            </div>
+        </div>
+        
+        <div class="featured-image">
+            <i class="fas fa-kidneys"></i>
+        </div>
+        
+        <div class="article-content">
+            <!-- فهرس المحتويات -->
+            <div class="toc">
+                <h3><i class="fas fa-list-ul"></i> فهرس المحتويات</h3>
+                <ul>
+                    <li><a href="#intro">مقدمة عن الجهاز البولي</a></li>
+                    <li><a href="#kidney-stones">حصوات الكلى</a></li>
+                    <li><a href="#kidney-failure">الفشل الكلوي</a></li>
+                    <li><a href="#bph">تضخم البروستاتا الحميد (BPH)</a></li>
+                    <li><a href="#uti">التهابات المسالك البولية (UTI)</a></li>
+                    <li><a href="#incontinence">سلس البول</a></li>
+                    <li><a href="#symptoms">الأعراض التحذيرية</a></li>
+                    <li><a href="#diagnosis">التشخيص</a></li>
+                    <li><a href="#treatment">العلاج</a></li>
+                    <li><a href="#prevention">الوقاية</a></li>
+                    <li><a href="#faq">أسئلة شائعة</a></li>
+                </ul>
+            </div>
+            
+            <!-- المقدمة -->
+            <h2 id="intro"><i class="fas fa-info-circle"></i> مقدمة عن الجهاز البولي</h2>
+            <p>الجهاز البولي هو نظام حيوي في الجسم مسؤول عن تصفية الدم من الفضلات والسموم، وتنظيم توازن السوائل والأملاح، وإنتاج البول. يشمل الكليتين، الحالبين، المثانة، والإحليل. أمراض الجهاز البولي شائعة وتؤثر على ملايين الأشخاص حول العالم.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">10%</div>
+                    <div>يعانون من حصوات الكلى</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50%</div>
+                    <div>رجال فوق 50 سنة يعانون من تضخم البروستاتا</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50%</div>
+                    <div>نساء يصبن بالتهاب المسالك البولية مرة واحدة على الأقل</div>
+                </div>
+            </div>
+            
+            <!-- حصوات الكلى -->
+            <h2 id="kidney-stones"><i class="fas fa-cubes"></i> حصوات الكلى (Kidney Stones)</h2>
+            
+            <div class="disease-card">
+                <div class="disease-title">
+                    <i class="fas fa-cube"></i>
+                    <span>ما هي حصوات الكلى؟</span>
+                </div>
+                <p>حصوات الكلى هي تكتلات صلبة تتكون من المعادن والأملاح داخل الكلى. تتكون عندما يزداد تركيز بعض المواد في البول (مثل الكالسيوم، الأوكسالات، حمض البوليك) وتتبلور.</p>
+                
+                <h4>أنواع حصوات الكلى:</h4>
+                <ul>
+                    <li><strong>حصوات الكالسيوم:</strong> النوع الأكثر شيوعاً (80% من الحالات)</li>
+                    <li><strong>حصوات حمض البوليك:</strong> شائعة لدى مرضى النقرس</li>
+                    <li><strong>حصوات السيستين:</strong> نادرة ووراثية</li>
+                    <li><strong>حصوات الستروفيت:</strong> مرتبطة بالتهابات المسالك البولية</li>
+                </ul>
+                
+                <h4>أعراض حصوات الكلى:</h4>
+                <div class="symptoms-list">
+                    <div class="symptom-item"><i class="fas fa-backward"></i> <span>ألم شديد في الخاصرة أو أسفل الظهر</span></div>
+                    <div class="symptom-item"><i class="fas fa-tint"></i> <span>دم في البول (لون وردي أو أحمر أو بني)</span></div>
+                    <div class="symptom-item"><i class="fas fa-burn"></i> <span>حرقة أو ألم عند التبول</span></div>
+                    <div class="symptom-item"><i class="fas fa-waveform"></i> <span>رغبة متكررة ومفاجئة في التبول</span></div>
+                    <div class="symptom-item"><i class="fas fa-thermometer-half"></i> <span>حمى وقشعريرة (في حالة العدوى)</span></div>
+                    <div class="symptom-item"><i class="fas fa-dizzy"></i> <span>غثيان وقيء</span></div>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <i class="fas fa-lightbulb"></i>
+                <strong>نصائح للوقاية من حصوات الكلى:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>شرب 2.5-3 لتر من الماء يومياً (أهم نصيحة)</li>
+                    <li>تقليل الملح والأطعمة الغنية بالأوكسالات (السبانخ، الشوكولاتة، المكسرات)</li>
+                    <li>تقليل البروتينات الحيوانية (اللحوم الحمراء)</li>
+                    <li>تناول الكالسيوم من المصادر الغذائية (الحليب، الزبادي) بدلاً من المكملات</li>
+                    <li>تجنب المشروبات الغازية (خاصة الكولا)</li>
+                </ul>
+            </div>
+            
+            <!-- الفشل الكلوي -->
+            <h2 id="kidney-failure"><i class="fas fa-exclamation-triangle"></i> الفشل الكلوي (Kidney Failure)</h2>
+            
+            <div class="disease-card">
+                <div class="disease-title">
+                    <i class="fas fa-chart-line"></i>
+                    <span>مراحل الفشل الكلوي</span>
+                </div>
+                <p>الفشل الكلوي هو فقدان تدريجي لوظائف الكلى. يقاس بواسطة معدل الترشيح الكبيبي (eGFR).</p>
+                
+                <table class="kidney-table">
+                    <thead>
+                        <tr><th>المرحلة</th><th>eGFR</th><th>الوصف</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>المرحلة 1</td><td>≥ 90</td><td>تلف كلوي مع وظيفة طبيعية</td></tr>
+                        <tr><td>المرحلة 2</td><td>60-89</td><td>ضعف كلوي خفيف</td></tr>
+                        <tr><td>المرحلة 3</td><td>30-59</td><td>ضعف كلوي متوسط</td></tr>
+                        <tr><td>المرحلة 4</td><td>15-29</td><td>ضعف كلوي شديد</td></tr>
+                        <tr><td>المرحلة 5</td><td>&lt; 15</td><td>فشل كلوي نهائي (يحتاج غسيل كلى أو زراعة)</td></tr>
+                    </tbody>
+                </table>
+                
+                <h4>أعراض الفشل الكلوي:</h4>
+                <div class="symptoms-list">
+                    <div class="symptom-item"><i class="fas fa-swimmer"></i> <span>تورم في القدمين والكاحلين والوجه</span></div>
+                    <div class="symptom-item"><i class="fas fa-tired"></i> <span>تعب وضعف عام</span></div>
+                    <div class="symptom-item"><i class="fas fa-nausea"></i> <span>غثيان وفقدان شهية</span></div>
+                    <div class="symptom-item"><i class="fas fa-bed"></i> <span>صعوبة في النوم</span></div>
+                    <div class="symptom-item"><i class="fas fa-hand-peace"></i> <span>حكة في الجلد</span></div>
+                    <div class="symptom-item"><i class="fas fa-tint"></i> <span>تغير في كمية البول أو لونه</span></div>
+                </div>
+            </div>
+            
+            <div class="danger-box">
+                <i class="fas fa-ambulance"></i>
+                <strong>⚠️ عوامل خطر الفشل الكلوي:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>داء السكري (السبب الأكثر شيوعاً)</li>
+                    <li>ارتفاع ضغط الدم غير المسيطر عليه</li>
+                    <li>أمراض القلب والأوعية الدموية</li>
+                    <li>التاريخ العائلي للفشل الكلوي</li>
+                    <li>السمنة</li>
+                    <li>التدخين</li>
+                    <li>العمر فوق 60 سنة</li>
+                </ul>
+            </div>
+            
+            <!-- تضخم البروستاتا -->
+            <h2 id="bph"><i class="fas fa-prostate"></i> تضخم البروستاتا الحميد (BPH)</h2>
+            
+            <div class="disease-card">
+                <div class="disease-title">
+                    <i class="fas fa-male"></i>
+                    <span>ما هو تضخم البروستاتا؟</span>
+                </div>
+                <p>تضخم البروستاتا الحميد هو تضخم غير سرطاني في غدة البروستاتا، شائع جداً لدى الرجال مع تقدم العمر. يمكن أن يضغط على مجرى البول ويسبب مشاكل في التبول.</p>
+                
+                <h4>أعراض تضخم البروستاتا:</h4>
+                <div class="symptoms-list">
+                    <div class="symptom-item"><i class="fas fa-waveform"></i> <span>تكرار التبول (خاصة في الليل)</span></div>
+                    <div class="symptom-item"><i class="fas fa-tint"></i> <span>ضعف تيار البول</span></div>
+                    <div class="symptom-item"><i class="fas fa-hourglass-start"></i> <span>صعوبة في بدء التبول</span></div>
+                    <div class="symptom-item"><i class="fas fa-hourglass-end"></i> <span>شعور بعدم إفراغ المثانة بالكامل</span></div>
+                    <div class="symptom-item"><i class="fas fa-burn"></i> <span>حرقة عند التبول</span></div>
+                    <div class="symptom-item"><i class="fas fa-tint"></i> <span>قطرات بول بعد الانتهاء</span></div>
+                </div>
+                
+                <div class="info-box">
+                    <i class="fas fa-stethoscope"></i>
+                    <strong>علاج تضخم البروستاتا:</strong>
+                    <ul style="margin-top: 10px;">
+                        <li><strong>الأدوية:</strong> حاصرات ألفا (تامسولوسين) لتريح عضلات البروستاتا والمثانة</li>
+                        <li><strong>مثبطات 5-ألفا ريدوكتيز (فيناستيرايد، دوتاستيرايد):</strong> لتقليل حجم البروستاتا</li>
+                        <li><strong>العلاجات التداخلية:</strong> الموجات فوق الصوتية، الليزر، الرفع بالبالون</li>
+                        <li><strong>الجراحة:</strong> استئصال البروستاتا بالمنظار (TURP) للحالات الشديدة</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- التهابات المسالك البولية -->
+            <h2 id="uti"><i class="fas fa-bacteria"></i> التهابات المسالك البولية (UTI)</h2>
+            
+            <div class="disease-card">
+                <div class="disease-title">
+                    <i class="fas fa-virus"></i>
+                    <span>ما هي التهابات المسالك البولية؟</span>
+                </div>
+                <p>التهابات المسالك البولية هي عدوى تصيب أي جزء من الجهاز البولي (الكلى، الحالب، المثانة، الإحليل). أكثر شيوعاً عند النساء بسبب قصر الإحليل وقربه من فتحة الشرج.</p>
+                
+                <h4>أنواع التهابات المسالك البولية:</h4>
+                <ul>
+                    <li><strong>التهاب المثانة (Cystitis):</strong> الأكثر شيوعاً، يصاحبه رغبة متكررة في التبول وحرقة</li>
+                    <li><strong>التهاب الإحليل (Urethritis):</strong> التهاب مجرى البول</li>
+                    <li><strong>التهاب الحويضة والكلية (Pyelonephritis):</strong> عدوى الكلى، حالة خطيرة تستدعي العلاج الفوري</li>
+                </ul>
+                
+                <h4>أعراض التهابات المسالك البولية:</h4>
+                <div class="symptoms-list">
+                    <div class="symptom-item"><i class="fas fa-burn"></i> <span>حرقة أو ألم عند التبول</span></div>
+                    <div class="symptom-item"><i class="fas fa-waveform"></i> <span>رغبة متكررة ومفاجئة في التبول</span></div>
+                    <div class="symptom-item"><i class="fas fa-tint"></i> <span>بول عكر أو دموي أو كريه الرائحة</span></div>
+                    <div class="symptom-item"><i class="fas fa-backward"></i> <span>ألم في أسفل البطن أو الظهر</span></div>
+                    <div class="symptom-item"><i class="fas fa-thermometer-half"></i> <span>حمى وقشعريرة (في حالة عدوى الكلى)</span></div>
+                </div>
+                
+                <div class="warning-box">
+                    <i class="fas fa-female"></i>
+                    <strong>نصائح للوقاية من التهابات المسالك البولية للنساء:</strong>
+                    <ul style="margin-top: 10px;">
+                        <li>شرب كمية كافية من الماء (8 أكواب يومياً)</li>
+                        <li>التبول بعد الجماع مباشرة</li>
+                        <li>مسح المنطقة من الأمام إلى الخلف بعد التبرز</li>
+                        <li>تجنب استخدام المنتجات المهيجة (البخاخات، الدوش المهبلي)</li>
+                        <li>ارتداء ملابس داخلية قطنية وتجنب الملابس الضيقة</li>
+                        <li>شرب عصير التوت البري (قد يساعد في الوقاية)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- سلس البول -->
+            <h2 id="incontinence"><i class="fas fa-tint"></i> سلس البول (Urinary Incontinence)</h2>
+            
+            <div class="disease-card">
+                <div class="disease-title">
+                    <i class="fas fa-tint"></i>
+                    <span>أنواع سلس البول</span>
+                </div>
+                <ul>
+                    <li><strong>سلس الإجهاد (Stress Incontinence):</strong> تسرب البول عند السعال، العطس، الضحك، أو رفع الأثقال</li>
+                    <li><strong>سلس الإلحاح (Urge Incontinence):</strong> رغبة مفاجئة وقوية في التبول مع تسرب لا يمكن السيطرة عليه</li>
+                    <li><strong>سلس الفيضان (Overflow Incontinence):</strong> تسرب قطرات بول باستمرار بسبب عدم إفراغ المثانة بالكامل</li>
+                    <li><strong>سلس وظيفي (Functional Incontinence):</strong> عدم القدرة على الوصول إلى المرحاض بسبب مشاكل جسدية أو عقلية</li>
+                </ul>
+                
+                <div class="info-box">
+                    <i class="fas fa-lightbulb"></i>
+                    <strong>علاج سلس البول:</strong>
+                    <ul style="margin-top: 10px;">
+                        <li>تمارين قاع الحوض (تمارين كيجل)</li>
+                        <li>تدريب المثانة (تأخير التبول تدريجياً)</li>
+                        <li>الأدوية (مضادات الكولين، ميرابيغرون)</li>
+                        <li>العلاج بالهرمونات الموضعية للنساء بعد انقطاع الطمث</li>
+                        <li>الجراحة (لحالات سلس الإجهاد الشديدة)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- الأعراض التحذيرية -->
+            <h2 id="symptoms"><i class="fas fa-bell"></i> الأعراض التحذيرية لأمراض الجهاز البولي</h2>
+            
+            <div class="danger-box">
+                <i class="fas fa-ambulance"></i>
+                <strong>⚠️ أعراض تستدعي مراجعة الطبيب فوراً:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>دم في البول (وإن كان مرة واحدة)</li>
+                    <li>ألم شديد في الخاصرة أو أسفل الظهر لا يزول</li>
+                    <li>حمى مع أعراض بولية</li>
+                    <li>عدم القدرة على التبول (احتباس البول الحاد)</li>
+                    <li>تورم في الساقين أو الوجه</li>
+                    <li>تعب غير مبرر مع غثيان وفقدان شهية</li>
+                </ul>
+            </div>
+            
+            <!-- التشخيص -->
+            <h2 id="diagnosis"><i class="fas fa-stethoscope"></i> تشخيص أمراض الجهاز البولي</h2>
+            <ul>
+                <li><strong>تحليل البول (Urinalysis):</strong> للكشف عن العدوى، الدم، البروتين</li>
+                <li><strong>زراعة البول (Urine Culture):</strong> لتحديد نوع البكتيريا المسببة للعدوى</li>
+                <li><strong>تحليل الدم:</strong> الكرياتينين، اليوريا، GFR لتقييم وظائف الكلى</li>
+                <li><strong>الموجات فوق الصوتية (Ultrasound):</strong> لتصوير الكلى والمثانة والبروستاتا</li>
+                <li><strong>الأشعة المقطعية (CT Scan):</strong> للكشف عن الحصوات والأورام</li>
+                <li><strong>تنظير المثانة (Cystoscopy):</strong> لفحص داخل المثانة والإحليل</li>
+                <li><strong>قياس تدفق البول (Uroflowmetry):</strong> لتقييم تدفق البول</li>
+                <li><strong>خزعة الكلى (Kidney Biopsy):</strong> في حالات أمراض الكلى غير المعروفة السبب</li>
+            </ul>
+            
+            <!-- العلاج -->
+            <h2 id="treatment"><i class="fas fa-tools"></i> خيارات العلاج المتاحة</h2>
+            
+            <h3>العلاج الدوائي:</h3>
+            <ul>
+                <li><strong>المضادات الحيوية:</strong> لعلاج التهابات المسالك البولية</li>
+                <li><strong>حاصرات ألفا (Alpha-blockers):</strong> لتخفيف أعراض تضخم البروستاتا</li>
+                <li><strong>مثبطات 5-ألفا ريدوكتيز (5-ARI):</strong> لتقليل حجم البروستاتا</li>
+                <li><strong>مضادات الكولين (Anticholinergics):</strong> لعلاج سلس البول الإلحاحي</li>
+                <li><strong>أدوية خفض حمض البوليك:</strong> للوقاية من حصوات حمض البوليك</li>
+            </ul>
+            
+            <h3>العلاج التداخلي والجراحي:</h3>
+            <ul>
+                <li><strong>تفتيت الحصوات بالموجات التصادمية (ESWL):</strong> لتكسير حصوات الكلى</li>
+                <li><strong>استئصال البروستاتا بالمنظار (TURP):</strong> للحالات الشديدة من تضخم البروستاتا</li>
+                <li><strong>زراعة الكلى (Kidney Transplant):</strong> للمرحلة النهائية من الفشل الكلوي</li>
+                <li><strong>غسيل الكلى (Dialysis):</strong> الدموي أو البريتوني للمرضى الذين ينتظرون الزراعة أو لا يناسبهم الزرع</li>
+                <li><strong>جراحات سلس البول:</strong> مثل وضع شريط تحت الإحليل (Sling procedure)</li>
+            </ul>
+            
+            <!-- الوقاية -->
+            <h2 id="prevention"><i class="fas fa-shield-heart"></i> الوقاية من أمراض الجهاز البولي</h2>
+            
+            <div class="success-box">
+                <i class="fas fa-check-double"></i>
+                <strong>نصائح للحفاظ على صحة الجهاز البولي:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>شرب كمية كافية من الماء:</strong> 2-3 لتر يومياً</li>
+                    <li><strong>لا تحبس البول:</strong> تبول عند الشعور بالحاجة</li>
+                    <li><strong>النظافة الشخصية الجيدة:</strong> خاصة للنساء</li>
+                    <li><strong>التبول بعد الجماع:</strong> للنساء لمنع التهابات المسالك البولية</li>
+                    <li><strong>التحكم في ضغط الدم والسكري:</strong> أهم عاملين للحفاظ على الكلى</li>
+                    <li><strong>تجنب الإفراط في تناول الملح والبروتينات الحيوانية</strong></li>
+                    <li><strong>الإقلاع عن التدخين</strong></li>
+                    <li><strong>الفحوصات الدورية:</strong> تحليل بول ووظائف كلى سنوياً بعد سن 40</li>
+                </ul>
+            </div>
+            
+            <!-- أسئلة شائعة -->
+            <h2 id="faq"><i class="fas fa-question-circle"></i> أسئلة شائعة عن أمراض الجهاز البولي</h2>
+            
+            <h3>هل شرب الماء بكثرة يمنع حصوات الكلى؟</h3>
+            <p>نعم، شرب كمية كافية من الماء (2.5-3 لتر يومياً) هو أفضل طريقة للوقاية من حصوات الكلى. الماء يخفف البول ويمنع تركيز المعادن والأملاح التي تشكل الحصوات.</p>
+            
+            <h3>ما الفرق بين الفشل الكلوي الحاد والمزمن؟</h3>
+            <p>الفشل الكلوي الحاد يحدث فجأة (خلال ساعات أو أيام) غالباً بسبب الجفاف الشديد، العدوى، أو تناول أدوية ضارة بالكلى، وقد يكون قابلاً للعكس إذا عولج مبكراً. الفشل الكلوي المزمن يتطور تدريجياً على مدى أشهر أو سنوات، وعادة لا يمكن عكسه.</p>
+            
+            <h3>هل جميع حالات تضخم البروستاتا تحتاج لجراحة؟</h3>
+            <p>لا، معظم الحالات تتحسن بالأدوية وتغيير نمط الحياة. الجراحة (TURP) تُستخدم فقط للحالات الشديدة التي لا تستجيب للأدوية، أو التي تسبب مضاعفات مثل احتباس البول المتكرر، التهابات متكررة، أو حصوات المثانة.</p>
+            
+            <h3>كيف أعرف إذا كان لدي التهاب في المسالك البولية؟</h3>
+            <p>الأعراض الشائعة تشمل حرقة عند التبول، رغبة متكررة ومفاجئة في التبول، بول عكر أو كريه الرائحة، وألم في أسفل البطن. يتم تأكيد التشخيص بتحليل البول وزراعته.</p>
+            
+            <h3>هل عصير التوت البري مفيد لعلاج التهابات المسالك البولية؟</h3>
+            <p>عصير التوت البري قد يساعد في الوقاية من التهابات المسالك البولية (خاصة المتكررة) عن طريق منع التصاق البكتيريا بجدار المثانة. لكنه ليس علاجاً للعدوى الحادة. إذا كنت تعاني من أعراض التهاب حاد، يجب مراجعة الطبيب للحصول على مضادات حيوية.</p>
+            
+            <h3>هل هناك علاقة بين صحة الكلى وصحة القلب؟</h3>
+            <p>نعم، العلاقة قوية جداً. أمراض الكلى تزيد من خطر أمراض القلب، والعكس صحيح. ارتفاع ضغط الدم والسكري يؤثران على كل من القلب والكلى. لذلك، العناية بصحة الكلى تحمي القلب أيضاً.</p>
+            
+            <hr>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <p><strong>⚠️ تنبيه هام:</strong> هذا المحتوى هو لأغراض توعوية وتعليمية فقط، ولا يغني عن استشارة الطبيب المختص. في حال وجود أي أعراض، يرجى مراجعة الطبيب فوراً.</p>
+                <button class="btn-back" onclick="window.location.href='../index.html'">
+                    <i class="fas fa-arrow-right"></i> العودة إلى المنصة
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2026 منصة استشاريون - جميع الحقوق محفوظة | اليمن</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">بإشراف د. صلاح الأهدل - مدير مكتب الصحة</p>
+    </div>
+</div>
+
+<script>
+    // تنشيط الروابط الداخلية والتمرير السلس
+    document.querySelectorAll('.toc a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    console.log('تم تحميل مقال أمراض الجهاز البولي - منصة استشاريون');
+</script>
+</body>
+  </html>
