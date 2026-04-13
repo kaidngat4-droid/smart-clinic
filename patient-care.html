@@ -1,62 +1,423 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>العناية بالمريض - عيادتي الذكية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>العناية بالمريض بعد العمليات القلبية | استشاريون</title>
+    <meta name="description" content="دليل شامل للعناية بالمريض بعد العمليات القلبية: نصائح للعناية بعد القسطرة، جراحة القلب المفتوح، الأدوية، التغذية، والتمارين. معلومات موثقة من د. صلاح الأهدل">
+    <meta name="author" content="د. صلاح الأهدل">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #f0f4f8; color: #1a2c3e; line-height: 1.7; }
+        .article-container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+        .article-card { background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .article-header { background: linear-gradient(135deg, #0066cc, #1a237e); color: white; padding: 2.5rem; text-align: center; }
+        .article-header h1 { font-size: 2rem; margin-bottom: 1rem; }
+        .article-meta { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.9; margin-top: 1rem; }
+        .article-meta i { margin-left: 5px; }
+        .featured-image { width: 100%; height: 350px; object-fit: cover; background: linear-gradient(135deg, #0066cc, #1a237e); display: flex; align-items: center; justify-content: center; }
+        .featured-image i { font-size: 5rem; color: rgba(255,255,255,0.3); }
+        .article-content { padding: 2.5rem; }
+        .article-content h2 { color: #0066cc; border-right: 4px solid #0066cc; padding-right: 1rem; margin: 2rem 0 1rem 0; font-size: 1.6rem; }
+        .article-content h3 { color: #1a237e; margin: 1.5rem 0 0.8rem 0; font-size: 1.3rem; }
+        .article-content h4 { color: #2c3e50; margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
+        .article-content p { margin-bottom: 1rem; text-align: justify; }
+        .article-content ul, .article-content ol { margin: 1rem 2rem 1rem 0; }
+        .article-content li { margin-bottom: 0.5rem; }
+        .warning-box { background: #fff3e0; border-right: 4px solid #ff9800; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .info-box { background: #e3f2fd; border-right: 4px solid #0066cc; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .danger-box { background: #ffebee; border-right: 4px solid #e74c3c; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .success-box { background: #e8f5e9; border-right: 4px solid #00c853; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .stat-card { background: #f8f9fa; padding: 1.2rem; border-radius: 16px; text-align: center; transition: transform 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-number { font-size: 2rem; font-weight: 800; color: #0066cc; }
+        .timeline { position: relative; padding: 1rem 0; }
+        .timeline-item { display: flex; margin-bottom: 2rem; }
+        .timeline-icon { width: 50px; height: 50px; background: #0066cc; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; margin-left: 1rem; flex-shrink: 0; }
+        .timeline-content { flex: 1; background: #f8f9fa; padding: 1rem; border-radius: 16px; }
+        .medication-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        .medication-table th, .medication-table td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        .medication-table th { background: #0066cc; color: white; }
+        .medication-table tr:nth-child(even) { background: #f8f9fa; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #0066cc, #1a237e); color: white; text-decoration: none; padding: 12px 28px; border-radius: 40px; font-weight: 600; margin-top: 2rem; transition: all 0.3s; border: none; cursor: pointer; }
+        .btn-back:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,102,204,0.4); }
+        .toc { background: #f8f9fa; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; }
+        .toc h3 { color: #0066cc; margin-bottom: 1rem; }
+        .toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .toc li a { color: #0066cc; text-decoration: none; transition: color 0.3s; }
+        .toc li a:hover { color: #1a237e; text-decoration: underline; }
+        .footer { text-align: center; padding: 2rem; background: #1a237e; color: white; margin-top: 2rem; border-radius: 28px 28px 0 0; }
+        hr { margin: 1.5rem 0; border: none; height: 1px; background: linear-gradient(to left, #0066cc, transparent); }
+        .exercise-card { background: #f8f9fa; border-radius: 16px; padding: 1rem; margin: 1rem 0; display: flex; align-items: center; gap: 1rem; }
+        .exercise-card i { font-size: 2rem; color: #0066cc; }
+        @media (max-width: 768px) { .article-header h1 { font-size: 1.5rem; } .article-content { padding: 1.5rem; } .featured-image { height: 200px; } .timeline-item { flex-direction: column; } .timeline-icon { margin-bottom: 0.5rem; } }
+    </style>
 </head>
 <body>
-<header>
-    <div class="header-container">
-        <div class="logo">
-            <img src="../images/logo.png" alt="شعار عيادتي الذكية">
-            <h1>عيادتي الذكية</h1>
+
+<div class="article-container">
+    <div class="article-card">
+        <div class="article-header">
+            <h1><i class="fas fa-hand-holding-heart"></i> العناية بالمريض بعد العمليات القلبية</h1>
+            <p>دليل شامل للعناية بعد القسطرة وجراحة القلب المفتوح</p>
+            <div class="article-meta">
+                <span><i class="fas fa-user-md"></i> د. صلاح الأهدل</span>
+                <span><i class="fas fa-calendar-alt"></i> 15 أبريل 2025</span>
+                <span><i class="fas fa-clock"></i> وقت القراءة: 12 دقيقة</span>
+                <span><i class="fas fa-heart"></i> 3,700 قراءة</span>
+            </div>
         </div>
-        <nav>
+        
+        <div class="featured-image">
+            <i class="fas fa-hand-holding-heart"></i>
+        </div>
+        
+        <div class="article-content">
+            <!-- فهرس المحتويات -->
+            <div class="toc">
+                <h3><i class="fas fa-list-ul"></i> فهرس المحتويات</h3>
+                <ul>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#catheter">العناية بعد القسطرة القلبية</a></li>
+                    <li><a href="#openheart">العناية بعد جراحة القلب المفتوح</a></li>
+                    <li><a href="#medications">الأدوية بعد العمليات القلبية</a></li>
+                    <li><a href="#nutrition">التغذية السليمة</a></li>
+                    <li><a href="#exercise">التمارين والتأهيل القلبي</a></li>
+                    <li><a href="#wound">العناية بالجروح</a></li>
+                    <li><a href="#warning">علامات الخطر</a></li>
+                    <li><a href="#psychological">الدعم النفسي</a></li>
+                    <li><a href="#lifestyle">تغيير نمط الحياة</a></li>
+                    <li><a href="#faq">أسئلة شائعة</a></li>
+                </ul>
+            </div>
+            
+            <!-- المقدمة -->
+            <h2 id="intro"><i class="fas fa-info-circle"></i> مقدمة</h2>
+            <p>بعد إجراء عملية قلبية (قسطرة، دعامات، أو جراحة قلب مفتوح)، تحتاج إلى فترة نقاهة ورعاية خاصة لضمان الشفاء التام والعودة إلى نمط حياة صحي. هذا الدليل يقدم لك كل ما تحتاج معرفته عن العناية بعد العمليات القلبية.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">6-8</div>
+                    <div>أسابيع للتعافي بعد القسطرة</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3-6</div>
+                    <div>شهور للتعافي بعد الجراحة المفتوحة</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">80%</div>
+                    <div>يعودون لحياتهم الطبيعية</div>
+                </div>
+            </div>
+            
+            <!-- العناية بعد القسطرة -->
+            <h2 id="catheter"><i class="fas fa-heartbeat"></i> العناية بعد القسطرة القلبية</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-bed"></i></div>
+                    <div class="timeline-content">
+                        <h3>اليوم الأول بعد القسطرة</h3>
+                        <ul>
+                            <li>الراحة التامة في السرير لمدة 4-6 ساعات مع إبقاء الساق أو الذراع مستقيمة</li>
+                            <li>مراقبة مكان الإدخال للتأكد من عدم وجود نزيف أو ورم دموي</li>
+                            <li>شرب كمية كافية من السوائل (2-3 لتر) للتخلص من الصبغة</li>
+                            <li>تجنب ثني الساق أو الذراع التي تم إدخال القثطار منها</li>
+                            <li>قد تشعر ببعض الانزعاج في مكان الإدخال - وهذا طبيعي</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-home"></i></div>
+                    <div class="timeline-content">
+                        <h3>الأسبوع الأول بعد الخروج</h3>
+                        <ul>
+                            <li>تجنب رفع الأثقال (أكثر من 5 كجم) لمدة أسبوع</li>
+                            <li>تجنب القيادة لمدة 48 ساعة</li>
+                            <li>تجنب الاستحمام بالماء الساخن لمدة 24 ساعة</li>
+                            <li>لا تنقع مكان الإدخال في الماء (يمكن الاستحمام مع تغطية المنطقة)</li>
+                            <li>تجنب الأنشطة المجهدة مثل الجري أو ركوب الدراجة</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="timeline-content">
+                        <h3>الأسبوع الثاني وما بعده</h3>
+                        <ul>
+                            <li>يمكن العودة تدريجياً للأنشطة اليومية العادية</li>
+                            <li>يمكن البدء بتمارين المشي الخفيف (10-15 دقيقة يومياً)</li>
+                            <li>مكان الإدخال يلتئم خلال 7-10 أيام</li>
+                            <li>يمكن العودة للعمل بعد أسبوعين (حسب طبيعة العمل)</li>
+                            <li>موعد المتابعة مع الطبيب عادة بعد أسبوعين</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- العناية بعد جراحة القلب المفتوح -->
+            <h2 id="openheart"><i class="fas fa-heart"></i> العناية بعد جراحة القلب المفتوح</h2>
+            
+            <div class="warning-box">
+                <i class="fas fa-clock"></i>
+                <strong>فترة التعافي:</strong> جراحة القلب المفتوح تتطلب فترة نقاهة أطول تتراوح بين 3-6 أشهر للعودة الكاملة للنشاط الطبيعي.
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-hospital-user"></i></div>
+                    <div class="timeline-content">
+                        <h3>في المستشفى (5-7 أيام)</h3>
+                        <ul>
+                            <li>الأيام الأولى: العناية المركزة، مراقبة العلامات الحيوية، أنابيب الصدر</li>
+                            <li>تمارين التنفس العميق والسعال (لمنع الالتهاب الرئوي)</li>
+                            <li>الجلوس على السرير ثم المشي لمسافات قصيرة تدريجياً</li>
+                            <li>تخفيف الألم باستخدام المسكنات</li>
+                            <li>البدء بتناول الطعام والسوائل تدريجياً</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-home"></i></div>
+                    <div class="timeline-content">
+                        <h3>الشهر الأول بعد الخروج</h3>
+                        <ul>
+                            <li>الراحة التامة، تجنب رفع الأثقال (>5 كجم)</li>
+                            <li>المشي تدريجياً (5-10 دقائق، 2-3 مرات يومياً)</li>
+                            <li>تجنب القيادة لمدة 4-6 أسابيع</li>
+                            <li>تجنب صعود الدرج أكثر من مرة يومياً</li>
+                            <li>العناية بالجرح وتغيير الضمادات حسب التعليمات</li>
+                            <li>تجنب رفع الذراعين فوق مستوى الكتف</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="timeline-content">
+                        <h3>الشهر الثاني والثالث</h3>
+                        <ul>
+                            <li>زيادة مدة المشي تدريجياً (15-30 دقيقة يومياً)</li>
+                            <li>يمكن البدء بتمارين خفيفة أخرى (بعد استشارة الطبيب)</li>
+                            <li>يمكن العودة للعمل (حسب طبيعة العمل)</li>
+                            <li>موعد المتابعة مع الطبيب (عادة بعد 6 أسابيع)</li>
+                            <li>بدء برنامج التأهيل القلبي</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- الأدوية -->
+            <h2 id="medications"><i class="fas fa-prescription-bottle"></i> الأدوية بعد العمليات القلبية</h2>
+            
+            <table class="medication-table">
+                <thead>
+                    <tr><th>الدواء</th><th>الغرض</th><th>المدة</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>الأسبرين (Aspirin)</strong></td><td>يمنع تكون الجلطات</td><td>مدى الحياة</td></tr>
+                    <tr><td><strong>كلوبيدوجريل (Clopidogrel) / بريلينت (Brilique)</strong></td><td>يمنع تجلط الدعامة</td><td>6-12 شهراً (حسب نوع الدعامة)</td></tr>
+                    <tr><td><strong>الستاتينات (Statins)</strong></td><td>تخفض الكوليسترول وتثبت اللويحات</td><td>مدى الحياة</td></tr>
+                    <tr><td><strong>حاصرات بيتا (Beta-blockers)</strong></td><td>تقلل العبء على القلب</td><td>مدى الحياة (لأغلب المرضى)</td></tr>
+                    <tr><td><strong>مثبطات ACE (ACE inhibitors)</strong></td><td>تخفض الضغط وتحمي القلب والكلى</td><td>مدى الحياة</td></tr>
+                </tbody>
+            </table>
+            
+            <div class="danger-box">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>⚠️ تحذير خطير:</strong> لا تتوقف عن تناول الأدوية المميعة للدم (الأسبرين وكلوبيدوجريل) إلا باستشارة الطبيب! التوقف المبكر قد يسبب تجلط الدعامة، وهي حالة خطيرة قد تؤدي إلى نوبة قلبية أو الوفاة.
+            </div>
+            
+            <!-- التغذية السليمة -->
+            <h2 id="nutrition"><i class="fas fa-apple-alt"></i> التغذية السليمة بعد العمليات القلبية</h2>
+            
+            <div class="success-box">
+                <strong>نصائح غذائية هامة:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>قلل الملح:</strong> أقل من 5 غرام يومياً (ملعقة صغيرة)</li>
+                    <li><strong>تجنب الدهون المشبعة والمتحولة:</strong> مثل الزبدة، السمن، الأطعمة المقلية</li>
+                    <li><strong>تناول الخضروات والفواكه الطازجة:</strong> 5 حصص يومياً</li>
+                    <li><strong>اختر الحبوب الكاملة:</strong> بدلاً من الخبز الأبيض والأرز الأبيض</li>
+                    <li><strong>تناول الأسماك الدهنية:</strong> مرتين أسبوعياً (سلمون، سردين، تونة)</li>
+                    <li><strong>اشرب 2-3 لتر ماء يومياً</strong></li>
+                    <li><strong>تجنب المشروبات الغازية والعصائر المحلاة</strong></li>
+                    <li><strong>قلل من اللحوم الحمراء:</strong> واختر الدجاج منزوع الجلد والأسماك</li>
+                </ul>
+            </div>
+            
+            <div class="info-box">
+                <i class="fas fa-lightbulb"></i>
+                <strong>أطعمة مفيدة خاصة لمرضى القلب:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>زيت الزيتون البكر</li>
+                    <li>المكسرات (الجوز، اللوز، الفستق)</li>
+                    <li>الشوفان والحبوب الكاملة</li>
+                    <li>الثوم والبصل</li>
+                    <li>الكركم والزنجبيل</li>
+                    <li>الشاي الأخضر</li>
+                </ul>
+            </div>
+            
+            <!-- التمارين والتأهيل القلبي -->
+            <h2 id="exercise"><i class="fas fa-running"></i> التمارين والتأهيل القلبي</h2>
+            
+            <div class="exercise-card">
+                <i class="fas fa-walking"></i>
+                <div>
+                    <h3>المشي</h3>
+                    <p>أفضل تمرين لمرضى القلب. ابدأ بـ 5-10 دقائق يومياً، وزد تدريجياً إلى 30-40 دقيقة يومياً.</p>
+                </div>
+            </div>
+            
+            <div class="exercise-card">
+                <i class="fas fa-swimmer"></i>
+                <div>
+                    <h3>السباحة</h3>
+                    <p>تمرين ممتاز بعد الشفاء التام (بعد 3-6 أشهر من الجراحة المفتوحة).</p>
+                </div>
+            </div>
+            
+            <div class="exercise-card">
+                <i class="fas fa-bicycle"></i>
+                <div>
+                    <h3>ركوب الدراجة الثابتة</h3>
+                    <p>آمن وفعال، يمكن البدء به بعد 4-6 أسابيع من القسطرة.</p>
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>علامات التوقف عن التمرين:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>ألم في الصدر أو الذراع أو الفك</li>
+                    <li>ضيق شديد في التنفس</li>
+                    <li>دوخة أو إغماء</li>
+                    <li>خفقان أو عدم انتظام ضربات القلب</li>
+                    <li>تعب غير عادي</li>
+                </ul>
+                <p>إذا ظهرت أي من هذه العلامات، توقف فوراً واستشر طبيبك.</p>
+            </div>
+            
+            <!-- العناية بالجروح -->
+            <h2 id="wound"><i class="fas fa-band-aid"></i> العناية بالجروح</h2>
+            
+            <h3>بعد القسطرة:</h3>
             <ul>
-                <li><a href="../index.html">الرئيسية</a></li>
-                <li><a href="catheter.html">القسطرة القلبية</a></li>
-                <li><a href="stents.html">دعامات القلب</a></li>
-                <li><a href="blocked-artery.html">أعراض انسداد الشرايين</a></li>
-                <li><a href="patient-care.html">العناية بالمريض</a></li>
-                <li><a href="tips.html">نصائح وإرشادات</a></li>
+                <li>حافظ على مكان الإدخال نظيفاً وجافاً</li>
+                <li>اغسل المنطقة بلطف بالماء والصابون، ثم جففها بالتربيت (ليس بالفرك)</li>
+                <li>تجنب الكريمات أو المراهم على مكان الإدخال</li>
+                <li>كدمة صغيرة حول مكان الإدخال طبيعية وتزول خلال أيام</li>
+                <li>خلع الضمادة بعد 24-48 ساعة (حسب تعليمات الطبيب)</li>
             </ul>
-        </nav>
+            
+            <h3>بعد جراحة القلب المفتوح:</h3>
+            <ul>
+                <li>اتبع تعليمات الطبيب بدقة لتغيير الضمادات</li>
+                <li>اغسل الجرح بلطف بالماء والصابون المعتدل، ثم جففه جيداً</li>
+                <li>لا تستخدم المساحيق أو الكريمات على الجرح</li>
+                <li>تجنب التعرض المباشر لأشعة الشمس على الندبة لمدة 6 أشهر</li>
+                <li>يمكن استخدام كريم السيليكون لتقليل ظهور الندبة (بعد استشارة الطبيب)</li>
+            </ul>
+            
+            <!-- علامات الخطر -->
+            <h2 id="warning"><i class="fas fa-bell"></i> علامات الخطر - متى يجب الاتصال بالطبيب فوراً؟</h2>
+            
+            <div class="danger-box">
+                <i class="fas fa-ambulance"></i>
+                <strong>⚠️ علامات تستدعي الذهاب للمستشفى فوراً:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>ألم في الصدر لا يختفي مع الراحة أو يتكرر</li>
+                    <li>ضيق شديد في التنفس</li>
+                    <li>نزيف من مكان الإدخال لا يتوقف مع الضغط</li>
+                    <li>تورم أو احمرار أو خروج صديد من الجرح</li>
+                    <li>حمى (أكثر من 38 درجة مئوية)</li>
+                    <li>خفقان أو عدم انتظام ضربات القلب</li>
+                    <li>دوخة شديدة أو إغماء</li>
+                    <li>تورم في القدمين أو الكاحلين</li>
+                    <li>ضعف أو تنميل في الساق أو الذراع</li>
+                </ul>
+            </div>
+            
+            <!-- الدعم النفسي -->
+            <h2 id="psychological"><i class="fas fa-heart"></i> الدعم النفسي بعد العمليات القلبية</h2>
+            <p>من الطبيعي أن يشعر المريض بعد العملية القلبية بالقلق، الاكتئاب، أو الخوف. هذه المشاعر شائعة وتختفي مع الوقت. إليك بعض النصائح:</p>
+            
+            <div class="info-box">
+                <ul style="margin-top: 10px;">
+                    <li><strong>تحدث عن مشاعرك:</strong> مع العائلة، الأصدقاء، أو معالج نفسي</li>
+                    <li><strong>انضم لمجموعة دعم:</strong> هناك مجموعات لمرضى القلب تشارك التجارب</li>
+                    <li><strong>مارس تقنيات الاسترخاء:</strong> التنفس العميق، التأمل، اليوغا</li>
+                    <li><strong>استشر طبيبك:</strong> إذا استمر الاكتئاب أو القلق، قد تحتاج لعلاج</li>
+                    <li><strong>تذكر أن التعافي يستغرق وقتاً:</strong> لا تتعجل، امنح نفسك الوقت</li>
+                </ul>
+            </div>
+            
+            <!-- تغيير نمط الحياة -->
+            <h2 id="lifestyle"><i class="fas fa-chart-line"></i> تغيير نمط الحياة للوقاية من تكرار المشكلة</h2>
+            
+            <div class="success-box">
+                <strong>تغييرات ضرورية للحفاظ على قلب سليم:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>الإقلاع عن التدخين فوراً:</strong> أهم خطوة للوقاية</li>
+                    <li><strong>اتباع نظام غذائي صحي:</strong> قليل الدهون والملح، غني بالخضروات والفواكه</li>
+                    <li><strong>ممارسة الرياضة بانتظام:</strong> 30 دقيقة يومياً على الأقل</li>
+                    <li><strong>الحفاظ على وزن صحي:</strong> فقدان الوزن الزائد يقلل الضغط على القلب</li>
+                    <li><strong>التحكم في ضغط الدم والسكري والكوليسترول:</strong> بالفحوصات الدورية والأدوية</li>
+                    <li><strong>إدارة التوتر:</strong> ممارسة الهوايات، قضاء وقت مع العائلة</li>
+                    <li><strong>النوم الكافي:</strong> 7-8 ساعات يومياً</li>
+                </ul>
+            </div>
+            
+            <!-- أسئلة شائعة -->
+            <h2 id="faq"><i class="fas fa-question-circle"></i> أسئلة شائعة عن العناية بعد العمليات القلبية</h2>
+            
+            <h3>متى يمكنني العودة للقيادة بعد العملية؟</h3>
+            <p>بعد القسطرة: يمكنك القيادة بعد 48 ساعة إذا كنت لا تتناول مسكنات تؤثر على التركيز. بعد جراحة القلب المفتوح: انتظر 4-6 أسابيع أو حتى يشعر الطبيب بأنك جاهز. لا تقود إذا كنت لا تزال تتناول مسكنات قوية.</p>
+            
+            <h3>متى يمكنني ممارسة العلاقة الزوجية؟</h3>
+            <p>بعد القسطرة: يمكنك العودة عندما تشعر بالراحة (عادة بعد أسبوع). بعد جراحة القلب المفتوح: انتظر 4-6 أسابيع أو حتى يسمح الطبيب. تأكد من أنك تستطيع ممارسة نشاط معتدل (مثل صعود درجين) بدون أعراض قبل العودة للعلاقة الزوجية.</p>
+            
+            <h3>هل يمكن السفر بالطائرة بعد العملية؟</h3>
+            <p>بعد القسطرة: يمكن السفر بعد أسبوعين. بعد جراحة القلب المفتوح: انتظر 4-6 أسابيع. استشر طبيبك قبل السفر، وتأكد من وجود أدويتك معك في حقيبة اليد.</p>
+            
+            <h3>كم مرة يجب زيارة الطبيب للمتابعة؟</h3>
+            <p>عادة: بعد أسبوعين، ثم بعد 6 أسابيع، ثم كل 3-6 أشهر في السنة الأولى، ثم سنوياً بعد ذلك. قد يختلف الجدول حسب حالتك.</p>
+            
+            <h3>هل يمكن العودة للعمل بعد العملية؟</h3>
+            <p>يعتمد على طبيعة عملك. للأعمال المكتبية: بعد 2-4 أسابيع من القسطرة، و6-8 أسابيع من الجراحة المفتوحة. للأعمال الشاقة: قد تحتاج 3-6 أشهر. استشر طبيبك لتحديد الوقت المناسب.</p>
+            
+            <hr>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <p><strong>⚠️ تنبيه هام:</strong> هذا المحتوى هو لأغراض توعوية وتعليمية فقط، ولا يغني عن استشارة الطبيب المختص. في حال وجود أي أعراض، يرجى مراجعة الطبيب فوراً.</p>
+                <button class="btn-back" onclick="window.location.href='../index.html'">
+                    <i class="fas fa-arrow-right"></i> العودة إلى المنصة
+                </button>
+            </div>
+        </div>
     </div>
-</header>
-
-<main class="article-page">
-    <div class="article-header">
-        <h2>كيفية العناية بالمريض بعد القسطرة أو الدعامة</h2>
-        <img src="../images/care.jpg" alt="العناية بالمريض">
+    
+    <div class="footer">
+        <p>© 2025 منصة استشاريون - جميع الحقوق محفوظة | اليمن</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">بإشراف د. صلاح الأهدل - مدير مكتب الصحة</p>
     </div>
+</div>
 
-    <div class="section">
-        <h3>العناية الطبية</h3>
-        <ul>
-            <li>اتباع تعليمات الطبيب بدقة حول الأدوية.</li>
-            <li>مراقبة ضغط الدم والنبض بانتظام.</li>
-            <li>زيارة الطبيب للفحص الدوري بعد العملية.</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h3>العناية المنزلية</h3>
-        <ul>
-            <li>تجنب المجهود البدني الشديد لفترة محددة.</li>
-            <li>اتباع نظام غذائي صحي قليل الدهون والملح.</li>
-            <li>الابتعاد عن التدخين والكحول.</li>
-        </ul>
-    </div>
-
-    <a class="back-link" href="../index.html">العودة للرئيسية</a>
-</main>
-
-<footer>
-    <p>&copy; 2026 عيادتي الذكية. جميع الحقوق محفوظة.</p>
-</footer>
-<script src="../script.js"></script>
+<script>
+    // تنشيط الروابط الداخلية والتمرير السلس
+    document.querySelectorAll('.toc a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    console.log('تم تحميل مقال العناية بالمريض بعد العمليات القلبية - منصة استشاريون');
+</script>
 </body>
 </html>
