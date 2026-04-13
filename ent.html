@@ -1,3 +1,494 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>الأنف والأذن والحنجرة - عيادتي الذكية</title><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><style>body{font-family:'Cairo',sans-serif;background:#f4f9fe;color:#1a2c3e;line-height:1.6;margin:0;padding:0;}header{background:linear-gradient(135deg,#0a2b3e,#154c6e);color:white;padding:1rem 2rem;position:sticky;top:0;z-index:100;}.header-container{max-width:1300px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}.logo{display:flex;align-items:center;gap:12px;cursor:pointer;}.logo-img{width:50px;height:50px;border-radius:50%;object-fit:cover;background:white;padding:3px;}.logo h1{font-size:1.6rem;background:linear-gradient(135deg,#fff,#ffe0b5);background-clip:text;-webkit-background-clip:text;color:transparent;}nav ul{display:flex;gap:1rem;list-style:none;flex-wrap:wrap;}nav ul li a{color:white;text-decoration:none;font-weight:600;}#back-home{background:rgba(255,255,240,0.2);border:none;padding:6px 15px;border-radius:40px;color:white;cursor:pointer;}.container{max-width:1000px;margin:2rem auto;padding:0 1.5rem;}.card{background:white;border-radius:32px;padding:2rem;box-shadow:0 15px 30px rgba(0,0,0,0.1);margin-bottom:2rem;}.card h2{color:#1e88e5;border-right:5px solid #1e88e5;padding-right:1rem;margin-bottom:1rem;}.footer{text-align:center;padding:2rem;background:#0f2c38;color:#cbd5e1;margin-top:3rem;}@media (max-width:700px){.header-container{flex-direction:column;}}</style></head><body><header><div class="header-container"><div class="logo" onclick="location.href='../index.html'"><img src="../images/logo.png" class="logo-img" onerror="this.src='https://placehold.co/50x50'"><h1>عيادتي الذكية</h1></div><nav><ul><li><a href="../index.html">الرئيسية</a></li><li><a href="about.html">من نحن</a></li><li><a href="catheter.html">القسطرة</a></li><li><a href="stents.html">الدعامات</a></li><li><a href="ent.html">الأنف والأذن</a></li></ul></nav><button id="back-home" onclick="location.href='../index.html'">🏠 الرئيسية</button></div></header><div class="container"><div style="text-align:center;margin-bottom:2rem;"><img src="../images/ent.jpg" alt="الأنف والأذن والحنجرة" style="width:180px;height:180px;border-radius:50%;object-fit:cover;border:4px solid #1e88e5;"></div><div class="card"><h2>أمراض الأنف والأذن والحنجرة</h2><p>يشمل تخصص الأنف والأذن والحنجرة تشخيص وعلاج العديد من الحالات مثل التهاب الجيوب الأنفية، اللوزتين، اضطرابات السمع، الدوار، وأورام الرأس والرقبة.</p><p>نقدم في عيادتي الذكية أحدث المعلومات عن جراحات الأنف والأذن والحنجرة بالمنظار، وزراعة القوقعة، وعلاج الشخير واضطرابات النوم.</p><p>استشر طبيبك للحصول على تشخيص دقيق وعلاج مناسب.</p></div><div class="card"><h2>نصائح للعناية بالأنف والأذن</h2><ul><li>تجنب تنظيف الأذن بالقطن (يسبب انسداد الشمع).</li><li>استخدم محاليل ملحية لتنظيف الأنف.</li><li>لا تهمل التهاب الحلق المتكرر (قد يؤدي إلى مضاعفات).</li></ul></div></div><footer class="footer"><p>© 2026 عيادتي الذكية — محتوى توعوي</p></footer></body></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>أمراض الأنف والأذن والحنجرة - دليل شامل | استشاريون</title>
+    <meta name="description" content="دليل شامل لأمراض الأنف والأذن والحنجرة: التهاب الأذن الوسطى، طنين الأذن، دوار الوضعية، التهاب الجيوب الأنفية، حساسية الأنف، التهاب الحلق، وأكثر. معلومات موثقة من د. صلاح الأهدل">
+    <meta name="author" content="د. صلاح الأهدل">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #f0f4f8; color: #1a2c3e; line-height: 1.7; }
+        .article-container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+        .article-card { background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .article-header { background: linear-gradient(135deg, #0066cc, #1a237e); color: white; padding: 2.5rem; text-align: center; }
+        .article-header h1 { font-size: 2rem; margin-bottom: 1rem; }
+        .article-meta { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.9; margin-top: 1rem; }
+        .article-meta i { margin-left: 5px; }
+        .featured-image { width: 100%; height: 350px; object-fit: cover; background: linear-gradient(135deg, #0066cc, #1a237e); display: flex; align-items: center; justify-content: center; }
+        .featured-image i { font-size: 5rem; color: rgba(255,255,255,0.3); }
+        .article-content { padding: 2.5rem; }
+        .article-content h2 { color: #0066cc; border-right: 4px solid #0066cc; padding-right: 1rem; margin: 2rem 0 1rem 0; font-size: 1.6rem; }
+        .article-content h3 { color: #1a237e; margin: 1.5rem 0 0.8rem 0; font-size: 1.3rem; }
+        .article-content h4 { color: #2c3e50; margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
+        .article-content p { margin-bottom: 1rem; text-align: justify; }
+        .article-content ul, .article-content ol { margin: 1rem 2rem 1rem 0; }
+        .article-content li { margin-bottom: 0.5rem; }
+        .warning-box { background: #fff3e0; border-right: 4px solid #ff9800; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .info-box { background: #e3f2fd; border-right: 4px solid #0066cc; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .success-box { background: #e8f5e9; border-right: 4px solid #00c853; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .danger-box { background: #ffebee; border-right: 4px solid #e74c3c; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .stat-card { background: #f8f9fa; padding: 1.2rem; border-radius: 16px; text-align: center; transition: transform 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-number { font-size: 2rem; font-weight: 800; color: #0066cc; }
+        .disease-card { background: #f8f9fa; border-radius: 20px; padding: 1.5rem; margin: 1.5rem 0; transition: all 0.3s; cursor: pointer; }
+        .disease-card:hover { transform: translateX(-8px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .disease-title { font-size: 1.3rem; font-weight: 700; color: #0066cc; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; }
+        .disease-title i { font-size: 1.5rem; }
+        .symptoms-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1rem 0; }
+        .symptom-item { background: #f8f9fa; padding: 1rem; border-radius: 12px; display: flex; align-items: center; gap: 12px; }
+        .symptom-item i { font-size: 1.3rem; color: #e74c3c; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #0066cc, #1a237e); color: white; text-decoration: none; padding: 12px 28px; border-radius: 40px; font-weight: 600; margin-top: 2rem; transition: all 0.3s; border: none; cursor: pointer; }
+        .btn-back:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,102,204,0.4); }
+        .toc { background: #f8f9fa; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; }
+        .toc h3 { color: #1a237e; margin-bottom: 1rem; }
+        .toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .toc li a { color: #0066cc; text-decoration: none; transition: color 0.3s; }
+        .toc li a:hover { color: #1a237e; text-decoration: underline; }
+        .footer { text-align: center; padding: 2rem; background: #1a237e; color: white; margin-top: 2rem; border-radius: 28px 28px 0 0; }
+        hr { margin: 1.5rem 0; border: none; height: 1px; background: linear-gradient(to left, #0066cc, transparent); }
+        @media (max-width: 768px) { .article-header h1 { font-size: 1.5rem; } .article-content { padding: 1.5rem; } .featured-image { height: 200px; } }
+    </style>
+</head>
+<body>
+
+<div class="article-container">
+    <div class="article-card">
+        <div class="article-header">
+            <h1><i class="fas fa-ear-listen"></i> أمراض الأنف والأذن والحنجرة</h1>
+            <p>دليل شامل لأمراض الأنف والأذن والحنجرة وطرق علاجها</p>
+            <div class="article-meta">
+                <span><i class="fas fa-user-md"></i> د. صلاح الأهدل</span>
+                <span><i class="fas fa-calendar-alt"></i> 15 أبريل 2025</span>
+                <span><i class="fas fa-clock"></i> وقت القراءة: 10 دقائق</span>
+                <span><i class="fas fa-heart"></i> 2,500 قراءة</span>
+            </div>
+        </div>
+        
+        <div class="featured-image">
+            <i class="fas fa-ear-listen"></i>
+        </div>
+        
+        <div class="article-content">
+            <!-- فهرس المحتويات -->
+            <div class="toc">
+                <h3><i class="fas fa-list-ul"></i> فهرس المحتويات</h3>
+                <ul>
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#ear">أمراض الأذن</a></li>
+                    <li><a href="#nose">أمراض الأنف</a></li>
+                    <li><a href="#throat">أمراض الحنجرة والبلعوم</a></li>
+                    <li><a href="#symptoms">الأعراض التحذيرية</a></li>
+                    <li><a href="#diagnosis">التشخيص</a></li>
+                    <li><a href="#treatment">العلاج</a></li>
+                    <li><a href="#prevention">الوقاية</a></li>
+                    <li><a href="#faq">أسئلة شائعة</a></li>
+                </ul>
+            </div>
+            
+            <!-- المقدمة -->
+            <h2 id="intro"><i class="fas fa-info-circle"></i> مقدمة</h2>
+            <p>أمراض الأنف والأذن والحنجرة (ENT) هي مجموعة واسعة من الحالات التي تؤثر على الرأس والرقبة، وتشمل التهابات الأذن، مشاكل السمع، التهابات الجيوب الأنفية، الحساسية، التهابات الحلق، واضطرابات الصوت. هذه الأمراض شائعة جداً وتؤثر على جودة الحياة بشكل كبير.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">80%</div>
+                    <div>أطفال يصابون بالتهاب أذن وسطى قبل عمر 3 سنوات</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15%</div>
+                    <div>يعانون من التهاب الجيوب الأنفية المزمن</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10-15%</div>
+                    <div>يعانون من حساسية الأنف</div>
+                </div>
+            </div>
+            
+            <!-- أمراض الأذن -->
+            <h2 id="ear"><i class="fas fa-ear-deaf"></i> أمراض الأذن</h2>
+            
+            <div class="disease-card">
+                <div class="disease-title">
+                    <i class="fas fa-bacteria"></i>
+                    <span>1. التهاب الأذن الوسطى (Otitis Media)</span>
+                </div>
+                <p>التهاب الأذن الوسطى هو أحد أكثر الأمراض شيوعاً عند الأطفال، ويحدث عندما تلتهب المنطقة خلف طبلة الأذن بسبب عدوى بكتيرية أو فيروسية.</p>
+                
+                <h4>أنواع التهاب الأذن الوسطى:</h4>
+                <ul>
+                    <li><strong>التهاب حاد:</strong> يحدث فجأة، يسبب ألماً شديداً، حمى، وقد يصاحبه انصباب سائل</li>
+                    <li><strong>التهاب مع انصباب:</strong> تراكم سائل خلف طبلة الأذن بدون أعراض عدوى حادة</li>
+                    <li><strong>التهاب مزمن:</strong> يستمر لأكثر من 6 أسابيع، قد يسبب ثقب في طبلة الأذن</li>
+                </ul>
+                
+                <h4>أعراض التهاب الأذن الوسطى:</h4>
+                <div class="symptoms-list">
+                    <div class="symptom-item"><i class="fas fa-ear-listen"></i> <span>ألم في الأذن (يزداد سوءاً عند الاستلقاء)</span></div>
+                    <div class="symptom-item"><i class="fas fa-thermometer-half"></i> <span>حمى (خاصة عند الأطفال)</span></div>
+                    <div class="symptom-item"><i class="fas fa-child"></i> <span>سحب أو شد الأذن عند الرضع والأطفال</span></div>
+                    <div class="symptom-item"><i class="fas fa-bed"></i> <span>صعوبة في النوم</span></div>
+                    <div class="symptom-item"><i class="fas fa-tint"></i> <span>خروج سائل أو صديد من الأذن (في حالة ثقب الطبلة)</span></div>
+                    <div class="symptom-item"><i class="fas fa-volume-mute"></i> <span>ضعف سمع مؤقت</span></div>
+                </div>
+            </div>
+            
+            <div class="disease-card">
+                <div class="disease-title">
+                    <i class="fas fa-waveform"></i>
+                    <span>2. طنين الأذن (Tinnitus)</span>
+                </div>
+                <p>طنين الأذن هو إحساس بسماع أصوات غير موجودة في البيئة المحيطة، مثل رنين، أزيز، صفير، أو همهمة. يمكن أن يكون مؤقتاً أو مزمناً.</p>
+                
+                <h4>أسباب طنين الأذن:</h4>
+                <ul>
+                    <li>التعرض للضوضاء العالية (أكثر سبب شائع)</li>
+                    <li>فقدان السمع المرتبط بالعمر</li>
+                    <li>انسداد الأذن بشمع الأذن</li>
+                    <li>التهابات الأذن</li>
+                    <li>أمراض الأوعية الدموية</li>
+                    <li>بعض الأدوية (مثل الأسبرين بجرعات عالية، بعض المضادات الحيوية)</li>
+                    <li>إصابات الرأس أو الرقبة</li>
+                </ul>
+                
+                <div class="info-box">
+                    <i class="fas fa-lightbulb"></i>
+                    <strong>نصائح لتخفيف طنين الأذن:</strong>
+                    <ul style="margin-top: 10px;">
+                        <li>تجنب التعرض للضوضاء العالية</li>
+                        <li>استخدام أجهزة إخفاء الصوت (مروحة، موسيقى هادئة)</li>
+                        <li>تقنيات الاسترخاء والتأمل لتقليل التوتر</li>
+                        <li>تجنب الكافيين والنيكوتين</li>
+                        <li>الحصول على قسط كاف من النوم</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="disease-card">
+                <div class="disease-title">
+                    <i class="fas fa-dizzy"></i>
+                    <span>3. دوار الوضعية الانتيابي الحميد (BPPV)</span>
+                </div>
+                <p>دوار الوضعية هو أحد أكثر أسباب الدوار شيوعاً، ويحدث نتيجة تحرك بلورات صغيرة من الكالسيوم (حويصلات الأذن) إلى مكان خاطئ داخل الأذن الداخلية.</p>
+                
+                <h4>أعراض دوار الوضعية:</h4>
+                <ul>
+                    <li>دوار شديد عند تغيير وضعية الرأس (الاستلقاء، الجلوس، الالتفاف في السرير)</li>
+                    <li>غثيان وقيء في بعض الحالات</li>
+                    <li>حركة عين لا إرادية (رأرأة)</li>
+                    <li>يستمر الدوار عادة أقل من دقيقة</li>
+                </ul>
+                
+                <div class="success-box">
+                    <i class="fas fa-check-circle"></i>
+                    <strong>علاج دوار الوضعية:</strong> يتم علاجه بنجاح كبير من خلال مناورات إعادة التأهيل (مثل مناورة إيبلي)، والتي يقوم بها الطبيب لتوجيه البلورات إلى مكانها الصحيح.
+                </div>
+            </div>
+            
+            <div class="disease-card">
+                <div class="disease-title">
+                    <i class="fas fa-ear-deaf"></i>
+                    <span>4. فقدان السمع (Hearing Loss)</span>
+                </div>
+                <p>فقدان السمع يمكن أن يكون جزئياً أو كلياً، مؤقتاً أو دائماً، ويصنف إلى ثلاثة أنواع رئيسية:</p>
+                <ul>
+                    <li><strong>فقدان السمع التوصيلي:</strong> بسبب مشكلة في الأذن الخارجية أو الوسطى (مثل شمع الأذن، ثقب الطبلة)</li>
+                    <li><strong>فقدان السمع الحسي العصبي:</strong> بسبب تلف في الأذن الداخلية أو العصب السمعي (مرتبط بالعمر، الضوضاء)</li>
+                    <li><strong>فقدان السمع المختلط:</strong> مزيج من النوعين</li>
+                </ul>
+            </div>
+            
+            <!-- أمراض الأنف -->
+            <h2 id="nose"><i class="fas fa-nose"></i> أمراض الأنف</h2>
+            
+            <div class="disease-card">
+                <div class="disease-title">
+                    <i class="fas fa-sinus"></i>
+                    <span>1. التهاب الجيوب الأنفية (Sinusitis)</span>
+                </div>
+                <p>التهاب الجيوب الأنفية هو التهاب في تجاويف الهواء حول الأنف (الجيوب الأنفية)، ويمكن أن يكون حاداً (أقل من 4 أسابيع) أو مزمناً (أكثر من 12 أسبوعاً).</p>
+                
+                <h4>أعراض التهاب الجيوب الأنفية:</h4>
+                <div class="symptoms-list">
+                    <div class="symptom-item"><i class="fas fa-head-side-virus"></i> <span>صداع أو ضغط في الوجه (خاصة حول العينين والجبهة)</span></div>
+                    <div class="symptom-item"><i class="fas fa-tint"></i> <span>إفرازات أنفية سميكة (صفراء أو خضراء)</span></div>
+                    <div class="symptom-item"><i class="fas fa-nose"></i> <span>انسداد الأنف أو احتقانه</span></div>
+                    <div class="symptom-item"><i class="fas fa-tooth"></i> <span>ألم في الأسنان العلوية</span></div>
+                    <div class="symptom-item"><i class="fas fa-smell"></i> <span>انخفاض حاسة الشم أو التذوق</span></div>
+                    <div class="symptom-item"><i class="fas fa-cough"></i> <span>سعال (يزداد سوءاً في الليل)</span></div>
+                </div>
+                
+                <div class="info-box">
+                    <i class="fas fa-lightbulb"></i>
+                    <strong>نصائح لتخفيف التهاب الجيوب الأنفية:</strong>
+                    <ul style="margin-top: 10px;">
+                        <li>استخدام بخاخات المحلول الملحي لترطيب الأنف</li>
+                        <li>استنشاق البخار أو استخدام جهاز ترطيب الجو</li>
+                        <li>شرب كمية كافية من السوائل</li>
+                        <li>الراحة التامة</li>
+                        <li>تجنب المهيجات (الدخان، العطور، المواد الكيميائية)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="disease-card">
+                <div class="disease-title">
+                    <i class="fas fa-allergies"></i>
+                    <span>2. حساسية الأنف (Allergic Rhinitis)</span>
+                </div>
+                <p>حساسية الأنف هي رد فعل تحسسي لمسببات الحساسية مثل حبوب اللقاح، الغبار، وبر الحيوانات، وتسبب أعراضاً مشابهة للزكام ولكنها لا تنتج عن فيروس.</p>
+                
+                <h4>أعراض حساسية الأنف:</h4>
+                <ul>
+                    <li>عطاس متكرر</li>
+                    <li>سيلان أو احتقان الأنف</li>
+                    <li>حكة في الأنف، العينين، أو سقف الفم</li>
+                    <li>عيون دامعة أو محمرة</li>
+                    <li>كدمات تحت العينين (تحت العينين الداكنة)</li>
+                    <li>التهاب الحلق بسبب التنقيط الأنفي الخلفي</li>
+                </ul>
+                
+                <h4>علاج حساسية الأنف:</h4>
+                <ul>
+                    <li><strong>تجنب مسببات الحساسية:</strong> أفضل علاج</li>
+                    <li><strong>مضادات الهيستامين:</strong> لتخفيف العطاس والحكة</li>
+                    <li><strong>بخاخات الكورتيكوستيرويد الأنفية:</strong> لتقليل الالتهاب</li>
+                    <li><strong>مزيلات الاحتقان:</strong> لتخفيف احتقان الأنف (استخدام قصير المدى)</li>
+                    <li><strong>العلاج المناعي (حقن الحساسية):</strong> للحالات الشديدة</li>
+                </ul>
+            </div>
+            
+            <div class="disease-card">
+                <div class="disease-title">
+                    <i class="fas fa-snoring"></i>
+                    <span>3. الشخير وانقطاع النفس أثناء النوم (Sleep Apnea)</span>
+                </div>
+                <p>انقطاع النفس أثناء النوم هو اضطراب خطير يتوقف فيه التنفس بشكل متكرر أثناء النوم، مما يسبب نقص الأكسجين واضطراب النوم.</p>
+                
+                <div class="warning-box">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>علامات انقطاع النفس أثناء النوم:</strong>
+                    <ul style="margin-top: 10px;">
+                        <li>شخير عالٍ ومزمن</li>
+                        <li>توقف التنفس أثناء النوم (يلاحظه الشريك)</li>
+                        <li>اللهاث أو الاختناق أثناء النوم</li>
+                        <li>الصداع الصباحي</li>
+                        <li>النعاس المفرط أثناء النهار</li>
+                        <li>صعوبة في التركيز</li>
+                    </ul>
+                </div>
+                
+                <div class="danger-box">
+                    <i class="fas fa-heartbeat"></i>
+                    <strong>⚠️ مضاعفات انقطاع النفس غير المعالج:</strong> ارتفاع ضغط الدم، أمراض القلب، السكتة الدماغية، السكري، والاكتئاب.
+                </div>
+            </div>
+            
+            <!-- أمراض الحنجرة والبلعوم -->
+            <h2 id="throat"><i class="fas fa-microphone-alt"></i> أمراض الحنجرة والبلعوم</h2>
+            
+            <div class="disease-card">
+                <div class="disease-title">
+                    <i class="fas fa-virus"></i>
+                    <span>1. التهاب الحلق (Pharyngitis)</span>
+                </div>
+                <p>التهاب الحلق هو التهاب في البلعوم، ويمكن أن يكون فيروسياً (الأكثر شيوعاً) أو بكتيرياً (مثل العقديات).</p>
+                
+                <h4>الفرق بين التهاب الحلق الفيروسي والبكتيري:</h4>
+                <ul>
+                    <li><strong>الفيروسي:</strong> يصاحبه عادة سعال، زكام، بحة صوت، يتحسن خلال 5-7 أيام بدون مضادات حيوية</li>
+                    <li><strong>البكتيري (العقديات):</strong> يبدأ فجأة، يصاحبه حمى، تضخم الغدد، بقع بيضاء على اللوزتين، لا سعال، يحتاج مضادات حيوية</li>
+                </ul>
+                
+                <div class="info-box">
+                    <i class="fas fa-lightbulb"></i>
+                    <strong>علاج التهاب الحلق:</strong>
+                    <ul style="margin-top: 10px;">
+                        <li>الراحة وتناول السوائل الدافئة</li>
+                        <li>الغرغرة بالماء والملح</li>
+                        <li>مسكنات الألم (باراسيتامول، إيبوبروفين)</li>
+                        <li>المضادات الحيوية (للبكتيري فقط)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="disease-card">
+                <div class="disease-title">
+                    <i class="fas fa-voice"></i>
+                    <span>2. التهاب الحنجرة (Laryngitis)</span>
+                </div>
+                <p>التهاب الحنجرة هو التهاب في صندوق الصوت (الحنجرة)، يسبب بحة في الصوت أو فقدانه.</p>
+                
+                <h4>أسباب التهاب الحنجرة:</h4>
+                <ul>
+                    <li>العدوى الفيروسية (نزلات البرد، الأنفلونزا)</li>
+                    <li>الإجهاد الصوتي (الصراخ، الغناء لفترات طويلة)</li>
+                    <li>الارتجاع المعدي المريئي (GERD)</li>
+                    <li>التدخين أو استنشاق المهيجات</li>
+                    <li>الحساسية</li>
+                </ul>
+                
+                <h4>نصائح للحفاظ على الصوت:</h4>
+                <ul>
+                    <li>تجنب الصراخ أو الهمس لفترات طويلة</li>
+                    <li>شرب كمية كافية من الماء</li>
+                    <li>تجنب الكافيين والكحول</li>
+                    <li>استخدام جهاز ترطيب الجو</li>
+                    <li>الراحة الصوتية (عدم التحدث إلا عند الضرورة)</li>
+                </ul>
+            </div>
+            
+            <div class="disease-card">
+                <div class="disease-title">
+                    <i class="fas fa-tonsils"></i>
+                    <span>3. التهاب اللوزتين (Tonsillitis)</span>
+                </div>
+                <p>التهاب اللوزتين هو التهاب في اللوزتين (كتلتان من الأنسجة في الجزء الخلفي من الحلق)، شائع خاصة عند الأطفال.</p>
+                
+                <h4>أعراض التهاب اللوزتين:</h4>
+                <ul>
+                    <li>ألم في الحلق (قد يمتد للأذنين)</li>
+                    <li>احمرار وتورم اللوزتين</li>
+                    <li>بقع بيضاء أو صفراء على اللوزتين</li>
+                    <li>حمى</li>
+                    <li>تضخم الغدد الليمفاوية في الرقبة</li>
+                    <li>رائحة الفم الكريهة</li>
+                    <li>صعوبة في البلع</li>
+                </ul>
+                
+                <div class="info-box">
+                    <i class="fas fa-stethoscope"></i>
+                    <strong>متى يستدعي التهاب اللوزتين استئصال اللوزتين؟</strong>
+                    <ul style="margin-top: 10px;">
+                        <li>7 نوبات أو أكثر في السنة</li>
+                        <li>5 نوبات سنوياً لمدة سنتين</li>
+                        <li>3 نوبات سنوياً لمدة 3 سنوات</li>
+                        <li>تضخم اللوزتين يسبب صعوبة في التنفس أو البلع</li>
+                        <li>خراج حول اللوزة</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- الأعراض التحذيرية -->
+            <h2 id="symptoms"><i class="fas fa-bell"></i> الأعراض التحذيرية لأمراض الأنف والأذن والحنجرة</h2>
+            
+            <div class="danger-box">
+                <i class="fas fa-ambulance"></i>
+                <strong>⚠️ أعراض تستدعي مراجعة الطبيب فوراً:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>ألم شديد ومفاجئ في الأذن أو الحلق</li>
+                    <li>فقدان سمع مفاجئ</li>
+                    <li>دوخة شديدة مع قيء</li>
+                    <li>خروج دم من الأذن أو الأنف أو الحلق</li>
+                    <li>صعوبة في التنفس أو البلع</li>
+                    <li>تورم في الرقبة أو الوجه</li>
+                    <li>حمى عالية لا تستجيب للعلاج</li>
+                    <li>بحة في الصوت تستمر لأكثر من 3 أسابيع</li>
+                </ul>
+            </div>
+            
+            <!-- التشخيص -->
+            <h2 id="diagnosis"><i class="fas fa-stethoscope"></i> تشخيص أمراض الأنف والأذن والحنجرة</h2>
+            <ul>
+                <li><strong>فحص الأذن (Otoscopy):</strong> باستخدام منظار الأذن لفحص قناة الأذن وطبلة الأذن</li>
+                <li><strong>قياس السمع (Audiometry):</strong> لتقييم حدة السمع وتحديد نوع فقدان السمع</li>
+                <li><strong>قياس طبلة الأذن (Tympanometry):</strong> لتقييم حركة طبلة الأذن والضغط في الأذن الوسطى</li>
+                <li><strong>تنظير الأنف (Nasal Endoscopy):</strong> باستخدام كاميرا صغيرة لفحص داخل الأنف والجيوب الأنفية</li>
+                <li><strong>تنظير الحنجرة (Laryngoscopy):</strong> لفحص الحنجرة والأحبال الصوتية</li>
+                <li><strong>الأشعة المقطعية (CT Scan):</strong> لتصوير الجيوب الأنفية أو عظام الأذن الوسطى</li>
+                <li><strong>اختبارات الحساسية:</strong> لتحديد مسببات الحساسية</li>
+                <li><strong>دراسة النوم (Sleep Study):</strong> لتشخيص انقطاع النفس أثناء النوم</li>
+            </ul>
+            
+            <!-- العلاج -->
+            <h2 id="treatment"><i class="fas fa-tools"></i> خيارات العلاج</h2>
+            
+            <h3>العلاج الدوائي:</h3>
+            <ul>
+                <li><strong>المضادات الحيوية:</strong> لعلاج الالتهابات البكتيرية (التهاب الأذن الوسطى البكتيري، التهاب الحلق العقدي)</li>
+                <li><strong>مضادات الهيستامين وبخاخات الكورتيكوستيرويد:</strong> لعلاج حساسية الأنف</li>
+                <li><strong>مضادات الالتهاب ومسكنات الألم:</strong> لتخفيف الألم والالتهاب</li>
+                <li><strong>أدوية مضادة للفيروسات:</strong> لعلاج بعض الالتهابات الفيروسية</li>
+            </ul>
+            
+            <h3>العلاج الجراحي:</h3>
+            <ul>
+                <li><strong>بضع طبلة الأذن ووضع أنابيب التهوية:</strong> لعلاج التهاب الأذن الوسطى المزمن</li>
+                <li><strong>استئصال اللوزتين (Tonsillectomy):</strong> لالتهاب اللوزتين المتكرر</li>
+                <li><strong>جراحة الجيوب الأنفية بالمنظار:</strong> لعلاج التهاب الجيوب الأنفية المزمن</li>
+                <li><strong>زراعة القوقعة (Cochlear Implant):</strong> لفقدان السمع الحسي العصبي الشديد</li>
+                <li><strong>جراحة انقطاع النفس أثناء النوم:</strong> لإزالة الأنسجة الزائدة في الحلق</li>
+            </ul>
+            
+            <!-- الوقاية -->
+            <h2 id="prevention"><i class="fas fa-shield-heart"></i> الوقاية من أمراض الأنف والأذن والحنجرة</h2>
+            
+            <div class="success-box">
+                <i class="fas fa-check-double"></i>
+                <strong>نصائح للوقاية:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>غسل اليدين بانتظام:</strong> للوقاية من العدوى</li>
+                    <li><strong>تجنب التدخين والتعرض للدخان:</strong> يهيج الأغشية المخاطية</li>
+                    <li><strong>تجنب مشاركة الأغراض الشخصية:</strong> مثل سماعات الأذن، المناشف</li>
+                    <li><strong>الحفاظ على نظافة الأذن:</strong> لا تستخدم أعواد القطن داخل قناة الأذن</li>
+                    <li><strong>ارتداء واقيات الأذن:</strong> في الأماكن الصاخبة</li>
+                    <li><strong>تجنب المهيجات:</strong> مثل الغبار، حبوب اللقاح، العطور القوية</li>
+                    <li><strong>الحفاظ على رطوبة الجسم:</strong> بشرب كمية كافية من الماء</li>
+                    <li><strong>تجنب رفع الأجسام الثقيلة مع حبس النفس:</strong> قد يسبب تمزق طبلة الأذن</li>
+                </ul>
+            </div>
+            
+            <!-- أسئلة شائعة -->
+            <h2 id="faq"><i class="fas fa-question-circle"></i> أسئلة شائعة</h2>
+            
+            <h3>هل يمكن وضع أي شيء في الأذن لتنظيفها؟</h3>
+            <p>لا، لا تضع أي شيء في قناة الأذن (بما في ذلك أعواد القطن). الأذن تنظف نفسها بنفسها. استخدام أعواد القطن قد يدفع شمع الأذن إلى الداخل ويسبب انسداداً أو ثقباً في طبلة الأذن.</p>
+            
+            <h3>ما هو علاج طنين الأذن؟</h3>
+            <p>لا يوجد علاج شافٍ لمعظم حالات طنين الأذن، ولكن هناك طرق لتخفيف الأعراض: تجنب المحفزات (الضوضاء العالية، الكافيين)، تقنيات الاسترخاء، أجهزة إخفاء الصوت، العلاج السلوكي المعرفي، وفي بعض الحالات، علاج السبب الأساسي (مثل إزالة شمع الأذن، علاج ارتفاع ضغط الدم).</p>
+            
+            <h3>متى يحتاج الطفل إلى أنابيب تهوية للأذن؟</h3>
+            <p>قد يحتاج الطفل إلى أنابيب تهوية إذا كان يعاني من: التهابات أذن وسطى متكررة (3 نوبات في 6 أشهر أو 4 نوبات في سنة)، التهاب أذن وسطى مع انصباب يستمر لأكثر من 3 أشهر ويسبب ضعف سمع، أو مضاعفات مثل ثقب طبلة الأذن.</p>
+            
+            <h3>هل يمكن أن يسبب ارتجاع المريء مشاكل في الأذن والحنجرة؟</h3>
+            <p>نعم، يمكن أن يسبب ارتجاع المريء أعراضاً مثل: التهاب الحلق المزمن، بحة الصوت، الشعور بكتلة في الحلق، السعال المزمن، وقد يساهم في التهابات الأذن الوسطى المزمنة عند الأطفال.</p>
+            
+            <h3>كيف أفرق بين حساسية الأنف والزكام؟</h3>
+            <p>الحساسية عادة تستمر لأكثر من أسبوعين، تبدأ فور التعرض للمهيج، لا تسبب حمى، يصاحبها حكة في العينين والأنف. الزكام يستمر 3-7 أيام، قد يصاحبه حمى، ينتقل من شخص لآخر.</p>
+            
+            <hr>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <p><strong>⚠️ تنبيه هام:</strong> هذا المحتوى هو لأغراض توعوية وتعليمية فقط، ولا يغني عن استشارة الطبيب المختص. في حال وجود أي أعراض، يرجى مراجعة الطبيب فوراً.</p>
+                <button class="btn-back" onclick="window.location.href='../index.html'">
+                    <i class="fas fa-arrow-right"></i> العودة إلى المنصة
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2026 منصة استشاريون - جميع الحقوق محفوظة | اليمن</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">بإشراف د. صلاح الأهدل - مدير مكتب الصحة</p>
+    </div>
+</div>
+
+<script>
+    // تنشيط الروابط الداخلية والتمرير السلس
+    document.querySelectorAll('.toc a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    console.log('تم تحميل مقال أمراض الأنف والأذن والحنجرة - منصة استشاريون');
+</script>
+</body>
+  </html>
