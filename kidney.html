@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>صحة الكلى: الحفاظ على الفلاتر الطبيعية | استشاريون</title>
+    <meta name="description" content="دليل شامل لصحة الكلى: كيفية حماية الكلى، أعراض الفشل الكلوي، مراحل المرض، والغسيل الكلوي. معلومات موثقة من د. صلاح الأهدل">
+    <meta name="author" content="د. صلاح الأهدل">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #f0f4f8; color: #1a2c3e; line-height: 1.7; }
+        .article-container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+        .article-card { background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .article-header { background: linear-gradient(135deg, #0066cc, #1a237e); color: white; padding: 2.5rem; text-align: center; }
+        .article-header h1 { font-size: 2rem; margin-bottom: 1rem; }
+        .article-meta { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.9; margin-top: 1rem; }
+        .article-meta i { margin-left: 5px; }
+        .featured-image { width: 100%; height: 350px; object-fit: cover; background: linear-gradient(135deg, #0066cc, #1a237e); display: flex; align-items: center; justify-content: center; }
+        .featured-image i { font-size: 5rem; color: rgba(255,255,255,0.3); }
+        .article-content { padding: 2.5rem; }
+        .article-content h2 { color: #0066cc; border-right: 4px solid #0066cc; padding-right: 1rem; margin: 2rem 0 1rem 0; font-size: 1.6rem; }
+        .article-content h3 { color: #1a237e; margin: 1.5rem 0 0.8rem 0; font-size: 1.3rem; }
+        .article-content h4 { color: #2c3e50; margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
+        .article-content p { margin-bottom: 1rem; text-align: justify; }
+        .article-content ul, .article-content ol { margin: 1rem 2rem 1rem 0; }
+        .article-content li { margin-bottom: 0.5rem; }
+        .warning-box { background: #fff3e0; border-right: 4px solid #ff9800; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .info-box { background: #e3f2fd; border-right: 4px solid #0066cc; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .danger-box { background: #ffebee; border-right: 4px solid #e74c3c; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .success-box { background: #e8f5e9; border-right: 4px solid #00c853; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .stat-card { background: #f8f9fa; padding: 1.2rem; border-radius: 16px; text-align: center; transition: transform 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-number { font-size: 2rem; font-weight: 800; color: #0066cc; }
+        .kidney-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        .kidney-table th, .kidney-table td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        .kidney-table th { background: #0066cc; color: white; }
+        .kidney-table tr:nth-child(even) { background: #f8f9fa; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #0066cc, #1a237e); color: white; text-decoration: none; padding: 12px 28px; border-radius: 40px; font-weight: 600; margin-top: 2rem; transition: all 0.3s; border: none; cursor: pointer; }
+        .btn-back:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,102,204,0.4); }
+        .toc { background: #f8f9fa; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; }
+        .toc h3 { color: #0066cc; margin-bottom: 1rem; }
+        .toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .toc li a { color: #0066cc; text-decoration: none; transition: color 0.3s; }
+        .toc li a:hover { color: #1a237e; text-decoration: underline; }
+        .footer { text-align: center; padding: 2rem; background: #1a237e; color: white; margin-top: 2rem; border-radius: 28px 28px 0 0; }
+        hr { margin: 1.5rem 0; border: none; height: 1px; background: linear-gradient(to left, #0066cc, transparent); }
+        .symptoms-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1rem 0; }
+        .symptom-item { background: #f8f9fa; padding: 1rem; border-radius: 12px; display: flex; align-items: center; gap: 12px; }
+        .symptom-item i { font-size: 1.3rem; color: #e74c3c; }
+        .food-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1rem 0; }
+        .food-good { background: #e8f5e9; border-right: 4px solid #00c853; padding: 1rem; border-radius: 12px; }
+        .food-bad { background: #ffebee; border-right: 4px solid #e74c3c; padding: 1rem; border-radius: 12px; }
+        @media (max-width: 768px) { .article-header h1 { font-size: 1.5rem; } .article-content { padding: 1.5rem; } .featured-image { height: 200px; } }
+    </style>
+</head>
+<body>
+
+<div class="article-container">
+    <div class="article-card">
+        <div class="article-header">
+            <h1><i class="fas fa-kidneys"></i> صحة الكلى: الحفاظ على الفلاتر الطبيعية</h1>
+            <p>كيفية حماية الكلى، أعراض الفشل الكلوي، والغسيل الكلوي</p>
+            <div class="article-meta">
+                <span><i class="fas fa-user-md"></i> د. صلاح الأهدل</span>
+                <span><i class="fas fa-calendar-alt"></i> 15 أبريل 2025</span>
+                <span><i class="fas fa-clock"></i> وقت القراءة: 11 دقيقة</span>
+                <span><i class="fas fa-heart"></i> 2,600 قراءة</span>
+            </div>
+        </div>
+        
+        <div class="featured-image">
+            <i class="fas fa-kidneys"></i>
+        </div>
+        
+        <div class="article-content">
+            <!-- فهرس المحتويات -->
+            <div class="toc">
+                <h3><i class="fas fa-list-ul"></i> فهرس المحتويات</h3>
+                <ul>
+                    <li><a href="#intro">مقدمة عن الكلى</a></li>
+                    <li><a href="#functions">وظائف الكلى الحيوية</a></li>
+                    <li><a href="#risk-factors">عوامل خطر أمراض الكلى</a></li>
+                    <li><a href="#symptoms">أعراض أمراض الكلى</a></li>
+                    <li><a href="#stages">مراحل الفشل الكلوي</a></li>
+                    <li><a href="#diagnosis">التشخيص والفحوصات</a></li>
+                    <li><a href="#treatment">العلاج</a></li>
+                    <li><a href="#dialysis">الغسيل الكلوي</a></li>
+                    <li><a href="#nutrition">التغذية السليمة</a></li>
+                    <li><a href="#prevention">الوقاية</a></li>
+                    <li><a href="#faq">أسئلة شائعة</a></li>
+                </ul>
+            </div>
+            
+            <!-- المقدمة -->
+            <h2 id="intro"><i class="fas fa-info-circle"></i> مقدمة عن الكلى</h2>
+            <p>الكلى هما عضوان على شكل حبة الفاصوليا، بحجم قبضة اليد تقريباً، يقعان على جانبي العمود الفقري أسفل القفص الصدري. تقوم الكلى بوظائف حيوية لا غنى عنها للحياة، حيث تقوم بتصفية الدم من الفضلات والسموم، وتنظيم توازن السوائل والأملاح في الجسم، وإنتاج الهرمونات الضرورية.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">180L</div>
+                    <div>تصفيه يومياً</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10%</div>
+                    <div>من السكان يعانون من أمراض الكلى</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">90%</div>
+                    <div>لا يعلمون بإصابتهم مبكراً</div>
+                </div>
+            </div>
+            
+            <!-- وظائف الكلى -->
+            <h2 id="functions"><i class="fas fa-microscope"></i> وظائف الكلى الحيوية</h2>
+            <ul>
+                <li><strong>تصفية الدم:</strong> إزالة الفضلات والسموم ومنتجات الأيض (مثل اليوريا والكرياتينين)</li>
+                <li><strong>تنظيم توازن السوائل:</strong> الحفاظ على كمية الماء المناسبة في الجسم</li>
+                <li><strong>تنظيم ضغط الدم:</strong> من خلال إفراز هرمون الرينين والتحكم في حجم الدم</li>
+                <li><strong>إنتاج خلايا الدم الحمراء:</strong> إفراز هرمون الإريثروبويتين (EPO) الذي يحفز نخاع العظم</li>
+                <li><strong>تنظيم توازن المعادن:</strong> الحفاظ على مستويات الصوديوم، البوتاسيوم، الكالسيوم، والفوسفات</li>
+                <li><strong>الحفاظ على توازن الحموضة:</strong> تنظيم درجة حموضة الدم (pH)</li>
+                <li><strong>تنشيط فيتامين D:</strong> تحويله إلى شكله النشط لامتصاص الكالسيوم</li>
+                <li><strong>إزالة الأدوية والسموم:</strong> تخليص الجسم من الأدوية والمواد الكيميائية</li>
+            </ul>
+            
+            <div class="info-box">
+                <i class="fas fa-lightbulb"></i>
+                <strong>معلومة مهمة:</strong> يمكن للإنسان أن يعيش بشكل طبيعي بكلية واحدة سليمة فقط. ومع ذلك، فإن فقدان وظيفة الكليتين يتطلب الغسيل الكلوي أو زراعة الكلى.
+            </div>
+            
+            <!-- عوامل الخطر -->
+            <h2 id="risk-factors"><i class="fas fa-exclamation-triangle"></i> عوامل خطر أمراض الكلى</h2>
+            
+            <div class="warning-box">
+                <strong>عوامل تزيد من خطر الإصابة بأمراض الكلى:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>داء السكري:</strong> السبب الأكثر شيوعاً للفشل الكلوي</li>
+                    <li><strong>ارتفاع ضغط الدم غير المسيطر عليه:</strong> يضر بالأوعية الدموية في الكلى</li>
+                    <li><strong>أمراض القلب والأوعية الدموية</strong></li>
+                    <li><strong>التاريخ العائلي للفشل الكلوي</strong></li>
+                    <li><strong>السمنة</strong></li>
+                    <li><strong>التدخين</strong></li>
+                    <li><strong>العمر فوق 60 سنة</strong></li>
+                    <li><strong>أمراض الكلى الوراثية</strong> (مثل مرض الكلى المتعدد الكيسات)</li>
+                    <li><strong>الاستخدام المزمن لبعض الأدوية</strong> (مضادات الالتهاب غير الستيرويدية NSAIDs)</li>
+                </ul>
+            </div>
+            
+            <!-- الأعراض -->
+            <h2 id="symptoms"><i class="fas fa-stethoscope"></i> أعراض أمراض الكلى</h2>
+            <p>أمراض الكلى غالباً ما تكون "صامتة" في المراحل المبكرة. قد لا تظهر أعراض حتى يتضرر جزء كبير من الكلى (أقل من 30% من وظائف الكلى).</p>
+            
+            <div class="symptoms-list">
+                <div class="symptom-item"><i class="fas fa-swimmer"></i> <span>تورم في القدمين والكاحلين والوجه</span></div>
+                <div class="symptom-item"><i class="fas fa-tired"></i> <span>تعب وضعف عام (فقر دم)</span></div>
+                <div class="symptom-item"><i class="fas fa-nausea"></i> <span>غثيان وفقدان شهية</span></div>
+                <div class="symptom-item"><i class="fas fa-bed"></i> <span>صعوبة في النوم</span></div>
+                <div class="symptom-item"><i class="fas fa-hand-peace"></i> <span>حكة في الجلد (تراكم الفضلات)</span></div>
+                <div class="symptom-item"><i class="fas fa-tint"></i> <span>تغير في كمية البول (قلة أو كثرة)</span></div>
+                <div class="symptom-item"><i class="fas fa-burn"></i> <span>حرقة أو صعوبة عند التبول</span></div>
+                <div class="symptom-item"><i class="fas fa-cubes"></i> <span>بول رغوي (وجود بروتين)</span></div>
+                <div class="symptom-item"><i class="fas fa-dizzy"></i> <span>تشنجات عضلية (نقص الكالسيوم أو البوتاسيوم)</span></div>
+                <div class="symptom-item"><i class="fas fa-brain"></i> <span>صعوبة في التركيز</span></div>
+            </div>
+            
+            <div class="danger-box">
+                <i class="fas fa-ambulance"></i>
+                <strong>⚠️ علامات خطيرة تستدعي مراجعة الطبيب فوراً:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>انقطاع البول تماماً لأكثر من 12 ساعة</li>
+                    <li>دم في البول (لون أحمر أو بني)</li>
+                    <li>ألم شديد في الخاصرة أو أسفل الظهر</li>
+                    <li>حمى مع أعراض بولية</li>
+                    <li>ارتفاع مفاجئ في ضغط الدم</li>
+                </ul>
+            </div>
+            
+            <!-- مراحل الفشل الكلوي -->
+            <h2 id="stages"><i class="fas fa-chart-line"></i> مراحل الفشل الكلوي (حسب eGFR)</h2>
+            
+            <table class="kidney-table">
+                <thead>
+                    <tr>
+                        <th>المرحلة</th>
+                        <th>معدل الترشيح (eGFR)</th>
+                        <th>الوصف</th>
+                        <th>الإجراء الموصى به</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="background:#e8f5e9;">المرحلة 1</td><td style="background:#e8f5e9;">≥ 90 mL/min</td><td style="background:#e8f5e9;">تلف كلوي مع وظيفة طبيعية</td><td style="background:#e8f5e9;">فحوصات دورية، السيطرة على عوامل الخطر</td></tr>
+                    <tr><td style="background:#fff3e0;">المرحلة 2</td><td style="background:#fff3e0;">60-89 mL/min</td><td style="background:#fff3e0;">ضعف كلوي خفيف</td><td style="background:#fff3e0;">متابعة، علاج السبب</td></tr>
+                    <tr><td style="background:#ffebee;">المرحلة 3</td><td style="background:#ffebee;">30-59 mL/min</td><td style="background:#ffebee;">ضعف كلوي متوسط</td><td style="background:#ffebee;">تعديل نمط الحياة، أدوية</td></tr>
+                    <tr><td style="background:#ffcdd2;">المرحلة 4</td><td style="background:#ffcdd2;">15-29 mL/min</td><td style="background:#ffcdd2;">ضعف كلوي شديد</td><td style="background:#ffcdd2;">التحضير للغسيل الكلوي أو الزراعة</td></tr>
+                    <tr><td style="background:#ff5252; color:white;">المرحلة 5</td><td style="background:#ff5252; color:white;">&lt; 15 mL/min</td><td style="background:#ff5252; color:white;">فشل كلوي نهائي</td><td style="background:#ff5252; color:white;">الغسيل الكلوي أو زراعة الكلى</td></tr>
+                </tbody>
+            </table>
+            
+            <!-- التشخيص -->
+            <h2 id="diagnosis"><i class="fas fa-stethoscope"></i> تشخيص أمراض الكلى</h2>
+            
+            <h3>الفحوصات الأساسية:</h3>
+            <ul>
+                <li><strong>تحليل البول (Urinalysis):</strong> للكشف عن البروتين، الدم، أو العدوى</li>
+                <li><strong>نسبة الألبومين إلى الكرياتينين في البول (UACR):</strong> لقياس كمية البروتين المتسرب</li>
+                <li><strong>تحليل الدم (Serum Creatinine):</strong> لقياس مستوى الكرياتينين في الدم</li>
+                <li><strong>معدل الترشيح الكبيبي (eGFR):</strong> يقدر كفاءة تصفية الكلى</li>
+                <li><strong>اليوريا في الدم (BUN):</strong> يقيس فضلات النيتروجين</li>
+                <li><strong>تحليل الكهارل (Electrolytes):</strong> الصوديوم، البوتاسيوم، الكالسيوم، الفوسفات</li>
+            </ul>
+            
+            <h3>الفحوصات الإضافية:</h3>
+            <ul>
+                <li><strong>الموجات فوق الصوتية (Ultrasound):</strong> لفحص حجم الكلى ووجود حصوات أو أكياس</li>
+                <li><strong>الأشعة المقطعية (CT Scan):</strong> للحصول على صور مفصلة</li>
+                <li><strong>خزعة الكلى (Kidney Biopsy):</strong> لتشخيص أمراض الكبيبات</li>
+            </ul>
+            
+            <!-- العلاج -->
+            <h2 id="treatment"><i class="fas fa-tools"></i> علاج أمراض الكلى</h2>
+            
+            <h3>العلاج الدوائي:</h3>
+            <ul>
+                <li><strong>مثبطات ACE أو ARBs:</strong> لخفض ضغط الدم وتقليل تسرب البروتين</li>
+                <li><strong>مدرات البول (Diuretics):</strong> للتخلص من السوائل الزائدة</li>
+                <li><strong>مثبطات SGLT2:</strong> تحمي الكلى والقلب لدى مرضى السكري</li>
+                <li><strong>مكملات الإريثروبويتين (EPO):</strong> لعلاج فقر الدم</li>
+                <li><strong>رابطات الفوسفات (Phosphate binders):</strong> للتحكم في مستوى الفوسفات</li>
+                <li><strong>مكملات الكالسيوم وفيتامين D:</strong> للحفاظ على صحة العظام</li>
+            </ul>
+            
+            <!-- الغسيل الكلوي -->
+            <h2 id="dialysis"><i class="fas fa-tint"></i> الغسيل الكلوي (Dialysis)</h2>
+            <p>الغسيل الكلوي هو إجراء يقوم بوظائف الكلى عندما تفشل في أداء عملها (المرحلة 5). هناك نوعان رئيسيان:</p>
+            
+            <div class="info-box">
+                <strong>أنواع الغسيل الكلوي:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>الغسيل الكلوي الدموي (Hemodialysis):</strong>
+                        <ul>
+                            <li>يتم في مركز متخصص (3 مرات أسبوعياً، 3-4 ساعات لكل جلسة)</li>
+                            <li>يتم توصيل المريض بجهاز الغسيل عبر وريد في الذراع</li>
+                            <li>الجهاز يقوم بتصفية الدم وإعادته للجسم</li>
+                        </ul>
+                    </li>
+                    <li><strong>الغسيل الكلوي البريتوني (Peritoneal Dialysis):</strong>
+                        <ul>
+                            <li>يمكن إجراؤه في المنزل (يومياً أو ليلاً)</li>
+                            <li>يستخدم الغشاء البريتوني كمرشح طبيعي</li>
+                            <li>يتم إدخال سائل خاص إلى تجويف البطن ثم تفريغه</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="success-box">
+                <i class="fas fa-hand-holding-heart"></i>
+                <strong>زراعة الكلى (Kidney Transplant):</strong>
+                <p>هي أفضل خيار علاجي للمرضى في المرحلة النهائية من الفشل الكلوي. يتم زرع كلية سليمة من متبرع حي أو متوفى. توفر نوعية حياة أفضل من الغسيل الكلوي، ولكنها تتطلب أدوية مثبطة للمناعة مدى الحياة.</p>
+            </div>
+            
+            <!-- التغذية السليمة -->
+            <h2 id="nutrition"><i class="fas fa-apple-alt"></i> التغذية السليمة لمرضى الكلى</h2>
+            
+            <div class="food-list">
+                <div class="food-good">
+                    <h4><i class="fas fa-check-circle" style="color:#00c853;"></i> أطعمة مفيدة لصحة الكلى</h4>
+                    <ul>
+                        <li>التفاح (غني بالألياف ومضادات الأكسدة)</li>
+                        <li>التوت الأزرق (مضادات أكسدة قوية)</li>
+                        <li>السمك الدهني (أوميغا 3)</li>
+                        <li>الملفوف (غني بفيتامين K)</li>
+                        <li>الفليفلة الحمراء (قليلة البوتاسيوم)</li>
+                        <li>الثوم والبصل (بدائل صحية للملح)</li>
+                        <li>زيت الزيتون (دهون صحية)</li>
+                    </ul>
+                </div>
+                <div class="food-bad">
+                    <h4><i class="fas fa-times-circle" style="color:#e74c3c;"></i> أطعمة يجب تجنبها أو تقليلها</h4>
+                    <ul>
+                        <li>الملح والأطعمة المالحة (تزيد احتباس السوائل)</li>
+                        <li>الأطعمة الغنية بالبوتاسيوم (الموز، البطاطا، الطماطم)</li>
+                        <li>الأطعمة الغنية بالفوسفات (منتجات الألبان، المكسرات)</li>
+                        <li>البروتينات الزائدة (تزيد عبء على الكلى)</li>
+                        <li>المشروبات الغازية والداكنة</li>
+                        <li>الأطعمة المصنعة والمعلبة</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>نصائح غذائية لمرضى الكلى:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>التحكم في كمية البروتين (0.6-0.8 غرام لكل كجم من الوزن)</li>
+                    <li>الحد من الصوديوم (أقل من 2000 مجم يومياً)</li>
+                    <li>التحكم في البوتاسيوم والفوسفات حسب مرحلة المرض</li>
+                    <li>شرب كمية كافية من الماء (ما لم يوص الطبيب بتقييد السوائل)</li>
+                    <li>استشارة أخصائي تغذية لتخصيص النظام الغذائي</li>
+                </ul>
+            </div>
+            
+            <!-- الوقاية -->
+            <h2 id="prevention"><i class="fas fa-shield-heart"></i> الوقاية من أمراض الكلى</h2>
+            
+            <div class="success-box">
+                <strong>خطوات للحفاظ على صحة الكلى:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>التحكم في ضغط الدم:</strong> استهدف أقل من 130/80 mmHg</li>
+                    <li><strong>التحكم في سكر الدم:</strong> لمرضى السكري، استهدف HbA1c أقل من 7%</li>
+                    <li><strong>شرب كمية كافية من الماء:</strong> 2-3 لتر يومياً (ما لم يوص الطبيب بخلاف ذلك)</li>
+                    <li><strong>تجنب الإفراط في تناول الملح</strong></li>
+                    <li><strong>تجنب الاستخدام المزمن لمضادات الالتهاب (NSAIDs)</strong> مثل الإيبوبروفين والديكلوفيناك</li>
+                    <li><strong>الحفاظ على وزن صحي</strong></li>
+                    <li><strong>ممارسة الرياضة بانتظام</strong></li>
+                    <li><strong>الإقلاع عن التدخين</strong></li>
+                    <li><strong>الفحوصات الدورية:</strong> تحليل بول ووظائف كلى سنوياً لمن لديهم عوامل خطر</li>
+                    <li><strong>مراقبة ضغط الدم والسكري بانتظام</strong></li>
+                </ul>
+            </div>
+            
+            <!-- أسئلة شائعة -->
+            <h2 id="faq"><i class="fas fa-question-circle"></i> أسئلة شائعة عن صحة الكلى</h2>
+            
+            <h3>هل شرب الماء بكثرة يمنع حصوات الكلى؟</h3>
+            <p>نعم، شرب كمية كافية من الماء (2.5-3 لتر يومياً) هو أفضل طريقة للوقاية من حصوات الكلى. الماء يخفف البول ويمنع تركيز المعادن والأملاح التي تشكل الحصوات.</p>
+            
+            <h3>ما الفرق بين الفشل الكلوي الحاد والمزمن؟</h3>
+            <p>الفشل الكلوي الحاد يحدث فجأة (خلال ساعات أو أيام) غالباً بسبب الجفاف الشديد، العدوى، أو تناول أدوية ضارة بالكلى، وقد يكون قابلاً للعكس إذا عولج مبكراً. الفشل الكلوي المزمن يتطور تدريجياً على مدى أشهر أو سنوات، وعادة لا يمكن عكسه.</p>
+            
+            <h3>هل يمكن عيش حياة طبيعية بكلية واحدة؟</h3>
+            <p>نعم، يمكن للإنسان أن يعيش حياة طبيعية وصحية بكلية واحدة فقط. تتضخم الكلية المتبقية لتقوم بعمل كليتين. ومع ذلك، يجب تجنب الرياضات العنيفة التي قد تؤذي الكلية الوحيدة.</p>
+            
+            <h3>هل المسكنات تضر الكلى؟</h3>
+            <p>نعم، الاستخدام المزمن لمضادات الالتهاب غير الستيرويدية (مثل الإيبوبروفين، الديكلوفيناك، النابروكسين) يمكن أن يضر الكلى، خاصة لدى كبار السن أو من لديهم أمراض كلى سابقة. الباراسيتامول (بانادول) أكثر أماناً عند استخدامه بالجرعات الموصى بها.</p>
+            
+            <h3>كم مرة يجب فحص وظائف الكلى؟</h3>
+            <p>للأشخاص الأصحاء: مرة سنوياً بعد سن 40. لمن لديهم عوامل خطر (سكري، ضغط، تاريخ عائلي): كل 6-12 شهراً. لمرضى الكلى المزمن: حسب مرحلة المرض وتوصية الطبيب.</p>
+            
+            <hr>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <p><strong>⚠️ تنبيه هام:</strong> هذا المحتوى هو لأغراض توعوية وتعليمية فقط، ولا يغني عن استشارة الطبيب المختص. في حال وجود أي أعراض، يرجى مراجعة الطبيب فوراً.</p>
+                <button class="btn-back" onclick="window.location.href='../index.html'">
+                    <i class="fas fa-arrow-right"></i> العودة إلى المنصة
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 منصة استشاريون - جميع الحقوق محفوظة | اليمن</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">بإشراف د. صلاح الأهدل - مدير مكتب الصحة</p>
+    </div>
+</div>
+
+<script>
+    // تنشيط الروابط الداخلية والتمرير السلس
+    document.querySelectorAll('.toc a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    console.log('تم تحميل مقال صحة الكلى - منصة استشاريون');
+</script>
+</body>
+</html>
