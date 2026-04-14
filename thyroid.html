@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>الغدة الدرقية: منظم الأيض | استشاريون</title>
+    <meta name="description" content="دليل شامل للغدة الدرقية: فرط النشاط، قصور النشاط، الأعراض، التشخيص، والعلاج. معلومات موثقة من د. صلاح الأهدل">
+    <meta name="author" content="د. صلاح الأهدل">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #f0f4f8; color: #1a2c3e; line-height: 1.7; }
+        .article-container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+        .article-card { background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .article-header { background: linear-gradient(135deg, #0066cc, #1a237e); color: white; padding: 2.5rem; text-align: center; }
+        .article-header h1 { font-size: 2rem; margin-bottom: 1rem; }
+        .article-meta { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.9; margin-top: 1rem; }
+        .article-meta i { margin-left: 5px; }
+        .featured-image { width: 100%; height: 350px; object-fit: cover; background: linear-gradient(135deg, #0066cc, #1a237e); display: flex; align-items: center; justify-content: center; }
+        .featured-image i { font-size: 5rem; color: rgba(255,255,255,0.3); }
+        .article-content { padding: 2.5rem; }
+        .article-content h2 { color: #0066cc; border-right: 4px solid #0066cc; padding-right: 1rem; margin: 2rem 0 1rem 0; font-size: 1.6rem; }
+        .article-content h3 { color: #1a237e; margin: 1.5rem 0 0.8rem 0; font-size: 1.3rem; }
+        .article-content h4 { color: #2c3e50; margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
+        .article-content p { margin-bottom: 1rem; text-align: justify; }
+        .article-content ul, .article-content ol { margin: 1rem 2rem 1rem 0; }
+        .article-content li { margin-bottom: 0.5rem; }
+        .warning-box { background: #fff3e0; border-right: 4px solid #ff9800; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .info-box { background: #e3f2fd; border-right: 4px solid #0066cc; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .danger-box { background: #ffebee; border-right: 4px solid #e74c3c; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .success-box { background: #e8f5e9; border-right: 4px solid #00c853; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .stat-card { background: #f8f9fa; padding: 1.2rem; border-radius: 16px; text-align: center; transition: transform 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-number { font-size: 2rem; font-weight: 800; color: #0066cc; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        .comparison-table th, .comparison-table td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        .comparison-table th { background: #0066cc; color: white; }
+        .comparison-table tr:nth-child(even) { background: #f8f9fa; }
+        .thyroid-levels { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        .thyroid-levels th, .thyroid-levels td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        .thyroid-levels th { background: #1a237e; color: white; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #0066cc, #1a237e); color: white; text-decoration: none; padding: 12px 28px; border-radius: 40px; font-weight: 600; margin-top: 2rem; transition: all 0.3s; border: none; cursor: pointer; }
+        .btn-back:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,102,204,0.4); }
+        .toc { background: #f8f9fa; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; }
+        .toc h3 { color: #0066cc; margin-bottom: 1rem; }
+        .toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .toc li a { color: #0066cc; text-decoration: none; transition: color 0.3s; }
+        .toc li a:hover { color: #1a237e; text-decoration: underline; }
+        .footer { text-align: center; padding: 2rem; background: #1a237e; color: white; margin-top: 2rem; border-radius: 28px 28px 0 0; }
+        hr { margin: 1.5rem 0; border: none; height: 1px; background: linear-gradient(to left, #0066cc, transparent); }
+        .symptoms-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1rem 0; }
+        .symptom-item { background: #f8f9fa; padding: 1rem; border-radius: 12px; display: flex; align-items: center; gap: 12px; }
+        .symptom-item i { font-size: 1.3rem; color: #e74c3c; }
+        .food-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1rem 0; }
+        .food-good { background: #e8f5e9; border-right: 4px solid #00c853; padding: 1rem; border-radius: 12px; }
+        .food-bad { background: #ffebee; border-right: 4px solid #e74c3c; padding: 1rem; border-radius: 12px; }
+        @media (max-width: 768px) { .article-header h1 { font-size: 1.5rem; } .article-content { padding: 1.5rem; } .featured-image { height: 200px; } }
+    </style>
+</head>
+<body>
+
+<div class="article-container">
+    <div class="article-card">
+        <div class="article-header">
+            <h1><i class="fas fa-thyroid"></i> الغدة الدرقية: منظم الأيض</h1>
+            <p>فرط وقصور الدرقية، الأعراض، التشخيص، والعلاج</p>
+            <div class="article-meta">
+                <span><i class="fas fa-user-md"></i> د. صلاح الأهدل</span>
+                <span><i class="fas fa-calendar-alt"></i> 15 أبريل 2025</span>
+                <span><i class="fas fa-clock"></i> وقت القراءة: 10 دقائق</span>
+                <span><i class="fas fa-heart"></i> 2,400 قراءة</span>
+            </div>
+        </div>
+        
+        <div class="featured-image">
+            <i class="fas fa-thyroid"></i>
+        </div>
+        
+        <div class="article-content">
+            <!-- فهرس المحتويات -->
+            <div class="toc">
+                <h3><i class="fas fa-list-ul"></i> فهرس المحتويات</h3>
+                <ul>
+                    <li><a href="#intro">مقدمة عن الغدة الدرقية</a></li>
+                    <li><a href="#hypothyroidism">قصور الغدة الدرقية</a></li>
+                    <li><a href="#hyperthyroidism">فرط نشاط الغدة الدرقية</a></li>
+                    <li><a href="#comparison">المقارنة بين القصور والفرط</a></li>
+                    <li><a href="#symptoms">الأعراض التحذيرية</a></li>
+                    <li><a href="#diagnosis">التشخيص والفحوصات</a></li>
+                    <li><a href="#treatment">العلاج</a></li>
+                    <li><a href="#nutrition">التغذية المناسبة</a></li>
+                    <li><a href="#prevention">الوقاية</a></li>
+                    <li><a href="#faq">أسئلة شائعة</a></li>
+                </ul>
+            </div>
+            
+            <!-- المقدمة -->
+            <h2 id="intro"><i class="fas fa-info-circle"></i> مقدمة عن الغدة الدرقية</h2>
+            <p>الغدة الدرقية هي غدة صغيرة على شكل فراشة تقع في الجزء الأمامي من الرقبة، أسفل تفاحة آدم. تلعب دوراً حيوياً في تنظيم عمليات الأيض في الجسم من خلال إفراز هرمونات T3 (ثلاثي يود الثيرونين) و T4 (ثيروكسين). تؤثر هذه الهرمونات على كل خلية في الجسم تقريباً، وتنظم معدل ضربات القلب، ودرجة حرارة الجسم، والتمثيل الغذائي، والنمو، والتطور العقلي.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">5-10%</div>
+                    <div>من السكان يعانون من اضطرابات الدرقية</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8:1</div>
+                    <div>نسبة إصابة النساء للرجال</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50%</div>
+                    <div>لا يعلمون بإصابتهم</div>
+                </div>
+            </div>
+            
+            <!-- قصور الغدة الدرقية -->
+            <h2 id="hypothyroidism"><i class="fas fa-temperature-low"></i> قصور الغدة الدرقية (Hypothyroidism)</h2>
+            <p>قصور الغدة الدرقية هو حالة لا تنتج فيها الغدة الدرقية ما يكفي من الهرمونات. يُعرف أيضاً باسم "خمول الغدة الدرقية". وهو أكثر شيوعاً من فرط النشاط، وخاصة عند النساء فوق سن 60 عاماً.</p>
+            
+            <div class="info-box">
+                <i class="fas fa-microscope"></i>
+                <strong>الأسباب الرئيسية لقصور الغدة الدرقية:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>مرض هاشيموتو (Hashimoto's disease):</strong> مرض مناعي ذاتي حيث يهاجم الجهاز المناعي الغدة الدرقية، وهو السبب الأكثر شيوعاً</li>
+                    <li><strong>العلاج باليود المشع:</strong> لعلاج فرط نشاط الغدة</li>
+                    <li><strong>استئصال الغدة الدرقية:</strong> جراحياً</li>
+                    <li><strong>بعض الأدوية:</strong> مثل الليثيوم والأميودارون</li>
+                    <li><strong>نقص اليود:</strong> نادر في المناطق التي تستخدم الملح المعالج باليود</li>
+                    <li><strong>التهاب الغدة الدرقية:</strong> بعد الحمل أو بسبب فيروسي</li>
+                </ul>
+            </div>
+            
+            <h3>أعراض قصور الغدة الدرقية:</h3>
+            <div class="symptoms-list">
+                <div class="symptom-item"><i class="fas fa-tired"></i> <span>تعب وإرهاق مزمن</span></div>
+                <div class="symptom-item"><i class="fas fa-thermometer-low"></i> <span>حساسية للبرد وبرودة الأطراف</span></div>
+                <div class="symptom-item"><i class="fas fa-weight-scale"></i> <span>زيادة الوزن غير المبررة</span></div>
+                <div class="symptom-item"><i class="fas fa-hand-peace"></i> <span>جفاف الجلد وتساقط الشعر</span></div>
+                <div class="symptom-item"><i class="fas fa-face-frown"></i> <span>انتفاخ الوجه والجفون</span></div>
+                <div class="symptom-item"><i class="fas fa-music"></i> <span>بحة في الصوت</span></div>
+                <div class="symptom-item"><i class="fas fa-muscle"></i> <span>آلام وضعف العضلات</span></div>
+                <div class="symptom-item"><i class="fas fa-brain"></i> <span>ضعف التركيز والذاكرة</span></div>
+                <div class="symptom-item"><i class="fas fa-heartbeat"></i> <span>بطء ضربات القلب</span></div>
+                <div class="symptom-item"><i class="fas fa-smile"></i> <span>الاكتئاب</span></div>
+            </div>
+            
+            <!-- فرط نشاط الغدة الدرقية -->
+            <h2 id="hyperthyroidism"><i class="fas fa-temperature-high"></i> فرط نشاط الغدة الدرقية (Hyperthyroidism)</h2>
+            <p>فرط نشاط الغدة الدرقية هو حالة تنتج فيها الغدة الدرقية كميات زائدة من الهرمونات. يُعرف أيضاً باسم "فرط الدرقية". يؤدي إلى تسريع عمليات الأيض في الجسم.</p>
+            
+            <div class="warning-box">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>الأسباب الرئيسية لفرط نشاط الغدة الدرقية:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>مرض جريفز (Graves' disease):</strong> مرض مناعي ذاتي، السبب الأكثر شيوعاً</li>
+                    <li><strong>عقيدات الغدة الدرقية النشطة:</strong> (Toxic nodular goiter)</li>
+                    <li><strong>التهاب الغدة الدرقية:</strong> يسبب تسرب الهرمونات المخزنة</li>
+                    <li><strong>الإفراط في تناول اليود:</strong> من الأدوية أو المكملات</li>
+                    <li><strong>أورام الغدة النخامية:</strong> نادرة</li>
+                </ul>
+            </div>
+            
+            <h3>أعراض فرط نشاط الغدة الدرقية:</h3>
+            <div class="symptoms-list">
+                <div class="symptom-item"><i class="fas fa-bolt"></i> <span>عصبية وقلق وتوتر</span></div>
+                <div class="symptom-item"><i class="fas fa-thermometer-high"></i> <span>حساسية للحرارة وتعرق زائد</span></div>
+                <div class="symptom-item"><i class="fas fa-weight-scale"></i> <span>فقدان الوزن غير المبرر</span></div>
+                <div class="symptom-item"><i class="fas fa-heartbeat"></i> <span>تسارع ضربات القلب (خفقان)</span></div>
+                <div class="symptom-item"><i class="fas fa-hand-peace"></i> <span>رعشة في اليدين والأصابع</span></div>
+                <div class="symptom-item"><i class="fas fa-moon"></i> <span>صعوبة في النوم (أرق)</span></div>
+                <div class="symptom-item"><i class="fas fa-eye"></i> <span>جحوظ العينين (في مرض جريفز)</span></div>
+                <div class="symptom-item"><i class="fas fa-bath"></i> <span>ضعف العضلات (خاصة في الفخذين)</span></div>
+                <div class="symptom-item"><i class="fas fa-woman"></i> <span>عدم انتظام الدورة الشهرية</span></div>
+                <div class="symptom-item"><i class="fas fa-toilet"></i> <span>الإسهال أو كثرة التبرز</span></div>
+            </div>
+            
+            <!-- المقارنة بين القصور والفرط -->
+            <h2 id="comparison"><i class="fas fa-chart-simple"></i> المقارنة بين قصور وفرط الغدة الدرقية</h2>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>الميزة</th>
+                        <th>قصور الغدة (Hypothyroidism)</th>
+                        <th>فرط الغدة (Hyperthyroidism)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>التمثيل الغذائي</strong></td><td>بطيء</td><td>سريع</td></tr>
+                    <tr><td><strong>الوزن</strong></td><td>زيادة</td><td>نقصان</td></tr>
+                    <tr><td><strong>درجة الحرارة</strong></td><td>عدم تحمل البرد</td><td>عدم تحمل الحرارة</td></tr>
+                    <tr><td><strong>معدل ضربات القلب</strong></td><td>بطيء</td><td>سريع</td></tr>
+                    <tr><td><strong>الطاقة</strong></td><td>خمول وتعب</td><td>نشاط زائد وعصبية</td></tr>
+                    <tr><td><strong>الجلد</strong></td><td>جاف</td><td>رطب ودافئ</td></tr>
+                    <tr><td><strong>الشعر</strong></td><td>جاف ومتساقط</td><td>رقيق</td></tr>
+                    <tr><td><strong>TSH</strong></td><td>مرتفع</td><td>منخفض</td></tr>
+                    <tr><td><strong>T3/T4</strong></td><td>منخفض</td><td>مرتفع</td></tr>
+                </tbody>
+            </table>
+            
+            <!-- الأعراض التحذيرية -->
+            <h2 id="symptoms"><i class="fas fa-bell"></i> الأعراض التحذيرية التي تستدعي مراجعة الطبيب</h2>
+            
+            <div class="danger-box">
+                <i class="fas fa-ambulance"></i>
+                <strong>⚠️ علامات تستدعي زيارة الطبيب فوراً:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>تورم مفاجئ في الرقبة (تضخم الغدة الدرقية)</li>
+                    <li>خفقان قلب شديد أو عدم انتظام ضربات القلب</li>
+                    <li>ألم في الصدر أو ضيق في التنفس</li>
+                    <li>تغيرات مفاجئة في الوزن دون سبب واضح</li>
+                    <li>إرهاق شديد يؤثر على الحياة اليومية</li>
+                    <li>تغيرات في المزاج أو السلوك</li>
+                    <li>جحوظ العينين أو تغيرات في الرؤية</li>
+                </ul>
+            </div>
+            
+            <!-- التشخيص -->
+            <h2 id="diagnosis"><i class="fas fa-stethoscope"></i> تشخيص اضطرابات الغدة الدرقية</h2>
+            
+            <h3>الفحوصات المخبرية الأساسية:</h3>
+            <table class="thyroid-levels">
+                <thead>
+                    <tr>
+                        <th>الفحص</th>
+                        <th>المدى الطبيعي</th>
+                        <th>قصور الغدة</th>
+                        <th>فرط الغدة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>TSH</strong></td><td>0.4-4.0 mIU/L</td><td style="background:#ffebee;">مرتفع ↑</td><td style="background:#ffebee;">منخفض ↓</td></tr>
+                    <tr><td><strong>T4 الحر</strong></td><td>0.8-1.8 ng/dL</td><td style="background:#ffebee;">منخفض ↓</td><td style="background:#ffebee;">مرتفع ↑</td></tr>
+                    <tr><td><strong>T3 الحر</strong></td><td>2.3-4.2 pg/mL</td><td style="background:#ffebee;">منخفض ↓</td><td style="background:#ffebee;">مرتفع ↑</td></tr>
+                </tbody>
+            </table>
+            
+            <h3>الفحوصات الإضافية:</h3>
+            <ul>
+                <li><strong>الموجات فوق الصوتية (Ultrasound):</strong> لفحص حجم الغدة ووجود عقيدات</li>
+                <li><strong>مسح الغدة الدرقية (Thyroid Scan):</strong> لتقييم نشاط الغدة</li>
+                <li><strong>الشفط بالإبرة الدقيقة (FNA):</strong> لأخذ عينة من العقيدات المشبوهة</li>
+                <li><strong>فحص الأجسام المضادة:</strong> لتشخيص أمراض المناعة الذاتية</li>
+            </ul>
+            
+            <!-- العلاج -->
+            <h2 id="treatment"><i class="fas fa-tools"></i> علاج اضطرابات الغدة الدرقية</h2>
+            
+            <h3>علاج قصور الغدة الدرقية:</h3>
+            <div class="info-box">
+                <i class="fas fa-prescription-bottle"></i>
+                <strong>العلاج بالهرمونات البديلة:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>ليفوثيروكسين (Levothyroxine) - إي ثايروكسين (Euthyrox):</strong> هرمون T4 صناعي يؤخذ يومياً على معدة فارغة</li>
+                    <li><strong>الجرعة:</strong> تعتمد على العمر، الوزن، وشدة القصور</li>
+                    <li><strong>المدة:</strong> مدى الحياة في معظم الحالات</li>
+                    <li><strong>المتابعة:</strong> فحص TSH كل 6-12 شهراً لضبط الجرعة</li>
+                </ul>
+            </div>
+            
+            <h3>علاج فرط نشاط الغدة الدرقية:</h3>
+            <div class="info-box">
+                <i class="fas fa-prescription-bottle"></i>
+                <strong>خيارات العلاج:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>الأدوية المضادة للدرقية:</strong> ميثيمازول (Methimazole)، بروبيل ثيوراسيل (PTU) - تثبط إنتاج الهرمونات</li>
+                    <li><strong>اليود المشع (Radioactive Iodine):</strong> يدمر خلايا الغدة المفرطة النشاط (يؤدي عادة إلى قصور دائم)</li>
+                    <li><strong>الجراحة:</strong> استئصال الغدة الدرقية (Thyroidectomy) للحالات المقاومة أو وجود عقيدات سرطانية</li>
+                    <li><strong>حاصرات بيتا (Beta-blockers):</strong> للسيطرة على الأعراض مثل تسارع القلب والرعشة</li>
+                </ul>
+            </div>
+            
+            <div class="success-box">
+                <i class="fas fa-check-circle"></i>
+                <strong>نصائح مهمة أثناء العلاج:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>تناول الدواء في نفس الوقت يومياً (صباحاً على الريق قبل الأكل بساعة)</li>
+                    <li>لا تتوقف عن الدواء دون استشارة الطبيب</li>
+                    <li>أخبر طبيبك عن أي أدوية أخرى تتناولها (خاصة الحديد والكالسيوم)</li>
+                    <li>قم بالفحوصات الدورية لمتابعة مستويات الهرمونات</li>
+                </ul>
+            </div>
+            
+            <!-- التغذية المناسبة -->
+            <h2 id="nutrition"><i class="fas fa-apple-alt"></i> التغذية المناسبة لصحة الغدة الدرقية</h2>
+            
+            <div class="food-list">
+                <div class="food-good">
+                    <h4><i class="fas fa-check-circle" style="color:#00c853;"></i> أطعمة مفيدة</h4>
+                    <ul>
+                        <li>الأطعمة الغنية باليود (الملح المعالج باليود، الأعشاب البحرية)</li>
+                        <li>السلينيوم (المكسرات البرازيلية، التونة، السردين)</li>
+                        <li>الزنك (المحار، اللحوم الحمراء، البقوليات)</li>
+                        <li>فيتامين D (الأسماك الدهنية، صفار البيض)</li>
+                        <li>فيتامين B12 (اللحوم، البيض، منتجات الألبان)</li>
+                        <li>أوميغا 3 (الأسماك الدهنية، بذور الكتان)</li>
+                    </ul>
+                </div>
+                <div class="food-bad">
+                    <h4><i class="fas fa-times-circle" style="color:#e74c3c;"></i> أطعمة يجب تجنبها أو تقليلها</h4>
+                    <ul>
+                        <li>الأطعمة الغنية بالغويتروجين (الكرنب، البروكلي، القرنبيط، اللفت) - تطهى أولاً لتقليل تأثيرها</li>
+                        <li>فول الصويا ومنتجاته (بكميات كبيرة)</li>
+                        <li>الأطعمة المصنعة والسكريات</li>
+                        <li>الكافيين (قد يزيد أعراض فرط النشاط)</li>
+                        <li>الغلوتين (خاصة لمرضى هاشيموتو)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- الوقاية -->
+            <h2 id="prevention"><i class="fas fa-shield-heart"></i> الوقاية من اضطرابات الغدة الدرقية</h2>
+            
+            <div class="success-box">
+                <strong>نصائح للحفاظ على صحة الغدة الدرقية:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>تناول اليود الكافي:</strong> استخدم الملح المعالج باليود، وتناول المأكولات البحرية باعتدال</li>
+                    <li><strong>الإقلاع عن التدخين:</strong> يزيد خطر مرض جريفز ويسوء أعراض العين</li>
+                    <li><strong>إدارة التوتر:</strong> التوتر المزمن يؤثر على وظيفة الغدة الدرقية</li>
+                    <li><strong>الفحوصات الدورية:</strong> خاصة إذا كان لديك تاريخ عائلي لأمراض الدرقية</li>
+                    <li><strong>مراقبة الأعراض:</strong> انتبه لأي تغيرات في الوزن، الطاقة، أو المزاج</li>
+                    <li><strong>فحص الرقبة الذاتي:</strong> تحسس الرقبة شهرياً للبحث عن أي تورم أو عقيدات</li>
+                </ul>
+            </div>
+            
+            <!-- أسئلة شائعة -->
+            <h2 id="faq"><i class="fas fa-question-circle"></i> أسئلة شائعة عن الغدة الدرقية</h2>
+            
+            <h3>هل أمراض الغدة الدرقية وراثية؟</h3>
+            <p>نعم، هناك عامل وراثي قوي في أمراض الغدة الدرقية المناعية الذاتية (مثل هاشيموتو وجريفز). إذا كان لديك تاريخ عائلي، فأنت أكثر عرضة للإصابة. ينصح بإجراء فحوصات دورية.</p>
+            
+            <h3>هل يمكن الشفاء من قصور الغدة الدرقية؟</h3>
+            <p>في معظم الحالات، قصور الغدة الدرقية دائم ويتطلب علاجاً مدى الحياة بالهرمونات البديلة. لكن مع العلاج المناسب، يمكن التحكم في الأعراض بشكل ممتاز والعيش حياة طبيعية.</p>
+            
+            <h3>هل الحمل يؤثر على الغدة الدرقية؟</h3>
+            <p>نعم، الحمل يزيد الطلب على هرمونات الغدة الدرقية. يجب على النساء الحوامل أو اللاتي يخططن للحمل مراجعة الطبيب لضبط الجرعة. قصور الغدة غير المعالج أثناء الحمل قد يؤثر على نمو دماغ الجنين.</p>
+            
+            <h3>هل يمكن أن تتحول عقيدات الغدة الدرقية إلى سرطان؟</h3>
+            <p>معظم عقيدات الغدة الدرقية (أكثر من 90%) حميدة. فقط نسبة صغيرة (5-10%) تكون سرطانية. الفحص بالموجات فوق الصوتية والشفط بالإبرة يساعد في تحديد العقيدات التي تحتاج لمتابعة أو إزالة.</p>
+            
+            <h3>ما العلاقة بين الغدة الدرقية والوزن؟</h3>
+            <p>الغدة الدرقية تنظم الأيض (معدل حرق السعرات الحرارية). قصور الغدة يبطئ الأيض ويسبب زيادة الوزن، بينما فرط النشاط يسرع الأيض ويسبب فقدان الوزن. مع العلاج المناسب، يعود الوزن إلى مستوياته الطبيعية.</p>
+            
+            <hr>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <p><strong>⚠️ تنبيه هام:</strong> هذا المحتوى هو لأغراض توعوية وتعليمية فقط، ولا يغني عن استشارة الطبيب المختص. في حال وجود أي أعراض، يرجى مراجعة الطبيب فوراً.</p>
+                <button class="btn-back" onclick="window.location.href='../index.html'">
+                    <i class="fas fa-arrow-right"></i> العودة إلى المنصة
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 منصة استشاريون - جميع الحقوق محفوظة | اليمن</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">بإشراف د. صلاح الأهدل - مدير مكتب الصحة</p>
+    </div>
+</div>
+
+<script>
+    // تنشيط الروابط الداخلية والتمرير السلس
+    document.querySelectorAll('.toc a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    console.log('تم تحميل مقال الغدة الدرقية - منصة استشاريون');
+</script>
+</body>
+</html>
