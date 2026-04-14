@@ -17,11 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
-    <!-- Firebase SDK للإشعارات -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-messaging-compat.js"></script>
-    <!-- Stripe للدفع -->
-    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
     <style>
         :root { --primary: #0066cc; --secondary: #1a237e; --accent: #00c853; --danger: #e74c3c; --warning: #ff9800; --bg-body: #f0f4f8; --surface: #ffffff; --text-main: #263238; --text-muted: #546e7a; --shadow: 0 4px 20px rgba(0,0,0,0.08); --shadow-lg: 0 10px 40px rgba(0,0,0,0.12); --radius: 16px; --gold: #ffd700; --silver: #c0c0c0; --bronze: #cd7f32; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -231,7 +227,6 @@
                         <input type="text" id="aiInput" placeholder="مثال: صداع شديد مع غثيان">
                         <button onclick="sendToAI()"><i class="fas fa-paper-plane"></i></button>
                         <button onclick="document.getElementById('aiImageInput').click()"><i class="fas fa-camera"></i></button>
-                        <button onclick="startVoiceInput()"><i class="fas fa-microphone"></i></button>
                         <input type="file" id="aiImageInput" accept="image/*" style="display:none;">
                     </div>
                     <div style="margin-top:10px; font-size:0.7rem;">
@@ -243,59 +238,41 @@
             <aside>
                 <div class="admin-official-banner"><i class="fas fa-shield-halved"></i><h4>الإدارة العامة</h4><p>د. صلاح الأهدل</p><small>مدير مكتب الصحة - اليمن</small><div style="margin-top:10px;"><i class="fas fa-check-circle"></i> معتمد من وزارة الصحة اليمنية</div></div>
                 
-                <!-- تقويم تفاعلي للمواعيد -->
                 <div class="sidebar-box" id="calendarSection">
                     <h4><i class="fas fa-calendar-alt"></i> التقويم التفاعلي</h4>
                     <div id="interactiveCalendar"></div>
                     <div id="selectedDateInfo" class="text-muted" style="margin-top:10px; text-align:center;"></div>
                 </div>
                 
-                <!-- باقات الاشتراك -->
                 <div class="sidebar-box" id="subscriptionSection">
                     <h4><i class="fas fa-crown"></i> باقات الاشتراك</h4>
                     <div id="subscriptionPlans"></div>
                     <div id="currentSubscription"></div>
                 </div>
                 
-                <!-- صيدليات قريبة -->
                 <div class="sidebar-box" id="pharmacySection">
                     <h4><i class="fas fa-prescription-bottle"></i> صيدليات قريبة</h4>
                     <div id="nearbyPharmacies"></div>
                     <button class="btn-primary" onclick="findNearbyPharmacies()" style="width:100%; margin-top:10px;"><i class="fas fa-location-dot"></i> بحث عن صيدليات</button>
                 </div>
                 
-                <!-- سجل النشاطات -->
                 <div class="sidebar-box" id="activityLogSection">
                     <h4><i class="fas fa-history"></i> سجل النشاطات</h4>
                     <div id="activityLogList" style="max-height:200px; overflow-y:auto;"></div>
                     <button class="read-btn" onclick="clearActivityLog()" style="margin-top:5px;">مسح السجل</button>
                 </div>
                 
-                <!-- تتبع الحالة الصحية -->
                 <div class="sidebar-box" id="healthTrackerSection">
                     <h4><i class="fas fa-chart-line"></i> تتبع الحالة الصحية</h4>
                     <div class="health-tracker">
-                        <div class="health-card" onclick="openHealthTracker('bloodPressure')">
-                            <i class="fas fa-heartbeat" style="font-size: 1.8rem; color: var(--danger);"></i>
-                            <div class="health-value" id="lastBP">--/--</div>
-                            <small>ضغط الدم</small>
-                        </div>
-                        <div class="health-card" onclick="openHealthTracker('bloodSugar')">
-                            <i class="fas fa-tint" style="font-size: 1.8rem; color: var(--warning);"></i>
-                            <div class="health-value" id="lastSugar">--</div>
-                            <small>السكر</small>
-                        </div>
-                        <div class="health-card" onclick="openHealthTracker('weight')">
-                            <i class="fas fa-weight-scale" style="font-size: 1.8rem; color: var(--accent);"></i>
-                            <div class="health-value" id="lastWeight">--</div>
-                            <small>الوزن</small>
-                        </div>
+                        <div class="health-card" onclick="openHealthTracker('bloodPressure')"><i class="fas fa-heartbeat" style="font-size:1.8rem; color:var(--danger);"></i><div class="health-value" id="lastBP">--/--</div><small>ضغط الدم</small></div>
+                        <div class="health-card" onclick="openHealthTracker('bloodSugar')"><i class="fas fa-tint" style="font-size:1.8rem; color:var(--warning);"></i><div class="health-value" id="lastSugar">--</div><small>السكر</small></div>
+                        <div class="health-card" onclick="openHealthTracker('weight')"><i class="fas fa-weight-scale" style="font-size:1.8rem; color:var(--accent);"></i><div class="health-value" id="lastWeight">--</div><small>الوزن</small></div>
                     </div>
                     <button class="btn-primary" onclick="showHealthChart()" style="width:100%; margin-top:10px;"><i class="fas fa-chart-simple"></i> عرض الرسم البياني</button>
                     <div id="healthAlert" style="margin-top:10px; padding:8px; border-radius:8px; display:none;"></div>
                 </div>
                 
-                <!-- الحساب العائلي -->
                 <div class="sidebar-box" id="familySection">
                     <h4><i class="fas fa-users"></i> الحساب العائلي</h4>
                     <div id="familyMembersList"></div>
@@ -303,19 +280,13 @@
                     <button class="btn-primary" onclick="switchFamilyMember()" style="width:100%; margin-top:5px; background: var(--warning);"><i class="fas fa-exchange-alt"></i> تبديل الحساب</button>
                 </div>
                 
-                <!-- رفع الملفات الطبية -->
                 <div class="sidebar-box" id="medicalFilesSection">
                     <h4><i class="fas fa-folder-medical"></i> ملفاتي الطبية</h4>
-                    <div class="file-upload-area" onclick="document.getElementById('medicalFileInput').click()">
-                        <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: var(--primary);"></i>
-                        <p>رفع أشعة، تقارير، ملفات PDF</p>
-                        <input type="file" id="medicalFileInput" accept="image/*,.pdf" multiple style="display:none;" onchange="uploadMedicalFile(this)">
-                    </div>
+                    <div class="file-upload-area" onclick="document.getElementById('medicalFileInput').click()"><i class="fas fa-cloud-upload-alt" style="font-size:2rem; color:var(--primary);"></i><p>رفع أشعة، تقارير، ملفات PDF</p><input type="file" id="medicalFileInput" accept="image/*,.pdf" multiple style="display:none;" onchange="uploadMedicalFile(this)"></div>
                     <div id="medicalFilesList"></div>
                     <button class="btn-primary" onclick="shareMedicalFile()" style="width:100%; margin-top:10px;"><i class="fas fa-share-alt"></i> مشاركة مع الطبيب</button>
                 </div>
                 
-                <!-- المستشفيات القريبة -->
                 <div class="sidebar-box" id="hospitalsSection">
                     <h4><i class="fas fa-hospital"></i> المستشفيات القريبة</h4>
                     <div id="nearbyHospitals"></div>
@@ -323,33 +294,24 @@
                     <button class="btn-primary" onclick="requestEmergencyBed()" style="width:100%; margin-top:5px; background: var(--danger);"><i class="fas fa-truck-medical"></i> طلب سرير طوارئ</button>
                 </div>
                 
-                <!-- تقييم الأطباء -->
                 <div class="sidebar-box" id="doctorRatingSection">
                     <h4><i class="fas fa-star"></i> تقييم الأطباء</h4>
                     <div id="doctorsList"></div>
                 </div>
                 
-                <!-- الدورات التدريبية -->
                 <div class="sidebar-box" id="coursesSection">
                     <h4><i class="fas fa-graduation-cap"></i> الدورات التدريبية</h4>
                     <div id="coursesList"></div>
                     <button class="btn-primary" onclick="showAllCourses()" style="width:100%; margin-top:10px;"><i class="fas fa-play-circle"></i> جميع الدورات</button>
-                    <div id="certificatesSection" style="margin-top:15px;"></div>
                 </div>
                 
-                <!-- تحليل الفحوصات بالكاميرا -->
                 <div class="sidebar-box" id="cameraAnalysisSection">
                     <h4><i class="fas fa-camera"></i> تحليل الفحوصات بالكاميرا</h4>
-                    <div class="file-upload-area" onclick="document.getElementById('labPhotoInput').click()">
-                        <i class="fas fa-camera" style="font-size: 2rem; color: var(--primary);"></i>
-                        <p>تصوير شاشة التحليل أو رفع صورة</p>
-                        <input type="file" id="labPhotoInput" accept="image/*" capture="environment" style="display:none;" onchange="analyzeLabPhoto(this)">
-                    </div>
+                    <div class="file-upload-area" onclick="document.getElementById('labPhotoInput').click()"><i class="fas fa-camera" style="font-size:2rem; color:var(--primary);"></i><p>تصوير شاشة التحليل أو رفع صورة</p><input type="file" id="labPhotoInput" accept="image/*" capture="environment" style="display:none;" onchange="analyzeLabPhoto(this)"></div>
                     <div id="photoPreview"></div>
                     <div id="photoAnalysisResult" style="margin-top:10px; display:none;"></div>
                 </div>
                 
-                <!-- تحويل المكالمة إلى هاتف -->
                 <div class="sidebar-box" id="phoneCallSection">
                     <h4><i class="fas fa-phone-alt"></i> تحويل المكالمة لهاتف</h4>
                     <div class="form-group"><label>رقم هاتف المريض</label><input type="tel" id="callPatientPhone" placeholder="مثال: 967712345678"></div>
@@ -398,15 +360,13 @@
         </div>
     </div>
     
-    <!-- روبوت المحادثة الآلي -->
     <div class="chatbot-toggle" id="chatbotToggle"><i class="fas fa-robot"></i></div>
     <div class="chatbot-container" id="chatbotContainer">
         <div class="chatbot-header"><span><i class="fas fa-robot"></i> مساعد استشاريون الذكي</span><i class="fas fa-times" onclick="closeChatbot()" style="cursor:pointer;"></i></div>
-        <div class="chatbot-messages" id="chatbotMessages"><div class="chatbot-message chatbot-bot">👋 مرحباً! أنا مساعدك الآلي الذكي. كيف يمكنني مساعدتك اليوم؟<br><small>💡 يمكنك سؤالي عن: حجز موعد، استشارة، دواء، نقاط، اشتراك</small></div></div>
+        <div class="chatbot-messages" id="chatbotMessages"><div class="chatbot-message chatbot-bot">👋 مرحباً! أنا مساعدك الآلي الذكي. كيف يمكنني مساعدتك اليوم؟</div></div>
         <div class="chatbot-input-area"><input type="text" class="chatbot-input" id="chatbotInput" placeholder="اكتب سؤالك..."><button class="chatbot-send" onclick="sendChatbotMessage()"><i class="fas fa-paper-plane"></i></button></div>
     </div>
     
-    <!-- النوافذ المنبثقة -->
     <div id="articleModal" class="modal"><div class="modal-content"><button class="close-modal" onclick="closeArticleModal()">&times;</button><div id="modalBody"></div></div></div>
     <div id="legalModal" class="modal"><div class="modal-content"><button class="close-modal" onclick="closeLegalModal()">&times;</button><div id="legalModalBody"></div></div></div>
     <div id="authModal" class="modal"><div class="modal-content" style="max-width:450px;"><button class="close-modal" onclick="closeAuthModal()">&times;</button><h3 id="authTitle">تسجيل الدخول</h3>
@@ -454,74 +414,266 @@
     </div></div>
 
     <script>
-        // ==================== البيانات الأساسية ====================
-        let State = {
-            articles: [], comments: [], ratings: [], likes: [], favorites: [], appointments: [],
-            users: [], prescriptions: [], payments: [], healthData: [], familyMembers: [],
-            medicalFiles: [], doctorRatings: [], courses: [], subscriptions: [], activityLog: [],
-            currentUser: null, adminLogged: false, isDarkMode: localStorage.getItem('darkMode') === 'true',
-            currentLanguage: 'ar', callStartTime: null, peer: null, localStream: null, call: null,
-            points: 0, currentFamilyMember: null, currentSubscription: null, recordingMediaRecorder: null,
-            recordingChunks: [], isRecording: false, screenStream: null
+        // ==================== ثوابت التشفير ====================
+        const ENCRYPTION_KEY = 'Estsharion-2025-Secure-Key-V2';
+        
+        // دوال التشفير
+        function encryptData(data) {
+            if (!data) return null;
+            try {
+                return CryptoJS.AES.encrypt(JSON.stringify(data), ENCRYPTION_KEY).toString();
+            } catch(e) { return null; }
+        }
+        
+        function decryptData(encryptedData) {
+            if (!encryptedData) return null;
+            try {
+                const bytes = CryptoJS.AES.decrypt(encryptedData, ENCRYPTION_KEY);
+                return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+            } catch(e) { return null; }
+        }
+        
+        // ==================== تاريخ اليوم ====================
+        function getTodayDate() {
+            let today = new Date();
+            let year = today.getFullYear();
+            let month = String(today.getMonth() + 1).padStart(2, '0');
+            let day = String(today.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+        
+        function formatDisplayDate(dateString) {
+            let date = new Date(dateString);
+            return date.toLocaleDateString('ar-SA', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+        
+        // ==================== خوادم STUN/TURN المحسنة ====================
+        const ICE_SERVERS = {
+            config: {
+                iceServers: [
+                    // خوادم STUN من Google
+                    { urls: 'stun:stun.l.google.com:19302' },
+                    { urls: 'stun:stun1.l.google.com:19302' },
+                    { urls: 'stun:stun2.l.google.com:19302' },
+                    { urls: 'stun:stun3.l.google.com:19302' },
+                    { urls: 'stun:stun4.l.google.com:19302' },
+                    
+                    // خوادم STUN عامة مجانية
+                    { urls: 'stun:stun.ekiga.net' },
+                    { urls: 'stun:stun.ideasip.com' },
+                    { urls: 'stun:stun.rixtelecom.se' },
+                    { urls: 'stun:stun.schlund.de' },
+                    { urls: 'stun:stun.stunprotocol.org:3478' },
+                    { urls: 'stun:stun.voiparound.com' },
+                    { urls: 'stun:stun.voipbuster.com' },
+                    { urls: 'stun:stun.voipstunt.com' },
+                    { urls: 'stun:stun.voxgratia.org' },
+                    { urls: 'stun:stun.cloudflare.com:3478' },
+                    { urls: 'stun:freestun.net:3478' },
+                    
+                    // خوادم TURN مجانية من Open Relay Project (20GB/شهر)
+                    {
+                        urls: 'turn:openrelay.metered.ca:80',
+                        username: 'openrelayproject',
+                        credential: 'openrelayproject'
+                    },
+                    {
+                        urls: 'turn:openrelay.metered.ca:443',
+                        username: 'openrelayproject',
+                        credential: 'openrelayproject'
+                    },
+                    {
+                        urls: 'turn:openrelay.metered.ca:443?transport=tcp',
+                        username: 'openrelayproject',
+                        credential: 'openrelayproject'
+                    },
+                    
+                    // خوادم TURN مجانية إضافية
+                    {
+                        urls: 'turn:freestun.net:3478',
+                        username: 'free',
+                        credential: 'free'
+                    },
+                    {
+                        urls: 'turn:turn.speed.cloudflare.com:50000?transport=udp'
+                    }
+                ]
+            }
         };
         
-        // ==================== قاعدة البيانات ====================
+        // ==================== قاعدة بيانات المقالات (17 مقالاً) ====================
         const articlesDB = [
-            { id:'catheter', title:'دليلك الشامل للقسطرة القلبية', desc:'كل ما تحتاج معرفته عن القسطرة القلبية', img:'images/catheter.jpg', tags:['قلب'], author:'د. صلاح الأهدل', views:1250, likes:89, rating:4.8, ratingCount:45, date:'2025-01-15', contentFile:'catheter.html' },
-            { id:'stents', title:'الدعامات القلبية', desc:'أنواع الدعامات ومتى نحتاجها', img:'images/stents.jpg', tags:['قلب','دعامات'], author:'د. صلاح الأهدل', views:980, likes:76, rating:4.7, ratingCount:38, date:'2025-01-20', contentFile:'stents.html' },
-            { id:'diabetes', title:'إدارة السكري وحماية القلب', desc:'نصائح لمرضى السكري', img:'images/diabetes.jpg', tags:['سكري'], author:'د. صلاح الأهدل', views:980, likes:76, rating:4.7, ratingCount:38, date:'2025-03-05', contentFile:'diabetes.html' },
-            { id:'hypertension', title:'ارتفاع ضغط الدم', desc:'الأسباب والمضاعفات والعلاج', img:'images/hypertension.jpg', tags:['ضغط'], author:'د. صلاح الأهدل', views:1300, likes:112, rating:4.9, ratingCount:56, date:'2025-03-10', contentFile:'hypertension.html' },
-            { id:'digestive', title:'اضطرابات الجهاز الهضمي', desc:'ارتجاع المريء والقرحة والقولون', img:'images/digestive.jpg', tags:['جهاز هضمي'], author:'د. صلاح الأهدل', views:1050, likes:84, rating:4.7, ratingCount:42, date:'2025-03-20', contentFile:'digestive.html' },
-            { id:'heart-tips', title:'نصائح ذهبية لصحة القلب', desc:'عادات يومية تحمي قلبك', img:'images/tips.jpg', tags:['قلب'], author:'د. صلاح الأهدل', views:1500, likes:134, rating:4.9, ratingCount:67, date:'2025-02-15', contentFile:'tips.html' },
-            { id:'pharmacology', title:'علم الأدوية', desc:'كيف تعمل الأدوية', img:'images/pharmacology.jpg', tags:['علم أدوية'], author:'د. صلاح الأهدل', views:780, likes:89, rating:4.7, ratingCount:44, date:'2025-04-01', contentFile:'pharmacology.html' },
-            { id:'kidney', title:'صحة الكلى', desc:'الحفاظ على الكلى', img:'images/kidney.jpg', tags:['كلى'], author:'د. صلاح الأهدل', views:860, likes:71, rating:4.6, ratingCount:35, date:'2025-04-10', contentFile:'kidney.html' },
-            { id:'liver', title:'الكبد', desc:'أمراض الكبد', img:'images/liver.jpg', tags:['كبد'], author:'د. صلاح الأهدل', views:940, likes:82, rating:4.7, ratingCount:41, date:'2025-04-12', contentFile:'liver.html' },
-            { id:'thyroid', title:'الغدة الدرقية', desc:'فرط وقصور الدرقية', img:'images/thyroid.jpg', tags:['غدة درقية'], author:'د. صلاح الأهدل', views:720, likes:58, rating:4.5, ratingCount:29, date:'2025-04-15', contentFile:'thyroid.html' }
+            { id:'catheter', title:'دليلك الشامل للقسطرة القلبية', desc:'كل ما تحتاج معرفته عن القسطرة القلبية التشخيصية والعلاجية', img:'images/catheter.jpg', tags:['قلب'], author:'د. صلاح الأهدل', views:1250, likes:89, rating:4.8, ratingCount:45, date:getTodayDate(), contentFile:'catheter.html' },
+            { id:'stents', title:'الدعامات القلبية: كل ما تريد معرفته', desc:'أنواع الدعامات، متى نحتاجها، مميزات وعيوب كل نوع', img:'images/stents.jpg', tags:['قلب','دعامات'], author:'د. صلاح الأهدل', views:980, likes:76, rating:4.7, ratingCount:38, date:getTodayDate(), contentFile:'stents.html' },
+            { id:'blocked-artery', title:'انسداد الشرايين: الأسباب والعلاج', desc:'كيف يحدث انسداد الشرايين التاجية، الأعراض الخطيرة، وخيارات العلاج', img:'images/blocked-artery.jpg', tags:['قلب'], author:'د. صلاح الأهدل', views:1100, likes:92, rating:4.9, ratingCount:52, date:getTodayDate(), contentFile:'blocked-arter.html' },
+            { id:'patient-care', title:'العناية بالمريض بعد العمليات القلبية', desc:'نصائح هامة للعناية بالمريض بعد القسطرة أو جراحة القلب المفتوح', img:'images/care.jpg', tags:['قلب'], author:'د. صلاح الأهدل', views:850, likes:64, rating:4.6, ratingCount:32, date:getTodayDate(), contentFile:'patient-care.html' },
+            { id:'heart-tips', title:'نصائح ذهبية لصحة القلب', desc:'عادات يومية بسيطة تحمي قلبك من الأمراض وتطيل عمرك', img:'images/tips.jpg', tags:['قلب'], author:'د. صلاح الأهدل', views:1500, likes:134, rating:4.9, ratingCount:67, date:getTodayDate(), contentFile:'tips.html' },
+            { id:'post-stent-meds', title:'الأدوية بعد تركيب الدعامة', desc:'الأدوية الضرورية بعد الدعامة، مدة كل دواء، والآثار الجانبية المحتملة', img:'images/stent-meds.jpg', tags:['أدوية','دعامات'], author:'د. صلاح الأهدل', views:920, likes:71, rating:4.7, ratingCount:41, date:getTodayDate(), contentFile:'post-stent-meds.html' },
+            { id:'avoid-meds', title:'الأدوية الممنوعة بعد الدعامة', desc:'أدوية يجب تجنبها بعد تركيب الدعامة القلبية وبدائلها الآمنة', img:'images/default.jpg', tags:['أدوية'], author:'د. صلاح الأهدل', views:780, likes:89, rating:4.8, ratingCount:44, date:getTodayDate(), contentFile:'post-avoid-meds.html' },
+            { id:'heart-dua', title:'الأدعية والأذكار لصحة القلب', desc:'الجانب الروحاني في العلاج، أدعية من القرآن والسنة لطمأنينة القلب', img:'images/dua.jpg', tags:['روحانيات'], author:'د. صلاح الأهدل', views:2100, likes:356, rating:5.0, ratingCount:178, date:getTodayDate(), contentFile:'heart-dua.html' },
+            { id:'diabetes', title:'إدارة السكري وحماية القلب', desc:'نصائح ذهبية لمرضى السكري لحماية القلب والأوعية الدموية', img:'images/diabetes.jpg', tags:['سكري'], author:'د. صلاح الأهدل', views:980, likes:76, rating:4.7, ratingCount:38, date:getTodayDate(), contentFile:'diabetes.html' },
+            { id:'hypertension', title:'ارتفاع ضغط الدم: الصامت القاتل', desc:'أسباب ارتفاع الضغط، مضاعفاته الخطيرة، وكيفية التحكم فيه', img:'images/hypertension.jpg', tags:['ضغط'], author:'د. صلاح الأهدل', views:1300, likes:112, rating:4.9, ratingCount:56, date:getTodayDate(), contentFile:'hypertension.html' },
+            { id:'ent', title:'أمراض الأنف والأذن والحنجرة', desc:'دليل شامل لأهم أمراض الأنف والأذن والحنجرة وعلاجها', img:'images/ent.jpg', tags:['أنف وأذن'], author:'د. صلاح الأهدل', views:890, likes:67, rating:4.6, ratingCount:33, date:getTodayDate(), contentFile:'ent.html' },
+            { id:'digestive', title:'اضطرابات الجهاز الهضمي', desc:'ارتجاع المريء، القرحة، متلازمة القولون العصبي', img:'images/digestive.jpg', tags:['جهاز هضمي'], author:'د. صلاح الأهدل', views:1050, likes:84, rating:4.7, ratingCount:42, date:getTodayDate(), contentFile:'digestive.html' },
+            { id:'cardiology', title:'أمراض القلب والأوعية الدموية', desc:'دليل شامل لأمراض القلب، الفشل القلبي، عدم انتظام النبض', img:'images/heart-vascular.jpg', tags:['قلب'], author:'د. صلاح الأهدل', views:1400, likes:156, rating:4.9, ratingCount:78, date:getTodayDate(), contentFile:'cardiology.html' },
+            { id:'urology', title:'أمراض الجهاز البولي', desc:'أمراض الكلى، البروستاتا، والمشاكل البولية الشائعة', img:'images/urinary.jpg', tags:['جهاز بولي'], author:'د. صلاح الأهدل', views:920, likes:73, rating:4.6, ratingCount:36, date:getTodayDate(), contentFile:'urology.html' },
+            { id:'pharmacology', title:'علم الأدوية: فهم دوائك', desc:'كيف تعمل الأدوية، التفاعلات الدوائية، والآثار الجانبية الشائعة', img:'images/pharmacology.jpg', tags:['علم أدوية'], author:'د. صلاح الأهدل', views:780, likes:89, rating:4.7, ratingCount:44, date:getTodayDate(), contentFile:'pharmacology.html' },
+            { id:'pathology', title:'علم الأمراض: فهم تحليلك المخبري', desc:'تفسير الفحوصات المخبرية الشائعة، ما تعنيه الأرقام، ومتى تقلق', img:'images/pathology.jpg', tags:['علم أمراض'], author:'د. صلاح الأهدل', views:1100, likes:95, rating:4.8, ratingCount:47, date:getTodayDate(), contentFile:'pathology.html' },
+            { id:'kidney', title:'صحة الكلى: الحفاظ على الفلاتر الطبيعية', desc:'كيفية حماية الكلى، أعراض الفشل الكلوي، والغسيل الكلوي', img:'images/kidney.jpg', tags:['كلى'], author:'د. صلاح الأهدل', views:860, likes:71, rating:4.6, ratingCount:35, date:getTodayDate(), contentFile:'kidney.html' },
+            { id:'liver', title:'الكبد: العضو الصامد', desc:'أمراض الكبد الشائعة، الدهني، الالتهابات، التليف', img:'images/liver.jpg', tags:['كبد'], author:'د. صلاح الأهدل', views:940, likes:82, rating:4.7, ratingCount:41, date:getTodayDate(), contentFile:'liver.html' },
+            { id:'thyroid', title:'الغدة الدرقية: منظم الأيض', desc:'فرط وقصور الدرقية، أعراضها، التشخيص، والعلاج', img:'images/thyroid.jpg', tags:['غدة درقية'], author:'د. صلاح الأهدل', views:720, likes:58, rating:4.5, ratingCount:29, date:getTodayDate(), contentFile:'thyroid.html' }
         ];
         
-        const coursesDB = [
-            { id: 1, title: 'أساسيات الإسعافات الأولية', description: 'تعلم كيفية التعامل مع الحالات الطارئة', duration: 'ساعتان', level: 'مبتدئ', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg', certificate: true },
-            { id: 2, title: 'الإنعاش القلبي الرئوي (CPR)', description: 'تقنيات إنقاذ الحياة', duration: '3 ساعات', level: 'متوسط', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg', certificate: true },
-            { id: 3, title: 'إدارة مرض السكري', description: 'تحسين جودة حياة مريض السكري', duration: '4 ساعات', level: 'متقدم', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg', certificate: true }
-        ];
+        // ==================== البيانات الأساسية مع تشفير ====================
+        let State = {
+            articles: [],
+            comments: [],
+            ratings: [],
+            likes: [],
+            favorites: [],
+            appointments: [],
+            users: [],
+            prescriptions: [],
+            payments: [],
+            healthData: [],
+            familyMembers: [],
+            medicalFiles: [],
+            doctorRatings: [],
+            courses: [],
+            subscriptions: [],
+            activityLog: [],
+            currentUser: null,
+            adminLogged: false,
+            isDarkMode: localStorage.getItem('darkMode') === 'true',
+            currentLanguage: 'ar',
+            callStartTime: null,
+            peer: null,
+            localStream: null,
+            call: null,
+            points: 0,
+            currentFamilyMember: null,
+            currentSubscription: null,
+            recordingMediaRecorder: null,
+            recordingChunks: [],
+            isRecording: false,
+            screenStream: null
+        };
         
-        const subscriptionPlans = [
-            { name: 'الباقة الأساسية', price: 99, period: 'شهر', features: ['5 استشارات فيديو', 'وصفات رقمية غير محدودة', 'تتبع الحالة الصحية'] },
-            { name: 'الباقة الذهبية', price: 199, period: 'شهر', features: ['15 استشارة فيديو', 'تقييم أطباء', 'حساب عائلي (3 أفراد)', 'خصم 20%'] },
-            { name: 'الباقة السنوية', price: 999, period: 'سنة', features: ['استشارات غير محدودة', 'جميع المميزات', 'حساب عائلي غير محدود', 'خصم 40%'] }
-        ];
-        
-        State.courses = coursesDB;
-        
-        // ==================== الدوال المساعدة ====================
+        // ==================== دوال مساعدة ====================
         function formatNumber(n) { if (n >= 1e6) return (n / 1e6).toFixed(1) + 'M'; if (n >= 1e3) return (n / 1e3).toFixed(1) + 'K'; return n.toString(); }
-        function showToast(msg, type = 'success') { let t = document.createElement('div'); t.className = `toast ${type}`; t.innerHTML = `<span>${type === 'success' ? '✅' : type === 'error' ? '❌' : '⚠️'}</span> ${msg}`; document.getElementById('toastContainer').appendChild(t); setTimeout(() => t.remove(), 5000); }
-        function sendNotification(msg) { if (Notification.permission === 'granted') new Notification('استشاريون', { body: msg }); }
-        function getTodayDate() { return new Date().toISOString().split('T')[0]; }
         
-        // ==================== تحميل البيانات ====================
+        function showToast(msg, type = 'success') {
+            let t = document.createElement('div');
+            t.className = `toast ${type}`;
+            t.innerHTML = `<span>${type === 'success' ? '✅' : type === 'error' ? '❌' : '⚠️'}</span> ${msg}`;
+            document.getElementById('toastContainer').appendChild(t);
+            setTimeout(() => t.remove(), 5000);
+        }
+        
+        function sendNotification(msg) {
+            if (Notification.permission === 'granted') new Notification('استشاريون', { body: msg });
+        }
+        
+        // ==================== تحميل البيانات مع التشفير ====================
         function loadInitialData() {
-            let saved = localStorage.getItem('estsharion_articles');
-            State.articles = saved ? JSON.parse(saved) : [...articlesDB];
+            // تحميل المقالات
+            let savedArticles = localStorage.getItem('estsharion_articles');
+            if (savedArticles) {
+                State.articles = JSON.parse(savedArticles);
+            } else {
+                State.articles = [...articlesDB];
+                localStorage.setItem('estsharion_articles', JSON.stringify(State.articles));
+            }
+            
+            // تحميل البيانات المشفرة
+            let encryptedUsers = localStorage.getItem('users_encrypted');
+            if (encryptedUsers) { let decrypted = decryptData(encryptedUsers); if (decrypted) State.users = decrypted; }
+            
+            let encryptedAppointments = localStorage.getItem('appointments_encrypted');
+            if (encryptedAppointments) { let decrypted = decryptData(encryptedAppointments); if (decrypted) State.appointments = decrypted; }
+            
+            let encryptedPrescriptions = localStorage.getItem('prescriptions_encrypted');
+            if (encryptedPrescriptions) { let decrypted = decryptData(encryptedPrescriptions); if (decrypted) State.prescriptions = decrypted; }
+            
+            let encryptedHealth = localStorage.getItem('healthData_encrypted');
+            if (encryptedHealth) { let decrypted = decryptData(encryptedHealth); if (decrypted) State.healthData = decrypted; }
+            
+            let encryptedFamily = localStorage.getItem('familyMembers_encrypted');
+            if (encryptedFamily) { let decrypted = decryptData(encryptedFamily); if (decrypted) State.familyMembers = decrypted; }
+            
+            let encryptedFiles = localStorage.getItem('medicalFiles_encrypted');
+            if (encryptedFiles) { let decrypted = decryptData(encryptedFiles); if (decrypted) State.medicalFiles = decrypted; }
+            
+            let encryptedDoctorRatings = localStorage.getItem('doctorRatings_encrypted');
+            if (encryptedDoctorRatings) { let decrypted = decryptData(encryptedDoctorRatings); if (decrypted) State.doctorRatings = decrypted; }
+            
+            let encryptedSubscriptions = localStorage.getItem('subscriptions_encrypted');
+            if (encryptedSubscriptions) { let decrypted = decryptData(encryptedSubscriptions); if (decrypted) State.subscriptions = decrypted; }
+            
+            let encryptedActivityLog = localStorage.getItem('activityLog_encrypted');
+            if (encryptedActivityLog) { let decrypted = decryptData(encryptedActivityLog); if (decrypted) State.activityLog = decrypted; }
+            
+            // تحميل البيانات غير المشفرة
             let savedRatings = localStorage.getItem('ratings'); if (savedRatings) State.ratings = JSON.parse(savedRatings);
             let savedComments = localStorage.getItem('comments'); if (savedComments) State.comments = JSON.parse(savedComments);
             let savedLikes = localStorage.getItem('likes'); if (savedLikes) State.likes = JSON.parse(savedLikes);
-            let savedAppointments = localStorage.getItem('appointments'); if (savedAppointments) State.appointments = JSON.parse(savedAppointments);
-            let savedUsers = localStorage.getItem('users'); if (savedUsers) State.users = JSON.parse(savedUsers);
-            let savedHealth = localStorage.getItem('healthData'); if (savedHealth) State.healthData = JSON.parse(savedHealth);
-            let savedFamily = localStorage.getItem('familyMembers'); if (savedFamily) State.familyMembers = JSON.parse(savedFamily);
-            let savedFiles = localStorage.getItem('medicalFiles'); if (savedFiles) State.medicalFiles = JSON.parse(savedFiles);
-            let savedDoctorRatings = localStorage.getItem('doctorRatings'); if (savedDoctorRatings) State.doctorRatings = JSON.parse(savedDoctorRatings);
-            let savedSubscriptions = localStorage.getItem('subscriptions'); if (savedSubscriptions) State.subscriptions = JSON.parse(savedSubscriptions);
-            let savedActivityLog = localStorage.getItem('activityLog'); if (savedActivityLog) State.activityLog = JSON.parse(savedActivityLog);
+            let savedFavorites = localStorage.getItem('favorites'); if (savedFavorites) State.favorites = JSON.parse(savedFavorites);
             let savedPoints = localStorage.getItem('userPoints'); if (savedPoints) State.points = parseInt(savedPoints);
-            let savedCurrentUser = localStorage.getItem('currentUser'); if (savedCurrentUser) { State.currentUser = JSON.parse(savedCurrentUser); document.getElementById('userNameDisplay').innerText = State.currentUser.name; }
+            
+            let savedCurrentUser = localStorage.getItem('currentUser_encrypted');
+            if (savedCurrentUser) {
+                let decrypted = decryptData(savedCurrentUser);
+                if (decrypted) {
+                    State.currentUser = decrypted;
+                    let userNameSpan = document.getElementById('userNameDisplay');
+                    if (userNameSpan) userNameSpan.innerText = State.currentUser.name;
+                }
+            }
+            
             document.getElementById('userPoints').innerText = State.points;
-            renderFamilyMembers(); renderMedicalFiles(); showDoctorsList(); updateLastHealthValue(); renderSubscriptionPlans(); updateActivityLogDisplay(); renderInteractiveCalendar();
+            renderFamilyMembers();
+            renderMedicalFiles();
+            showDoctorsList();
+            updateLastHealthValue();
+            renderSubscriptionPlans();
+            updateActivityLogDisplay();
+            renderInteractiveCalendar();
+            
+            // تحديث التقييمات
+            State.articles.forEach(article => {
+                let articleRatings = State.ratings.filter(r => r.articleId === article.id);
+                if (articleRatings.length) {
+                    let sum = articleRatings.reduce((acc, r) => acc + r.rating, 0);
+                    article.rating = (sum / articleRatings.length).toFixed(1);
+                    article.ratingCount = articleRatings.length;
+                }
+            });
+        }
+        
+        // ==================== حفظ البيانات مع التشفير ====================
+        function saveAllData() {
+            localStorage.setItem('estsharion_articles', JSON.stringify(State.articles));
+            localStorage.setItem('ratings', JSON.stringify(State.ratings));
+            localStorage.setItem('comments', JSON.stringify(State.comments));
+            localStorage.setItem('likes', JSON.stringify(State.likes));
+            localStorage.setItem('favorites', JSON.stringify(State.favorites));
+            localStorage.setItem('userPoints', State.points);
+            
+            if (State.users.length) localStorage.setItem('users_encrypted', encryptData(State.users));
+            if (State.appointments.length) localStorage.setItem('appointments_encrypted', encryptData(State.appointments));
+            if (State.prescriptions.length) localStorage.setItem('prescriptions_encrypted', encryptData(State.prescriptions));
+            if (State.healthData.length) localStorage.setItem('healthData_encrypted', encryptData(State.healthData));
+            if (State.familyMembers.length) localStorage.setItem('familyMembers_encrypted', encryptData(State.familyMembers));
+            if (State.medicalFiles.length) localStorage.setItem('medicalFiles_encrypted', encryptData(State.medicalFiles));
+            if (State.doctorRatings.length) localStorage.setItem('doctorRatings_encrypted', encryptData(State.doctorRatings));
+            if (State.subscriptions.length) localStorage.setItem('subscriptions_encrypted', encryptData(State.subscriptions));
+            if (State.activityLog.length) localStorage.setItem('activityLog_encrypted', encryptData(State.activityLog));
+            if (State.currentUser) localStorage.setItem('currentUser_encrypted', encryptData(State.currentUser));
         }
         
         // ==================== التقويم التفاعلي ====================
         let selectedCalendarDate = null;
+        
         function renderInteractiveCalendar() {
             const container = document.getElementById('interactiveCalendar');
             if (!container) return;
@@ -551,26 +703,27 @@
         function selectCalendarDate(date) {
             selectedCalendarDate = date;
             renderInteractiveCalendar();
-            document.getElementById('selectedDateInfo').innerHTML = `📅 التاريخ المحدد: ${date}<br><small>متاح للحجز</small>`;
-            document.getElementById('aptDate').value = date;
+            let infoDiv = document.getElementById('selectedDateInfo');
+            if (infoDiv) infoDiv.innerHTML = `📅 التاريخ المحدد: ${date}<br><small>متاح للحجز</small>`;
+            let aptDate = document.getElementById('aptDate');
+            if (aptDate) aptDate.value = date;
             showToast(`تم تحديد ${date}`, 'success');
         }
         
-        // ==================== روبوت المحادثة المتقدم ====================
+        // ==================== روبوت المحادثة ====================
         const chatbotResponses = {
             'مرحب': '👋 مرحباً بك في منصة استشاريون! كيف يمكنني مساعدتك؟',
             'حجز موعد': 'لحجز موعد، يمكنك استخدام التقويم التفاعلي أعلاه أو قسم "حجز موعد" في الشريط الجانبي.',
-            'استشارة': 'يمكنك حجز استشارة فيديو مع أحد أطبائنا المتخصصين. اختر التخصص المناسب من القائمة.',
-            'نقاط': `لديك ${State.points} نقطة. تحصل على نقاط مقابل كل حجز موعد (50 نقطة) وتقييم (10 نقاط). يمكنك استبدالها بخصومات!`,
-            'اشتراك': 'لدينا باقات اشتراك متنوعة تبدأ من 99 ريال شهرياً، توفر استشارات مخفضة ومميزات حصرية.',
-            'دواء': 'للبحث عن دواء معين، استخدم شريط البحث في الأعلى واختر تبويب "دواء".',
-            'تقييم': 'يمكنك تقييم الأطباء من خلال قسم "تقييم الأطباء" بعد كل استشارة.',
-            'صيدلية': 'يمكنك البحث عن صيدليات قريبة من خلال قسم "صيدليات قريبة" وطلب الأدوية.',
-            'طوارئ': 'في الحالات الطارئة، استخدم زر "طلب سرير طوارئ" في قسم المستشفيات القريبة.',
-            'ملف طبي': 'يمكنك رفع ملفاتك الطبية (أشعة، تقارير) من قسم "ملفاتي الطبية" ومشاركتها مع الطبيب.'
+            'استشارة': 'يمكنك حجز استشارة فيديو مع أحد أطبائنا المتخصصين.',
+            'نقاط': `لديك ${State.points} نقطة. تحصل على نقاط مقابل كل حجز موعد وتقييم.`,
+            'اشتراك': 'لدينا باقات اشتراك متنوعة تبدأ من 99 ريال شهرياً.',
+            'دواء': 'للبحث عن دواء معين، استخدم شريط البحث في الأعلى.',
+            'تقييم': 'يمكنك تقييم الأطباء من خلال قسم "تقييم الأطباء".',
+            'صيدلية': 'يمكنك البحث عن صيدليات قريبة وطلب الأدوية.',
+            'طوارئ': 'في الحالات الطارئة، استخدم زر "طلب سرير طوارئ".'
         };
         
-        async function sendChatbotMessage() {
+        function sendChatbotMessage() {
             const input = document.getElementById('chatbotInput');
             const message = input.value.trim().toLowerCase();
             if (!message) return;
@@ -580,279 +733,1662 @@
             for (const [key, value] of Object.entries(chatbotResponses)) {
                 if (message.includes(key)) { response = value; break; }
             }
-            // استخدام Gemini API إذا كان متاحاً
-            const apiKey = document.getElementById('geminiApiKey')?.value.trim();
-            if (apiKey && (message.length > 10 || message.includes('أعراض') || message.includes('مرض'))) {
-                try {
-                    let geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
-                        method: 'POST', headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ contents: [{ parts: [{ text: `أنت مساعد طبي محترف. أجب على السؤال التالي بشكل مختصر ومفيد: ${message}` }] }] })
-                    });
-                    let data = await geminiResponse.json();
-                    if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
-                        response = data.candidates[0].content.parts[0].text;
-                    }
-                } catch (e) { console.log('Gemini API error'); }
-            }
             container.innerHTML += `<div class="chatbot-message chatbot-bot">${response}</div>`;
             container.scrollTop = container.scrollHeight;
             input.value = '';
             addActivityLog('روبوت محادثة', message);
         }
         
-        function toggleChatbot() { const c = document.getElementById('chatbotContainer'); c.style.display = c.style.display === 'flex' ? 'none' : 'flex'; }
-        function closeChatbot() { document.getElementById('chatbotContainer').style.display = 'none'; }
+        function toggleChatbot() {
+            const c = document.getElementById('chatbotContainer');
+            if (c) c.style.display = c.style.display === 'flex' ? 'none' : 'flex';
+        }
+        
+        function closeChatbot() {
+            const c = document.getElementById('chatbotContainer');
+            if (c) c.style.display = 'none';
+        }
+        
         document.getElementById('chatbotToggle').onclick = toggleChatbot;
         document.getElementById('chatbotInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') sendChatbotMessage(); });
         
-        // ==================== تحويل المكالمة إلى هاتف حقيقي ====================
+        // ==================== تحويل المكالمة ====================
         function initiatePhoneCall() {
-            const patientPhone = document.getElementById('callPatientPhone')?.value.trim() || document.getElementById('patientPhoneNumber')?.value.trim();
-            const doctorPhone = document.getElementById('callDoctorPhone')?.value.trim() || document.getElementById('doctorPhoneNumber')?.value.trim();
-            if (!patientPhone || !doctorPhone) { showToast('يرجى إدخال أرقام الهواتف', 'error'); return; }
-            showToast('جاري تحويل المكالمة عبر Twilio...', 'warning');
+            const patientPhone = document.getElementById('callPatientPhone')?.value.trim();
+            const doctorPhone = document.getElementById('callDoctorPhone')?.value.trim();
+            if (!patientPhone || !doctorPhone) {
+                showToast('يرجى إدخال أرقام الهواتف', 'error');
+                return;
+            }
+            showToast('جاري تحويل المكالمة...', 'warning');
             setTimeout(() => {
                 showToast(`✅ تم ربط المكالمة بين ${patientPhone} و ${doctorPhone}`, 'success');
                 addActivityLog('مكالمة هاتفية', `بين ${patientPhone} و ${doctorPhone}`);
-                // محاكاة لفتح تطبيق الهاتف
                 window.open(`tel:${patientPhone}`, '_blank');
             }, 2000);
         }
         
-        // ==================== نظام النقاط والمكافآت ====================
+        // ==================== النقاط والمكافآت ====================
         function addPoints(points, reason) {
             State.points += points;
             localStorage.setItem('userPoints', State.points);
-            document.getElementById('userPoints').innerText = State.points;
+            let pointsSpan = document.getElementById('userPoints');
+            if (pointsSpan) pointsSpan.innerText = State.points;
             showToast(`+${points} نقطة! ${reason}`, 'success');
             addActivityLog('نقاط', `+${points} نقطة - ${reason}`);
-            let level = State.points >= 1000 ? 'ذهبي' : (State.points >= 500 ? 'فضي' : (State.points >= 100 ? 'برونزي' : ''));
-            if (level) document.querySelector('.points-badge').style.background = level === 'ذهبي' ? 'linear-gradient(135deg, #ffd700, #ff8c00)' : (level === 'فضي' ? 'linear-gradient(135deg, #c0c0c0, #999)' : 'linear-gradient(135deg, #cd7f32, #a0522d)');
+            saveAllData();
         }
         
         function redeemPoints() {
-            document.getElementById('redeemPointsModal').style.display = 'block';
-            document.getElementById('rewardsList').innerHTML = `
-                <div class="appointment-item" onclick="redeemReward(100, 'خصم 10%')"><strong>🎁 خصم 10%</strong> - 100 نقطة</div>
-                <div class="appointment-item" onclick="redeemReward(200, 'خصم 20%')"><strong>🎁 خصم 20%</strong> - 200 نقطة</div>
-                <div class="appointment-item" onclick="redeemReward(500, 'استشارة مجانية')"><strong>🎁 استشارة مجانية</strong> - 500 نقطة</div>
-                <div class="appointment-item" onclick="redeemReward(1000, 'شهر مجاني')"><strong>🎁 شهر كامل مجاني</strong> - 1000 نقطة</div>
-            `;
+            let modal = document.getElementById('redeemPointsModal');
+            if (modal) modal.style.display = 'block';
+            let rewardsList = document.getElementById('rewardsList');
+            if (rewardsList) {
+                rewardsList.innerHTML = `
+                    <div class="appointment-item" onclick="redeemReward(100, 'خصم 10%')"><strong>🎁 خصم 10%</strong> - 100 نقطة</div>
+                    <div class="appointment-item" onclick="redeemReward(200, 'خصم 20%')"><strong>🎁 خصم 20%</strong> - 200 نقطة</div>
+                    <div class="appointment-item" onclick="redeemReward(500, 'استشارة مجانية')"><strong>🎁 استشارة مجانية</strong> - 500 نقطة</div>
+                    <div class="appointment-item" onclick="redeemReward(1000, 'شهر مجاني')"><strong>🎁 شهر كامل مجاني</strong> - 1000 نقطة</div>
+                `;
+            }
         }
-        function closeRedeemModal() { document.getElementById('redeemPointsModal').style.display = 'none'; }
+        
+        function closeRedeemModal() {
+            let modal = document.getElementById('redeemPointsModal');
+            if (modal) modal.style.display = 'none';
+        }
+        
         function redeemReward(points, reward) {
-            if (State.points >= points) { State.points -= points; localStorage.setItem('userPoints', State.points); document.getElementById('userPoints').innerText = State.points; showToast(`🎉 تم استبدال ${points} نقطة مقابل: ${reward}`, 'success'); closeRedeemModal(); addActivityLog('صرف نقاط', `${reward} - ${points} نقطة`); }
-            else showToast(`نقاطك غير كافية. تحتاج ${points - State.points} نقطة إضافية`, 'error');
+            if (State.points >= points) {
+                State.points -= points;
+                localStorage.setItem('userPoints', State.points);
+                let pointsSpan = document.getElementById('userPoints');
+                if (pointsSpan) pointsSpan.innerText = State.points;
+                showToast(`🎉 تم استبدال ${points} نقطة مقابل: ${reward}`, 'success');
+                closeRedeemModal();
+                addActivityLog('صرف نقاط', `${reward} - ${points} نقطة`);
+                saveAllData();
+            } else {
+                showToast(`نقاطك غير كافية. تحتاج ${points - State.points} نقطة إضافية`, 'error');
+            }
         }
         
         // ==================== الحساب العائلي ====================
         function addFamilyMember() {
             const name = prompt('أدخل اسم فرد العائلة:');
             if (name) {
-                State.familyMembers.push({ id: Date.now(), name, relation: prompt('صلة القرابة:'), age: prompt('العمر:') });
-                localStorage.setItem('familyMembers', JSON.stringify(State.familyMembers));
+                State.familyMembers.push({
+                    id: Date.now(),
+                    name: name,
+                    relation: prompt('صلة القرابة:'),
+                    age: prompt('العمر:')
+                });
+                saveAllData();
                 renderFamilyMembers();
                 showToast(`تمت إضافة ${name}`);
                 addActivityLog('عائلة', `إضافة ${name}`);
             }
         }
+        
         function renderFamilyMembers() {
             const container = document.getElementById('familyMembersList');
             if (!container) return;
-            container.innerHTML = State.familyMembers.map(m => `<div class="family-member"><div><i class="fas fa-user-circle"></i> <strong>${m.name}</strong><br><small>${m.relation} | ${m.age} سنة</small></div><button class="read-btn" onclick="selectFamilyMember(${m.id})"><i class="fas fa-exchange-alt"></i> تبديل</button></div>`).join('');
-            if (State.familyMembers.length === 0) container.innerHTML = '<p class="text-muted">لا يوجد أفراد. أضف فرداً الآن</p>';
-        }
-        function selectFamilyMember(id) { State.currentFamilyMember = State.familyMembers.find(m => m.id === id); showToast(`تم التبديل إلى حساب ${State.currentFamilyMember.name}`); addActivityLog('عائلة', `التبديل إلى ${State.currentFamilyMember.name}`); }
-        function switchFamilyMember() {
-            if (State.familyMembers.length === 0) { showToast('لا يوجد أفراد في الحساب العائلي', 'warning'); return; }
-            const choice = prompt(`اختر فرد العائلة:\n${State.familyMembers.map((m, i) => `${i + 1}. ${m.name}`).join('\n')}\nأدخل الرقم:`);
-            const index = parseInt(choice) - 1;
-            if (index >= 0 && index < State.familyMembers.length) selectFamilyMember(State.familyMembers[index].id);
+            if (State.familyMembers.length === 0) {
+                container.innerHTML = '<p class="text-muted">لا يوجد أفراد. أضف فرداً الآن</p>';
+                return;
+            }
+            container.innerHTML = State.familyMembers.map(m => `
+                <div class="family-member">
+                    <div><i class="fas fa-user-circle"></i> <strong>${m.name}</strong><br><small>${m.relation} | ${m.age} سنة</small></div>
+                    <button class="read-btn" onclick="selectFamilyMember(${m.id})"><i class="fas fa-exchange-alt"></i> تبديل</button>
+                </div>
+            `).join('');
         }
         
-        // ==================== تتبع الحالة الصحية ====================
+        function selectFamilyMember(id) {
+            State.currentFamilyMember = State.familyMembers.find(m => m.id === id);
+            showToast(`تم التبديل إلى حساب ${State.currentFamilyMember.name}`);
+            addActivityLog('عائلة', `التبديل إلى ${State.currentFamilyMember.name}`);
+        }
+        
+        function switchFamilyMember() {
+            if (State.familyMembers.length === 0) {
+                showToast('لا يوجد أفراد في الحساب العائلي', 'warning');
+                return;
+            }
+            const choices = State.familyMembers.map((m, i) => `${i + 1}. ${m.name}`).join('\n');
+            const choice = prompt(`اختر فرد العائلة:\n${choices}\nأدخل الرقم:`);
+            const index = parseInt(choice) - 1;
+            if (index >= 0 && index < State.familyMembers.length) {
+                selectFamilyMember(State.familyMembers[index].id);
+            }
+        }
+        
+        // ==================== تتبع الصحة ====================
         let currentHealthType = 'bloodPressure';
         let healthChart = null;
-        function openHealthTracker(type) { currentHealthType = type; let titles = { bloodPressure: 'تتبع ضغط الدم', bloodSugar: 'تتبع مستوى السكر', weight: 'تتبع الوزن' }; document.getElementById('healthModalTitle').innerHTML = `<i class="fas fa-chart-line"></i> ${titles[type]}`; document.getElementById('healthModal').style.display = 'block'; showHealthChart(); }
-        function closeHealthModal() { document.getElementById('healthModal').style.display = 'none'; }
+        
+        function openHealthTracker(type) {
+            currentHealthType = type;
+            let titles = { bloodPressure: 'تتبع ضغط الدم', bloodSugar: 'تتبع مستوى السكر', weight: 'تتبع الوزن' };
+            let titleSpan = document.getElementById('healthModalTitle');
+            if (titleSpan) titleSpan.innerHTML = `<i class="fas fa-chart-line"></i> ${titles[type]}`;
+            let modal = document.getElementById('healthModal');
+            if (modal) modal.style.display = 'block';
+            showHealthChart();
+        }
+        
+        function closeHealthModal() {
+            let modal = document.getElementById('healthModal');
+            if (modal) modal.style.display = 'none';
+        }
+        
         function addHealthReading() {
             let value = document.getElementById('newHealthValue')?.value;
-            if (!value) value = prompt(`أدخل قيمة ${currentHealthType === 'bloodPressure' ? 'ضغط الدم (مثال: 120/80)' : (currentHealthType === 'bloodSugar' ? 'مستوى السكر (mg/dL)' : 'الوزن (kg)')}`);
-            if (value) { State.healthData.push({ id: Date.now(), type: currentHealthType, value, date: new Date().toISOString() }); localStorage.setItem('healthData', JSON.stringify(State.healthData)); showToast('تم إضافة القراءة'); showHealthChart(); updateLastHealthValue(); addActivityLog('صحة', `إضافة قراءة ${currentHealthType}: ${value}`); document.getElementById('newHealthValue').value = ''; }
+            if (!value) {
+                value = prompt(`أدخل قيمة ${currentHealthType === 'bloodPressure' ? 'ضغط الدم (مثال: 120/80)' : (currentHealthType === 'bloodSugar' ? 'مستوى السكر (mg/dL)' : 'الوزن (kg)')}`);
+            }
+            if (value) {
+                State.healthData.push({
+                    id: Date.now(),
+                    type: currentHealthType,
+                    value: value,
+                    date: new Date().toISOString()
+                });
+                saveAllData();
+                showToast('تم إضافة القراءة');
+                showHealthChart();
+                updateLastHealthValue();
+                addActivityLog('صحة', `إضافة قراءة ${currentHealthType}: ${value}`);
+                let inputVal = document.getElementById('newHealthValue');
+                if (inputVal) inputVal.value = '';
+            }
         }
+        
         function showHealthChart() {
             const filtered = State.healthData.filter(d => d.type === currentHealthType);
             const ctx = document.getElementById('healthChart')?.getContext('2d');
-            if (ctx) { if (healthChart) healthChart.destroy(); healthChart = new Chart(ctx, { type: 'line', data: { labels: filtered.slice(-10).map(d => new Date(d.date).toLocaleDateString()), datasets: [{ label: currentHealthType === 'bloodPressure' ? 'الضغط الانقباضي' : (currentHealthType === 'bloodSugar' ? 'السكر' : 'الوزن'), data: filtered.slice(-10).map(d => { if (currentHealthType === 'bloodPressure') return parseInt(d.value.split('/')[0]); return parseFloat(d.value); }), borderColor: '#0066cc', fill: true }] }, options: { responsive: true } }); }
-            // تنبيهات صحية
-            let lastValue = filtered[filtered.length - 1]?.value;
-            let alertDiv = document.getElementById('healthAlert');
-            if (alertDiv && lastValue) {
-                if (currentHealthType === 'bloodPressure') { let sys = parseInt(lastValue.split('/')[0]); if (sys > 140) alertDiv.innerHTML = '<span style="color:var(--danger);">⚠️ تحذير: ضغط الدم مرتفع! استشر طبيبك</span>'; else if (sys < 90) alertDiv.innerHTML = '<span style="color:var(--warning);">⚠️ تنبيه: ضغط الدم منخفض</span>'; else alertDiv.innerHTML = '<span style="color:var(--accent);">✓ ضغط الدم طبيعي</span>'; alertDiv.style.display = 'block'; }
-                else if (currentHealthType === 'bloodSugar') { let sugar = parseFloat(lastValue); if (sugar > 180) alertDiv.innerHTML = '<span style="color:var(--danger);">⚠️ تحذير: مستوى السكر مرتفع جداً!</span>'; else if (sugar < 70) alertDiv.innerHTML = '<span style="color:var(--danger);">⚠️ تحذير: مستوى السكر منخفض خطير!</span>'; else if (sugar > 140) alertDiv.innerHTML = '<span style="color:var(--warning);">تنبيه: السكر مرتفع قليلاً</span>'; else alertDiv.innerHTML = '<span style="color:var(--accent);">✓ مستوى السكر طبيعي</span>'; alertDiv.style.display = 'block'; }
+            if (ctx) {
+                if (healthChart) healthChart.destroy();
+                healthChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: filtered.slice(-10).map(d => new Date(d.date).toLocaleDateString()),
+                        datasets: [{
+                            label: currentHealthType === 'bloodPressure' ? 'الضغط الانقباضي' : (currentHealthType === 'bloodSugar' ? 'السكر' : 'الوزن'),
+                            data: filtered.slice(-10).map(d => {
+                                if (currentHealthType === 'bloodPressure') return parseInt(d.value.split('/')[0]) || 0;
+                                return parseFloat(d.value) || 0;
+                            }),
+                            borderColor: '#0066cc',
+                            fill: true
+                        }]
+                    },
+                    options: { responsive: true }
+                });
             }
         }
+        
         function updateLastHealthValue() {
-            let bp = State.healthData.filter(d => d.type === 'bloodPressure').pop(); if (bp) document.getElementById('lastBP') && (document.getElementById('lastBP').innerText = bp.value);
-            let sugar = State.healthData.filter(d => d.type === 'bloodSugar').pop(); if (sugar) document.getElementById('lastSugar') && (document.getElementById('lastSugar').innerText = sugar.value);
-            let weight = State.healthData.filter(d => d.type === 'weight').pop(); if (weight) document.getElementById('lastWeight') && (document.getElementById('lastWeight').innerText = weight.value);
+            let bp = State.healthData.filter(d => d.type === 'bloodPressure').pop();
+            if (bp) { let el = document.getElementById('lastBP'); if (el) el.innerText = bp.value; }
+            let sugar = State.healthData.filter(d => d.type === 'bloodSugar').pop();
+            if (sugar) { let el = document.getElementById('lastSugar'); if (el) el.innerText = sugar.value; }
+            let weight = State.healthData.filter(d => d.type === 'weight').pop();
+            if (weight) { let el = document.getElementById('lastWeight'); if (el) el.innerText = weight.value; }
         }
         
-        // ==================== رفع الملفات الطبية ====================
-        function uploadMedicalFile(input) { Array.from(input.files).forEach(file => { const reader = new FileReader(); reader.onload = e => { State.medicalFiles.push({ id: Date.now() + Math.random(), name: file.name, type: file.type, data: e.target.result, date: new Date().toISOString() }); localStorage.setItem('medicalFiles', JSON.stringify(State.medicalFiles)); renderMedicalFiles(); showToast(`تم رفع ${file.name}`); addActivityLog('رفع ملف', file.name); }; reader.readAsDataURL(file); }); }
-        function renderMedicalFiles() { const container = document.getElementById('medicalFilesList'); if (!container) return; container.innerHTML = State.medicalFiles.slice(-5).map(f => `<div class="family-member"><div><i class="fas fa-file-medical"></i> ${f.name}<br><small>${new Date(f.date).toLocaleDateString()}</small></div><div><button class="read-btn" onclick="viewMedicalFile('${f.id}')"><i class="fas fa-eye"></i></button><button class="read-btn" onclick="deleteMedicalFile('${f.id}')" style="color:var(--danger);"><i class="fas fa-trash"></i></button></div></div>`).join(''); }
-        function viewMedicalFile(id) { const file = State.medicalFiles.find(f => f.id == id); if (file) { document.getElementById('modalBody').innerHTML = file.type.startsWith('image/') ? `<h3>${file.name}</h3><img src="${file.data}" style="max-width:100%; border-radius:12px;">` : `<h3>${file.name}</h3><iframe src="${file.data}" style="width:100%; height:500px;"></iframe>`; document.getElementById('articleModal').style.display = 'block'; } }
-        function deleteMedicalFile(id) { if (confirm('هل أنت متأكد؟')) { State.medicalFiles = State.medicalFiles.filter(f => f.id != id); localStorage.setItem('medicalFiles', JSON.stringify(State.medicalFiles)); renderMedicalFiles(); showToast('تم الحذف'); } }
-        function shareMedicalFile() { if (State.medicalFiles.length === 0) { showToast('لا توجد ملفات للمشاركة', 'warning'); return; } let file = State.medicalFiles[0]; window.open(`https://wa.me/?text=مشاركة ملف طبي: ${file.name} - منصة استشاريون`, '_blank'); addActivityLog('مشاركة ملف', file.name); }
+        // ==================== الملفات الطبية ====================
+        function uploadMedicalFile(input) {
+            Array.from(input.files).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    State.medicalFiles.push({
+                        id: Date.now() + Math.random(),
+                        name: file.name,
+                        type: file.type,
+                        data: e.target.result,
+                        date: new Date().toISOString()
+                    });
+                    saveAllData();
+                    renderMedicalFiles();
+                    showToast(`تم رفع ${file.name}`);
+                    addActivityLog('رفع ملف', file.name);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+        
+        function renderMedicalFiles() {
+            const container = document.getElementById('medicalFilesList');
+            if (!container) return;
+            if (State.medicalFiles.length === 0) {
+                container.innerHTML = '<p class="text-muted">لا توجد ملفات</p>';
+                return;
+            }
+            container.innerHTML = State.medicalFiles.slice(-5).map(f => `
+                <div class="family-member">
+                    <div><i class="fas fa-file-medical"></i> ${f.name}<br><small>${new Date(f.date).toLocaleDateString()}</small></div>
+                    <div>
+                        <button class="read-btn" onclick="viewMedicalFile('${f.id}')"><i class="fas fa-eye"></i></button>
+                        <button class="read-btn" onclick="deleteMedicalFile('${f.id}')" style="color:var(--danger);"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function viewMedicalFile(id) {
+            const file = State.medicalFiles.find(f => f.id == id);
+            if (file) {
+                let modalBody = document.getElementById('modalBody');
+                if (file.type.startsWith('image/')) {
+                    modalBody.innerHTML = `<h3>${file.name}</h3><img src="${file.data}" style="max-width:100%; border-radius:12px;">`;
+                } else {
+                    modalBody.innerHTML = `<h3>${file.name}</h3><iframe src="${file.data}" style="width:100%; height:500px;"></iframe>`;
+                }
+                document.getElementById('articleModal').style.display = 'block';
+            }
+        }
+        
+        function deleteMedicalFile(id) {
+            if (confirm('هل أنت متأكد؟')) {
+                State.medicalFiles = State.medicalFiles.filter(f => f.id != id);
+                saveAllData();
+                renderMedicalFiles();
+                showToast('تم الحذف');
+            }
+        }
+        
+        function shareMedicalFile() {
+            if (State.medicalFiles.length === 0) {
+                showToast('لا توجد ملفات للمشاركة', 'warning');
+                return;
+            }
+            let file = State.medicalFiles[0];
+            window.open(`https://wa.me/?text=مشاركة ملف طبي: ${file.name} - منصة استشاريون`, '_blank');
+            addActivityLog('مشاركة ملف', file.name);
+        }
         
         // ==================== المستشفيات ====================
-        const hospitalsDB = [{ name: 'مستشفى الأمل', distance: '1.2 كم', beds: 5, phone: '0123456789' }, { name: 'مستشفى الثورة', distance: '2.5 كم', beds: 8, phone: '0123456790' }, { name: 'مستشفى الكويت', distance: '3.0 كم', beds: 3, phone: '0123456791' }];
-        function findNearbyHospitals() { document.getElementById('nearbyHospitals').innerHTML = hospitalsDB.map(h => `<div class="hospital-card"><div><strong>${h.name}</strong><br><small><i class="fas fa-location-dot"></i> ${h.distance} | 🛏️ ${h.beds} سرير</small></div><button class="read-btn" onclick="window.location.href='tel:${h.phone}'"><i class="fas fa-phone"></i> اتصل</button></div>`).join(''); showToast('تم العثور على المستشفيات القريبة'); }
-        function requestEmergencyBed() { document.getElementById('emergencyBedModal').style.display = 'block'; document.getElementById('preferredHospital').innerHTML = '<option value="any">أقرب مستشفى</option>' + hospitalsDB.map(h => `<option value="${h.name}">${h.name}</option>`).join(''); }
-        function closeEmergencyBedModal() { document.getElementById('emergencyBedModal').style.display = 'none'; }
-        function submitEmergencyBedRequest() { let name = document.getElementById('emergencyPatientName').value.trim(), phone = document.getElementById('emergencyPhone').value.trim(); if (!name || !phone) { showToast('يرجى إدخال اسم المريض ورقم الجوال', 'error'); return; } showToast('جاري إرسال طلب الطوارئ...', 'warning'); setTimeout(() => { showToast(`✅ تم إرسال طلب الطوارئ للمريض ${name}. سيتم الاتصال بك خلال دقائق.`, 'success'); closeEmergencyBedModal(); addActivityLog('طوارئ', `طلب سرير للمريض ${name}`); }, 2000); }
+        const hospitalsDB = [
+            { name: 'مستشفى الأمل', distance: '1.2 كم', beds: 5, phone: '0123456789' },
+            { name: 'مستشفى الثورة', distance: '2.5 كم', beds: 8, phone: '0123456790' },
+            { name: 'مستشفى الكويت', distance: '3.0 كم', beds: 3, phone: '0123456791' }
+        ];
+        
+        function findNearbyHospitals() {
+            let container = document.getElementById('nearbyHospitals');
+            if (!container) return;
+            container.innerHTML = hospitalsDB.map(h => `
+                <div class="hospital-card">
+                    <div><strong>${h.name}</strong><br><small><i class="fas fa-location-dot"></i> ${h.distance} | 🛏️ ${h.beds} سرير</small></div>
+                    <button class="read-btn" onclick="window.location.href='tel:${h.phone}'"><i class="fas fa-phone"></i> اتصل</button>
+                </div>
+            `).join('');
+            showToast('تم العثور على المستشفيات القريبة');
+        }
+        
+        function requestEmergencyBed() {
+            let modal = document.getElementById('emergencyBedModal');
+            if (modal) modal.style.display = 'block';
+            let select = document.getElementById('preferredHospital');
+            if (select) select.innerHTML = '<option value="any">أقرب مستشفى</option>' + hospitalsDB.map(h => `<option value="${h.name}">${h.name}</option>`).join('');
+        }
+        
+        function closeEmergencyBedModal() {
+            let modal = document.getElementById('emergencyBedModal');
+            if (modal) modal.style.display = 'none';
+        }
+        
+        function submitEmergencyBedRequest() {
+            let name = document.getElementById('emergencyPatientName')?.value.trim();
+            let phone = document.getElementById('emergencyPhone')?.value.trim();
+            if (!name || !phone) {
+                showToast('يرجى إدخال اسم المريض ورقم الجوال', 'error');
+                return;
+            }
+            showToast('جاري إرسال طلب الطوارئ...', 'warning');
+            setTimeout(() => {
+                showToast(`✅ تم إرسال طلب الطوارئ للمريض ${name}. سيتم الاتصال بك خلال دقائق.`, 'success');
+                closeEmergencyBedModal();
+                addActivityLog('طوارئ', `طلب سرير للمريض ${name}`);
+            }, 2000);
+        }
         
         // ==================== الصيدليات ====================
-        const pharmaciesDB = [{ name: 'صيدلية النهدي', distance: '0.5 كم', delivery: '15 دقيقة' }, { name: 'صيدلية الدواء', distance: '1.2 كم', delivery: '25 دقيقة' }, { name: 'صيدلية الحكيم', distance: '2.0 كم', delivery: '35 دقيقة' }];
-        function findNearbyPharmacies() { document.getElementById('nearbyPharmacies').innerHTML = pharmaciesDB.map(p => `<div class="pharmacy-card"><div><strong>${p.name}</strong><br><small><i class="fas fa-location-dot"></i> ${p.distance} | 🚚 ${p.delivery}</small></div><button class="btn-primary" onclick="orderFromPharmacy('${p.name}')" style="padding:5px 10px;"><i class="fas fa-shopping-cart"></i> طلب دواء</button></div>`).join(''); showToast('تم العثور على صيدليات قريبة'); }
-        function orderFromPharmacy(name) { let medicine = prompt('أدخل اسم الدواء المطلوب:'); if (medicine) { showToast(`تم إرسال طلب ${medicine} إلى ${name}`, 'success'); addActivityLog('طلب دواء', `${medicine} من ${name}`); } }
-        function sendToPharmacy() { let pharmacy = prompt('أدخل اسم الصيدلية:'); if (pharmacy) { showToast(`تم إرسال الوصفة إلى ${pharmacy}`, 'success'); addActivityLog('وصفة', `إرسال إلى ${pharmacy}`); } }
+        const pharmaciesDB = [
+            { name: 'صيدلية النهدي', distance: '0.5 كم', delivery: '15 دقيقة' },
+            { name: 'صيدلية الدواء', distance: '1.2 كم', delivery: '25 دقيقة' },
+            { name: 'صيدلية الحكيم', distance: '2.0 كم', delivery: '35 دقيقة' }
+        ];
+        
+        function findNearbyPharmacies() {
+            let container = document.getElementById('nearbyPharmacies');
+            if (!container) return;
+            container.innerHTML = pharmaciesDB.map(p => `
+                <div class="pharmacy-card">
+                    <div><strong>${p.name}</strong><br><small><i class="fas fa-location-dot"></i> ${p.distance} | 🚚 ${p.delivery}</small></div>
+                    <button class="btn-primary" onclick="orderFromPharmacy('${p.name}')" style="padding:5px 10px;"><i class="fas fa-shopping-cart"></i> طلب دواء</button>
+                </div>
+            `).join('');
+            showToast('تم العثور على صيدليات قريبة');
+        }
+        
+        function orderFromPharmacy(name) {
+            let medicine = prompt('أدخل اسم الدواء المطلوب:');
+            if (medicine) {
+                showToast(`تم إرسال طلب ${medicine} إلى ${name}`, 'success');
+                addActivityLog('طلب دواء', `${medicine} من ${name}`);
+            }
+        }
+        
+        function sendToPharmacy() {
+            let pharmacy = prompt('أدخل اسم الصيدلية:');
+            if (pharmacy) {
+                showToast(`تم إرسال الوصفة إلى ${pharmacy}`, 'success');
+                addActivityLog('وصفة', `إرسال إلى ${pharmacy}`);
+            }
+        }
         
         // ==================== تقييم الأطباء ====================
         let currentDoctorId = null;
-        function showDoctorsList() { let doctors = State.users.filter(u => u.role === 'doctor'); document.getElementById('doctorsList').innerHTML = doctors.length ? doctors.map(d => `<div class="hospital-card"><div><strong><i class="fas fa-user-md"></i> د. ${d.name}</strong><div class="doctor-rating">${renderStars(getDoctorAvgRating(d.id))}</div><small>${d.specialty || 'طبيب عام'} | ${getDoctorRatingsCount(d.id)} تقييم</small></div><button class="btn-primary" onclick="openRateDoctorModal('${d.id}', '${d.name}')" style="padding:5px 10px;">قيم</button></div>`).join('') : '<p class="text-muted">لا يوجد أطباء مسجلون بعد</p>'; }
-        function renderStars(rating) { let stars = ''; for (let i = 1; i <= 5; i++) stars += `<span class="star ${i <= rating ? 'filled' : ''}">★</span>`; return stars; }
-        function getDoctorAvgRating(id) { let ratings = State.doctorRatings.filter(r => r.doctorId === id); if (!ratings.length) return 0; return (ratings.reduce((a, r) => a + r.rating, 0) / ratings.length).toFixed(1); }
-        function getDoctorRatingsCount(id) { return State.doctorRatings.filter(r => r.doctorId === id).length; }
-        function openRateDoctorModal(id, name) { currentDoctorId = id; document.getElementById('rateDoctorBody').innerHTML = `<h4>تقييم د. ${name}</h4>`; document.getElementById('rateDoctorModal').style.display = 'block'; document.querySelectorAll('#ratingStars .star').forEach(star => star.onclick = () => { let rating = parseInt(star.dataset.value); document.querySelectorAll('#ratingStars .star').forEach((s, i) => s.classList.toggle('filled', i < rating)); window.selectedRating = rating; }); }
-        function closeRateDoctorModal() { document.getElementById('rateDoctorModal').style.display = 'none'; }
-        function submitDoctorRating() { if (!window.selectedRating) { showToast('يرجى اختيار تقييم', 'error'); return; } State.doctorRatings.push({ id: Date.now(), doctorId: currentDoctorId, rating: window.selectedRating, comment: document.getElementById('ratingComment').value, userId: State.currentUser?.id, userName: State.currentUser?.name, date: new Date().toISOString() }); localStorage.setItem('doctorRatings', JSON.stringify(State.doctorRatings)); showToast('تم إرسال تقييمك!'); closeRateDoctorModal(); showDoctorsList(); addPoints(10, 'تقييم طبيب'); addActivityLog('تقييم', `تقييم الطبيب بـ ${window.selectedRating} نجوم`); }
         
-        // ==================== الدورات التدريبية ====================
-        function showAllCourses() { document.getElementById('allCoursesList').innerHTML = State.courses.map(c => `<div class="course-card"><div class="course-video"><img src="${c.thumbnail}" style="width:100%; height:100%; object-fit:cover;"><button class="btn-primary" onclick="playCourse('${c.videoUrl}', '${c.title}')" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);"><i class="fas fa-play"></i></button></div><div class="course-info"><h4>${c.title}</h4><p>${c.description}</p><small><i class="fas fa-clock"></i> ${c.duration} | <i class="fas fa-chart-line"></i> ${c.level}</small>${c.certificate ? '<span class="badge-verified" style="margin-right:10px;"><i class="fas fa-certificate"></i> شهادة معتمدة</span>' : ''}</div></div>`).join(''); document.getElementById('allCoursesModal').style.display = 'block'; }
-        function closeAllCoursesModal() { document.getElementById('allCoursesModal').style.display = 'none'; }
-        function playCourse(url, title) { document.getElementById('modalBody').innerHTML = `<h2>${title}</h2><iframe width="100%" height="400" src="${url}" frameborder="0" allowfullscreen></iframe><button class="btn-primary" onclick="generateCertificate('${title}')" style="margin-top:15px;"><i class="fas fa-certificate"></i> الحصول على شهادة</button>`; document.getElementById('articleModal').style.display = 'block'; addActivityLog('دورة', `مشاهدة ${title}`); }
-        function generateCertificate(courseName) { let certificateHtml = `<div style="text-align:center; padding:30px; border:10px solid var(--gold); border-radius:20px;"><h1>شهادة إتمام</h1><p>نشهد بأن</p><h2>${State.currentUser?.name || 'الطالب'}</h2><p>قد أتم بنجاح دورة</p><h3>${courseName}</h3><p>منصة استشاريون الطبية</p><p>التاريخ: ${new Date().toLocaleDateString('ar-SA')}</p></div>`; let win = window.open(); win.document.write(certificateHtml); win.print(); addActivityLog('شهادة', `الحصول على شهادة ${courseName}`); }
+        function showDoctorsList() {
+            let doctors = State.users.filter(u => u.role === 'doctor');
+            let container = document.getElementById('doctorsList');
+            if (!container) return;
+            if (doctors.length === 0) {
+                container.innerHTML = '<p class="text-muted">لا يوجد أطباء مسجلون بعد</p>';
+                return;
+            }
+            container.innerHTML = doctors.map(d => `
+                <div class="hospital-card">
+                    <div>
+                        <strong><i class="fas fa-user-md"></i> د. ${d.name}</strong>
+                        <div class="doctor-rating">${renderStars(getDoctorAvgRating(d.id))}</div>
+                        <small>${d.specialty || 'طبيب عام'} | ${getDoctorRatingsCount(d.id)} تقييم</small>
+                    </div>
+                    <button class="btn-primary" onclick="openRateDoctorModal('${d.id}', '${d.name}')" style="padding:5px 10px;">قيم</button>
+                </div>
+            `).join('');
+        }
         
-        // ==================== تحليل الفحوصات بالكاميرا ====================
-        function analyzeLabPhoto(input) { let file = input.files[0]; if (!file) return; let reader = new FileReader(); reader.onload = function(e) { document.getElementById('photoPreview').innerHTML = `<img src="${e.target.result}" style="max-width:100%; border-radius:12px; margin-top:10px;">`; document.getElementById('photoAnalysisResult').innerHTML = '<div class="spinner"><i class="fas fa-spinner fa-spin"></i> جاري تحليل الصورة بالذكاء الاصطناعي...</div>'; document.getElementById('photoAnalysisResult').style.display = 'block'; setTimeout(() => { document.getElementById('photoAnalysisResult').innerHTML = `<strong>📊 نتيجة التحليل:</strong><br>تم تحليل الصورة بنجاح.<br>⚠️ هذا تحليل أولي بالذكاء الاصطناعي - استشر طبيبك للتشخيص النهائي.<br><button class="btn-primary" onclick="askDoctorAboutPhoto()" style="margin-top:10px;"><i class="fas fa-user-md"></i> استشر طبيباً</button>`; addActivityLog('تحليل صورة', 'تحليل فحص طبي بالكاميرا'); }, 3000); }; reader.readAsDataURL(file); }
-        function askDoctorAboutPhoto() { if (State.currentUser) window.open(`https://wa.me/?text=مرحباً، أود استشارة طبية حول صورة تحليل قمت برفعها في منصة استشاريون`, '_blank'); else showToast('يرجى تسجيل الدخول أولاً', 'warning'); }
+        function renderStars(rating) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                stars += `<span class="star ${i <= rating ? 'filled' : ''}">★</span>`;
+            }
+            return stars;
+        }
         
-        // ==================== WebRTC متقدم ====================
-        async function shareScreen() { try { let screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true }); if (State.localStream) State.localStream.getTracks().forEach(t => t.stop()); State.localStream = screenStream; document.getElementById('localVideo').srcObject = State.localStream; showToast('جاري مشاركة الشاشة', 'success'); } catch(e) { showToast('تعذر مشاركة الشاشة', 'error'); } }
+        function getDoctorAvgRating(id) {
+            let ratings = State.doctorRatings.filter(r => r.doctorId === id);
+            if (!ratings.length) return 0;
+            return (ratings.reduce((a, r) => a + r.rating, 0) / ratings.length).toFixed(1);
+        }
+        
+        function getDoctorRatingsCount(id) {
+            return State.doctorRatings.filter(r => r.doctorId === id).length;
+        }
+        
+        function openRateDoctorModal(id, name) {
+            currentDoctorId = id;
+            let bodyDiv = document.getElementById('rateDoctorBody');
+            if (bodyDiv) bodyDiv.innerHTML = `<h4>تقييم د. ${name}</h4>`;
+            let modal = document.getElementById('rateDoctorModal');
+            if (modal) modal.style.display = 'block';
+            
+            let stars = document.querySelectorAll('#ratingStars .star');
+            stars.forEach(star => {
+                star.onclick = () => {
+                    let rating = parseInt(star.dataset.value);
+                    stars.forEach((s, i) => s.classList.toggle('filled', i < rating));
+                    window.selectedRating = rating;
+                };
+            });
+        }
+        
+        function closeRateDoctorModal() {
+            let modal = document.getElementById('rateDoctorModal');
+            if (modal) modal.style.display = 'none';
+        }
+        
+        function submitDoctorRating() {
+            if (!window.selectedRating) {
+                showToast('يرجى اختيار تقييم', 'error');
+                return;
+            }
+            let comment = document.getElementById('ratingComment')?.value || '';
+            State.doctorRatings.push({
+                id: Date.now(),
+                doctorId: currentDoctorId,
+                rating: window.selectedRating,
+                comment: comment,
+                userId: State.currentUser?.id,
+                userName: State.currentUser?.name,
+                date: new Date().toISOString()
+            });
+            saveAllData();
+            showToast('تم إرسال تقييمك!');
+            closeRateDoctorModal();
+            showDoctorsList();
+            addPoints(10, 'تقييم طبيب');
+            addActivityLog('تقييم', `تقييم الطبيب بـ ${window.selectedRating} نجوم`);
+        }
+        
+        // ==================== الدورات ====================
+        const coursesDBList = [
+            { id: 1, title: 'أساسيات الإسعافات الأولية', description: 'تعلم كيفية التعامل مع الحالات الطارئة', duration: 'ساعتان', level: 'مبتدئ', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg', certificate: true },
+            { id: 2, title: 'الإنعاش القلبي الرئوي (CPR)', description: 'تقنيات إنقاذ الحياة', duration: '3 ساعات', level: 'متوسط', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg', certificate: true },
+            { id: 3, title: 'إدارة مرض السكري', description: 'تحسين جودة حياة مريض السكري', duration: '4 ساعات', level: 'متقدم', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg', certificate: true }
+        ];
+        
+        State.courses = coursesDBList;
+        
+        function showAllCourses() {
+            let container = document.getElementById('allCoursesList');
+            if (!container) return;
+            container.innerHTML = State.courses.map(c => `
+                <div class="course-card">
+                    <div class="course-video">
+                        <img src="${c.thumbnail}" style="width:100%; height:100%; object-fit:cover;">
+                        <button class="btn-primary" onclick="playCourse('${c.videoUrl}', '${c.title}')" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);"><i class="fas fa-play"></i></button>
+                    </div>
+                    <div class="course-info">
+                        <h4>${c.title}</h4>
+                        <p>${c.description}</p>
+                        <small><i class="fas fa-clock"></i> ${c.duration} | <i class="fas fa-chart-line"></i> ${c.level}</small>
+                        ${c.certificate ? '<span class="badge-verified" style="margin-right:10px;"><i class="fas fa-certificate"></i> شهادة معتمدة</span>' : ''}
+                    </div>
+                </div>
+            `).join('');
+            let modal = document.getElementById('allCoursesModal');
+            if (modal) modal.style.display = 'block';
+        }
+        
+        function closeAllCoursesModal() {
+            let modal = document.getElementById('allCoursesModal');
+            if (modal) modal.style.display = 'none';
+        }
+        
+        function playCourse(url, title) {
+            let modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = `
+                <h2>${title}</h2>
+                <iframe width="100%" height="400" src="${url}" frameborder="0" allowfullscreen></iframe>
+                <button class="btn-primary" onclick="generateCertificate('${title}')" style="margin-top:15px;"><i class="fas fa-certificate"></i> الحصول على شهادة</button>
+            `;
+            document.getElementById('articleModal').style.display = 'block';
+            addActivityLog('دورة', `مشاهدة ${title}`);
+        }
+        
+        function generateCertificate(courseName) {
+            let certificateHtml = `
+                <div style="text-align:center; padding:30px; border:10px solid var(--gold); border-radius:20px;">
+                    <h1>شهادة إتمام</h1>
+                    <p>نشهد بأن</p>
+                    <h2>${State.currentUser?.name || 'الطالب'}</h2>
+                    <p>قد أتم بنجاح دورة</p>
+                    <h3>${courseName}</h3>
+                    <p>منصة استشاريون الطبية</p>
+                    <p>التاريخ: ${new Date().toLocaleDateString('ar-SA')}</p>
+                </div>
+            `;
+            let win = window.open();
+            win.document.write(certificateHtml);
+            win.print();
+            addActivityLog('شهادة', `الحصول على شهادة ${courseName}`);
+        }
+        
+        // ==================== تحليل الصور ====================
+        function analyzeLabPhoto(input) {
+            let file = input.files[0];
+            if (!file) return;
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                let previewDiv = document.getElementById('photoPreview');
+                if (previewDiv) previewDiv.innerHTML = `<img src="${e.target.result}" style="max-width:100%; border-radius:12px; margin-top:10px;">`;
+                let resultDiv = document.getElementById('photoAnalysisResult');
+                if (resultDiv) {
+                    resultDiv.innerHTML = '<div class="spinner"><i class="fas fa-spinner fa-spin"></i> جاري تحليل الصورة بالذكاء الاصطناعي...</div>';
+                    resultDiv.style.display = 'block';
+                }
+                setTimeout(() => {
+                    if (resultDiv) {
+                        resultDiv.innerHTML = `
+                            <strong>📊 نتيجة التحليل:</strong><br>
+                            تم تحليل الصورة بنجاح.<br>
+                            ⚠️ هذا تحليل أولي بالذكاء الاصطناعي - استشر طبيبك للتشخيص النهائي.<br>
+                            <button class="btn-primary" onclick="askDoctorAboutPhoto()" style="margin-top:10px;"><i class="fas fa-user-md"></i> استشر طبيباً</button>
+                        `;
+                    }
+                    addActivityLog('تحليل صورة', 'تحليل فحص طبي بالكاميرا');
+                }, 3000);
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        function askDoctorAboutPhoto() {
+            if (State.currentUser) {
+                window.open('https://wa.me/?text=مرحباً، أود استشارة طبية حول صورة تحليل قمت برفعها في منصة استشاريون', '_blank');
+            } else {
+                showToast('يرجى تسجيل الدخول أولاً', 'warning');
+            }
+        }
+        
+        // ==================== WebRTC محسن ====================
+        async function shareScreen() {
+            try {
+                let screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+                if (State.localStream) State.localStream.getTracks().forEach(t => t.stop());
+                State.localStream = screenStream;
+                let localVideo = document.getElementById('localVideo');
+                if (localVideo) localVideo.srcObject = State.localStream;
+                showToast('جاري مشاركة الشاشة', 'success');
+            } catch(e) {
+                showToast('تعذر مشاركة الشاشة', 'error');
+            }
+        }
+        
         let mediaRecorder, recordedChunks = [];
-        function startRecording() { if (State.isRecording) { mediaRecorder.stop(); State.isRecording = false; showToast('تم إيقاف التسجيل', 'success'); addActivityLog('تسجيل', 'تسجيل مكالمة'); return; } if (State.localStream) { recordedChunks = []; mediaRecorder = new MediaRecorder(State.localStream); mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); }; mediaRecorder.onstop = () => { let blob = new Blob(recordedChunks, { type: 'video/webm' }); let url = URL.createObjectURL(blob); let a = document.createElement('a'); a.href = url; a.download = `recording_${Date.now()}.webm`; a.click(); showToast('تم حفظ التسجيل', 'success'); }; mediaRecorder.start(); State.isRecording = true; showToast('جاري التسجيل... اضغط مرة أخرى للإيقاف', 'warning'); } else showToast('لا توجد مكالمة نشطة للتسجيل', 'error'); }
+        
+        function startRecording() {
+            if (State.isRecording) {
+                if (mediaRecorder) mediaRecorder.stop();
+                State.isRecording = false;
+                showToast('تم إيقاف التسجيل', 'success');
+                addActivityLog('تسجيل', 'تسجيل مكالمة');
+                return;
+            }
+            if (State.localStream) {
+                recordedChunks = [];
+                mediaRecorder = new MediaRecorder(State.localStream);
+                mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
+                mediaRecorder.onstop = () => {
+                    let blob = new Blob(recordedChunks, { type: 'video/webm' });
+                    let url = URL.createObjectURL(blob);
+                    let a = document.createElement('a');
+                    a.href = url;
+                    a.download = `recording_${Date.now()}.webm`;
+                    a.click();
+                    showToast('تم حفظ التسجيل', 'success');
+                };
+                mediaRecorder.start();
+                State.isRecording = true;
+                showToast('جاري التسجيل... اضغط مرة أخرى للإيقاف', 'warning');
+            } else {
+                showToast('لا توجد مكالمة نشطة للتسجيل', 'error');
+            }
+        }
         
         // ==================== باقات الاشتراك ====================
-        function renderSubscriptionPlans() { let container = document.getElementById('subscriptionPlans'); if (!container) return; container.innerHTML = subscriptionPlans.map(p => `<div class="subscription-card" onclick="showSubscriptionDetails('${p.name}', ${p.price}, '${p.period}')"><h4>👑 ${p.name}</h4><div class="number" style="font-size:1.3rem;">${p.price} ريال / ${p.period}</div><ul style="text-align:right; margin-top:8px; font-size:0.8rem;">${p.features.map(f => `<li><i class="fas fa-check" style="color:var(--accent);"></i> ${f}</li>`).join('')}</ul><button class="btn-primary" style="margin-top:10px;">اشترك الآن</button></div>`).join(''); if (State.currentSubscription) document.getElementById('currentSubscription').innerHTML = `<div class="stat-card"><div class="number">${State.currentSubscription.name}</div><div class="label">اشتراكك الحالي</div><small>ينتهي في ${new Date(State.currentSubscription.endDate).toLocaleDateString('ar-SA')}</small></div>`; }
-        let selectedPlan = null;
-        function showSubscriptionDetails(name, price, period) { selectedPlan = { name, price, period }; document.getElementById('subscriptionDetails').innerHTML = `<div class="stat-card"><div class="number">${price} ريال</div><div class="label">${name} - ${period}</div></div><p>سيتم تفعيل الاشتراك فور إتمام الدفع</p>`; document.getElementById('subscriptionModal').style.display = 'block'; }
-        function closeSubscriptionModal() { document.getElementById('subscriptionModal').style.display = 'none'; }
-        document.getElementById('confirmSubscriptionBtn')?.addEventListener('click', () => { if (selectedPlan) { let sub = { id: Date.now(), name: selectedPlan.name, price: selectedPlan.price, period: selectedPlan.period, startDate: new Date().toISOString(), endDate: new Date(Date.now() + (selectedPlan.period === 'شهر' ? 30 : 365) * 86400000).toISOString() }; State.subscriptions.push(sub); State.currentSubscription = sub; localStorage.setItem('subscriptions', JSON.stringify(State.subscriptions)); showToast(`تم تفعيل ${selectedPlan.name} بنجاح!`); closeSubscriptionModal(); renderSubscriptionPlans(); addActivityLog('اشتراك', `${selectedPlan.name} - ${selectedPlan.price} ريال`); } });
+        const subscriptionPlans = [
+            { name: 'الباقة الأساسية', price: 99, period: 'شهر', features: ['5 استشارات فيديو', 'وصفات رقمية غير محدودة', 'تتبع الحالة الصحية'] },
+            { name: 'الباقة الذهبية', price: 199, period: 'شهر', features: ['15 استشارة فيديو', 'تقييم أطباء', 'حساب عائلي (3 أفراد)', 'خصم 20%'] },
+            { name: 'الباقة السنوية', price: 999, period: 'سنة', features: ['استشارات غير محدودة', 'جميع المميزات', 'حساب عائلي غير محدود', 'خصم 40%'] }
+        ];
         
-        // ==================== إشعارات Push ====================
-        function requestPushPermission() { if ('Notification' in window && Notification.permission === 'default') Notification.requestPermission().then(p => { if (p === 'granted') showToast('تم تفعيل الإشعارات'); }); }
-        document.getElementById('sendPushNotificationBtn')?.addEventListener('click', () => { let title = prompt('عنوان الإشعار:'); let body = prompt('محتوى الإشعار:'); if (title && body) new Notification(title, { body }); });
+        function renderSubscriptionPlans() {
+            let container = document.getElementById('subscriptionPlans');
+            if (!container) return;
+            container.innerHTML = subscriptionPlans.map(p => `
+                <div class="subscription-card" onclick="showSubscriptionDetails('${p.name}', ${p.price}, '${p.period}')">
+                    <h4>👑 ${p.name}</h4>
+                    <div class="number" style="font-size:1.3rem;">${p.price} ريال / ${p.period}</div>
+                    <ul style="text-align:right; margin-top:8px; font-size:0.8rem;">${p.features.map(f => `<li><i class="fas fa-check" style="color:var(--accent);"></i> ${f}</li>`).join('')}</ul>
+                    <button class="btn-primary" style="margin-top:10px;">اشترك الآن</button>
+                </div>
+            `).join('');
+            
+            if (State.currentSubscription) {
+                let currentDiv = document.getElementById('currentSubscription');
+                if (currentDiv) {
+                    currentDiv.innerHTML = `
+                        <div class="stat-card" style="margin-top:10px;">
+                            <div class="number">${State.currentSubscription.name}</div>
+                            <div class="label">اشتراكك الحالي</div>
+                            <small>ينتهي في ${new Date(State.currentSubscription.endDate).toLocaleDateString('ar-SA')}</small>
+                        </div>
+                    `;
+                }
+            }
+        }
+        
+        let selectedPlan = null;
+        
+        function showSubscriptionDetails(name, price, period) {
+            selectedPlan = { name, price, period };
+            let detailsDiv = document.getElementById('subscriptionDetails');
+            if (detailsDiv) {
+                detailsDiv.innerHTML = `
+                    <div class="stat-card"><div class="number">${price} ريال</div><div class="label">${name} - ${period}</div></div>
+                    <p>سيتم تفعيل الاشتراك فور إتمام الدفع</p>
+                `;
+            }
+            let modal = document.getElementById('subscriptionModal');
+            if (modal) modal.style.display = 'block';
+        }
+        
+        function closeSubscriptionModal() {
+            let modal = document.getElementById('subscriptionModal');
+            if (modal) modal.style.display = 'none';
+        }
+        
+        document.getElementById('confirmSubscriptionBtn')?.addEventListener('click', () => {
+            if (selectedPlan) {
+                let sub = {
+                    id: Date.now(),
+                    name: selectedPlan.name,
+                    price: selectedPlan.price,
+                    period: selectedPlan.period,
+                    startDate: new Date().toISOString(),
+                    endDate: new Date(Date.now() + (selectedPlan.period === 'شهر' ? 30 : 365) * 86400000).toISOString()
+                };
+                State.subscriptions.push(sub);
+                State.currentSubscription = sub;
+                saveAllData();
+                showToast(`تم تفعيل ${selectedPlan.name} بنجاح!`);
+                closeSubscriptionModal();
+                renderSubscriptionPlans();
+                addActivityLog('اشتراك', `${selectedPlan.name} - ${selectedPlan.price} ريال`);
+            }
+        });
         
         // ==================== سجل النشاطات ====================
-        function addActivityLog(action, details) { let log = { id: Date.now(), action, details, date: new Date().toISOString() }; State.activityLog.unshift(log); if (State.activityLog.length > 50) State.activityLog.pop(); localStorage.setItem('activityLog', JSON.stringify(State.activityLog)); updateActivityLogDisplay(); }
-        function updateActivityLogDisplay() { let container = document.getElementById('activityLogList'); if (!container) return; container.innerHTML = State.activityLog.slice(0, 10).map(l => `<div class="appointment-item" style="font-size:0.8rem; padding:8px;"><i class="fas ${l.action === 'حجز موعد' ? 'fa-calendar-check' : (l.action === 'تقييم' ? 'fa-star' : 'fa-info-circle')}"></i> <strong>${l.action}</strong><br><small>${l.details}</small><br><small style="color:var(--text-muted);">${new Date(l.date).toLocaleString('ar-SA')}</small></div>`).join(''); if (State.activityLog.length === 0) container.innerHTML = '<p class="text-muted">لا توجد نشاطات مسجلة</p>'; }
-        function clearActivityLog() { if (confirm('هل أنت متأكد من مسح سجل النشاطات؟')) { State.activityLog = []; localStorage.setItem('activityLog', JSON.stringify(State.activityLog)); updateActivityLogDisplay(); showToast('تم مسح السجل'); } }
+        function addActivityLog(action, details) {
+            let log = { id: Date.now(), action, details, date: new Date().toISOString() };
+            State.activityLog.unshift(log);
+            if (State.activityLog.length > 50) State.activityLog.pop();
+            saveAllData();
+            updateActivityLogDisplay();
+        }
+        
+        function updateActivityLogDisplay() {
+            let container = document.getElementById('activityLogList');
+            if (!container) return;
+            if (State.activityLog.length === 0) {
+                container.innerHTML = '<p class="text-muted">لا توجد نشاطات مسجلة</p>';
+                return;
+            }
+            container.innerHTML = State.activityLog.slice(0, 10).map(l => `
+                <div class="appointment-item" style="font-size:0.8rem; padding:8px;">
+                    <i class="fas ${l.action === 'حجز موعد' ? 'fa-calendar-check' : (l.action === 'تقييم' ? 'fa-star' : 'fa-info-circle')}"></i>
+                    <strong>${l.action}</strong><br>
+                    <small>${l.details}</small><br>
+                    <small style="color:var(--text-muted);">${new Date(l.date).toLocaleString('ar-SA')}</small>
+                </div>
+            `).join('');
+        }
+        
+        function clearActivityLog() {
+            if (confirm('هل أنت متأكد من مسح سجل النشاطات؟')) {
+                State.activityLog = [];
+                saveAllData();
+                updateActivityLogDisplay();
+                showToast('تم مسح السجل');
+            }
+        }
         
         // ==================== ترجمة فورية ====================
-        function translateText() { let text = document.getElementById('originalText').value.trim(); if (!text) { showToast('يرجى إدخال النص', 'error'); return; } showToast('جاري الترجمة...', 'warning'); setTimeout(() => { let target = document.getElementById('targetLanguage').value; let translations = { en: `[English: ${text}]`, fr: `[Français: ${text}]`, tr: `[Türkçe: ${text}]`, ur: `[اردو: ${text}]`, fa: `[فارسی: ${text}]`, es: `[Español: ${text}]`, de: `[Deutsch: ${text}]` }; document.getElementById('translationResult').innerHTML = `<strong>الترجمة:</strong><br>${translations[target] || text}`; document.getElementById('translationResult').style.display = 'block'; addActivityLog('ترجمة', 'ترجمة نص'); }, 1000); }
-        function closeTranslationModal() { document.getElementById('translationModal').style.display = 'none'; }
+        function translateText() {
+            let text = document.getElementById('originalText')?.value.trim();
+            if (!text) {
+                showToast('يرجى إدخال النص', 'error');
+                return;
+            }
+            showToast('جاري الترجمة...', 'warning');
+            setTimeout(() => {
+                let target = document.getElementById('targetLanguage')?.value || 'en';
+                let translations = {
+                    en: `[English: ${text}]`,
+                    fr: `[Français: ${text}]`,
+                    tr: `[Türkçe: ${text}]`,
+                    ur: `[اردو: ${text}]`,
+                    fa: `[فارسی: ${text}]`,
+                    es: `[Español: ${text}]`,
+                    de: `[Deutsch: ${text}]`
+                };
+                let resultDiv = document.getElementById('translationResult');
+                if (resultDiv) {
+                    resultDiv.innerHTML = `<strong>الترجمة:</strong><br>${translations[target] || text}`;
+                    resultDiv.style.display = 'block';
+                }
+                addActivityLog('ترجمة', 'ترجمة نص');
+            }, 1000);
+        }
+        
+        function closeTranslationModal() {
+            let modal = document.getElementById('translationModal');
+            if (modal) modal.style.display = 'none';
+        }
         
         // ==================== المقالات ====================
-        async function renderArticles() { let grid = document.getElementById('posts-grid'); if (!grid) return; grid.innerHTML = State.articles.map(a => `<div class="article-card"><img src="${a.img}" class="article-thumb" onerror="this.src='images/default.jpg'"><div class="article-content"><span class="badge-verified"><i class="fas fa-check-circle"></i> موثق</span><h3>${a.title}</h3><p>${a.desc}</p><div class="article-stats"><span><i class="fas fa-eye"></i> ${formatNumber(a.views)}</span><span><i class="fas fa-heart"></i> ${a.likes}</span><span><i class="fas fa-star text-warning"></i> ${a.rating}</span></div></div><div class="card-footer"><button class="read-btn" onclick="openArticle('${a.id}')">اقرأ المزيد <i class="fas fa-arrow-left"></i></button></div></div>`).join(''); }
-        async function openArticle(id) { let a = State.articles.find(x => x.id === id); if (!a) return; a.views++; localStorage.setItem('estsharion_articles', JSON.stringify(State.articles)); let content = ''; if (a.contentFile) { try { let res = await fetch(a.contentFile); if (res.ok) content = await res.text(); else content = '<p>⚠️ محتوى المقال غير متوفر</p>'; } catch (e) { content = '<p>❌ حدث خطأ في تحميل المقال</p>'; } } else content = a.content || '<p>لا يوجد محتوى</p>'; document.getElementById('modalBody').innerHTML = `<h2>${a.title}</h2><div style="color:var(--text-muted);"><i class="fas fa-user"></i> ${a.author} | <i class="fas fa-calendar"></i> ${a.date} | <i class="fas fa-eye"></i> ${formatNumber(a.views)}</div><img src="${a.img}" style="width:100%; max-height:300px; object-fit:cover; border-radius:12px; margin:1rem 0;" onerror="this.src='images/default.jpg'"><div>${content}</div><div style="margin-top:2rem;"><button class="btn-primary" onclick="shareArticle('${a.id}')"><i class="fas fa-share-alt"></i> مشاركة</button></div>`; document.getElementById('articleModal').style.display = 'block'; addActivityLog('قراءة مقال', a.title); }
-        function closeArticleModal() { document.getElementById('articleModal').style.display = 'none'; }
-        function shareArticle(id) { let a = State.articles.find(x => x.id === id); if (a) window.open(`https://wa.me/?text=${encodeURIComponent(a.title + ' - ' + window.location.href)}`, '_blank'); }
+        async function renderArticles() {
+            let grid = document.getElementById('posts-grid');
+            if (!grid) return;
+            grid.innerHTML = State.articles.map(a => `
+                <div class="article-card">
+                    <img src="${a.img}" class="article-thumb" onerror="this.src='images/default.jpg'">
+                    <div class="article-content">
+                        <span class="badge-verified"><i class="fas fa-check-circle"></i> موثق</span>
+                        <h3>${a.title}</h3>
+                        <p>${a.desc}</p>
+                        <div class="article-stats">
+                            <span><i class="fas fa-eye"></i> ${formatNumber(a.views)}</span>
+                            <span><i class="fas fa-heart"></i> ${a.likes}</span>
+                            <span><i class="fas fa-star text-warning"></i> ${a.rating}</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="read-btn" onclick="openArticle('${a.id}')">اقرأ المزيد <i class="fas fa-arrow-left"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        async function openArticle(id) {
+            let a = State.articles.find(x => x.id === id);
+            if (!a) return;
+            a.views++;
+            saveAllData();
+            
+            let content = '';
+            if (a.contentFile) {
+                try {
+                    let res = await fetch(a.contentFile);
+                    if (res.ok) content = await res.text();
+                    else content = '<p>⚠️ محتوى المقال غير متوفر. يرجى التأكد من وجود ملف المقال.</p>';
+                } catch (e) {
+                    content = '<p>❌ حدث خطأ في تحميل المقال. تأكد من تشغيل الموقع على خادم محلي (Live Server).</p>';
+                }
+            } else {
+                content = a.content || '<p>لا يوجد محتوى لعرضه.</p>';
+            }
+            
+            let modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = `
+                <h2>${a.title}</h2>
+                <div style="color:var(--text-muted); margin-bottom:1rem;">
+                    <i class="fas fa-user"></i> ${a.author} | 
+                    <i class="fas fa-calendar"></i> ${formatDisplayDate(a.date)} | 
+                    <i class="fas fa-eye"></i> ${formatNumber(a.views)} مشاهدة
+                </div>
+                <img src="${a.img}" style="width:100%; max-height:300px; object-fit:cover; border-radius:12px; margin-bottom:1rem;" onerror="this.src='images/default.jpg'">
+                <div class="article-content-body" style="margin-top:1rem;">${content}</div>
+                <div style="margin-top:2rem;">
+                    <button class="btn-primary" onclick="shareArticle('${a.id}')"><i class="fas fa-share-alt"></i> مشاركة</button>
+                </div>
+            `;
+            document.getElementById('articleModal').style.display = 'block';
+            addActivityLog('قراءة مقال', a.title);
+        }
+        
+        function closeArticleModal() {
+            document.getElementById('articleModal').style.display = 'none';
+        }
+        
+        function shareArticle(id) {
+            let a = State.articles.find(x => x.id === id);
+            if (a) window.open(`https://wa.me/?text=${encodeURIComponent(a.title + ' - ' + window.location.href)}`, '_blank');
+        }
         
         // ==================== Gemini AI ====================
-        async function callGemini(prompt, image = null) { let key = document.getElementById('geminiApiKey')?.value.trim(); if (!key) return "⚠️ يرجى إدخال مفتاح Gemini API"; try { let res = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${key}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ contents: [{ parts: [{ text: `أنت مساعد طبي محترف في منصة استشاريون. ${prompt}` }] }] }) }); let data = await res.json(); return data.candidates?.[0]?.content?.parts?.[0]?.text || "لم يتم الحصول على رد"; } catch (e) { return "❌ فشل الاتصال بـ Gemini"; } }
-        async function sendToAI() { let input = document.getElementById('aiInput').value.trim(); if (!input) { showToast('اكتب الأعراض أولاً', 'warning'); return; } let chat = document.getElementById('aiChatContainer'); chat.innerHTML += `<div class="ai-message"><strong>👤 أنت:</strong> ${input}</div>`; let loading = document.createElement('div'); loading.className = 'ai-message'; loading.innerHTML = '<strong>🤖 AI:</strong> جاري التحليل... <i class="fas fa-spinner fa-spin"></i>'; chat.appendChild(loading); let reply = await callGemini(`قم بتحليل الأعراض التالية: ${input}`); loading.remove(); chat.innerHTML += `<div class="ai-message"><strong>🤖 AI:</strong><br>${reply.replace(/\n/g, '<br>')}</div>`; document.getElementById('aiInput').value = ''; chat.scrollTop = chat.scrollHeight; addActivityLog('AI', 'استشارة الذكاء الاصطناعي'); }
-        function startVoiceInput() { let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)(); recognition.lang = 'ar-SA'; recognition.onresult = (e) => { document.getElementById('aiInput').value = e.results[0][0].transcript; sendToAI(); }; recognition.start(); showToast('تحدث الآن...', 'warning'); }
+        async function callGemini(prompt, image = null) {
+            let key = document.getElementById('geminiApiKey')?.value.trim();
+            if (!key) return "⚠️ يرجى إدخال مفتاح Gemini API";
+            try {
+                let res = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${key}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: `أنت مساعد طبي محترف في منصة استشاريون. ${prompt}` }] }] })
+                });
+                let data = await res.json();
+                return data.candidates?.[0]?.content?.parts?.[0]?.text || "لم يتم الحصول على رد";
+            } catch (e) {
+                return "❌ فشل الاتصال بـ Gemini";
+            }
+        }
+        
+        async function sendToAI() {
+            let input = document.getElementById('aiInput').value.trim();
+            if (!input) {
+                showToast('اكتب الأعراض أولاً', 'warning');
+                return;
+            }
+            let chat = document.getElementById('aiChatContainer');
+            chat.innerHTML += `<div class="ai-message"><strong>👤 أنت:</strong> ${input}</div>`;
+            let loading = document.createElement('div');
+            loading.className = 'ai-message';
+            loading.innerHTML = '<strong>🤖 AI:</strong> جاري التحليل... <i class="fas fa-spinner fa-spin"></i>';
+            chat.appendChild(loading);
+            let reply = await callGemini(`قم بتحليل الأعراض التالية: ${input}`);
+            loading.remove();
+            chat.innerHTML += `<div class="ai-message"><strong>🤖 AI:</strong><br>${reply.replace(/\n/g, '<br>')}</div>`;
+            document.getElementById('aiInput').value = '';
+            chat.scrollTop = chat.scrollHeight;
+            addActivityLog('AI', 'استشارة الذكاء الاصطناعي');
+        }
         
         // ==================== حجز المواعيد ====================
-        async function bookAppointment() { let name = document.getElementById('aptName').value.trim(), phone = document.getElementById('aptPhone').value.trim(), date = document.getElementById('aptDate').value, time = document.getElementById('aptTime').value, dept = document.getElementById('aptDept').value; if (!name || !phone || !date) { showToast('املأ جميع الحقول', 'error'); return; } State.appointments.push({ id: Date.now(), name, phone, date, time, dept, status: 'pending' }); localStorage.setItem('appointments', JSON.stringify(State.appointments)); showToast('تم الحجز بنجاح'); sendNotification(`تذكير: موعدك يوم ${date} الساعة ${time}`); renderAppointments(); addPoints(50, 'حجز موعد'); addActivityLog('حجز موعد', `${dept} - ${date} ${time}`); }
-        function renderAppointments() { let list = document.getElementById('appointmentList'); if (list) list.innerHTML = State.appointments.slice(-5).reverse().map(a => `<div class="appointment-item"><strong>${a.name}</strong> - ${a.date} ${a.time}<br>${a.dept}<span style="color:${a.status === 'confirmed' ? 'var(--accent)' : 'var(--warning)'}">${a.status === 'confirmed' ? '✓ مؤكد' : '⏳ قيد الانتظار'}</span></div>`).join('') || '<div class="appointment-item">لا توجد مواعيد</div>'; }
+        async function bookAppointment() {
+            let name = document.getElementById('aptName')?.value.trim();
+            let phone = document.getElementById('aptPhone')?.value.trim();
+            let date = document.getElementById('aptDate')?.value;
+            let time = document.getElementById('aptTime')?.value;
+            let dept = document.getElementById('aptDept')?.value;
+            if (!name || !phone || !date) {
+                showToast('املأ جميع الحقول', 'error');
+                return;
+            }
+            State.appointments.push({ id: Date.now(), name, phone, date, time, dept, status: 'pending' });
+            saveAllData();
+            showToast('تم الحجز بنجاح');
+            sendNotification(`تذكير: موعدك يوم ${date} الساعة ${time}`);
+            renderAppointments();
+            addPoints(50, 'حجز موعد');
+            addActivityLog('حجز موعد', `${dept} - ${date} ${time}`);
+        }
+        
+        function renderAppointments() {
+            let list = document.getElementById('appointmentList');
+            if (!list) return;
+            if (State.appointments.length === 0) {
+                list.innerHTML = '<div class="appointment-item">لا توجد مواعيد</div>';
+                return;
+            }
+            list.innerHTML = State.appointments.slice(-5).reverse().map(a => `
+                <div class="appointment-item">
+                    <strong>${a.name}</strong> - ${a.date} ${a.time}<br>
+                    ${a.dept}<br>
+                    <span style="color:${a.status === 'confirmed' ? 'var(--accent)' : 'var(--warning)'}">
+                        ${a.status === 'confirmed' ? '✓ مؤكد' : '⏳ قيد الانتظار'}
+                    </span>
+                </div>
+            `).join('');
+        }
         
         // ==================== تفسير الفحوصات ====================
-        function interpretLabWithAI() { let type = document.getElementById('labTestType').value, val = document.getElementById('labValue').value.trim(), resDiv = document.getElementById('labResult'); if (!val) { resDiv.innerHTML = '<span style="color:red;">أدخل قيمة الفحص</span>'; resDiv.style.display = 'block'; return; } let interpretation = '', normal = '', severity = 'normal', num = parseFloat(val); if (type === 'cbc') { normal = '12-16 g/dL'; if (num < 11) { interpretation = 'انخفاض شديد في الهيموجلوبين (فقر دم حاد)'; severity = 'danger'; } else if (num < 12) { interpretation = 'انخفاض طفيف في الهيموجلوبين'; severity = 'warning'; } else if (num > 17.5) { interpretation = 'ارتفاع في الهيموجلوبين'; severity = 'warning'; } else interpretation = 'مستوى الهيموجلوبين طبيعي'; } else if (type === 'lipid') { normal = 'أقل من 200 mg/dL'; if (num < 200) interpretation = 'مستوى الكوليسترول ممتاز'; else if (num < 240) { interpretation = 'مستوى الكوليسترول مرتفع حدياً'; severity = 'warning'; } else { interpretation = 'مستوى الكوليسترول مرتفع جداً'; severity = 'danger'; } } else if (type === 'liver') { normal = '10-40 IU/L'; if (num <= 40) interpretation = 'إنزيمات الكبد طبيعية'; else if (num <= 80) { interpretation = 'ارتفاع طفيف في إنزيمات الكبد'; severity = 'warning'; } else { interpretation = 'ارتفاع كبير في إنزيمات الكبد'; severity = 'danger'; } } else if (type === 'kidney') { normal = '0.6-1.2 mg/dL'; if (num <= 1.2) interpretation = 'وظائف الكلى طبيعية'; else if (num <= 1.8) { interpretation = 'ارتفاع طفيف في الكرياتينين'; severity = 'warning'; } else { interpretation = 'ارتفاع كبير في الكرياتينين'; severity = 'danger'; } } else if (type === 'thyroid') { normal = '0.4-4.0 mIU/L'; if (num < 0.4) { interpretation = 'انخفاض هرمون TSH (فرط نشاط الغدة)'; severity = 'warning'; } else if (num > 4.0) { interpretation = 'ارتفاع هرمون TSH (قصور الغدة)'; severity = 'warning'; } else interpretation = 'مستوى هرمون الغدة طبيعي'; } let color = severity === 'danger' ? 'var(--danger)' : (severity === 'warning' ? 'var(--warning)' : 'var(--accent)'); resDiv.innerHTML = `<strong><i class="fas fa-microscope"></i> تفسير الفحص بالذكاء الاصطناعي:</strong><br><div style="color:${color}; font-size:1.1rem;">📊 ${interpretation}</div><small>المدى الطبيعي: ${normal}</small><br><small>⚠️ هذا تفسير أولي - استشر طبيبك للتشخيص النهائي</small>`; resDiv.style.display = 'block'; addActivityLog('تفسير فحص', `${type} - ${val}`); }
+        function interpretLabWithAI() {
+            let type = document.getElementById('labTestType')?.value;
+            let val = document.getElementById('labValue')?.value.trim();
+            let resDiv = document.getElementById('labResult');
+            if (!val) {
+                if (resDiv) {
+                    resDiv.innerHTML = '<span style="color:red;">أدخل قيمة الفحص</span>';
+                    resDiv.style.display = 'block';
+                }
+                return;
+            }
+            
+            let interpretation = '', normal = '', severity = 'normal';
+            let num = parseFloat(val);
+            
+            if (type === 'cbc') {
+                normal = '12-16 g/dL';
+                if (num < 11) { interpretation = 'انخفاض شديد في الهيموجلوبين (فقر دم حاد)'; severity = 'danger'; }
+                else if (num < 12) { interpretation = 'انخفاض طفيف في الهيموجلوبين'; severity = 'warning'; }
+                else if (num > 17.5) { interpretation = 'ارتفاع في الهيموجلوبين'; severity = 'warning'; }
+                else interpretation = 'مستوى الهيموجلوبين طبيعي';
+            } else if (type === 'lipid') {
+                normal = 'أقل من 200 mg/dL';
+                if (num < 200) interpretation = 'مستوى الكوليسترول ممتاز';
+                else if (num < 240) { interpretation = 'مستوى الكوليسترول مرتفع حدياً'; severity = 'warning'; }
+                else { interpretation = 'مستوى الكوليسترول مرتفع جداً'; severity = 'danger'; }
+            } else if (type === 'liver') {
+                normal = '10-40 IU/L';
+                if (num <= 40) interpretation = 'إنزيمات الكبد طبيعية';
+                else if (num <= 80) { interpretation = 'ارتفاع طفيف في إنزيمات الكبد'; severity = 'warning'; }
+                else { interpretation = 'ارتفاع كبير في إنزيمات الكبد'; severity = 'danger'; }
+            } else if (type === 'kidney') {
+                normal = '0.6-1.2 mg/dL';
+                if (num <= 1.2) interpretation = 'وظائف الكلى طبيعية';
+                else if (num <= 1.8) { interpretation = 'ارتفاع طفيف في الكرياتينين'; severity = 'warning'; }
+                else { interpretation = 'ارتفاع كبير في الكرياتينين'; severity = 'danger'; }
+            } else if (type === 'thyroid') {
+                normal = '0.4-4.0 mIU/L';
+                if (num < 0.4) { interpretation = 'انخفاض هرمون TSH (فرط نشاط الغدة)'; severity = 'warning'; }
+                else if (num > 4.0) { interpretation = 'ارتفاع هرمون TSH (قصور الغدة)'; severity = 'warning'; }
+                else interpretation = 'مستوى هرمون الغدة طبيعي';
+            }
+            
+            let color = severity === 'danger' ? 'var(--danger)' : (severity === 'warning' ? 'var(--warning)' : 'var(--accent)');
+            if (resDiv) {
+                resDiv.innerHTML = `
+                    <strong><i class="fas fa-microscope"></i> تفسير الفحص بالذكاء الاصطناعي:</strong><br>
+                    <div style="color:${color}; font-size:1.1rem; margin:10px 0;">📊 ${interpretation}</div>
+                    <small>المدى الطبيعي: ${normal}</small><br>
+                    <small>⚠️ هذا تفسير أولي - استشر طبيبك للتشخيص النهائي</small>
+                `;
+                resDiv.style.display = 'block';
+            }
+            addActivityLog('تفسير فحص', `${type} - ${val}`);
+        }
         
         // ==================== المصادقة ====================
-        function toggleAuthModal() { document.getElementById('authModal').style.display = 'block'; }
-        function closeAuthModal() { document.getElementById('authModal').style.display = 'none'; }
-        function showRegisterForm() { document.getElementById('loginForm').style.display = 'none'; document.getElementById('registerForm').style.display = 'block'; document.getElementById('forgotPasswordForm').style.display = 'none'; document.getElementById('authTitle').textContent = 'إنشاء حساب جديد'; }
-        function showLoginForm() { document.getElementById('loginForm').style.display = 'block'; document.getElementById('registerForm').style.display = 'none'; document.getElementById('forgotPasswordForm').style.display = 'none'; document.getElementById('authTitle').textContent = 'تسجيل الدخول'; }
-        function showForgotPassword() { document.getElementById('loginForm').style.display = 'none'; document.getElementById('registerForm').style.display = 'none'; document.getElementById('forgotPasswordForm').style.display = 'block'; document.getElementById('authTitle').textContent = 'استعادة كلمة المرور'; }
-        document.getElementById('authLoginBtn').onclick = () => { let email = document.getElementById('authEmail').value; let user = State.users.find(u => u.email === email); if (user) { State.currentUser = user; document.getElementById('userNameDisplay').innerText = user.name; closeAuthModal(); showToast(`مرحباً ${user.name}`); addActivityLog('تسجيل دخول', `مرحباً ${user.name}`); if (user.role === 'doctor') setTimeout(() => { document.getElementById('doctorDashboardModal').style.display = 'block'; }, 500); } else { let name = email.split('@')[0]; State.currentUser = { id: 'user_' + Date.now(), name, email, role: document.getElementById('authRole').value }; document.getElementById('userNameDisplay').innerText = name; closeAuthModal(); showToast(`مرحباً ${name}`); addActivityLog('تسجيل دخول', `مرحباً ${name}`); } };
-        document.getElementById('authRegisterBtn').onclick = () => { let name = document.getElementById('regName').value, email = document.getElementById('regEmail').value, pass = document.getElementById('regPassword').value, confirm = document.getElementById('regPasswordConfirm').value; if (pass !== confirm) { showToast('كلمتا المرور غير متطابقتين', 'error'); return; } if (State.users.find(u => u.email === email)) { showToast('البريد موجود مسبقاً', 'error'); return; } let newUser = { id: 'user_' + Date.now(), name, email, password: pass, role: document.getElementById('regRole').value, specialty: document.getElementById('regSpecialty')?.value }; State.users.push(newUser); localStorage.setItem('users', JSON.stringify(State.users)); showToast('تم إنشاء الحساب بنجاح!'); showLoginForm(); };
-        document.getElementById('resetPasswordBtn').onclick = () => { let email = document.getElementById('forgotEmail').value; let user = State.users.find(u => u.email === email); if (user) { let newPass = Math.random().toString(36).slice(-8); user.password = newPass; localStorage.setItem('users', JSON.stringify(State.users)); showToast(`تم إرسال كلمة المرور الجديدة: ${newPass}`, 'success'); showLoginForm(); } else showToast('البريد غير مسجل', 'error'); };
-        document.getElementById('regRole').onchange = e => document.getElementById('doctorFields').style.display = e.target.value === 'doctor' ? 'block' : 'none';
+        function toggleAuthModal() {
+            let modal = document.getElementById('authModal');
+            if (modal) modal.style.display = 'block';
+        }
         
-        // ==================== WebRTC ====================
+        function closeAuthModal() {
+            let modal = document.getElementById('authModal');
+            if (modal) modal.style.display = 'none';
+        }
+        
+        function showRegisterForm() {
+            let loginForm = document.getElementById('loginForm');
+            let registerForm = document.getElementById('registerForm');
+            let forgotForm = document.getElementById('forgotPasswordForm');
+            let authTitle = document.getElementById('authTitle');
+            if (loginForm) loginForm.style.display = 'none';
+            if (registerForm) registerForm.style.display = 'block';
+            if (forgotForm) forgotForm.style.display = 'none';
+            if (authTitle) authTitle.textContent = 'إنشاء حساب جديد';
+        }
+        
+        function showLoginForm() {
+            let loginForm = document.getElementById('loginForm');
+            let registerForm = document.getElementById('registerForm');
+            let forgotForm = document.getElementById('forgotPasswordForm');
+            let authTitle = document.getElementById('authTitle');
+            if (loginForm) loginForm.style.display = 'block';
+            if (registerForm) registerForm.style.display = 'none';
+            if (forgotForm) forgotForm.style.display = 'none';
+            if (authTitle) authTitle.textContent = 'تسجيل الدخول';
+        }
+        
+        function showForgotPassword() {
+            let loginForm = document.getElementById('loginForm');
+            let registerForm = document.getElementById('registerForm');
+            let forgotForm = document.getElementById('forgotPasswordForm');
+            let authTitle = document.getElementById('authTitle');
+            if (loginForm) loginForm.style.display = 'none';
+            if (registerForm) registerForm.style.display = 'none';
+            if (forgotForm) forgotForm.style.display = 'block';
+            if (authTitle) authTitle.textContent = 'استعادة كلمة المرور';
+        }
+        
+        document.getElementById('authLoginBtn').onclick = () => {
+            let email = document.getElementById('authEmail')?.value;
+            let user = State.users.find(u => u.email === email);
+            if (user) {
+                State.currentUser = user;
+                let userNameSpan = document.getElementById('userNameDisplay');
+                if (userNameSpan) userNameSpan.innerText = user.name;
+                closeAuthModal();
+                showToast(`مرحباً ${user.name}`);
+                addActivityLog('تسجيل دخول', `مرحباً ${user.name}`);
+                saveAllData();
+                if (user.role === 'doctor') {
+                    setTimeout(() => {
+                        let dashboard = document.getElementById('doctorDashboardModal');
+                        if (dashboard) dashboard.style.display = 'block';
+                    }, 500);
+                }
+            } else {
+                let name = email ? email.split('@')[0] : 'زائر';
+                State.currentUser = {
+                    id: 'user_' + Date.now(),
+                    name: name,
+                    email: email,
+                    role: document.getElementById('authRole')?.value || 'patient'
+                };
+                let userNameSpan = document.getElementById('userNameDisplay');
+                if (userNameSpan) userNameSpan.innerText = name;
+                closeAuthModal();
+                showToast(`مرحباً ${name}`);
+                addActivityLog('تسجيل دخول', `مرحباً ${name}`);
+                saveAllData();
+            }
+        };
+        
+        document.getElementById('authRegisterBtn').onclick = () => {
+            let name = document.getElementById('regName')?.value;
+            let email = document.getElementById('regEmail')?.value;
+            let pass = document.getElementById('regPassword')?.value;
+            let confirm = document.getElementById('regPasswordConfirm')?.value;
+            
+            if (pass !== confirm) {
+                showToast('كلمتا المرور غير متطابقتين', 'error');
+                return;
+            }
+            if (pass && pass.length < 8) {
+                showToast('كلمة المرور يجب أن تكون 8 أحرف على الأقل', 'error');
+                return;
+            }
+            if (State.users.find(u => u.email === email)) {
+                showToast('البريد موجود مسبقاً', 'error');
+                return;
+            }
+            
+            let newUser = {
+                id: 'user_' + Date.now(),
+                name: name,
+                email: email,
+                password: pass,
+                role: document.getElementById('regRole')?.value,
+                specialty: document.getElementById('regSpecialty')?.value
+            };
+            State.users.push(newUser);
+            saveAllData();
+            showToast('تم إنشاء الحساب بنجاح!');
+            showLoginForm();
+        };
+        
+        document.getElementById('resetPasswordBtn').onclick = () => {
+            let email = document.getElementById('forgotEmail')?.value;
+            let user = State.users.find(u => u.email === email);
+            if (user) {
+                let newPass = Math.random().toString(36).slice(-8);
+                user.password = newPass;
+                saveAllData();
+                showToast(`تم إرسال كلمة المرور الجديدة: ${newPass}`, 'success');
+                showLoginForm();
+            } else {
+                showToast('البريد غير مسجل', 'error');
+            }
+        };
+        
+        document.getElementById('regRole')?.addEventListener('change', e => {
+            let doctorFields = document.getElementById('doctorFields');
+            if (doctorFields) doctorFields.style.display = e.target.value === 'doctor' ? 'block' : 'none';
+        });
+        
+        // ==================== WebRTC مع خوادم محسنة ====================
         let peer = null, localStream = null, call = null;
-        async function startVideoCall() { try { localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true }); document.getElementById('localVideo').srcObject = localStream; document.getElementById('localPlaceholder').style.display = 'none'; if (!peer) { peer = new Peer('user-' + Date.now(), { config: { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] } }); peer.on('call', (incomingCall) => { incomingCall.answer(localStream); incomingCall.on('stream', (remoteStream) => { document.getElementById('remoteVideo').srcObject = remoteStream; document.getElementById('remotePlaceholder').style.display = 'none'; }); call = incomingCall; }); } let roomId = prompt('أدخل رمز الغرفة:'); if (!roomId) { roomId = 'room_' + Math.random().toString(36).substr(2, 8); navigator.clipboard.writeText(roomId); showToast(`تم نسخ الرابط: ${roomId}`); } call = peer.call(roomId, localStream); call.on('stream', (remoteStream) => { document.getElementById('remoteVideo').srcObject = remoteStream; document.getElementById('remotePlaceholder').style.display = 'none'; }); document.getElementById('btnStartCall').style.display = 'none'; document.getElementById('btnStopCall').style.display = 'inline-flex'; addActivityLog('مكالمة فيديو', 'بدء مكالمة'); } catch (e) { showToast('تعذر الوصول للكاميرا', 'error'); } }
-        function endVideoCall() { if (call) call.close(); if (localStream) localStream.getTracks().forEach(t => t.stop()); document.getElementById('localVideo').srcObject = null; document.getElementById('remoteVideo').srcObject = null; document.getElementById('localPlaceholder').style.display = 'flex'; document.getElementById('remotePlaceholder').style.display = 'flex'; document.getElementById('btnStartCall').style.display = 'inline-flex'; document.getElementById('btnStopCall').style.display = 'none'; addActivityLog('مكالمة فيديو', 'إنهاء مكالمة'); }
-        function toggleMute() { if (localStream) { let track = localStream.getAudioTracks()[0]; if (track) track.enabled = !track.enabled; document.getElementById('btnMute').innerHTML = track.enabled ? '<i class="fas fa-microphone"></i> كتم' : '<i class="fas fa-microphone-slash"></i> مكتم'; } }
-        function toggleVideo() { if (localStream) { let track = localStream.getVideoTracks()[0]; if (track) track.enabled = !track.enabled; document.getElementById('btnVideo').innerHTML = track.enabled ? '<i class="fas fa-video"></i> فيديو' : '<i class="fas fa-video-slash"></i> صورة'; } }
-        document.getElementById('btnStartCall').onclick = startVideoCall; document.getElementById('btnStopCall').onclick = endVideoCall; document.getElementById('btnMute').onclick = toggleMute; document.getElementById('btnVideo').onclick = toggleVideo;
+        
+        async function startVideoCall() {
+            try {
+                localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                let localVideo = document.getElementById('localVideo');
+                if (localVideo) localVideo.srcObject = localStream;
+                let localPlaceholder = document.getElementById('localPlaceholder');
+                if (localPlaceholder) localPlaceholder.style.display = 'none';
+                
+                if (!peer) {
+                    peer = new Peer('user-' + Date.now(), ICE_SERVERS);
+                    peer.on('call', (incomingCall) => {
+                        incomingCall.answer(localStream);
+                        incomingCall.on('stream', (remoteStream) => {
+                            let remoteVideo = document.getElementById('remoteVideo');
+                            if (remoteVideo) remoteVideo.srcObject = remoteStream;
+                            let remotePlaceholder = document.getElementById('remotePlaceholder');
+                            if (remotePlaceholder) remotePlaceholder.style.display = 'none';
+                        });
+                        call = incomingCall;
+                    });
+                }
+                
+                let roomId = prompt('أدخل رمز الغرفة:');
+                if (!roomId) {
+                    roomId = 'room_' + Math.random().toString(36).substr(2, 8);
+                    navigator.clipboard.writeText(roomId);
+                    showToast(`تم نسخ الرابط: ${roomId}`);
+                }
+                
+                call = peer.call(roomId, localStream);
+                call.on('stream', (remoteStream) => {
+                    let remoteVideo = document.getElementById('remoteVideo');
+                    if (remoteVideo) remoteVideo.srcObject = remoteStream;
+                    let remotePlaceholder = document.getElementById('remotePlaceholder');
+                    if (remotePlaceholder) remotePlaceholder.style.display = 'none';
+                });
+                
+                let startBtn = document.getElementById('btnStartCall');
+                let stopBtn = document.getElementById('btnStopCall');
+                if (startBtn) startBtn.style.display = 'none';
+                if (stopBtn) stopBtn.style.display = 'inline-flex';
+                addActivityLog('مكالمة فيديو', 'بدء مكالمة');
+            } catch (e) {
+                showToast('تعذر الوصول للكاميرا', 'error');
+            }
+        }
+        
+        function endVideoCall() {
+            if (call) call.close();
+            if (localStream) localStream.getTracks().forEach(t => t.stop());
+            let localVideo = document.getElementById('localVideo');
+            let remoteVideo = document.getElementById('remoteVideo');
+            let localPlaceholder = document.getElementById('localPlaceholder');
+            let remotePlaceholder = document.getElementById('remotePlaceholder');
+            let startBtn = document.getElementById('btnStartCall');
+            let stopBtn = document.getElementById('btnStopCall');
+            if (localVideo) localVideo.srcObject = null;
+            if (remoteVideo) remoteVideo.srcObject = null;
+            if (localPlaceholder) localPlaceholder.style.display = 'flex';
+            if (remotePlaceholder) remotePlaceholder.style.display = 'flex';
+            if (startBtn) startBtn.style.display = 'inline-flex';
+            if (stopBtn) stopBtn.style.display = 'none';
+            addActivityLog('مكالمة فيديو', 'إنهاء مكالمة');
+        }
+        
+        function toggleMute() {
+            if (localStream) {
+                let track = localStream.getAudioTracks()[0];
+                if (track) track.enabled = !track.enabled;
+                let muteBtn = document.getElementById('btnMute');
+                if (muteBtn) muteBtn.innerHTML = track.enabled ? '<i class="fas fa-microphone"></i> كتم' : '<i class="fas fa-microphone-slash"></i> مكتم';
+            }
+        }
+        
+        function toggleVideo() {
+            if (localStream) {
+                let track = localStream.getVideoTracks()[0];
+                if (track) track.enabled = !track.enabled;
+                let videoBtn = document.getElementById('btnVideo');
+                if (videoBtn) videoBtn.innerHTML = track.enabled ? '<i class="fas fa-video"></i> فيديو' : '<i class="fas fa-video-slash"></i> صورة';
+            }
+        }
+        
+        document.getElementById('btnStartCall').onclick = startVideoCall;
+        document.getElementById('btnStopCall').onclick = endVideoCall;
+        document.getElementById('btnMute').onclick = toggleMute;
+        document.getElementById('btnVideo').onclick = toggleVideo;
         
         // ==================== الوصفات ====================
-        function openPrescriptionModal() { document.getElementById('prescriptionModal').style.display = 'block'; document.getElementById('prescriptionDate').value = new Date().toLocaleDateString('ar-SA'); document.getElementById('prescriptionId').value = 'RX-' + Date.now().toString(36).toUpperCase(); }
-        function closePrescriptionModal() { document.getElementById('prescriptionModal').style.display = 'none'; }
-        function generateDigitalPrescription() { new QRious({ element: document.getElementById('qrCanvas'), value: document.getElementById('prescriptionId').value, size: 100 }); showToast('تم إصدار الوصفة'); addPoints(20, 'إصدار وصفة'); addActivityLog('وصفة', `رقم ${document.getElementById('prescriptionId').value}`); }
-        function sharePrescriptionWhatsApp() { let id = document.getElementById('prescriptionId').value; window.open(`https://wa.me/?text=وصفة طبية رقم ${id} - استشاريون`, '_blank'); }
-        function downloadPrescriptionPDF() { let { jsPDF } = window.jspdf; let doc = new jsPDF(); doc.text(`وصفة طبية رقم ${document.getElementById('prescriptionId').value}`, 10, 10); doc.save('prescription.pdf'); }
-        function printPrescription() { window.print(); }
+        function openPrescriptionModal() {
+            let modal = document.getElementById('prescriptionModal');
+            if (modal) modal.style.display = 'block';
+            let dateField = document.getElementById('prescriptionDate');
+            if (dateField) dateField.value = new Date().toLocaleDateString('ar-SA');
+            let idField = document.getElementById('prescriptionId');
+            if (idField) idField.value = 'RX-' + Date.now().toString(36).toUpperCase();
+        }
+        
+        function closePrescriptionModal() {
+            let modal = document.getElementById('prescriptionModal');
+            if (modal) modal.style.display = 'none';
+        }
+        
+        function generateDigitalPrescription() {
+            let qrCanvas = document.getElementById('qrCanvas');
+            let idField = document.getElementById('prescriptionId');
+            if (qrCanvas && idField) {
+                new QRious({ element: qrCanvas, value: idField.value, size: 100 });
+                showToast('تم إصدار الوصفة');
+                addPoints(20, 'إصدار وصفة');
+                addActivityLog('وصفة', `رقم ${idField.value}`);
+                saveAllData();
+            }
+        }
+        
+        function sharePrescriptionWhatsApp() {
+            let id = document.getElementById('prescriptionId')?.value;
+            if (id) window.open(`https://wa.me/?text=وصفة طبية رقم ${id} - استشاريون`, '_blank');
+        }
+        
+        function downloadPrescriptionPDF() {
+            let { jsPDF } = window.jspdf;
+            let doc = new jsPDF();
+            let id = document.getElementById('prescriptionId')?.value || '';
+            doc.text(`وصفة طبية رقم ${id}`, 10, 10);
+            doc.save('prescription.pdf');
+        }
+        
+        function printPrescription() {
+            window.print();
+        }
         
         // ==================== الدفع ====================
-        function processPayment() { let method = document.getElementById('paymentMethod').value; let msgDiv = document.getElementById('paymentMsg'); if (method === 'card') { let card = document.getElementById('cardNumber').value.replace(/\s/g, ''); if (card.startsWith('4242')) { msgDiv.innerHTML = '<span style="color:var(--accent);">✓ تمت عملية الدفع بنجاح!</span>'; setTimeout(() => { closePaymentModal(); showToast('تم الدفع بنجاح'); addActivityLog('دفع', `${method} - ${card.slice(-4)}`); }, 2000); } else msgDiv.innerHTML = '<span style="color:var(--danger);">❌ فشل الدفع</span>'; } else { msgDiv.innerHTML = `<span style="color:var(--accent);">✓ تمت عملية الدفع عبر ${method} بنجاح!</span>`; setTimeout(() => { closePaymentModal(); showToast('تم الدفع بنجاح'); }, 2000); } }
-        function closePaymentModal() { document.getElementById('paymentModal').style.display = 'none'; document.getElementById('paymentMsg').innerHTML = ''; }
-        document.getElementById('confirmPaymentBtn').onclick = processPayment;
-        document.getElementById('paymentMethod').onchange = e => document.getElementById('cardFields').style.display = e.target.value === 'card' ? 'block' : 'none';
+        function processPayment() {
+            let method = document.getElementById('paymentMethod')?.value;
+            let msgDiv = document.getElementById('paymentMsg');
+            if (method === 'card') {
+                let card = document.getElementById('cardNumber')?.value.replace(/\s/g, '') || '';
+                if (card.startsWith('4242')) {
+                    if (msgDiv) msgDiv.innerHTML = '<span style="color:var(--accent);">✓ تمت عملية الدفع بنجاح!</span>';
+                    setTimeout(() => {
+                        closePaymentModal();
+                        showToast('تم الدفع بنجاح');
+                        addActivityLog('دفع', `${method} - ${card.slice(-4)}`);
+                    }, 2000);
+                } else {
+                    if (msgDiv) msgDiv.innerHTML = '<span style="color:var(--danger);">❌ فشل الدفع</span>';
+                }
+            } else {
+                if (msgDiv) msgDiv.innerHTML = `<span style="color:var(--accent);">✓ تمت عملية الدفع عبر ${method} بنجاح!</span>`;
+                setTimeout(() => {
+                    closePaymentModal();
+                    showToast('تم الدفع بنجاح');
+                }, 2000);
+            }
+        }
+        
+        function closePaymentModal() {
+            let modal = document.getElementById('paymentModal');
+            if (modal) modal.style.display = 'none';
+            let msgDiv = document.getElementById('paymentMsg');
+            if (msgDiv) msgDiv.innerHTML = '';
+        }
+        
+        document.getElementById('confirmPaymentBtn')?.addEventListener('click', processPayment);
+        document.getElementById('paymentMethod')?.addEventListener('change', e => {
+            let cardFields = document.getElementById('cardFields');
+            if (cardFields) cardFields.style.display = e.target.value === 'card' ? 'block' : 'none';
+        });
         
         // ==================== لوحة المدير ====================
         let adminClickCount = 0;
-        document.getElementById('adminTrigger').addEventListener('click', () => { adminClickCount++; if (adminClickCount >= 5) { document.getElementById('adminPanel').classList.toggle('show'); adminClickCount = 0; } });
-        function adminLogin() { let pass = document.getElementById('adminPass').value; if (pass === 'Estsharion2024!') { document.getElementById('adminControls').style.display = 'block'; document.getElementById('adminPass').style.display = 'none'; document.getElementById('adminLoginBtn').style.display = 'none'; showToast('تم الدخول كمدير'); } else showToast('كلمة مرور خاطئة', 'error'); }
-        document.getElementById('adminLoginBtn').onclick = adminLogin;
-        document.getElementById('logoutAdminBtn').onclick = () => { document.getElementById('adminControls').style.display = 'none'; document.getElementById('adminPass').style.display = 'block'; document.getElementById('adminLoginBtn').style.display = 'block'; showToast('خروج'); };
+        let adminClickTimer = null;
+        
+        let adminTrigger = document.getElementById('adminTrigger');
+        if (adminTrigger) {
+            adminTrigger.addEventListener('click', () => {
+                adminClickCount++;
+                clearTimeout(adminClickTimer);
+                adminClickTimer = setTimeout(() => { adminClickCount = 0; }, 1000);
+                if (adminClickCount >= 5) {
+                    let adminPanel = document.getElementById('adminPanel');
+                    if (adminPanel) adminPanel.classList.toggle('show');
+                    adminClickCount = 0;
+                    loadAdminData();
+                }
+            });
+        }
+        
+        function adminLogin() {
+            let pass = document.getElementById('adminPass')?.value;
+            if (pass === 'Estsharion2024!') {
+                State.adminLogged = true;
+                let adminControls = document.getElementById('adminControls');
+                if (adminControls) adminControls.style.display = 'block';
+                let adminPassInput = document.getElementById('adminPass');
+                if (adminPassInput) adminPassInput.style.display = 'none';
+                let adminLoginBtn = document.getElementById('adminLoginBtn');
+                if (adminLoginBtn) adminLoginBtn.style.display = 'none';
+                showToast('تم الدخول كمدير');
+                loadAdminData();
+            } else {
+                showToast('كلمة مرور خاطئة', 'error');
+            }
+        }
+        
+        document.getElementById('adminLoginBtn')?.addEventListener('click', adminLogin);
+        
+        document.getElementById('logoutAdminBtn')?.addEventListener('click', () => {
+            State.adminLogged = false;
+            let adminControls = document.getElementById('adminControls');
+            let adminPassInput = document.getElementById('adminPass');
+            let adminLoginBtn = document.getElementById('adminLoginBtn');
+            if (adminControls) adminControls.style.display = 'none';
+            if (adminPassInput) adminPassInput.style.display = 'block';
+            if (adminLoginBtn) adminLoginBtn.style.display = 'block';
+            showToast('خروج');
+        });
+        
+        function loadAdminData() {
+            let articlesList = document.getElementById('articlesListAdmin');
+            if (articlesList) {
+                articlesList.innerHTML = State.articles.map(a => `
+                    <div style="padding:8px; border-bottom:1px solid #eee;">
+                        ${a.title}
+                        <button onclick="deleteArticle('${a.id}')" style="float:left; color:var(--danger); background:none; border:none; cursor:pointer;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+            
+            let commentsList = document.getElementById('adminCommentsList');
+            if (commentsList) {
+                commentsList.innerHTML = '<h5>آخر التعليقات</h5>' + State.comments.slice(-5).map(c => `
+                    <div style="padding:5px; font-size:0.8rem; border-bottom:1px solid #eee;">
+                        <strong>${c.author}:</strong> ${c.text.substring(0, 30)}...
+                    </div>
+                `).join('');
+            }
+            
+            let appointmentsList = document.getElementById('adminAppointmentsList');
+            if (appointmentsList) {
+                appointmentsList.innerHTML = '<h5>آخر المواعيد</h5>' + State.appointments.slice(-5).map(a => `
+                    <div style="padding:5px; font-size:0.8rem; border-bottom:1px solid #eee;">
+                        ${a.name} - ${a.dept} - ${a.date}
+                    </div>
+                `).join('');
+            }
+            
+            let doctorsList = document.getElementById('adminDoctorsList');
+            if (doctorsList) {
+                let doctors = State.users.filter(u => u.role === 'doctor');
+                doctorsList.innerHTML = '<h5>الأطباء المسجلون</h5>' + doctors.map(d => `
+                    <div style="padding:5px; font-size:0.8rem; border-bottom:1px solid #eee;">
+                        <strong>${d.name}</strong> - ${d.specialty || 'طبيب عام'}
+                        <button onclick="verifyDoctor('${d.id}')" style="background:var(--accent); color:white; border:none; border-radius:5px; padding:2px 8px; cursor:pointer; float:left;">
+                            توثيق
+                        </button>
+                    </div>
+                `).join('');
+            }
+        }
+        
+        function deleteArticle(id) {
+            if (confirm('هل أنت متأكد من حذف هذا المقال؟')) {
+                State.articles = State.articles.filter(a => a.id !== id);
+                saveAllData();
+                renderArticles();
+                loadAdminData();
+                showToast('تم حذف المقال');
+            }
+        }
+        
+        function verifyDoctor(userId) {
+            let doctor = State.users.find(u => u.id === userId);
+            if (doctor) {
+                doctor.verified = true;
+                saveAllData();
+                loadAdminData();
+                showToast(`تم توثيق الدكتور ${doctor.name}`);
+            }
+        }
+        
+        document.getElementById('addNewArticleBtn')?.addEventListener('click', () => {
+            showToast('يمكنك إضافة المقال من خلال واجهة المدير المتقدمة', 'info');
+        });
+        
+        document.getElementById('exportDataBtn')?.addEventListener('click', () => {
+            let data = {
+                articles: State.articles,
+                comments: State.comments,
+                ratings: State.ratings,
+                likes: State.likes,
+                favorites: State.favorites,
+                appointments: State.appointments,
+                users: State.users,
+                prescriptions: State.prescriptions,
+                healthData: State.healthData,
+                familyMembers: State.familyMembers,
+                medicalFiles: State.medicalFiles,
+                doctorRatings: State.doctorRatings,
+                subscriptions: State.subscriptions,
+                activityLog: State.activityLog
+            };
+            let blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            let a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `estsharion_backup_${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            showToast('تم تصدير جميع البيانات');
+        });
+        
+        document.getElementById('importDataBtn')?.addEventListener('click', () => {
+            document.getElementById('importFile')?.click();
+        });
+        
+        document.getElementById('importFile')?.addEventListener('change', (e) => {
+            let file = e.target.files[0];
+            if (!file) return;
+            let reader = new FileReader();
+            reader.onload = function(ev) {
+                try {
+                    let imported = JSON.parse(ev.target.result);
+                    if (imported.articles) State.articles = imported.articles;
+                    if (imported.comments) State.comments = imported.comments;
+                    if (imported.ratings) State.ratings = imported.ratings;
+                    if (imported.likes) State.likes = imported.likes;
+                    if (imported.favorites) State.favorites = imported.favorites;
+                    if (imported.appointments) State.appointments = imported.appointments;
+                    if (imported.users) State.users = imported.users;
+                    if (imported.prescriptions) State.prescriptions = imported.prescriptions;
+                    if (imported.healthData) State.healthData = imported.healthData;
+                    if (imported.familyMembers) State.familyMembers = imported.familyMembers;
+                    if (imported.medicalFiles) State.medicalFiles = imported.medicalFiles;
+                    if (imported.doctorRatings) State.doctorRatings = imported.doctorRatings;
+                    if (imported.subscriptions) State.subscriptions = imported.subscriptions;
+                    if (imported.activityLog) State.activityLog = imported.activityLog;
+                    saveAllData();
+                    renderArticles();
+                    renderAppointments();
+                    renderFamilyMembers();
+                    renderMedicalFiles();
+                    showDoctorsList();
+                    updateLastHealthValue();
+                    renderSubscriptionPlans();
+                    updateActivityLogDisplay();
+                    showToast('تم استيراد البيانات بنجاح');
+                } catch(err) {
+                    showToast('ملف غير صالح', 'error');
+                }
+            };
+            reader.readAsText(file);
+        });
+        
+        document.getElementById('clearAllBtn')?.addEventListener('click', () => {
+            if (confirm('⚠️ هل أنت متأكد من مسح جميع البيانات؟')) {
+                localStorage.clear();
+                location.reload();
+            }
+        });
+        
+        document.getElementById('sendPushNotificationBtn')?.addEventListener('click', () => {
+            let title = prompt('عنوان الإشعار:');
+            let body = prompt('محتوى الإشعار:');
+            if (title && body) {
+                if (Notification.permission === 'granted') {
+                    new Notification(title, { body: body });
+                    showToast('تم إرسال الإشعار', 'success');
+                } else {
+                    showToast('يرجى تفعيل الإشعارات أولاً', 'warning');
+                    Notification.requestPermission();
+                }
+            }
+        });
         
         // ==================== إضافات ====================
-        function toggleDarkMode() { document.body.classList.toggle('dark'); localStorage.setItem('darkMode', document.body.classList.contains('dark')); }
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+        }
+        
         document.getElementById('toggle-dark').onclick = toggleDarkMode;
         if (localStorage.getItem('darkMode') === 'true') document.body.classList.add('dark');
-        function openLegalModal(type) { let modal = document.getElementById('legalModal'), body = document.getElementById('legalModalBody'); body.innerHTML = type === 'privacy' ? '<h3>سياسة الخصوصية</h3><p>بياناتك مشفرة ومخزنة محلياً. لا نشارك بياناتك مع أطراف ثالثة.</p>' : '<h3>شروط الاستخدام</h3><p>المحتوى الطبي توعوي فقط. استشر طبيبك قبل اتخاذ أي قرار طبي.</p>'; modal.style.display = 'block'; }
-        function closeLegalModal() { document.getElementById('legalModal').style.display = 'none'; }
+        
+        function openLegalModal(type) {
+            let modal = document.getElementById('legalModal');
+            let body = document.getElementById('legalModalBody');
+            if (type === 'privacy') {
+                body.innerHTML = '<h3>سياسة الخصوصية</h3><p>بياناتك مشفرة ومخزنة محلياً. لا نشارك بياناتك مع أطراف ثالثة.</p>';
+            } else {
+                body.innerHTML = '<h3>شروط الاستخدام</h3><p>المحتوى الطبي توعوي فقط. استشر طبيبك قبل اتخاذ أي قرار طبي.</p>';
+            }
+            modal.style.display = 'block';
+        }
+        
+        function closeLegalModal() {
+            document.getElementById('legalModal').style.display = 'none';
+        }
+        
+        // ==================== تعدد اللغات ====================
+        function setLanguage(lang) {
+            State.currentLanguage = lang;
+            localStorage.setItem('preferredLang', lang);
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            
+            const translations = {
+                ar: {
+                    mainTitle: 'المرجع الطبي الرقمي المتكامل',
+                    mainSubtitle: 'بإشراف د. صلاح الأهدل - استشارات فيديو حقيقية، وصفات رقمية، ذكاء اصطناعي',
+                    searchPlaceholder: 'ابحث عن دواء أو مرض...',
+                    searchBtn: 'بحث متقدم',
+                    drugs: '💊 دواء',
+                    diseases: '🩺 مرض',
+                    articles: '📄 مقالات'
+                },
+                en: {
+                    mainTitle: 'Integrated Digital Medical Reference',
+                    mainSubtitle: 'Under supervision of Dr. Salah Al-Ahdal - Real video consultations, digital prescriptions, AI',
+                    searchPlaceholder: 'Search for medicine or disease...',
+                    searchBtn: 'Advanced Search',
+                    drugs: '💊 Medicine',
+                    diseases: '🩺 Disease',
+                    articles: '📄 Articles'
+                },
+                fr: {
+                    mainTitle: 'Référence Médicale Numérique Intégrée',
+                    mainSubtitle: 'Sous la supervision du Dr Salah Al-Ahdal - Consultations vidéo réelles, ordonnances numériques, IA',
+                    searchPlaceholder: 'Rechercher un médicament ou une maladie...',
+                    searchBtn: 'Recherche avancée',
+                    drugs: '💊 Médicament',
+                    diseases: '🩺 Maladie',
+                    articles: '📄 Articles'
+                }
+            };
+            
+            const t = translations[lang] || translations.ar;
+            let heroTitle = document.querySelector('.hero h2');
+            let heroSubtitle = document.querySelector('.hero p');
+            let searchInput = document.getElementById('mainSearch');
+            let searchBtn = document.getElementById('advancedSearchBtn');
+            let tabs = document.querySelectorAll('.search-tab');
+            
+            if (heroTitle) heroTitle.innerText = t.mainTitle;
+            if (heroSubtitle) heroSubtitle.innerText = t.mainSubtitle;
+            if (searchInput) searchInput.placeholder = t.searchPlaceholder;
+            if (searchBtn) searchBtn.innerHTML = `<i class="fas fa-search"></i> ${t.searchBtn}`;
+            if (tabs && tabs.length >= 3) {
+                if (tabs[0]) tabs[0].innerHTML = t.drugs;
+                if (tabs[1]) tabs[1].innerHTML = t.diseases;
+                if (tabs[2]) tabs[2].innerHTML = t.articles;
+            }
+            
+            showToast(`تم تغيير اللغة إلى ${lang === 'ar' ? 'العربية' : (lang === 'en' ? 'English' : 'Français')}`, 'success');
+        }
+        
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                let lang = btn.dataset.lang;
+                if (lang) setLanguage(lang);
+            });
+        });
+        
+        let savedLang = localStorage.getItem('preferredLang');
+        if (savedLang && (savedLang === 'en' || savedLang === 'fr')) {
+            setLanguage(savedLang);
+        }
         
         // ==================== بدء التشغيل ====================
         loadInitialData();
         renderArticles();
         renderAppointments();
+        
         let recent = document.getElementById('recent-sidebar');
-        if (recent) recent.innerHTML = State.articles.slice(0, 5).map(a => `<li><button class="read-btn" onclick="openArticle('${a.id}')">📖 ${a.title}</button></li>`).join('');
-        new Chart(document.getElementById('statsChart'), { type: 'line', data: { labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو'], datasets: [{ label: 'المشاهدات', data: [1200, 1900, 3000, 5000, 4200, 6000], borderColor: '#0066cc', fill: true }] } });
-        setTimeout(() => { document.getElementById('quickStats').innerHTML = `<div class="stat-card"><div class="number">${State.articles.reduce((s, a) => s + a.views, 0)}</div><div class="label">مشاهدة</div></div><div class="stat-card"><div class="number">${State.appointments.length}</div><div class="label">موعد</div></div><div class="stat-card"><div class="number">${State.points}</div><div class="label">نقاطك</div></div>`; }, 500);
+        if (recent) {
+            recent.innerHTML = State.articles.slice(0, 5).map(a => `
+                <li style="padding:8px 0; border-bottom:1px solid rgba(0,0,0,0.05);">
+                    <button class="read-btn" onclick="openArticle('${a.id}')" style="width:100%; text-align:right;">📖 ${a.title}</button>
+                </li>
+            `).join('');
+        }
         
-        window.openArticle = openArticle; window.closeArticleModal = closeArticleModal; window.openLegalModal = openLegalModal; window.closeLegalModal = closeLegalModal;
-        window.toggleAuthModal = toggleAuthModal; window.closeAuthModal = closeAuthModal; window.showRegisterForm = showRegisterForm; window.showLoginForm = showLoginForm; window.showForgotPassword = showForgotPassword;
-        window.openPrescriptionModal = openPrescriptionModal; window.closePrescriptionModal = closePrescriptionModal; window.generateDigitalPrescription = generateDigitalPrescription;
-        window.sharePrescriptionWhatsApp = sharePrescriptionWhatsApp; window.downloadPrescriptionPDF = downloadPrescriptionPDF; window.printPrescription = printPrescription;
-        window.sendToAI = sendToAI; window.startVoiceInput = startVoiceInput; window.redeemPoints = redeemPoints; window.closeRedeemModal = closeRedeemModal; window.redeemReward = redeemReward;
-        window.addFamilyMember = addFamilyMember; window.switchFamilyMember = switchFamilyMember; window.openHealthTracker = openHealthTracker; window.closeHealthModal = closeHealthModal;
-        window.addHealthReading = addHealthReading; window.showHealthChart = showHealthChart; window.uploadMedicalFile = uploadMedicalFile; window.viewMedicalFile = viewMedicalFile;
-        window.deleteMedicalFile = deleteMedicalFile; window.findNearbyHospitals = findNearbyHospitals; window.requestEmergencyBed = requestEmergencyBed; window.closeEmergencyBedModal = closeEmergencyBedModal;
-        window.submitEmergencyBedRequest = submitEmergencyBedRequest; window.openRateDoctorModal = openRateDoctorModal; window.closeRateDoctorModal = closeRateDoctorModal;
-        window.submitDoctorRating = submitDoctorRating; window.showAllCourses = showAllCourses; window.closeAllCoursesModal = closeAllCoursesModal; window.playCourse = playCourse;
-        window.translateText = translateText; window.closeTranslationModal = closeTranslationModal; window.findNearbyPharmacies = findNearbyPharmacies; window.orderFromPharmacy = orderFromPharmacy;
-        window.showSubscriptionDetails = showSubscriptionDetails; window.closeSubscriptionModal = closeSubscriptionModal; window.clearActivityLog = clearActivityLog; window.sendToPharmacy = sendToPharmacy;
-        window.shareMedicalFile = shareMedicalFile; window.analyzeLabPhoto = analyzeLabPhoto; window.askDoctorAboutPhoto = askDoctorAboutPhoto; window.initiatePhoneCall = initiatePhoneCall;
-        window.shareScreen = shareScreen; window.startRecording = startRecording; window.selectCalendarDate = selectCalendarDate;
+        new Chart(document.getElementById('statsChart'), {
+            type: 'line',
+            data: {
+                labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو'],
+                datasets: [{
+                    label: 'المشاهدات',
+                    data: [1200, 1900, 3000, 5000, 4200, 6000],
+                    borderColor: '#0066cc',
+                    fill: true
+                }]
+            }
+        });
         
-        console.log('🚀 تم تفعيل جميع التحسينات الـ 14 بنجاح!');
+        setTimeout(() => {
+            let quickStats = document.getElementById('quickStats');
+            if (quickStats) {
+                let totalViews = State.articles.reduce((s, a) => s + a.views, 0);
+                quickStats.innerHTML = `
+                    <div class="stat-card"><div class="number">${formatNumber(totalViews)}</div><div class="label">مشاهدة</div></div>
+                    <div class="stat-card"><div class="number">${State.appointments.length}</div><div class="label">موعد</div></div>
+                    <div class="stat-card"><div class="number">${State.points}</div><div class="label">نقاطك</div></div>
+                `;
+            }
+            
+            let topList = document.getElementById('topArticlesList');
+            if (topList) {
+                let topArticles = [...State.articles].sort((a, b) => b.views - a.views).slice(0, 3);
+                topList.innerHTML = `
+                    <h5 style="margin-top:1rem;">📖 الأكثر قراءة</h5>
+                    ${topArticles.map(a => `
+                        <div class="appointment-item" style="cursor:pointer;" onclick="openArticle('${a.id}')">
+                            📄 ${a.title}<br><small>${formatNumber(a.views)} مشاهدة</small>
+                        </div>
+                    `).join('')}
+                `;
+            }
+        }, 500);
+        
+        // طلب إذن الإشعارات
+        setTimeout(() => {
+            if (Notification.permission === 'default') {
+                Notification.requestPermission();
+            }
+        }, 3000);
+        
+        // تصدير الدوال للنوافذ المنبثقة
+        window.openArticle = openArticle;
+        window.closeArticleModal = closeArticleModal;
+        window.openLegalModal = openLegalModal;
+        window.closeLegalModal = closeLegalModal;
+        window.toggleAuthModal = toggleAuthModal;
+        window.closeAuthModal = closeAuthModal;
+        window.showRegisterForm = showRegisterForm;
+        window.showLoginForm = showLoginForm;
+        window.showForgotPassword = showForgotPassword;
+        window.openPrescriptionModal = openPrescriptionModal;
+        window.closePrescriptionModal = closePrescriptionModal;
+        window.generateDigitalPrescription = generateDigitalPrescription;
+        window.sharePrescriptionWhatsApp = sharePrescriptionWhatsApp;
+        window.downloadPrescriptionPDF = downloadPrescriptionPDF;
+        window.printPrescription = printPrescription;
+        window.sendToAI = sendToAI;
+        window.redeemPoints = redeemPoints;
+        window.closeRedeemModal = closeRedeemModal;
+        window.redeemReward = redeemReward;
+        window.addFamilyMember = addFamilyMember;
+        window.switchFamilyMember = switchFamilyMember;
+        window.openHealthTracker = openHealthTracker;
+        window.closeHealthModal = closeHealthModal;
+        window.addHealthReading = addHealthReading;
+        window.showHealthChart = showHealthChart;
+        window.uploadMedicalFile = uploadMedicalFile;
+        window.viewMedicalFile = viewMedicalFile;
+        window.deleteMedicalFile = deleteMedicalFile;
+        window.findNearbyHospitals = findNearbyHospitals;
+        window.requestEmergencyBed = requestEmergencyBed;
+        window.closeEmergencyBedModal = closeEmergencyBedModal;
+        window.submitEmergencyBedRequest = submitEmergencyBedRequest;
+        window.openRateDoctorModal = openRateDoctorModal;
+        window.closeRateDoctorModal = closeRateDoctorModal;
+        window.submitDoctorRating = submitDoctorRating;
+        window.showAllCourses = showAllCourses;
+        window.closeAllCoursesModal = closeAllCoursesModal;
+        window.playCourse = playCourse;
+        window.translateText = translateText;
+        window.closeTranslationModal = closeTranslationModal;
+        window.findNearbyPharmacies = findNearbyPharmacies;
+        window.orderFromPharmacy = orderFromPharmacy;
+        window.showSubscriptionDetails = showSubscriptionDetails;
+        window.closeSubscriptionModal = closeSubscriptionModal;
+        window.clearActivityLog = clearActivityLog;
+        window.sendToPharmacy = sendToPharmacy;
+        window.shareMedicalFile = shareMedicalFile;
+        window.analyzeLabPhoto = analyzeLabPhoto;
+        window.askDoctorAboutPhoto = askDoctorAboutPhoto;
+        window.initiatePhoneCall = initiatePhoneCall;
+        window.shareScreen = shareScreen;
+        window.startRecording = startRecording;
+        window.selectCalendarDate = selectCalendarDate;
+        window.deleteArticle = deleteArticle;
+        window.verifyDoctor = verifyDoctor;
+        
+        console.log('🚀 تم تحميل منصة استشاريون بنجاح!');
+        console.log(`📚 تم تحميل ${State.articles.length} مقالاً طبياً بتاريخ ${getTodayDate()}`);
+        console.log('🔑 كلمة مرور لوحة المدير: Estsharion2024!');
+        console.log('🛡️ تم تفعيل تشفير البيانات المحلية باستخدام AES-256');
+        console.log('🌐 تم تفعيل خوادم STUN/TURN المحسنة (Open Relay + Cloudflare)');
     </script>
 </body>
-    </html>
+                    </html>
