@@ -4,6 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#0066cc">
+    <!-- إضافة مانيفست التطبيق -->
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="images/logo-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="استشاريون">
+
+<script>
+    // تسجيل Service Worker بشكل متقدم
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => {
+                    console.log('✅ Service Worker registered successfully:', reg);
+                    
+                    // مراقبة التحديثات
+                    reg.addEventListener('updatefound', () => {
+                        const newWorker = reg.installing;
+                        console.log('🔄 New Service Worker installing...');
+                        
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                console.log('🆕 New update available!');
+                                // إظهار إشعار للمستخدم
+                                showToast('تحديث جديد متاح! سيتم التحديث تلقائياً', 'info');
+                            }
+                        });
+                    });
+                })
+                .catch(err => {
+                    console.error('❌ Service Worker registration failed:', err);
+                });
+            
+            // مراقبة رسائل من Service Worker
+            navigator.serviceWorker.addEventListener('message', (event) => {
+                console.log('📨 Message from SW:', event.data);
+                
+                if (event.data && event.data.type === 'UPDATE_AVAILABLE') {
+                    showToast(`تحديث جديد (الإصدار ${event.data.version}) متاح!`, 'info');
+                }
+                
+                if (event.data && event.data.type === 'SYNC_COMPLETE') {
+                    showToast('تم مزامنة بياناتك بنجاح', 'success');
+                }
+            });
+        });
+    }
+    
+    // دالة عرض الإشعارات
+    function showToast(msg, type = 'success') {
+        // استخدام دالة showToast الموجودة في المنصة
+        if (typeof window.showToast === 'function') {
+            window.showToast(msg, type);
+        } else {
+            console.log('[Toast]', msg);
+        }
+    }
+    
+    // التحقق من الاتصال بالإنترنت للتحديث
+    window.addEventListener('online', () => {
+        console.log('🌐 Internet connection restored');
+        // محاولة تحديث Service Worker
+        if (navigator.serviceWorker.controller) {
+            navigator.serviceWorker.controller.postMessage({ type: 'CHECK_UPDATES' });
+        }
+    });
+    
+    window.addEventListener('offline', () => {
+        console.log('📡 No internet connection - working offline');
+    });
+    
+    // طلب إذن الإشعارات
+    if ('Notification' in window && Notification.permission === 'default') {
+        setTimeout(() => {
+            Notification.requestPermission().then(permission => {
+                if (permission === 'granted') {
+                    console.log('✅ Push notifications enabled');
+                }
+            });
+        }, 5000);
+    }
+</script>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="استشاريون">
