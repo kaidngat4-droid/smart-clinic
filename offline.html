@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>غير متصل | استشاريون</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0066cc, #1a237e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 500px;
+        }
+        .icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+        h1 { font-size: 1.8rem; margin-bottom: 1rem; }
+        p { opacity: 0.9; margin-bottom: 1.5rem; line-height: 1.6; }
+        button {
+            background: white;
+            color: #0066cc;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        .tips {
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">📡</div>
+        <h1>⚠️ غير متصل بالإنترنت</h1>
+        <p>عذراً، لا يوجد اتصال بالإنترنت حالياً.<br>يرجى التحقق من اتصالك وإعادة المحاولة.</p>
+        <button onclick="location.reload()">🔄 إعادة المحاولة</button>
+        <div class="tips">
+            💡 نصيحة: يمكنك تصفح المقالات المحفوظة مسبقاً دون اتصال بالإنترنت
+        </div>
+    </div>
+    <script>
+        // إعادة التحميل تلقائياً عند استعادة الاتصال
+        window.addEventListener('online', () => {
+            location.reload();
+        });
+    </script>
+</body>
+</html>
