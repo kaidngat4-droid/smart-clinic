@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>علم الأدوية: فهم دوائك | استشاريون</title>
+    <meta name="description" content="دليل شامل لعلم الأدوية: كيف تعمل الأدوية، التفاعلات الدوائية، الآثار الجانبية الشائعة، وقواعد السلامة الدوائية. معلومات موثقة من د. صلاح الأهدل">
+    <meta name="author" content="د. صلاح الأهدل">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #f0f4f8; color: #1a2c3e; line-height: 1.7; }
+        .article-container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+        .article-card { background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .article-header { background: linear-gradient(135deg, #0066cc, #1a237e); color: white; padding: 2.5rem; text-align: center; }
+        .article-header h1 { font-size: 2rem; margin-bottom: 1rem; }
+        .article-meta { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.9; margin-top: 1rem; }
+        .article-meta i { margin-left: 5px; }
+        .featured-image { width: 100%; height: 350px; object-fit: cover; background: linear-gradient(135deg, #0066cc, #1a237e); display: flex; align-items: center; justify-content: center; }
+        .featured-image i { font-size: 5rem; color: rgba(255,255,255,0.3); }
+        .article-content { padding: 2.5rem; }
+        .article-content h2 { color: #0066cc; border-right: 4px solid #0066cc; padding-right: 1rem; margin: 2rem 0 1rem 0; font-size: 1.6rem; }
+        .article-content h3 { color: #1a237e; margin: 1.5rem 0 0.8rem 0; font-size: 1.3rem; }
+        .article-content h4 { color: #2c3e50; margin: 1rem 0 0.5rem 0; font-size: 1.1rem; }
+        .article-content p { margin-bottom: 1rem; text-align: justify; }
+        .article-content ul, .article-content ol { margin: 1rem 2rem 1rem 0; }
+        .article-content li { margin-bottom: 0.5rem; }
+        .warning-box { background: #fff3e0; border-right: 4px solid #ff9800; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .info-box { background: #e3f2fd; border-right: 4px solid #0066cc; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .danger-box { background: #ffebee; border-right: 4px solid #e74c3c; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .success-box { background: #e8f5e9; border-right: 4px solid #00c853; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .stat-card { background: #f8f9fa; padding: 1.2rem; border-radius: 16px; text-align: center; transition: transform 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-number { font-size: 2rem; font-weight: 800; color: #0066cc; }
+        .drug-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        .drug-table th, .drug-table td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        .drug-table th { background: #0066cc; color: white; }
+        .drug-table tr:nth-child(even) { background: #f8f9fa; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #0066cc, #1a237e); color: white; text-decoration: none; padding: 12px 28px; border-radius: 40px; font-weight: 600; margin-top: 2rem; transition: all 0.3s; border: none; cursor: pointer; }
+        .btn-back:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,102,204,0.4); }
+        .toc { background: #f8f9fa; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; }
+        .toc h3 { color: #0066cc; margin-bottom: 1rem; }
+        .toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .toc li a { color: #0066cc; text-decoration: none; transition: color 0.3s; }
+        .toc li a:hover { color: #1a237e; text-decoration: underline; }
+        .footer { text-align: center; padding: 2rem; background: #1a237e; color: white; margin-top: 2rem; border-radius: 28px 28px 0 0; }
+        hr { margin: 1.5rem 0; border: none; height: 1px; background: linear-gradient(to left, #0066cc, transparent); }
+        .interaction-card { background: #f8f9fa; border-radius: 16px; padding: 1.2rem; margin: 1rem 0; display: flex; gap: 1rem; align-items: flex-start; }
+        .interaction-icon { width: 50px; height: 50px; background: #e74c3c; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; flex-shrink: 0; }
+        .safety-tips { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1rem 0; }
+        .safety-tip { background: #f8f9fa; padding: 1rem; border-radius: 12px; display: flex; align-items: center; gap: 12px; }
+        .safety-tip i { font-size: 1.5rem; color: #00c853; }
+        @media (max-width: 768px) { .article-header h1 { font-size: 1.5rem; } .article-content { padding: 1.5rem; } .featured-image { height: 200px; } .interaction-card { flex-direction: column; align-items: center; text-align: center; } }
+    </style>
+</head>
+<body>
+
+<div class="article-container">
+    <div class="article-card">
+        <div class="article-header">
+            <h1><i class="fas fa-capsules"></i> علم الأدوية: فهم دوائك</h1>
+            <p>كيف تعمل الأدوية، التفاعلات الدوائية، والآثار الجانبية الشائعة</p>
+            <div class="article-meta">
+                <span><i class="fas fa-user-md"></i> د. صلاح الأهدل</span>
+                <span><i class="fas fa-calendar-alt"></i> 15 أبريل 2025</span>
+                <span><i class="fas fa-clock"></i> وقت القراءة: 12 دقيقة</span>
+                <span><i class="fas fa-heart"></i> 2,800 قراءة</span>
+            </div>
+        </div>
+        
+        <div class="featured-image">
+            <i class="fas fa-capsules"></i>
+        </div>
+        
+        <div class="article-content">
+            <!-- فهرس المحتويات -->
+            <div class="toc">
+                <h3><i class="fas fa-list-ul"></i> فهرس المحتويات</h3>
+                <ul>
+                    <li><a href="#intro">مقدمة عن علم الأدوية</a></li>
+                    <li><a href="#drug-classes">فئات الأدوية الرئيسية</a></li>
+                    <li><a href="#how-work">كيف تعمل الأدوية</a></li>
+                    <li><a href="#interactions">التفاعلات الدوائية</a></li>
+                    <li><a href="#side-effects">الآثار الجانبية الشائعة</a></li>
+                    <li><a href="#safety">قواعد السلامة الدوائية</a></li>
+                    <li><a href="#storage">تخزين الأدوية</a></li>
+                    <li><a href="#herbal">الأدوية العشبية</a></li>
+                    <li><a href="#special">أدوية الحالات الخاصة</a></li>
+                    <li><a href="#faq">أسئلة شائعة</a></li>
+                </ul>
+            </div>
+            
+            <!-- المقدمة -->
+            <h2 id="intro"><i class="fas fa-info-circle"></i> مقدمة عن علم الأدوية</h2>
+            <p>علم الأدوية هو العلم الذي يدرس تفاعل المواد الكيميائية مع الكائنات الحية. يهدف إلى فهم كيفية عمل الأدوية، وكيفية استخدامها بشكل آمن وفعال لعلاج الأمراض وتخفيف الأعراض وتحسين جودة الحياة. فهم دوائك يساعدك على الاستفادة القصوى من العلاج وتجنب المضاعفات.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">30%</div>
+                    <div>من حالات دخول المستشفى بسبب تفاعلات دوائية</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50%</div>
+                    <div>لا يتناولون الأدوية كما هو موصوف</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100,000+</div>
+                    <div>وفاة سنوياً بسبب التفاعلات الدوائية في أمريكا</div>
+                </div>
+            </div>
+            
+            <!-- فئات الأدوية الرئيسية -->
+            <h2 id="drug-classes"><i class="fas fa-tags"></i> فئات الأدوية الرئيسية</h2>
+            
+            <div class="info-box">
+                <strong>1. مثبطات الإنزيم المحول للأنجيوتنسين (ACE Inhibitors)</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>أمثلة:</strong> إنالابريل (Enalapril)، راميبريل (Ramipril)، ليسينوبريل (Lisinopril)</li>
+                    <li><strong>الاستخدام:</strong> خفض ضغط الدم، علاج قصور القلب، حماية الكلى لمرضى السكري</li>
+                    <li><strong>آلية العمل:</strong> تمنع تكوين الأنجيوتنسين II (مادة تسبب تضيق الأوعية)</li>
+                    <li><strong>الآثار الجانبية الشائعة:</strong> سعال جاف، ارتفاع البوتاسيوم، دوخة</li>
+                </ul>
+            </div>
+            
+            <div class="info-box">
+                <strong>2. حاصرات مستقبلات الأنجيوتنسين (ARBs)</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>أمثلة:</strong> لوسارتان (Losartan)، فالسارتان (Valsartan)، كانديسارتان (Candesartan)</li>
+                    <li><strong>الاستخدام:</strong> خفض ضغط الدم، حماية الكلى (بديل لـ ACE إذا كان السعال مزعجاً)</li>
+                    <li><strong>آلية العمل:</strong> تمنع ارتباط الأنجيوتنسين II بمستقبلاته</li>
+                    <li><strong>الآثار الجانبية الشائعة:</strong> دوخة، ارتفاع البوتاسيوم (أقل من ACE)</li>
+                </ul>
+            </div>
+            
+            <div class="info-box">
+                <strong>3. حاصرات بيتا (Beta-blockers)</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>أمثلة:</strong> بيسوبرولول (Bisoprolol)، ميتوبرولول (Metoprolol)، كارفيديلول (Carvedilol)</li>
+                    <li><strong>الاستخدام:</strong> خفض ضغط الدم، علاج قصور القلب، عدم انتظام ضربات القلب، الصداع النصفي</li>
+                    <li><strong>آلية العمل:</strong> تمنع تأثير الأدرينالين على القلب والأوعية الدموية</li>
+                    <li><strong>الآثار الجانبية الشائعة:</strong> إرهاق، برودة الأطراف، بطء القلب، ضعف الانتصاب</li>
+                </ul>
+            </div>
+            
+            <div class="info-box">
+                <strong>4. الستاتينات (Statins)</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>أمثلة:</strong> أتورفاستاتين (Atorvastatin)، روزوفاستاتين (Rosuvastatin)، سيمفاستاتين (Simvastatin)</li>
+                    <li><strong>الاستخدام:</strong> خفض الكوليسترول الضار (LDL)، تثبيت اللويحات الدهنية</li>
+                    <li><strong>آلية العمل:</strong> تثبيط إنزيم HMG-CoA reductase المسؤول عن إنتاج الكوليسترول</li>
+                    <li><strong>الآثار الجانبية الشائعة:</strong> آلام عضلية، ارتفاع إنزيمات الكبد (نادر)</li>
+                </ul>
+            </div>
+            
+            <div class="info-box">
+                <strong>5. مدرات البول (Diuretics)</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>أمثلة:</strong> فوروسيميد (Furosemide)، هيدروكلوروثيازيد (HCTZ)، سبيرونولاكتون (Spironolactone)</li>
+                    <li><strong>الاستخدام:</strong> علاج ارتفاع ضغط الدم، إزالة السوائل الزائدة في قصور القلب</li>
+                    <li><strong>آلية العمل:</strong> تزيد إفراز الصوديوم والماء عن طريق الكلى</li>
+                    <li><strong>الآثار الجانبية الشائعة:</strong> جفاف، اختلال الأملاح، كثرة التبول</li>
+                </ul>
+            </div>
+            
+            <div class="info-box">
+                <strong>6. مميعات الدم (Anticoagulants & Antiplatelets)</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>أمثلة:</strong> الأسبرين، كلوبيدوجريل (بلافيكس)، وارفارين، ريفاروكسابان (زاريلتو)</li>
+                    <li><strong>الاستخدام:</strong> منع تكون الجلطات (بعد الدعامات، في الرجفان الأذيني، بعد الجراحات)</li>
+                    <li><strong>آلية العمل:</strong> تثبيط عوامل التخثر أو الصفائح الدموية</li>
+                    <li><strong>الآثار الجانبية الشائعة:</strong> زيادة خطر النزيف، كدمات</li>
+                </ul>
+            </div>
+            
+            <!-- كيف تعمل الأدوية -->
+            <h2 id="how-work"><i class="fas fa-microscope"></i> كيف تعمل الأدوية في الجسم</h2>
+            <p>تمر الأدوية بأربع مراحل رئيسية في الجسم تُعرف باسم "حركية الدواء" (Pharmacokinetics):</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">1</div>
+                    <div>الامتصاص (Absorption)</div>
+                    <small>دخول الدواء إلى مجرى الدم</small>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2</div>
+                    <div>التوزيع (Distribution)</div>
+                    <small>انتقال الدواء إلى الأنسجة المستهدفة</small>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div>الاستقلاب (Metabolism)</div>
+                    <small>تحويل الدواء في الكبد</small>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4</div>
+                    <div>الإطراح (Excretion)</div>
+                    <small>خروج الدواء عبر الكلى أو الصفراء</small>
+                </div>
+            </div>
+            
+            <!-- التفاعلات الدوائية -->
+            <h2 id="interactions"><i class="fas fa-biohazard"></i> التفاعلات الدوائية الخطيرة</h2>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>كلوبيدوجريل + أوميبرازول</h3>
+                    <p>أوميبرازول (مضاد حموضة) يقلل فعالية كلوبيدوجريل (مميع دم) بنسبة تصل إلى 40%، مما يزيد خطر تجلط الدعامة. البديل الآمن: بانتوبرازول.</p>
+                </div>
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>الوارفارين + مضادات الالتهاب (NSAIDs)</h3>
+                    <p>مضادات الالتهاب مثل الإيبوبروفين تزيد خطر النزيف المعدي المعوي عند تناولها مع الوارفارين. البديل الآمن: باراسيتامول.</p>
+                </div>
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>الستاتينات + بعض المضادات الحيوية</h3>
+                    <p>بعض المضادات الحيوية (مثل كلاريثروميسين) تزيد تركيز الستاتينات في الدم، مما يزيد خطر تلف العضلات.</p>
+                </div>
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>مثبطات ACE + مدرات البول الموفرة للبوتاسيوم</h3>
+                    <p>تناولها معاً قد يسبب ارتفاع خطير في مستوى البوتاسيوم (فرط بوتاسيوم الدم).</p>
+                </div>
+            </div>
+            
+            <div class="interaction-card">
+                <div class="interaction-icon"><i class="fas fa-ban"></i></div>
+                <div>
+                    <h3>ليفوثيروكسين (علاج الغدة) + مكملات الحديد أو الكالسيوم</h3>
+                    <p>الحديد والكالسيوم يقللان امتصاص ليفوثيروكسين. يجب الفصل بينهما بأربع ساعات على الأقل.</p>
+                </div>
+            </div>
+            
+            <!-- الآثار الجانبية -->
+            <h2 id="side-effects"><i class="fas fa-exclamation-triangle"></i> الآثار الجانبية الشائعة للأدوية</h2>
+            
+            <table class="drug-table">
+                <thead>
+                    <tr>
+                        <th>فئة الدواء</th>
+                        <th>الآثار الجانبية الشائعة</th>
+                        <th>التعامل معها</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>مثبطات ACE</td><td>سعال جاف</td><td>التبديل إلى ARBs</td></tr>
+                    <tr><td>حاصرات بيتا</td><td>إرهاق، برودة الأطراف</td><td>عادة تتحسن مع الوقت</td></tr>
+                    <tr><td>الستاتينات</td><td>آلام عضلية</td><td>تغيير نوع الستاتين أو تقليل الجرعة</td></tr>
+                    <tr><td>مدرات البول</td><td>جفاف، اختلال الأملاح</td><td>مراقبة السوائل والأملاح</td></tr>
+                    <tr><td>مضادات الاكتئاب (SSRI)</td><td>غثيان، صداع، اضطرابات جنسية</td><td>تتحسن غالباً خلال أسابيع</td></tr>
+                    <tr><td>مضادات الهيستامين</td><td>نعاس</td><td>تناولها ليلاً أو استخدام الأنواع غير المسببة للنعاس</td></tr>
+                </tbody>
+            </table>
+            
+            <!-- قواعد السلامة الدوائية -->
+            <h2 id="safety"><i class="fas fa-shield-alt"></i> قواعد السلامة الدوائية</h2>
+            
+            <div class="safety-tips">
+                <div class="safety-tip"><i class="fas fa-check-circle"></i> <span>لا تتناول دواءً وصفه طبيب لشخص آخر</span></div>
+                <div class="safety-tip"><i class="fas fa-check-circle"></i> <span>أخبر طبيبك عن جميع الأدوية التي تتناولها (بما فيها العشبية)</span></div>
+                <div class="safety-tip"><i class="fas fa-check-circle"></i> <span>لا تتوقف عن الدواء فجأة دون استشارة الطبيب</span></div>
+                <div class="safety-tip"><i class="fas fa-check-circle"></i> <span>اقرأ النشرة الداخلية للآثار الجانبية</span></div>
+                <div class="safety-tip"><i class="fas fa-check-circle"></i> <span>تناول الدواء في نفس الوقت يومياً</span></div>
+                <div class="safety-tip"><i class="fas fa-check-circle"></i> <span>لا تسحق أو تكسر الأقراص بطيئة التحرر</span></div>
+                <div class="safety-tip"><i class="fas fa-check-circle"></i> <span>احتفظ بقائمة أدويتك في محفظتك للحالات الطارئة</span></div>
+                <div class="safety-tip"><i class="fas fa-check-circle"></i> <span>استشر الصيدلي قبل تناول أي دواء بدون وصفة طبية</span></div>
+            </div>
+            
+            <!-- تخزين الأدوية -->
+            <h2 id="storage"><i class="fas fa-thermometer-half"></i> تخزين الأدوية بشكل صحيح</h2>
+            <ul>
+                <li><strong>درجة الحرارة المناسبة:</strong> معظم الأدوية تُحفظ في درجة حرارة الغرفة (20-25 درجة مئوية)</li>
+                <li><strong>الرطوبة:</strong> تجنب تخزين الأدوية في الحمام (رطوبة عالية)</li>
+                <li><strong>الضوء:</strong> بعض الأدوية حساسة للضوء (احفظها في عبواتها الأصلية)</li>
+                <li><strong>الأطفال:</strong> احفظ الأدوية بعيداً عن متناول الأطفال</li>
+                <li><strong>تاريخ الصلاحية:</strong> تحقق من تاريخ الصلاحية بانتظام وتخلص من الأدوية منتهية الصلاحية</li>
+                <li><strong>التخلص من الأدوية:</strong> لا ترمها في المرحاض أو سلة المهملات العادية. استخدم برامج إعادة تدوير الأدوية</li>
+            </ul>
+            
+            <!-- الأدوية العشبية -->
+            <h2 id="herbal"><i class="fas fa-leaf"></i> الأدوية العشبية والتفاعلات الدوائية</h2>
+            
+            <div class="warning-box">
+                <strong>أعشاب تتفاعل مع الأدوية:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>الثوم بجرعات عالية:</strong> يزيد سيولة الدم (يتفاعل مع الوارفارين والأسبرين)</li>
+                    <li><strong>الجنكة (Ginkgo biloba):</strong> تزيد خطر النزيف مع مميعات الدم</li>
+                    <li><strong>نبتة سانت جون (St. John's Wort):</strong> تقلل فعالية العديد من الأدوية (حبوب منع الحمل، مميعات الدم، مضادات الاكتئاب)</li>
+                    <li><strong>الجنسنج (Ginseng):</strong> قد يسبب انخفاض سكر الدم مع أدوية السكري</li>
+                    <li><strong>عشبة الإيفيدرا (Ephedra):</strong> تزيد ضغط الدم ومعدل ضربات القلب</li>
+                </ul>
+            </div>
+            
+            <div class="info-box">
+                <i class="fas fa-lightbulb"></i>
+                <strong>نصيحة:</strong> أخبر طبيبك عن جميع المكملات العشبية التي تتناولها. حتى الأعشاب "الطبيعية" يمكن أن تتفاعل مع الأدوية الموصوفة.
+            </div>
+            
+            <!-- أدوية الحالات الخاصة -->
+            <h2 id="special"><i class="fas fa-heartbeat"></i> أدوية الحالات الخاصة</h2>
+            
+            <h3>أدوية القلب:</h3>
+            <ul>
+                <li><strong>النتروجليسرين (Nitroglycerin):</strong> يستخدم لعلاج الذبحة الصدرية. يوضع تحت اللسان عند الحاجة.</li>
+                <li><strong>الديجوكسين (Digoxin):</strong> يقوي تقلصات القلب. يجب مراقبة مستواه في الدم.</li>
+                <li><strong>الأميودارون (Amiodarone):</strong> لعلاج عدم انتظام ضربات القلب. له آثار جانبية متعددة تحتاج مراقبة.</li>
+            </ul>
+            
+            <h3>أدوية السكري:</h3>
+            <ul>
+                <li><strong>الميتفورمين (Metformin):</strong> الخط الأول لعلاج السكري من النوع الثاني. يقلل إنتاج السكر في الكبد.</li>
+                <li><strong>الأنسولين (Insulin):</strong> ضروري لمرضى السكري من النوع الأول. يجب حفظه في الثلاجة.</li>
+                <li><strong>مثبطات SGLT2:</strong> (Empagliflozin, Dapagliflozin) تحمي القلب والكلى بالإضافة إلى خفض السكر.</li>
+            </ul>
+            
+            <h3>أدوية الجهاز التنفسي:</h3>
+            <ul>
+                <li><strong>موسعات الشعب الهوائية:</strong> (Salbutamol) لعلاج الربو. تستخدم عند الحاجة أو بانتظام.</li>
+                <li><strong>الكورتيكوستيرويدات المستنشقة:</strong> (Budesonide) للسيطرة على التهاب الشعب الهوائية.</li>
+            </ul>
+            
+            <!-- أسئلة شائعة -->
+            <h2 id="faq"><i class="fas fa-question-circle"></i> أسئلة شائعة عن علم الأدوية</h2>
+            
+            <h3>متى يجب تناول الدواء: قبل أم بعد الأكل؟</h3>
+            <p>يعتمد على الدواء. بعض الأدوية تُفضل على معدة فارغة لتحسين الامتصاص (مثل ليفوثيروكسين). البعض الآخر يُفضل مع الطعام لتقليل تهيج المعدة (مثل مضادات الالتهاب). اتبع تعليمات الطبيب أو الصيدلي.</p>
+            
+            <h3>ماذا أفعل إذا نسيت جرعة من الدواء؟</h3>
+            <p>إذا كان الوقت أقل من نصف المدة حتى الجرعة التالية، تناول الجرعة فوراً. إذا كان الوقت أكثر من نصف المدة، تخط الجرعة وتناول الجرعة التالية في موعدها. لا تضاعف الجرعة أبداً. بالنسبة لبعض الأدوية (مثل مميعات الدم)، استشر طبيبك.</p>
+            
+            <h3>هل يمكن تقسيم الأقراص؟</h3>
+            <p>لا تقسّم الأقراص إلا إذا كان هناك خط فاصل (score line) أو أخبرك الطبيب بذلك. بعض الأقراص مغلفة لحماية المعدة أو بطيئة التحرر، وتقسيمها قد يغير تأثيرها.</p>
+            
+            <h3>هل الأدوية الجنيسة (Generic) فعالة مثل الأدوية الأصلية؟</h3>
+            <p>نعم، الأدوية الجنيسة تحتوي على نفس المادة الفعالة ونفس التركيز ونفس شكل الجرعة. يجب أن توافق إدارة الغذاء والدواء (FDA) على فعاليتها وسلامتها. الفرق الوحيد هو السعر (أرخص) والمكونات غير النشطة (مثل الألوان والمواد الحافظة).</p>
+            
+            <h3>ما هي الأدوية التي لا يجب تناولها مع الجريب فروت؟</h3>
+            <p>عصير الجريب فروت يتداخل مع العديد من الأدوية عن طريق تثبيط إنزيم CYP3A4 في الكبد. تشمل الأدوية المتأثرة: الستاتينات (أتورفاستاتين، سيمفاستاتين)، حاصرات قنوات الكالسيوم (نيفيديبين)، بعض مميعات الدم (أبيكسابان، ريفاروكسابان)، وبعض مضادات الاكتئاب.</p>
+            
+            <hr>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <p><strong>⚠️ تنبيه هام:</strong> هذا المحتوى هو لأغراض توعوية وتعليمية فقط، ولا يغني عن استشارة الطبيب أو الصيدلي المختص. لا تتناول أي دواء دون استشارة طبية.</p>
+                <button class="btn-back" onclick="window.location.href='../index.html'">
+                    <i class="fas fa-arrow-right"></i> العودة إلى المنصة
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 منصة استشاريون - جميع الحقوق محفوظة | اليمن</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">بإشراف د. صلاح الأهدل - مدير مكتب الصحة</p>
+    </div>
+</div>
+
+<script>
+    // تنشيط الروابط الداخلية والتمرير السلس
+    document.querySelectorAll('.toc a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    console.log('تم تحميل مقال علم الأدوية - منصة استشاريون');
+</script>
+</body>
+</html>
